@@ -91,7 +91,7 @@ function ControlledRecruitmentPools:KillAllExistingNonRecruitedGenerals(faction)
     local character_list_count = character_list:num_items() - 1;
     for i = 0, character_list_count do
         local  character = character_list:item_at(i);
-        if character:has_military_force() 
+        if character:has_military_force()
         and character:military_force():is_armed_citizenry() then
             Custom_Log("Found armed citizenry. Leader: "..tostring(character:character_subtype_key()))
         elseif cm:char_is_agent(character) == false 
@@ -109,7 +109,6 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
     -- values
     Custom_Log("STARTING pool update for "..tostring(faction:name()));
     cm:disable_event_feed_events(true, "wh_event_category_agent", "", "");
-    self:KillAllVampireLords(faction);
 
     local currentPoolCounts = self:GetCurrentPoolForFaction(faction);
 
@@ -130,13 +129,14 @@ function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
     local currentPoolCounts = {};
     currentPoolCounts["total"] = 0;
     for i = 0, character_list:num_items() - 1 do
-        local char = character_list:item_at(i);
-        local charSubType = char:character_subtype_key();
-        Custom_Log("Found existing character subtype: "..tostring(charSubType));
-        if char:character_subtype_key() == "vmp_lord" then
-            Custom_Log("Trying to kill Vampire again...: "..tostring(char:character_subtype_key()));
-            cm:kill_character(char:cqi(), true, false);
+        local character = character_list:item_at(i);
+        local charSubType = character:character_subtype_key();
+
+        if character:has_military_force()
+        and character:military_force():is_armed_citizenry() then
+            Custom_Log("Found garrrison commander: "..tostring(charSubType));
         else
+            Custom_Log("Found existing character subtype: "..tostring(charSubType));
             if currentPoolCounts[charSubType] then
                 currentPoolCounts[charSubType] = currentPoolCounts[charSubType] + 1;
             else
