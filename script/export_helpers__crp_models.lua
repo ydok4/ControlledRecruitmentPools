@@ -34,8 +34,6 @@ function ControlledRecruitmentPools:Initialise()
     self:RecalculatePoolLimits();
     -- Clear the loaded data
     _G.CRPResources = nil;
-    -- Clear existing generals
-    self:FactionStartup();
 end
 
 -- The pool limit should be greater than or equal to the highest Agent Sub Type 
@@ -44,16 +42,35 @@ function ControlledRecruitmentPools:RecalculatePoolLimits()
     for subcultureKey, subcultureLimits in pairs(self.CRPResources.CultureResources) do
         for factionKey, factionLimits in pairs(subcultureLimits) do
             for factionPoolKey, factionPool in pairs(factionLimits.FactionPools) do
-                local currentLimit = factionPool.SubPoolMaxSize;
-                if currentLimit == nil then
-                    currentLimit = 0;
+                local subPoolMax = factionPool.SubPoolMaxSize;
+                if subPoolMax == nil then
+                    subPoolMax = 0;
                 end
+                local subPoolMin = factionPool.SubPoolInitialMinSize;
+                if subPoolMin == nil then
+                    subPoolMin = 0;
+                end
+                local highestMinimum = 0;
+                local highestMaximum = 0;
+                local calculatedMinimum = 0;
+                local calculatedMaximum = 0
                 for agentSubTypeKey, agentSubType in pairs(factionPool.AgentSubTypes) do
-                    if agentSubType.MaximumAmount > currentLimit then
-                        currentLimit = agentSubType.MaximumAmount;
+                    if agentSubType.MinimumAmount > highestMinimum then
+                        highestMinimum = agentSubType.MinimumAmount;
                     end
+
+                    if agentSubType.MaximumAmount > highestMaximum then
+                        highestMaximum = agentSubType.MaximumAmount;
+                    end
+
+                    calculatedMinimum = calculatedMinimum + agentSubType.MinimumAmount;
                 end
-                factionPool.SubPoolMaxSize = currentLimit;
+                if subPoolMin < calculatedMinimum then
+                    factionPool.SubPoolInitialMinSize = calculatedMinimum;
+                end
+                if subPoolMax < calculatedMinimum + highestMaximum then
+                    factionPool.SubPoolMaxSize = calculatedMinimum + highestMaximum;
+                end
             end
         end
     end
@@ -72,36 +89,17 @@ end
 function ControlledRecruitmentPools:FactionStartup()
 	local faction_list = cm:model():world():faction_list();
 
+    cm:disable_event_feed_events(true, "wh_event_category_agent", "", "");
+    Custom_Log("Faction Start up");
 	for i = 0, faction_list:num_items() - 1 do
         local faction = faction_list:item_at(i);
         if self:IsSupportedSubCulture(faction:subculture()) then
-            self:KillAllExistingNonRecruitedGenerals(faction);
+            Custom_Log("INITIALISING: "..tostring(faction:name()));
+            local currentFactionPools = self:GetCurrentPoolForFaction(faction);
+            self:SetupInitialMinimumValues(faction, currentFactionPools);
         end
     end
-end
-
-function ControlledRecruitmentPools:KillAllExistingNonRecruitedGenerals(faction)
-    Custom_Log("Killing existing generals for faction: "..tostring(faction:name()));
-    local factionLeader = {};
-    if faction:has_faction_leader() == true then
-        Custom_Log("Has faction leader");
-        factionLeader = faction:faction_leader();
-    end
-    local character_list = faction:character_list();
-    local character_list_count = character_list:num_items() - 1;
-    for i = 0, character_list_count do
-        local  character = character_list:item_at(i);
-        if character:has_military_force()
-        and character:military_force():is_armed_citizenry() then
-            Custom_Log("Found armed citizenry. Leader: "..tostring(character:character_subtype_key()))
-        elseif cm:char_is_agent(character) == false 
-        and cm:char_is_mobile_general_with_army(character) == false then
-            Custom_Log("Killing: "..tostring(character:character_subtype_key()));
-            cm:kill_character(character:cqi(), true, false);
-        else
-            Custom_Log("Found valid character: "..tostring(character:character_subtype_key()));
-        end
-    end
+    cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
 end
 
 function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGenerate)
@@ -117,7 +115,7 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
 
     -- Generate extra characters up to the pool size for that faction
     self:FillPoolWithGenerals(faction, currentPoolCounts, amountToGenerate);
-    cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","","")end, 1);
+    cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
     Custom_Log("FINISHED pool update for "..tostring(faction:name()));
 end
 
@@ -135,6 +133,8 @@ function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
         if character:has_military_force()
         and character:military_force():is_armed_citizenry() then
             Custom_Log("Found garrrison commander: "..tostring(charSubType));
+        elseif cm:char_is_agent(character) == true then
+            Custom_Log("Found agent: "..tostring(charSubType));
         else
             Custom_Log("Found existing character subtype: "..tostring(charSubType));
             if currentPoolCounts[charSubType] then
@@ -149,6 +149,29 @@ function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
     return currentPoolCounts;
 end
 
+function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPoolCounts)
+    self:EnforceMinimumValues(faction, currentPoolCounts);
+    local factionResources = self:GetFactionResources(faction);
+    for poolKey, pool in pairs(factionResources.FactionPools) do
+        local currentPoolMinimum = 0;
+        for agentKey, agentSubType in pairs(pool.AgentSubTypes) do
+            currentPoolMinimum = currentPoolMinimum + agentSubType.MinimumAmount;
+        end
+
+        --Custom_Log("Adding extras for pool "..tostring(poolKey).." Current Size: "..tostring(currentPoolMinimum).." Initial Minimum: "..tostring(pool.SubPoolInitialMinSize));
+        while currentPoolMinimum < pool.SubPoolInitialMinSize do
+            local agentSubTypeKey = self:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, poolKey);
+            self:GenerateGeneral(agentSubTypeKey, faction:name(), nil);
+            currentPoolCounts["total"] = currentPoolCounts["total"] + 1;
+            if currentPoolCounts[agentSubTypeKey] == nil then
+                currentPoolCounts[agentSubTypeKey] = 0;
+            end
+            currentPoolCounts[agentSubTypeKey] = currentPoolCounts[agentSubTypeKey] + 1;
+            currentPoolMinimum = currentPoolMinimum + 1;
+        end
+    end
+end
+
 function ControlledRecruitmentPools:EnforceMinimumValues(faction, currentPoolCounts)
     Custom_Log("Enforcing minimum values");
 
@@ -159,9 +182,10 @@ function ControlledRecruitmentPools:EnforceMinimumValues(faction, currentPoolCou
     local factionResources = self:GetFactionResources(faction);
 
     for poolKey, pool in pairs(factionResources.FactionPools) do
-        Custom_Log("Checking agent pool "..tostring(poolKey));
+        --Custom_Log("Checking agent pool "..tostring(poolKey));
+        -- Generate minimums for each agent type
         for agentKey, agentSubType in pairs(pool.AgentSubTypes) do
-            Custom_Log(tostring(agentKey).." count:"..tostring(currentPoolCounts[agentKey]).." - "..tostring(agentSubType.MinimumAmount));
+            --Custom_Log(tostring(agentKey).." count:"..tostring(currentPoolCounts[agentKey]).." - "..tostring(agentSubType.MinimumAmount));
             if agentSubType.MinimumAmount > 0 then
                 local count = currentPoolCounts[agentKey];
                 if count == nil then
@@ -178,15 +202,15 @@ function ControlledRecruitmentPools:EnforceMinimumValues(faction, currentPoolCou
     end
 end
 
-function ControlledRecruitmentPools:FillPoolWithGenerals(faction, currentPoolCounts, overrideAmount)
-    if overrideAmount == 0 then
+function ControlledRecruitmentPools:FillPoolWithGenerals(faction, currentPoolCounts, maximumAmount)
+    if maximumAmount == 0 then
         return;
     end
 
     Custom_Log("Generating extras for pool");
     local factionResources = self:GetFactionResources(faction);
 
-    for i = 0, overrideAmount do
+    for i = 0, maximumAmount do
         if currentPoolCounts["total"] < factionResources.PoolMaxSize then
             -- Select a general to generate
             local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts);
@@ -247,6 +271,27 @@ function ControlledRecruitmentPools:SelectGeneralToGenerate(factionResources, cu
     end
     -- Randomly select type from valid agents
     return GetRandomObjectFromList(validAgentSubTypes);
+end
+
+function ControlledRecruitmentPools:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, poolKey)
+    local agentSubTypesBelowMax = {};
+    local currentSubPoolCount = 0;
+    Custom_Log("SelectGeneralToGenerateFromPool "..tostring(poolKey));
+    for agentKey, agentSubType in pairs(factionResources.FactionPools[poolKey].AgentSubTypes) do
+        local count = currentPoolCounts[agentKey];
+        if count == nil then
+            count = 0;
+        end
+        -- If the number of agents currently in the pool is less than their maximum value
+        -- they might be generated
+        if count < agentSubType.MaximumAmount then
+            agentSubTypesBelowMax[agentKey] = agentKey;
+        end
+
+        currentSubPoolCount = currentSubPoolCount + count;
+    end
+    -- Randomly select type from valid agents
+    return GetRandomObjectFromList(agentSubTypesBelowMax);
 end
 
 function ControlledRecruitmentPools:GenerateGeneral(generalSubType, factionName, callbackFunction)

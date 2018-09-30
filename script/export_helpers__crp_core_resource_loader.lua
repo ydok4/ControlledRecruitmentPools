@@ -1,3 +1,4 @@
+require 'script/_lib/BretonniaRecruitmentPools'
 require 'script/_lib/DarkElfRecruitmentPools'
 require 'script/_lib/GreenskinRecruitmentPools'
 require 'script/_lib/SavageOrcRecruitmentPools'
@@ -7,6 +8,8 @@ Custom_Log("Loading Core Data")
 
 _G.CRPResources = {
     CultureResources = {
+        --Bretonnia
+        wh_main_sc_brt_bretonnia = BretonniaRecruitmentPoolData,
         -- Dark Elves
         wh2_main_sc_def_dark_elves = DarkElfRecruitmentPoolData,
         -- Greenskins
@@ -38,7 +41,13 @@ _G.CRPResources = {
                         end
                         -- Add all the new agent sub types
                         ConcatTableWithKeys(existingData.AgentSubTypes, additionalAgenySubTypes);
-                        existingData.SubPoolMaxSize = additionalSubPoolData.SubPoolMaxSize;
+                        if additionalSubPoolData.SubPoolInitialMinSize ~= nil then
+                            existingData.SubPoolInitialMinSize = additionalSubPoolData.SubPoolInitialMinSize;
+                        end
+
+                        if additionalSubPoolData.SubPoolMaxSize ~= nil then
+                            existingData.SubPoolMaxSize = additionalSubPoolData.SubPoolMaxSize;
+                        end
                     end
                 -- If a pool has been marked for deletion or there are no longer any agent
                 -- subTypes in it, remove the data

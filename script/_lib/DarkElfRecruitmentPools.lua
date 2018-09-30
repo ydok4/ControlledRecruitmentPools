@@ -5,15 +5,16 @@ DarkElfRecruitmentPoolData =  {
             DreadlordPool = {
                 AgentSubTypes = {
                     wh2_main_def_dreadlord_fem = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                     wh2_main_def_dreadlord = {
-                        MinimumAmount = 1,
-                        MaximumAmount = 6,
+                        MinimumAmount = 0,
+                        MaximumAmount = 5,
                     },
                 },
-                SubPoolMaxSize = 7,
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 5,
             },
             SorceressSupremePool = {
                 AgentSubTypes = {
@@ -38,6 +39,7 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                 },
+                SubPoolInitialMinSize = 0,
                 SubPoolMaxSize = 2,
             },
         },
@@ -59,6 +61,7 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 5,
                     },
                 },
+                SubPoolInitialMinSize = 4,
                 SubPoolMaxSize = 7,
             },
             SorceressSupremePool = {
@@ -84,6 +87,7 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                 },
+                SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 4,
             },
         },
@@ -103,6 +107,7 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                 },
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 4,
             },
             SorceressSupremePool = {
@@ -128,6 +133,7 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                 },
+                SubPoolInitialMinSize = 5,
                 SubPoolMaxSize = 6,
             },
         },
@@ -148,6 +154,7 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                 },
+                SubPoolInitialMinSize = 4,
                 SubPoolMaxSize = 7,
             },
             SorceressSupremePool = {
@@ -173,6 +180,7 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                 },
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 3,
             },
         },
@@ -193,6 +201,7 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                 },
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 3,
             },
             SorceressSupremePool = {
@@ -218,7 +227,8 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                 },
-                SubPoolMaxSize = 5,
+                SubPoolInitialMinSize = 5,
+                SubPoolMaxSize = 8,
             },
         },
         PoolMaxSize = 8,
@@ -236,6 +246,7 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 4,
                     },
                 },
+                SubPoolInitialMinSize = 4,
                 SubPoolMaxSize = 6,
             },
             SorceressSupremePool = {
@@ -261,6 +272,7 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 1,
                     },
                 },
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 2,
             },
         },

@@ -12,10 +12,9 @@ function controlled_recruitment_pools()
 
     Custom_Log("Mod startup");
     if cm:is_new_game()  then
-        if crp:IsSupportedSubCulture(crp.HumanFaction:subculture()) then
-            crp:UpdateRecruitmentPool(crp.HumanFaction, 0);
-        end
         Custom_Log("New Game");
+        -- Clear existing generals
+        crp:FactionStartup();
     else
         Custom_Log("Existing game");
     end

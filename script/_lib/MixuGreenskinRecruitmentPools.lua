@@ -3,7 +3,7 @@ GreenskinRecruitmentPoolData =  {
     -- Default pool distribution
     wh_main_sc_grn_greenskins = {
         FactionPools = {
-            OrcWarbossPool = {
+            GreenskinWarbosses = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
                         MinimumAmount = 1,
@@ -16,21 +16,20 @@ GreenskinRecruitmentPoolData =  {
                 },
                 SubPoolMaxSize = 5,
             },
-            OrcGreatShamanPool = {
+            GreenskinShamans = {
                 AgentSubTypes = {
-                    grn_orc_warboss = {
-                        MinimumAmount = 1,
-                        MaximumAmount = 3,
+                    grn_savage_orc_shaman = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
                     },
-                },
-                SubPoolMaxSize = 3,
-            },
-            GoblinGreatShaman = {
-                AgentSubTypes = {
                     grn_goblin_great_shaman = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
+                    grn_orc_great_shaman = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    }
                 },
                 SubPoolMaxSize = 2,
             },
@@ -42,7 +41,7 @@ GreenskinRecruitmentPoolData =  {
     -- Grimgor / Ahzag (Vanilla at least)
     wh_main_grn_greenskins = {
         FactionPools = {
-            OrcWarbossPool = {
+            GreenskinWarbosses = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
                         MinimumAmount = 4,
@@ -55,23 +54,22 @@ GreenskinRecruitmentPoolData =  {
                 },
                 SubPoolMaxSize = 9,
             },
-            OrcGreatShamanPool = {
+            GreenskinShamans = {
                 AgentSubTypes = {
-                    grn_orc_warboss = {
-                        MinimumAmount = 2,
-                        MaximumAmount = 4,
+                    grn_savage_orc_shaman = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 3,
                     },
-                },
-                SubPoolMaxSize = 4,
-            },
-            GoblinGreatShaman = {
-                AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
+                    grn_orc_great_shaman = {
+                        MinimumAmount = 1,
+                        MaximumAmount = 3,
+                    }
                 },
-                SubPoolMaxSize = 2,
+                SubPoolMaxSize = 4,
             },
         },
         PoolMaxSize = 10,
@@ -79,33 +77,32 @@ GreenskinRecruitmentPoolData =  {
     -- Wurrzag
     wh_main_grn_orcs_of_the_bloody_hand = {
         FactionPools = {
-            OrcWarbossPool = false,
-            SavageOrcWarboss = {
+            GreenskinWarbosses = {
                 AgentSubTypes = {
+                    grn_orc_warboss = false,
                     grn_savage_orc_warboss = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 3,
                         MaximumAmount = 4,
                     },
                 },
                 SubPoolMaxSize = 5,
             },
-            SavageOrcGreatShaman = {
+            GreenskinShamans = {
                 AgentSubTypes = {
                     grn_savage_orc_shaman = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 1,
                         MaximumAmount = 3,
                     },
-                },
-                SubPoolMaxSize = 4,
-            },
-            GoblinGreatShaman = {
-                AgentSubTypes = {
                     grn_goblin_great_shaman = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
+                    grn_orc_great_shaman = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
                 },
-                SubPoolMaxSize = 2,
+                SubPoolMaxSize = 4,
             },
         },
         PoolMaxSize = 9,

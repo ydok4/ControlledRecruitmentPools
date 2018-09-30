@@ -2,23 +2,25 @@ GreenskinRecruitmentPoolData =  {
     -- Default pool distribution
     wh_main_sc_grn_greenskins = {
         FactionPools = {
-            OrcWarbossPool = {
+            GreenskinWarbosses = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
                         MinimumAmount = 1,
                         MaximumAmount = 5,
                     },
                 },
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 5,
             },
-            GoblinGreatShaman = {
+            GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
                         MinimumAmount = 1,
                         MaximumAmount = 2,
                     },
                 },
-                SubPoolMaxSize = 1,
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 2,
             },
         },
         PoolMaxSize = 5,
@@ -28,22 +30,24 @@ GreenskinRecruitmentPoolData =  {
     -- Grimgor / Ahzag (Vanilla at least)
     wh_main_grn_greenskins = {
         FactionPools = {
-            OrcWarbossPool = {
+            GreenskinWarbosses = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
-                        MinimumAmount = 7,
+                        MinimumAmount = 4,
                         MaximumAmount = 9,
                     },
                 },
+                SubPoolInitialMinSize = 4,
                 SubPoolMaxSize = 9,
             },
-            GoblinGreatShaman = {
+            GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
                         MinimumAmount = 1,
                         MaximumAmount = 3,
                     },
                 },
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 3,
             },
         },
@@ -52,22 +56,24 @@ GreenskinRecruitmentPoolData =  {
     -- Wurrzag
     wh_main_grn_orcs_of_the_bloody_hand = {
         FactionPools = {
-            OrcWarbossPool = {
+            GreenskinWarbosses = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
                         MinimumAmount = 3,
                         MaximumAmount = 5,
                     },
                 },
+                SubPoolInitialMinSize = 3,
                 SubPoolMaxSize = 5,
             },
-            GoblinGreatShaman = {
+            GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
                         MinimumAmount = 2,
                         MaximumAmount = 3,
                     },
                 },
+                SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 3,
             },
         },
@@ -77,22 +83,24 @@ GreenskinRecruitmentPoolData =  {
     -- Skarsnik
     wh_main_grn_crooked_moon = {
         FactionPools = {
-            WarbossPool = {
+            GreenskinWarbosses = {
                 AgentSubTypes = {
                     dlc06_grn_night_goblin_warboss = {
                         MinimumAmount = 2,
                         MaximumAmount = 5,
                     },
                 },
+                SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 5,
             },
-            GoblinGreatShaman = {
+            GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
                         MinimumAmount = 1,
                         MaximumAmount = 3,
                     },
                 },
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 3,
             },
         },

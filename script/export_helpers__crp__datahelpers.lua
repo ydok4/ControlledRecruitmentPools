@@ -2,9 +2,7 @@
 
 function ConcatTableWithKeys(destinationTable, sourceTable)
     for key, value in pairs(sourceTable) do
-        if destinationTable[key] == nil then
-            destinationTable[key] = value;
-        end
+        destinationTable[key] = value;
     end
 end
 
