@@ -95,11 +95,89 @@ function ControlledRecruitmentPools:FactionStartup()
         local faction = faction_list:item_at(i);
         if self:IsSupportedSubCulture(faction:subculture()) then
             Custom_Log("INITIALISING: "..tostring(faction:name()));
+            -- Replace existing lords with specified values (if any)
+            self:ReplaceExistingLords(faction);
+            -- After replacing calculate the current pools for the faction
             local currentFactionPools = self:GetCurrentPoolForFaction(faction);
+            -- Then set the initial pools for the faction
             self:SetupInitialMinimumValues(faction, currentFactionPools);
         end
     end
     cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
+end
+
+function ControlledRecruitmentPools:ReplaceExistingLords(faction)
+    -- Grab all characters in the faction. This includes recruited and
+    -- characters in the pool
+    Custom_Log("Replacing existing lords");
+    local character_list = faction:character_list();
+    -- Grab faction resources
+    local factionResources = self:GetFactionResources(faction);
+    Custom_Log("Got faction resources");
+    for i = 0, character_list:num_items() - 1 do
+        local character = character_list:item_at(i);
+        local charSubType = character:character_subtype_key();
+        if factionResources.LordsToReplace ~= nil
+        and factionResources.LordsToReplace[charSubType] ~= nil
+        and cm:char_is_mobile_general_with_army(character) then
+            Custom_Log("Replacing character subtype: "..tostring(charSubType))
+            self:ReplaceCharacter(faction, character, factionResources.LordsToReplace[charSubType]);
+        end
+    end
+end
+
+function ControlledRecruitmentPools:ReplaceCharacter(faction, character, newSubType)
+    local characterUnitList = self:GetStringifiedUnitList(character);
+    --[[Custom_Log("Creating force for faction: "..faction:name());
+    Custom_Log("In region: "..character:region():province_name());
+    Custom_Log("At position X: "..character:logical_position_x().." Y: "..character:logical_position_y());
+    Custom_Log("With new sub type: "..newSubType);
+    Custom_Log("With forename: "..character:get_forename());
+    Custom_Log("With surname: "..character:get_surname());
+    Custom_Log("Faction Leader = "..tostring(character:is_faction_leader()));--]]
+    cm:create_force_with_general(
+        faction:name(),
+        characterUnitList,
+        character:region():name(),
+        --231,
+        --94,
+        character:logical_position_x(),
+        character:logical_position_y(),
+        "general",
+        newSubType,
+        character:get_forename(),
+        "",
+        character:get_surname(),
+        "",
+        character:is_faction_leader(),
+        function(cqi)
+            return;
+        end
+    );
+
+    cm:set_character_immortality(cm:char_lookup_str(character:cqi()), false);
+    cm:kill_character(character:cqi(), true, true);
+    Custom_Log("Finished replacing general");
+end
+
+function ControlledRecruitmentPools:GetStringifiedUnitList(character)
+    local unitList = character:military_force():unit_list();
+
+    local unitString = "";
+    -- This starts at one so it skips the first unit, which is the general
+    for i = 1, unitList:num_items() - 1 do
+        -- If this is the last unit we should not add a comma to the end
+        local unitKey = unitList:item_at(i):unit_key();
+        if unitKey ~= character:character_subtype_key() then
+            if i == unitList:num_items() - 1 then
+                unitString = unitString..unitKey;
+            else
+                unitString = unitString..unitKey..",";
+            end
+        end
+    end
+    Custom_Log("Built Unit string: "..tostring(unitString));
+    return unitString;
 end
 
 function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGenerate)

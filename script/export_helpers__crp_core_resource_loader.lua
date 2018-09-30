@@ -55,6 +55,11 @@ _G.CRPResources = {
                     coreResources[key1].FactionPools[key2] = nil;
                 end
             end
+            if coreResources[key1].LordsToReplace == nil and additionalFactionData.LordsToReplace ~= nil then
+                coreResources[key1].LordsToReplace = {};
+                ConcatTableWithKeys(coreResources[key1].LordsToReplace, additionalFactionData.LordsToReplace);
+            end
+            
         end
     end,
 }
