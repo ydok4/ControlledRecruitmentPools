@@ -29,6 +29,6 @@ SavageOrcRecruitmentPoolData =  {
         PoolMaxSize = 5,
         LordsToReplace = {
             grn_orc_warboss = "grn_savage_orc_warboss",
-        }
+        },
     },
 }

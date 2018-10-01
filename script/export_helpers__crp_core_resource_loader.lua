@@ -2,9 +2,10 @@ require 'script/_lib/BretonniaRecruitmentPools'
 require 'script/_lib/DarkElfRecruitmentPools'
 require 'script/_lib/GreenskinRecruitmentPools'
 require 'script/_lib/SavageOrcRecruitmentPools'
+require 'script/_lib/VampireCountsRecruitmentPools'
 
 
---Custom_Log("Loading Core Data")
+Custom_Log("Loading Core Data")
 
 _G.CRPResources = {
     CultureResources = {
@@ -15,6 +16,8 @@ _G.CRPResources = {
         -- Greenskins
         wh_main_sc_grn_greenskins = GreenskinRecruitmentPoolData,
         wh_main_sc_grn_savage_orcs = SavageOrcRecruitmentPoolData,
+        -- Vampire Counts
+        wh_main_sc_vmp_vampire_counts = VampireCountsRecruitmentPoolData,
     },
     -- Additional loader function
     -- This is intended to be used by other mods to load custom data.
