@@ -9,7 +9,7 @@ function SetupListeners()
         end,
         function(context)
             crp:UpdateRecruitmentPool(context:faction(), 1);
-            Custom_Log_Finished();
+            --Custom_Log_Finished();
         end,
         true
     );

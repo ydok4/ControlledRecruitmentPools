@@ -2,6 +2,7 @@ crp = {};
 _G.crp = crp;
 
 function controlled_recruitment_pools()
+    --Custom_Log("Mod Init function");
     crp = ControlledRecruitmentPools:new({
         HumanFaction = {},
         DefaultXCoordinate = 0,
@@ -10,15 +11,14 @@ function controlled_recruitment_pools()
 
     crp:Initialise();
 
-    Custom_Log("Mod startup");
     if cm:is_new_game()  then
-        Custom_Log("New Game");
+        --Custom_Log("New Game");
         -- Clear existing generals
         crp:FactionStartup();
     else
-        Custom_Log("Existing game");
+        --Custom_Log("Existing game");
     end
 
     SetupListeners();
-    Custom_Log_Finished();
+    --Custom_Log_Finished();
 end

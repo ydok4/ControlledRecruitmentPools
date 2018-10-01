@@ -4,7 +4,7 @@ require 'script/_lib/GreenskinRecruitmentPools'
 require 'script/_lib/SavageOrcRecruitmentPools'
 
 
-Custom_Log("Loading Core Data")
+--Custom_Log("Loading Core Data")
 
 _G.CRPResources = {
     CultureResources = {
