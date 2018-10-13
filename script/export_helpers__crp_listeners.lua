@@ -5,11 +5,16 @@ function SetupListeners()
         "UpdateRecruitmentPool",
         "FactionTurnStart",
         function(context)
+            Custom_Log("Checking faction: "..tostring(context:faction():name()));
             return crp:IsSupportedSubCulture(context:faction():subculture());
         end,
         function(context)
-            crp:UpdateRecruitmentPool(context:faction(), 1);
-            --Custom_Log_Finished();
+            if context:faction():subculture() == "rebels" then
+                Custom_Log("Updating rebels");
+            else
+                crp:UpdateRecruitmentPool(context:faction(), 1);
+            end
+            Custom_Log_Finished();
         end,
         true
     );

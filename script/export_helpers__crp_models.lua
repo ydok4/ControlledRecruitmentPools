@@ -8,10 +8,6 @@ ControlledRecruitmentPools = {
     -- dense forest. 
     DefaultXCoordinate = 0,
     DefaultYCoordinate = 0,
-    -- List of characters who repaced faction leaders.
-    -- Giving them immortality during the callback caused
-    -- issues so i'm doing it later based off of this list
-    ReplacedFactionLeaders = {},
 }
 
 function ControlledRecruitmentPools:new (o)
@@ -22,14 +18,13 @@ function ControlledRecruitmentPools:new (o)
   end
 
 function ControlledRecruitmentPools:Initialise()
-    --Custom_Log("Setting default values");
+    Custom_Log("Setting default values");
     self.HumanFaction = self:GetHumanFaction();
     -- These coordinates are between Lustria and
     -- the Southlands in ME
     self.DefaultXCoordinate = 231;
     self.DefaultYCoordinate = 94;
     self.CRPResources = _G.CRPResources;
-    self.ReplacedFactionLeaders = {};
     self:RecalculatePoolLimits();
     -- Clear the loaded data
     _G.CRPResources = nil;
@@ -76,9 +71,9 @@ function ControlledRecruitmentPools:RecalculatePoolLimits()
 end
 
 function ControlledRecruitmentPools:IsSupportedSubCulture(subculture)
-    --Custom_Log("Checking subculture "..tostring(subculture));
-    if self.CRPResources.CultureResources[subculture] then
-        --Custom_Log("Found supported subculture "..tostring(subculture));
+    Custom_Log("Checking subculture "..tostring(subculture));
+    if subculture == "rebels" or self.CRPResources.CultureResources[subculture] then
+        Custom_Log("Found supported subculture "..tostring(subculture));
         return true;
     else
         return false;
@@ -89,15 +84,15 @@ function ControlledRecruitmentPools:FactionStartup()
 	local faction_list = cm:model():world():faction_list();
 
     cm:disable_event_feed_events(true, "wh_event_category_agent", "", "");
-    --Custom_Log("Faction Start up");
+    Custom_Log("Faction Start up");
 	for i = 0, faction_list:num_items() - 1 do
         local faction = faction_list:item_at(i);
         if self:IsSupportedSubCulture(faction:subculture()) then
-            --Custom_Log("INITIALISING: "..tostring(faction:name()));
+            Custom_Log("INITIALISING: "..tostring(faction:name()));
             -- After replacing calculate the current pools for the faction
             local currentFactionPools = self:GetCurrentPoolForFaction(faction);
             -- Replace existing lords with specified values (if any)
-            -- The current faction pools will be updated
+            -- The current faction pools will be updated with these values+
             self:ReplaceExistingLords(faction, currentFactionPools);
             -- Then set the initial pools for the faction
             self:SetupInitialMinimumValues(faction, currentFactionPools);
@@ -115,15 +110,15 @@ function ControlledRecruitmentPools:ReplaceExistingLords(faction, currentFaction
     -- Grab all characters in the faction. This includes recruited and
     -- characters in the pool
     local character_list = faction:character_list();
-    --Custom_Log("Replacing existing lords");
+    Custom_Log("Replacing existing lords");
     for i = 0, character_list:num_items() - 1 do
         local character = character_list:item_at(i);
         local charSubType = character:character_subtype_key();
 
         if factionResources.LordsToReplace[charSubType] ~= nil
         and cm:char_is_mobile_general_with_army(character) then
-            --Custom_Log("Replacing character subtype: "..tostring(charSubType))
-            local replaceType = factionResources.LordsToReplace[charSubType];
+            Custom_Log("Replacing character subtype: "..tostring(charSubType))
+            local replaceType = factionResources.LordsToReplace[charSubType].replacementKey;
             currentFactionPools[charSubType] = currentFactionPools[charSubType] - 1;
             if currentFactionPools[replaceType] == nil then
                 currentFactionPools[replaceType] = 1;
@@ -131,16 +126,18 @@ function ControlledRecruitmentPools:ReplaceExistingLords(faction, currentFaction
                 currentFactionPools[replaceType] = currentFactionPools[replaceType] + 1;
             end
 
-            cm:callback(self:ReplaceCharacter(faction, character, replaceType), 1);
+            self:ReplaceCharacter(faction, character, replaceType);
         end
     end
 end
 
 function ControlledRecruitmentPools:ReplaceCharacter(faction, character, replaceSubType)
+    local factionName = faction:name();
+    local factionResources = self:GetFactionResources(faction);
     -- Copied into local var so data can be accessed later
     local characterData = {
         oldCharCqi = character:command_queue_index(),
-        factionName = faction:name(),
+        factionName = factionName,
         unitList = GetStringifiedUnitList(character),
         regionName = character:region():name(),
         xPos = character:logical_position_x(),
@@ -149,9 +146,10 @@ function ControlledRecruitmentPools:ReplaceCharacter(faction, character, replace
         foreName = character:get_forename(),
         surname = character:get_surname(),
         isFactionLeader = character:cqi() == faction:faction_leader():cqi();
+        traitKey = self:GetRandomTraitForLord(factionResources, character:character_subtype_key());
     }
-    --Custom_Log("Copied lord data");
-    -- Remove faction leader immortality 
+    Custom_Log("Copied lord data");
+    -- Remove faction leader immortality
     if characterData.isFactionLeader == true then
         cm:set_character_immortality("character_cqi:"..characterData.oldCharCqi, false);
     end
@@ -161,11 +159,19 @@ function ControlledRecruitmentPools:ReplaceCharacter(faction, character, replace
     -- Create the new character with units
     self:CreateForceWithGeneral(characterData);
 
-    --Custom_Log("Finished replacing general");
+    Custom_Log("Finished replacing general");
+end
+
+function ControlledRecruitmentPools:GetRandomTraitForLord(factionResources, originalSubType)
+    Custom_Log("Getting random trait");
+    local traitPool = factionResources.LordsToReplace[originalSubType].traitKeyPool;
+    local selectedTrait = GetRandomObjectFromList(traitPool);
+    Custom_Log("Trait selected: "..selectedTrait)
+    return selectedTrait;
 end
 
 function ControlledRecruitmentPools:CreateForceWithGeneral(character)
-    --Custom_Log("Creating force with general");
+    Custom_Log("Creating force with general");
     cm:create_force_with_general(
         character.factionName,
         character.unitList,
@@ -184,12 +190,20 @@ function ControlledRecruitmentPools:CreateForceWithGeneral(character)
         "",
         character.isFactionLeader,
         function(cqi)
+            Custom_Log("In created character callback");
             -- This is added to a callback because more time is required if the character was
             -- made a faction leader. Without the callback is_faction_leader always returned false
             if character.isFactionLeader then
-                --Custom_Log("In create_force_with_general_callback for faction "..tostring(character.factionName).." cqi "..tostring(cqi));
+                Custom_Log("In create_force_with_general_callback for faction "..tostring(character.factionName).." cqi "..tostring(cqi));
                 cm:set_character_immortality("character_cqi:"..cqi, true);
             end
+            Custom_Log("Giving character trait "..character.traitKey)
+            -- Give them a random starting trait (skill)
+            -- Commented out since this doesn't work
+            --[[cm:callback(function()
+                cm:force_add_skill("character_cqi:"..cqi, character.traitKey);
+                Custom_Log("Successfully added trait");
+             end, 0.5);--]]
             -- Move character back to original position
             cm:teleport_to("character_cqi:"..cqi, character.xPos - 1, character.yPos, true);
         end
@@ -199,10 +213,12 @@ end
 function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGenerate)
     -- Iterate over all existing characters and calculate the current pool
     -- values
-    --Custom_Log("STARTING pool update for "..tostring(faction:name()));
+    Custom_Log("STARTING pool update for "..tostring(faction:name()));
     cm:disable_event_feed_events(true, "wh_event_category_agent", "", "");
 
     local currentPoolCounts = self:GetCurrentPoolForFaction(faction);
+    -- Replace any instances of the default lord which is vmp_lord
+    self:ReplaceAnyVampireLords(faction, currentPoolCounts);
 
     -- Enforce the recruitment pool minmums for this faction
     self:EnforceMinimumValues(faction, currentPoolCounts);
@@ -210,7 +226,23 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
     -- Generate extra characters up to the pool size for that faction
     self:AddGeneralsToPool(faction, currentPoolCounts, amountToGenerate);
     cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
-    --Custom_Log("FINISHED pool update for "..tostring(faction:name()));
+    Custom_Log("FINISHED pool update for "..tostring(faction:name()));
+end
+
+function ControlledRecruitmentPools:ReplaceAnyVampireLords(faction, currentPoolCounts)
+    -- Grab all characters in the faction. This includes recruited and
+    -- characters in the pool
+    local factionResources = self:GetFactionResources(faction);
+    local character_list = faction:character_list();
+    for i = 0, character_list:num_items() - 1 do
+        local character = character_list:item_at(i);
+        local charSubType = character:character_subtype_key();
+        if charSubType == "vmp_lord" and faction:subculture() == "wh_main_sc_vmp_vampire_counts" then
+            -- Select a general to generate
+            local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts);
+            self:ReplaceCharacter(faction, character, agentSubTypeKey);
+        end
+    end
 end
 
 function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
@@ -226,7 +258,7 @@ function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
         -- We do not want to count garrison commands and agents
         if (character:has_military_force() and character:military_force():is_armed_citizenry()) == false
         and cm:char_is_agent(character) == false then
-            ----Custom_Log("Found existing character subtype: "..tostring(charSubType));
+            --Custom_Log("Found existing character subtype: "..tostring(charSubType));
             if currentPoolCounts[charSubType] then
                 currentPoolCounts[charSubType] = currentPoolCounts[charSubType] + 1;
             else
@@ -262,7 +294,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
 end
 
 function ControlledRecruitmentPools:EnforceMinimumValues(faction, currentPoolCounts)
-    --Custom_Log("Enforcing minimum values");
+    Custom_Log("Enforcing minimum values");
 
     local factionName = faction:name();
     if faction:name() == "wh_main_grn_skull-takerz" then
@@ -294,7 +326,7 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
         return;
     end
 
-    --Custom_Log("Generating extras for pool");
+    Custom_Log("Generating extras for pool");
     local factionResources = self:GetFactionResources(faction);
 
     for i = 0, maximumAmount do
@@ -312,7 +344,7 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
             currentPoolCounts[agentSubTypeKey] = count + 1;
             currentPoolCounts["total"] = currentPoolCounts["total"] + 1;
         else
-            --Custom_Log("Hit poolsize already");
+            Custom_Log("Hit poolsize already");
             break;
         end
     end
@@ -338,7 +370,7 @@ function ControlledRecruitmentPools:SelectGeneralToGenerate(factionResources, cu
     for poolKey, pool in pairs(factionResources.FactionPools) do
         local agentSubTypesBelowMax = {};
         local currentSubPoolCount = 0;
-        --Custom_Log("Checking agent pool "..tostring(poolKey));
+        Custom_Log("Checking agent pool "..tostring(poolKey));
         for agentKey, agentSubType in pairs(pool.AgentSubTypes) do
             local count = currentPoolCounts[agentKey];
             if count == nil then
@@ -363,7 +395,7 @@ end
 function ControlledRecruitmentPools:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, poolKey)
     local agentSubTypesBelowMax = {};
     local currentSubPoolCount = 0;
-    --Custom_Log("SelectGeneralToGenerateFromPool "..tostring(poolKey));
+    Custom_Log("SelectGeneralToGenerateFromPool "..tostring(poolKey));
     for agentKey, agentSubType in pairs(factionResources.FactionPools[poolKey].AgentSubTypes) do
         local count = currentPoolCounts[agentKey];
         if count == nil then
@@ -385,7 +417,7 @@ function ControlledRecruitmentPools:GenerateGeneral(generalSubType, factionName,
     -- So this function actually works with general but the call back does work
     -- because it only checks the other agent types. This probably indicates that
     -- it was only intended for agents but luckily we can take advantage of this.
-    --Custom_Log("Generating general "..tostring(generalSubType));
+    Custom_Log("Generating general "..tostring(generalSubType));
     cm:create_agent(
         factionName,
         "general",
@@ -396,6 +428,7 @@ function ControlledRecruitmentPools:GenerateGeneral(generalSubType, factionName,
         false,
         nil
     );
+    --cm:spawn_character_to_pool(factionName, "", "", "", "", 18, true, "general", generalSubType, false, "");
     self:TriggerCallbackForNewGeneral(callbackFunction);
 end
 
@@ -403,7 +436,7 @@ function ControlledRecruitmentPools:GenerateAgent(agentSubType)
     -- So this function actually works with general but the call back does work
     -- because it only checks the other agent types. This probably indicates that
     -- it was only intended for agents but luckily we can take advantage of this.
-    --Custom_Log("Generating Spy "..tostring(agentSubType));
+    Custom_Log("Generating Spy "..tostring(agentSubType));
     cm:create_agent(
         self.HumanFaction:name(),
         "spy",
@@ -414,7 +447,7 @@ function ControlledRecruitmentPools:GenerateAgent(agentSubType)
         false,
         nil
     );
-    --Custom_Log("Created Spy "..tostring(agentSubType));
+    Custom_Log("Created Spy "..tostring(agentSubType));
     --self:TriggerCallbackForNewGeneral(callbackFunction);
 end
 
@@ -425,10 +458,10 @@ function ControlledRecruitmentPools:TriggerCallbackForNewGeneral(callbackFunctio
 
     local character_list = self.HumanFaction:character_list();
     local character_list_count = character_list:num_items() - 1;
-    --Custom_Log("Got character list. Num items: "..tostring(character_list_count));
-    --Custom_Log("Getting last character at position "..tostring(character_list_count));
+    Custom_Log("Got character list. Num items: "..tostring(character_list_count));
+    Custom_Log("Getting last character at position "..tostring(character_list_count));
     local char = character_list:item_at(character_list_count);
-    --Custom_Log("Char coordinates: X "..tostring(char:logical_position_x().." Y "..tostring(char:logical_position_y())));
+    Custom_Log("Char coordinates: X "..tostring(char:logical_position_x().." Y "..tostring(char:logical_position_y())));
     if char:logical_position_x() == self.DefaultXCoordinate
         and char:logical_position_y() == self.DefaultYCoordinate then
         local charCQI = char:cqi();
@@ -444,7 +477,7 @@ function ControlledRecruitmentPools:GetHumanFaction()
         return
     end
     for key, humanFaction in pairs(allHumanFactions) do
-        --Custom_Log("Human faction "..tostring(humanFaction));
+        Custom_Log("Human faction "..tostring(humanFaction));
         return cm:model():world():faction_by_key(humanFaction);
     end
 end

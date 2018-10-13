@@ -1,5 +1,7 @@
 require 'script/_lib/BretonniaRecruitmentPools'
 require 'script/_lib/DarkElfRecruitmentPools'
+require 'script/_lib/DwarfRecruitmentPools'
+require 'script/_lib/EmpireRecruitmentPools'
 require 'script/_lib/GreenskinRecruitmentPools'
 require 'script/_lib/SavageOrcRecruitmentPools'
 require 'script/_lib/VampireCountsRecruitmentPools'
@@ -13,6 +15,10 @@ _G.CRPResources = {
         wh_main_sc_brt_bretonnia = BretonniaRecruitmentPoolData,
         -- Dark Elves
         wh2_main_sc_def_dark_elves = DarkElfRecruitmentPoolData,
+        -- Dwarfs
+        wh_main_sc_dwf_dwarfs = DwarfRecruitmentPoolData,
+        -- Empire
+        wh_main_sc_emp_empire = EmpireRecruitmentPoolData,
         -- Greenskins
         wh_main_sc_grn_greenskins = GreenskinRecruitmentPoolData,
         wh_main_sc_grn_savage_orcs = SavageOrcRecruitmentPoolData,
@@ -31,7 +37,7 @@ _G.CRPResources = {
                 if type(additionalSubPoolData) == "table" then
                     local existingData = coreResources[key1].FactionPools[key2];
                     if existingData == nil then
-                        coreResources[key1].FactionPools[key2] = additionalSubPoolData; 
+                        coreResources[key1].FactionPools[key2] = additionalSubPoolData;
                     else
                         local additionalAgenySubTypes = {};
                         for key3, subPool in pairs(additionalSubPoolData.AgentSubTypes) do
@@ -58,11 +64,13 @@ _G.CRPResources = {
                     coreResources[key1].FactionPools[key2] = nil;
                 end
             end
-            if coreResources[key1].LordsToReplace == nil and additionalFactionData.LordsToReplace ~= nil then
-                coreResources[key1].LordsToReplace = {};
+            -- Merge replacement data
+            if additionalFactionData.LordsToReplace ~= nil then
+                if coreResources[key1].LordsToReplace == nil then
+                    coreResources[key1].LordsToReplace = {};
+                end
                 ConcatTableWithKeys(coreResources[key1].LordsToReplace, additionalFactionData.LordsToReplace);
             end
-            
         end
     end,
 }

@@ -33,10 +33,10 @@ crp = ControlledRecruitmentPools:new({
 
 testFaction = {
     name = function()
-        return "wh_main_sc_brt_bretonnia";
+        return "wh_main_sc_dwf_dwarfs";
     end,
     subculture = function()
-        return "wh_main_sc_brt_bretonnia";
+        return "wh_main_sc_dwf_dwarfs";
     end,
     character_list = function()
         return {
@@ -49,10 +49,10 @@ testFaction = {
 
 
 
-crp:Initialise();
+--crp:Initialise();
 
-local factionResources = crp:GetFactionResources(testFaction);
-local currentPoolCounts = crp:GetCurrentPoolForFaction(testFaction);
+--local factionResources = crp:GetFactionResources(testFaction);
+--local currentPoolCounts = crp:GetCurrentPoolForFaction(testFaction);
 
 --crp:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, "GreenskinWarbosses");
 --crp:UpdateRecruitmentPool(testFaction, 0);

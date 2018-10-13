@@ -5,7 +5,7 @@ DarkElfRecruitmentPoolData =  {
             DreadlordPool = {
                 AgentSubTypes = {
                     wh2_main_def_dreadlord_fem = {
-                        MinimumAmount = 0,
+                        MinimumAmount = 2,
                         MaximumAmount = 5,
                     },
                     wh2_main_def_dreadlord = {

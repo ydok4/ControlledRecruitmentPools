@@ -9,7 +9,7 @@ SavageOrcRecruitmentPoolData =  {
                         MaximumAmount = 5,
                     },
                 },
-                SubPoolInitialMinSize = 1,
+                SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 5,
             },
             SavageOrcShamans = {

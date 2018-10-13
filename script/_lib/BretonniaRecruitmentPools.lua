@@ -5,11 +5,11 @@ BretonniaRecruitmentPoolData =  {
             BretLordPool = {
                 AgentSubTypes = {
                     brt_lord = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
-                SubPoolInitialMinSize = 2,
+                SubPoolInitialMinSize = 0,
                 SubPoolMaxSize = 5,
             },
             ProphetessPool = {
@@ -41,11 +41,11 @@ BretonniaRecruitmentPoolData =  {
             BretLordPool = {
                 AgentSubTypes = {
                     brt_lord = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 7,
                     },
                 },
-                SubPoolInitialMinSize = 4,
+                SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 7,
             },
             ProphetessPool = {
@@ -75,11 +75,11 @@ BretonniaRecruitmentPoolData =  {
             BretLordPool = {
                 AgentSubTypes = {
                     brt_lord = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 7,
                     },
                 },
-                SubPoolInitialMinSize = 3,
+                SubPoolInitialMinSize = 0,
                 SubPoolMaxSize = 7,
             },
             ProphetessPool = {
@@ -110,11 +110,11 @@ BretonniaRecruitmentPoolData =  {
             BretLordPool = {
                 AgentSubTypes = {
                     brt_lord = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 4,
                     },
                 },
-                SubPoolInitialMinSize = 2,
+                SubPoolInitialMinSize = 0,
                 SubPoolMaxSize = 4,
             },
             ProphetessPool = {

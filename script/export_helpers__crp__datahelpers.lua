@@ -42,7 +42,7 @@ function GetStringifiedUnitList(character)
             end
         end
     end
-    --Custom_Log("Built Unit string: "..tostring(unitString));
+    Custom_Log("Built Unit string: "..tostring(unitString));
     return unitString;
 end
 

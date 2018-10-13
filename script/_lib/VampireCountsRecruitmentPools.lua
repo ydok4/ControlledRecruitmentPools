@@ -175,7 +175,10 @@ VampireCountsRecruitmentPoolData =  {
         },
         PoolMaxSize = 5,
         LordsToReplace = {
-            vmp_lord = "dlc04_vmp_strigoi_ghoul_king",
+            vmp_lord = {
+                replacementKey = "dlc04_vmp_strigoi_ghoul_king",
+                traitKeyPool = {"wh_main_skill_innate_vmp_ghoul_whisperer", "wh2_main_skill_innate_vmp_dread_incarnate", "wh2_main_skill_innate_vmp_devious", "wh2_main_skill_innate_vmp_dark_majesty"},
+            },
         },
     },
 

@@ -59,11 +59,11 @@ VampireCountsRecruitmentPoolData =  {
                         MaximumAmount = 3,
                     },
                     vmp_vampire_countess = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                     vmp_vampire_countess_shadow = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -121,11 +121,11 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 3,
+                        MinimumAmount = 2,
                         MaximumAmount = 5,
                     },
                 },
-                SubPoolInitialMinSize = 3,
+                SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 5,
             },
             VampireLords = {
@@ -183,13 +183,16 @@ VampireCountsRecruitmentPoolData =  {
                         MaximumAmount = 5,
                     },
                 },
-                SubPoolInitialMinSize = 2,
+                SubPoolInitialMinSize = 3,
                 SubPoolMaxSize = 5,
             },
         },
         PoolMaxSize = 7,
         LordsToReplace = {
-            vmp_lord = "vmp_vampire_countess",
+            vmp_lord = {
+                replacementKey = "vmp_vampire_countess",
+                traitKeyPool = {"wh_main_skill_innate_vmp_dark_acolyte", "wh2_main_skill_innate_vmp_dread_incarnate", "wh2_main_skill_innate_vmp_devious", "wh2_main_skill_innate_vmp_dark_majesty"},
+            },
         },
     },
 
@@ -219,7 +222,10 @@ VampireCountsRecruitmentPoolData =  {
         },
         PoolMaxSize = 5,
         LordsToReplace = {
-            vmp_lord = "dlc04_vmp_strigoi_ghoul_king",
+            vmp_lord = {
+                replacementKey = "dlc04_vmp_strigoi_ghoul_king",
+                traitKeyPool = {"wh_main_skill_innate_vmp_ghoul_whisperer", "wh2_main_skill_innate_vmp_dread_incarnate", "wh2_main_skill_innate_vmp_devious", "wh2_main_skill_innate_vmp_dark_majesty"},
+            },
         },
     },
 
@@ -250,7 +256,10 @@ VampireCountsRecruitmentPoolData =  {
         },
         PoolMaxSize = 5,
         LordsToReplace = {
-            vmp_lord = "vmp_necrarch",
+            vmp_lord = {
+                replacementKey = "vmp_necrarch",
+                traitKeyPool = {"wh2_main_skill_innate_vmp_dark_majesty", "wh2_main_skill_innate_vmp_lore_keeper", "wh2_main_skill_innate_vmp_master_of_the_black_arts", "wh_main_skill_innate_vmp_dark_acolyte"},
+            },
         },
     },
 }
