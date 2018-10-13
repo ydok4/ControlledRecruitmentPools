@@ -225,7 +225,7 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
 
     local currentPoolCounts = self:GetCurrentPoolForFaction(faction);
     -- Replace any instances of the default lord which is vmp_lord
-    self:ReplaceAnyVampireLords(faction, currentPoolCounts);
+    --self:ReplaceAnyVampireLords(faction, currentPoolCounts);
 
     -- Enforce the recruitment pool minmums for this faction
     self:EnforceMinimumValues(faction, currentPoolCounts);
@@ -289,7 +289,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
 
         while currentPoolMinimum < pool.SubPoolInitialMinSize do
             local agentSubTypeKey = self:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, poolKey);
-            cm:callback(function() self:GenerateGeneral(agentSubTypeKey, faction:name(), nil) end, 1);
+            self:GenerateGeneral(agentSubTypeKey, faction:name(), nil);
             currentPoolCounts["total"] = currentPoolCounts["total"] + 1;
             if currentPoolCounts[agentSubTypeKey] == nil then
                 currentPoolCounts[agentSubTypeKey] = 0;
@@ -318,7 +318,7 @@ function ControlledRecruitmentPools:EnforceMinimumValues(faction, currentPoolCou
                     count = 0;
                 end
                 while count < agentSubType.MinimumAmount do
-                    cm:callback(function() self:GenerateGeneral(agentKey, factionName, nil) end, 1);
+                    self:GenerateGeneral(agentKey, factionName, nil);
                     count = count + 1;
                     currentPoolCounts["total"] = currentPoolCounts["total"] + 1;
                 end
@@ -341,7 +341,7 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
             -- Select a general to generate
             local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts);
             -- Generate the general
-            cm:callback(function() self:GenerateGeneral(agentSubTypeKey, faction:name(), nil) end, 1);
+            self:GenerateGeneral(agentSubTypeKey, faction:name(), nil);
             -- Update existing counts
 
             local count = currentPoolCounts[agentSubTypeKey];

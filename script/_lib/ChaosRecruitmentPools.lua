@@ -26,6 +26,10 @@ ChaosRecruitmentPoolData = {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                     },
+                    dlc07_chs_sorcerer_lord_shadow = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 1,
+                    },
                 },
                 SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 2,

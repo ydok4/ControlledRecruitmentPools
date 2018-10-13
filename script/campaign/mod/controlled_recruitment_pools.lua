@@ -1,5 +1,3 @@
-require 'script/model/crp_model'
-
 crp = {};
 _G.crp = crp;
 

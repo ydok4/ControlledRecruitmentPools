@@ -30,7 +30,12 @@ SavageOrcRecruitmentPoolData =  {
         LordsToReplace = {
             grn_orc_warboss = {
                 replacementKey = "grn_savage_orc_warboss",
-                traitKeyPool = {"wh2_main_skill_innate_grn_big_bully", "wh2_main_skill_innate_grn_bragga", "wh2_main_skill_innate_grn_serial_danca", "wh2_main_skill_innate_grn_tortura"},
+                traitKeyPool = {
+                    "wh2_main_skill_innate_grn_big_bully",
+                    "wh2_main_skill_innate_grn_bragga",
+                    "wh2_main_skill_innate_grn_serial_danca",
+                    "wh2_main_skill_innate_grn_tortura"
+                },
             },
         },
     },

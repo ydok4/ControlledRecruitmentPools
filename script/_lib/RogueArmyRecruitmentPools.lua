@@ -196,7 +196,7 @@ RogueArmyRecruitmentPoolData = {
         PoolMaxSize = 2,
     },
     -- Vashnaar's Conquest
-    wh2_main_rogue_vashnaar = {
+    wh2_main_rogue_def_chs_vashnaar = {
         FactionPools = {
             DarkElfLords = {
                 AgentSubTypes = {
@@ -262,6 +262,10 @@ RogueArmyRecruitmentPoolData = {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                     },
+                    dlc07_chs_sorcerer_lord_shadow = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 1,
+                    },
                 },
                 SubPoolInitialMinSize = 0,
                 SubPoolMaxSize = 1,
@@ -270,7 +274,7 @@ RogueArmyRecruitmentPoolData = {
         PoolMaxSize = 6,
     },
     -- Mengil's Manflayers
-    wh2_main_rogue_mengils_manflayers = {
+    wh2_main_rogue_def_mengils_manflayers = {
         FactionPools = {
             DarkElfLords = {
                 AgentSubTypes = {
@@ -348,7 +352,7 @@ RogueArmyRecruitmentPoolData = {
         PoolMaxSize = 2,
     },
     -- Tor Elithis Refugees
-    wh2_main_rogue_tor_elithis = {
+    wh2_main_rogue_hef_tor_elithis = {
         FactionPools = {
             Lords = {
                 AgentSubTypes = {
@@ -626,7 +630,7 @@ RogueArmyRecruitmentPoolData = {
         PoolMaxSize = 2,
     },
     -- Heirs of Mourkain
-    wh2_main_rogue_heirs_of_mourkain = {
+    wh2_main_rogue_vmp_heirs_of_mourkain = {
         FactionPools = {
             Lords = {
                 AgentSubTypes = {
@@ -642,7 +646,7 @@ RogueArmyRecruitmentPoolData = {
         PoolMaxSize = 2,
     },
     -- Hunters of Kurnous
-    wh2_main_rogue_hunters_of_kurnous = {
+    wh2_main_rogue_wef_hunters_of_kurnous = {
         FactionPools = {
             Lords = {
                 AgentSubTypes = {

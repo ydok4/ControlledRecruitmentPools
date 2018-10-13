@@ -47,9 +47,9 @@ function GetStringifiedUnitList(character)
 end
 
 function Custom_Log(text)
-    --if true then
-    --    return;
-    --end
+    if true then
+        return;
+    end
     local logText = tostring(text);
     local logTimeStamp = os.date("%d, %m %Y %X");
     local popLog = io.open("Controlled_Recruitment_Pools.txt","a");
