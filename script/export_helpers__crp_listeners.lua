@@ -6,7 +6,7 @@ function SetupListeners()
         "FactionTurnStart",
         function(context)
             Custom_Log("Checking faction: "..tostring(context:faction():name()));
-            return crp:IsSupportedSubCulture(context:faction():subculture());
+            return crp:IsSupportedSubCulture(context:faction():subculture()) or crp:IsRogueArmy(context:faction():name());
         end,
         function(context)
             if context:faction():subculture() == "rebels" then

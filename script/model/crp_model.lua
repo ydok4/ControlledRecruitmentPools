@@ -1,5 +1,3 @@
-cm = get_cm();
-
 ControlledRecruitmentPools = {
     HumanFaction = {},
     CRPResources = {},
@@ -15,7 +13,7 @@ function ControlledRecruitmentPools:new (o)
     setmetatable(o, self);
     self.__index = self;
     return o;
-  end
+end
 
 function ControlledRecruitmentPools:Initialise()
     Custom_Log("Setting default values");
@@ -80,6 +78,15 @@ function ControlledRecruitmentPools:IsSupportedSubCulture(subculture)
     end
 end
 
+function ControlledRecruitmentPools:IsRogueArmy(factionName)
+    Custom_Log("In rogue army check: "..factionName);
+    if self.CRPResources.CultureResources["wh_rogue_armies"][factionName] then
+        return true;
+    else
+        return false;
+    end
+end
+
 function ControlledRecruitmentPools:FactionStartup()
 	local faction_list = cm:model():world():faction_list();
 
@@ -87,7 +94,7 @@ function ControlledRecruitmentPools:FactionStartup()
     Custom_Log("Faction Start up");
 	for i = 0, faction_list:num_items() - 1 do
         local faction = faction_list:item_at(i);
-        if self:IsSupportedSubCulture(faction:subculture()) then
+        if self:IsSupportedSubCulture(faction:subculture()) or self:IsRogueArmy(faction:name()) then
             Custom_Log("INITIALISING: "..tostring(faction:name()));
             -- After replacing calculate the current pools for the faction
             local currentFactionPools = self:GetCurrentPoolForFaction(faction);
@@ -282,7 +289,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
 
         while currentPoolMinimum < pool.SubPoolInitialMinSize do
             local agentSubTypeKey = self:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, poolKey);
-            self:GenerateGeneral(agentSubTypeKey, faction:name(), nil);
+            cm:callback(function() self:GenerateGeneral(agentSubTypeKey, faction:name(), nil) end, 1);
             currentPoolCounts["total"] = currentPoolCounts["total"] + 1;
             if currentPoolCounts[agentSubTypeKey] == nil then
                 currentPoolCounts[agentSubTypeKey] = 0;
@@ -311,7 +318,7 @@ function ControlledRecruitmentPools:EnforceMinimumValues(faction, currentPoolCou
                     count = 0;
                 end
                 while count < agentSubType.MinimumAmount do
-                    self:GenerateGeneral(agentKey, factionName, nil);
+                    cm:callback(function() self:GenerateGeneral(agentKey, factionName, nil) end, 1);
                     count = count + 1;
                     currentPoolCounts["total"] = currentPoolCounts["total"] + 1;
                 end
@@ -334,7 +341,7 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
             -- Select a general to generate
             local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts);
             -- Generate the general
-            self:GenerateGeneral(agentSubTypeKey, faction:name(), nil);
+            cm:callback(function() self:GenerateGeneral(agentSubTypeKey, faction:name(), nil) end, 1);
             -- Update existing counts
 
             local count = currentPoolCounts[agentSubTypeKey];
@@ -356,7 +363,9 @@ function ControlledRecruitmentPools:GetFactionResources(faction)
     if faction:name() == "wh_main_grn_skull-takerz" then
         factionName = "wh_main_grn_skull_takerz";
     end
-    if subCultureResources[factionName] then
+    if subCultureResources == nil then
+        return self.CRPResources.CultureResources["wh_rogue_armies"][factionName];
+    elseif subCultureResources[factionName] then
         return subCultureResources[factionName];
     else
         return subCultureResources[faction:subculture()];

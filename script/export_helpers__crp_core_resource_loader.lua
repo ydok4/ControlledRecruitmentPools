@@ -1,18 +1,30 @@
+require 'script/_lib/BeastmenRecruitmentPools'
 require 'script/_lib/BretonniaRecruitmentPools'
+require 'script/_lib/ChaosRecruitmentPools'
 require 'script/_lib/DarkElfRecruitmentPools'
 require 'script/_lib/DwarfRecruitmentPools'
 require 'script/_lib/EmpireRecruitmentPools'
 require 'script/_lib/GreenskinRecruitmentPools'
 require 'script/_lib/SavageOrcRecruitmentPools'
+require 'script/_lib/HighElfRecruitmentPools'
+require 'script/_lib/LizardmenRecruitmentPools'
+require 'script/_lib/NorscaRecruitmentPools'
+require 'script/_lib/SkavenRecruitmentPools'
 require 'script/_lib/VampireCountsRecruitmentPools'
+require 'script/_lib/WoodElfRecruitmentPools'
 
+require 'script/_lib/RogueArmyRecruitmentPools'
 
 Custom_Log("Loading Core Data")
 
 _G.CRPResources = {
     CultureResources = {
-        --Bretonnia
+        -- Beastmen 
+        wh_dlc03_sc_bst_beastmen = BeastmentRecruitmentPoolData,
+        -- Bretonnia
         wh_main_sc_brt_bretonnia = BretonniaRecruitmentPoolData,
+        -- Chaos
+        wh_main_sc_chs_chaos = ChaosRecruitmentPoolData,
         -- Dark Elves
         wh2_main_sc_def_dark_elves = DarkElfRecruitmentPoolData,
         -- Dwarfs
@@ -22,8 +34,21 @@ _G.CRPResources = {
         -- Greenskins
         wh_main_sc_grn_greenskins = GreenskinRecruitmentPoolData,
         wh_main_sc_grn_savage_orcs = SavageOrcRecruitmentPoolData,
+        -- High Elf
+        wh2_main_sc_hef_high_elves = HighElfRecruitmentPoolData,
+        -- Lizardmen
+        wh2_main_sc_lzd_lizardmen = LizardmenRecruitmentPoolData,
+        -- Norsca
+        wh_main_sc_nor_norsca = NorscaRecruitmentPoolData,
+        -- Skaven
+        wh2_main_sc_skv_skaven = SkavenRecruitmentPoolData,
         -- Vampire Counts
         wh_main_sc_vmp_vampire_counts = VampireCountsRecruitmentPoolData,
+        -- Wood Elf
+        wh_dlc05_sc_wef_wood_elves = WoodElfRecruitmentPoolData,
+
+        -- Rogue Armies
+        wh_rogue_armies = RogueArmyRecruitmentPoolData,
     },
     -- Additional loader function
     -- This is intended to be used by other mods to load custom data.

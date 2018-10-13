@@ -1,3 +1,5 @@
+require 'script/model/crp_model'
+
 crp = {};
 _G.crp = crp;
 
@@ -8,9 +10,8 @@ function controlled_recruitment_pools()
         DefaultXCoordinate = 0,
         DefaultYCoordinate = 0,
     });
-
     crp:Initialise();
-
+    
     if cm:is_new_game()  then
         Custom_Log("New Game");
         -- Clear existing generals
