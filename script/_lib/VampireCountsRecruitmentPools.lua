@@ -5,7 +5,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -33,7 +33,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -43,7 +43,7 @@ VampireCountsRecruitmentPoolData =  {
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                     dlc04_vmp_strigoi_ghoul_king = {
@@ -64,7 +64,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -74,7 +74,7 @@ VampireCountsRecruitmentPoolData =  {
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = {
-                        MinimumAmount = 3,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                     dlc04_vmp_strigoi_ghoul_king = {
@@ -97,7 +97,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 3,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -138,7 +138,7 @@ VampireCountsRecruitmentPoolData =  {
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -155,7 +155,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 3,
                     },
                 },
@@ -165,7 +165,7 @@ VampireCountsRecruitmentPoolData =  {
             VampireLords = {
                 AgentSubTypes = {
                     dlc04_vmp_strigoi_ghoul_king = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -188,7 +188,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 3,
                     },
                 },
@@ -198,7 +198,7 @@ VampireCountsRecruitmentPoolData =  {
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
