@@ -15,7 +15,9 @@ require 'script/_lib/WoodElfRecruitmentPools'
 
 require 'script/_lib/RogueArmyRecruitmentPools'
 
-Custom_Log("Loading Core Data")
+Custom_Log_Start();
+
+Custom_Log("Loading Core Data");
 
 _G.CRPResources = {
     CultureResources = {

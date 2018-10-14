@@ -10,10 +10,12 @@ function get_cm()
     };
 end
 
+cm = get_cm();
+
 require 'script/export_helpers__crp__datahelpers'
 require 'script/export_helpers__crp_core_resource_loader'
 require 'script/export_helpers__crp_z_mixu_resource_loader'
-require 'script/campaign/mod/controlled_recruitment_pools'
+require 'script/export_helpers__crp_model'
 
 
 math.randomseed(os.time())
@@ -32,10 +34,10 @@ crp = ControlledRecruitmentPools:new({
 
 testFaction = {
     name = function()
-        return "wh2_dlc09_rogue_black_creek_raiders";
+        return "wh_main_emp_empire";
     end,
     subculture = function()
-        return "wh2_dlc09_rogue_black_creek_raiders";
+        return "wh_main_sc_emp_empire";
     end,
     character_list = function()
         return {
@@ -46,11 +48,13 @@ testFaction = {
     end,
 }
 
-controlled_recruitment_pools();
+--controlled_recruitment_pools();
+
+crp:Initialise();
 
 local factionResources = crp:GetFactionResources(testFaction);
 local supported = crp:IsSupportedSubCulture(testFaction:subculture()) or crp:IsRogueArmy(testFaction:name());
 local currentPoolCounts = crp:GetCurrentPoolForFaction(testFaction);
 
---crp:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, "GreenskinWarbosses");
+local test = crp:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, "EmpireGenerals");
 crp:UpdateRecruitmentPool(testFaction, 0);

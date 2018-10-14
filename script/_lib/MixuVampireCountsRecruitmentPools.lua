@@ -209,7 +209,12 @@ VampireCountsRecruitmentPoolData =  {
         LordsToReplace = {
             vmp_lord = {
                 replacementKey = "vmp_vampire_countess",
-                traitKeyPool = {"wh_main_skill_innate_vmp_dark_acolyte", "wh2_main_skill_innate_vmp_dread_incarnate", "wh2_main_skill_innate_vmp_devious", "wh2_main_skill_innate_vmp_dark_majesty"},
+                traitKeyPool = {
+                    "wh_main_skill_innate_vmp_dark_acolyte",
+                    "wh2_main_skill_innate_vmp_dread_incarnate",
+                    "wh2_main_skill_innate_vmp_devious",
+                    "wh2_main_skill_innate_vmp_dark_majesty"
+                },
             },
         },
     },
@@ -242,7 +247,12 @@ VampireCountsRecruitmentPoolData =  {
         LordsToReplace = {
             vmp_lord = {
                 replacementKey = "dlc04_vmp_strigoi_ghoul_king",
-                traitKeyPool = {"wh_main_skill_innate_vmp_ghoul_whisperer", "wh2_main_skill_innate_vmp_dread_incarnate", "wh2_main_skill_innate_vmp_devious", "wh2_main_skill_innate_vmp_dark_majesty"},
+                traitKeyPool = {
+                    "wh_main_skill_innate_vmp_ghoul_whisperer",
+                    "wh2_main_skill_innate_vmp_dread_incarnate",
+                    "wh2_main_skill_innate_vmp_devious",
+                    "wh2_main_skill_innate_vmp_dark_majesty"
+                },
             },
         },
     },
@@ -276,7 +286,12 @@ VampireCountsRecruitmentPoolData =  {
         LordsToReplace = {
             vmp_lord = {
                 replacementKey = "vmp_necrarch",
-                traitKeyPool = {"wh2_main_skill_innate_vmp_dark_majesty", "wh2_main_skill_innate_vmp_lore_keeper", "wh2_main_skill_innate_vmp_master_of_the_black_arts", "wh_main_skill_innate_vmp_dark_acolyte"},
+                traitKeyPool = {
+                    "wh2_main_skill_innate_vmp_dark_majesty",
+                    "wh2_main_skill_innate_vmp_lore_keeper",
+                    "wh2_main_skill_innate_vmp_master_of_the_black_arts",
+                    "wh_main_skill_innate_vmp_dark_acolyte"
+                },
             },
         },
     },

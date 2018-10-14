@@ -9,7 +9,7 @@ function controlled_recruitment_pools()
         DefaultYCoordinate = 0,
     });
     crp:Initialise();
-    
+
     if cm:is_new_game()  then
         Custom_Log("New Game");
         -- Clear existing generals

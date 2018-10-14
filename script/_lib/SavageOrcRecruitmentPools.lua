@@ -5,7 +5,7 @@ SavageOrcRecruitmentPoolData =  {
             SavageOrcWarbosses = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },

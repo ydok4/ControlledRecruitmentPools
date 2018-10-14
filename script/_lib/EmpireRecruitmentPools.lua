@@ -5,7 +5,7 @@ EmpireRecruitmentPoolData =  {
             EmpireGenerals = {
                 AgentSubTypes = {
                     emp_lord = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -23,7 +23,7 @@ EmpireRecruitmentPoolData =  {
             EmpireGenerals = {
                 AgentSubTypes = {
                     emp_lord = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 1,
                         MaximumAmount = 5,
                     },
                 },
@@ -33,7 +33,7 @@ EmpireRecruitmentPoolData =  {
             ArchLectors = {
                 AgentSubTypes = {
                     dlc04_emp_arch_lector = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                 },

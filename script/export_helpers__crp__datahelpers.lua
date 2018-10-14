@@ -1,5 +1,3 @@
-
-
 function ConcatTableWithKeys(destinationTable, sourceTable)
     for key, value in pairs(sourceTable) do
         destinationTable[key] = value;
@@ -42,14 +40,16 @@ function GetStringifiedUnitList(character)
             end
         end
     end
-    Custom_Log("Built Unit string: "..tostring(unitString));
+    --Custom_Log("Built Unit string: "..tostring(unitString));
     return unitString;
 end
 
+function Custom_Log_Start()
+    -- Clears the log file
+    io.open("Controlled_Recruitment_Pools.txt","w"):close();
+end
+
 function Custom_Log(text)
-    if true then
-        return;
-    end
     local logText = tostring(text);
     local logTimeStamp = os.date("%d, %m %Y %X");
     local popLog = io.open("Controlled_Recruitment_Pools.txt","a");
