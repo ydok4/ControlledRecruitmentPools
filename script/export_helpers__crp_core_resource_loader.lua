@@ -1,26 +1,30 @@
-require 'script/_lib/BeastmenRecruitmentPools'
-require 'script/_lib/BretonniaRecruitmentPools'
-require 'script/_lib/ChaosRecruitmentPools'
-require 'script/_lib/DarkElfRecruitmentPools'
-require 'script/_lib/DwarfRecruitmentPools'
-require 'script/_lib/EmpireRecruitmentPools'
-require 'script/_lib/GreenskinRecruitmentPools'
-require 'script/_lib/SavageOrcRecruitmentPools'
-require 'script/_lib/HighElfRecruitmentPools'
-require 'script/_lib/LizardmenRecruitmentPools'
-require 'script/_lib/NorscaRecruitmentPools'
-require 'script/_lib/SkavenRecruitmentPools'
-require 'script/_lib/VampireCountsRecruitmentPools'
-require 'script/_lib/WoodElfRecruitmentPools'
+require 'script/_lib/pooldata/BeastmenRecruitmentPools'
+require 'script/_lib/pooldata/BretonniaRecruitmentPools'
+require 'script/_lib/pooldata/ChaosRecruitmentPools'
+require 'script/_lib/pooldata/DarkElfRecruitmentPools'
+require 'script/_lib/pooldata/DwarfRecruitmentPools'
+require 'script/_lib/pooldata/EmpireRecruitmentPools'
+require 'script/_lib/pooldata/GreenskinRecruitmentPools'
+require 'script/_lib/pooldata/SavageOrcRecruitmentPools'
+require 'script/_lib/pooldata/HighElfRecruitmentPools'
+require 'script/_lib/pooldata/LizardmenRecruitmentPools'
+require 'script/_lib/pooldata/NorscaRecruitmentPools'
+require 'script/_lib/pooldata/SkavenRecruitmentPools'
+require 'script/_lib/pooldata/VampireCountsRecruitmentPools'
+require 'script/_lib/pooldata/WoodElfRecruitmentPools'
 
-require 'script/_lib/RogueArmyRecruitmentPools'
+require 'script/_lib/pooldata/RogueArmyRecruitmentPools'
+
+require 'script/_lib/pooldata/SharedRecruitmentPools'
+
+require 'script/_lib/subtypedata/EmpireSubTypeData'
 
 Custom_Log_Start();
 
 Custom_Log("Loading Core Data");
 
 _G.CRPResources = {
-    CultureResources = {
+    CulturePoolResources = {
         -- Beastmen 
         wh_dlc03_sc_bst_beastmen = BeastmentRecruitmentPoolData,
         -- Bretonnia
@@ -49,15 +53,22 @@ _G.CRPResources = {
         -- Wood Elf
         wh_dlc05_sc_wef_wood_elves = WoodElfRecruitmentPoolData,
 
+        -- Shared Data (Traits mainly)
+        shared = SharedRecruitmentPoolData,
+
         -- Rogue Armies
         wh_rogue_armies = RogueArmyRecruitmentPoolData,
+    },
+    CultureSubTypeResources = {
+        -- Empire
+        wh_main_sc_emp_empire = EmpireSubTypeData,
     },
     -- Additional loader function
     -- This is intended to be used by other mods to load custom data.
     -- This can be used to change agent sub type distribution or add
     -- new agent sub types into the system.
     AddAdditionalResources = function (subculture, resources)
-        local coreResources = _G.CRPResources.CultureResources[subculture];
+        local coreResources = _G.CRPResources.CulturePoolResources[subculture];
 
         for key1, additionalFactionData in pairs(resources) do
             for key2, additionalSubPoolData in pairs(additionalFactionData.FactionPools) do

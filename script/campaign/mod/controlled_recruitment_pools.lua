@@ -18,6 +18,6 @@ function controlled_recruitment_pools()
         Custom_Log("Existing game");
     end
 
-    SetupListeners();
+    SetupListeners(crp.CRPLordsInPools);
     Custom_Log_Finished();
 end

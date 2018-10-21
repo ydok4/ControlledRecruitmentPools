@@ -4,6 +4,16 @@ function ConcatTableWithKeys(destinationTable, sourceTable)
     end
 end
 
+function ConcatTable(destinationTable, sourceTable)
+    for key, value in pairs(sourceTable) do
+        destinationTable[#destinationTable + 1] = value;
+    end
+end
+
+function Roll100(passValue)
+    return Random(99) < passValue;
+  end
+
 function TableHasAnyValue(table)
     for key, value in pairs(table) do
         return true;
