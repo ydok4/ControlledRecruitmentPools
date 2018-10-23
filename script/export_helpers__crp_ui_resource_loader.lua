@@ -19,11 +19,18 @@ require 'script/_lib/ui/VampireCountUIData'
 
 require 'script/_lib/ui/SharedUIData'
 
+require 'script/_lib/dbexports/EffectResources'
+require 'script/_lib/dbexports/TraitsToEffects'
+
 Custom_Log_Start();
 
 Custom_Log("Loading Core Data");
 
 _G.CRPUIResources = {
+    DBResources = {
+        effects = EffectResources,
+        trait_level_effects = TraitsToEffects,
+    },
     CulturePoolResources = {
         -- Empire
         wh_main_sc_emp_empire = EmpireUIData,

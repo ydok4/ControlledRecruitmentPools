@@ -17,13 +17,16 @@ require 'script/_lib/pooldata/RogueArmyRecruitmentPools'
 
 require 'script/_lib/pooldata/SharedRecruitmentPools'
 
-require 'script/_lib/subtypedata/EmpireSubTypeData'
+require 'script/_lib/dbexports/AgentArtSetResources'
 
 Custom_Log_Start();
 
 Custom_Log("Loading Core Data");
 
 _G.CRPResources = {
+    DBResources = {
+        campaign_character_art_sets = AgentArtSetResources,
+    },
     CulturePoolResources = {
         -- Beastmen 
         wh_dlc03_sc_bst_beastmen = BeastmentRecruitmentPoolData,

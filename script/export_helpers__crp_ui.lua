@@ -26,7 +26,7 @@ function CRPUI:InitialiseListeners(humanFaction, lordsInPool)
             return context.string == "character_panel";
         end,
         function(context)
-            Custom_Log("Panel Opened");
+            Custom_Log("\nPanel Opened");
             self:GetGeneralCandidates(humanFactionName, humanSubCulture, lordsInPool);
         end,
         true
@@ -58,12 +58,15 @@ function CRPUI:GetGeneralCandidates(humanFactionName, humanSubCulture, lordsInPo
                 local keyName = name:gsub("%s+", "");
                 if lordsInPool[humanFactionName] ~= nil then
                     if lordsInPool[humanFactionName][keyName] ~= nil then
-                        Custom_Log("General Found In List "..keyName);
                         local poolData = lordsInPool[humanFactionName][keyName];
-                        local traitName = effect.get_localised_string("character_trait_levels_onscreen_name_"..poolData.InnateTrait);
-                        local traitDescription = traitName.."\n"..effect.get_localised_string("character_trait_levels_colour_text_"..poolData.InnateTrait);
-                        local traitImagePath = self:GetImagePathForTrait(humanSubCulture, poolData.InnateTrait);
-                        Custom_Log("TraitName: "..traitName);
+                        --Custom_Log("General Found In List "..keyName);
+                        local traitKey = poolData.InnateTrait;
+                        local traitName = self:BuildTraitNameString(traitKey);
+                        --Custom_Log("Trait Name: "..traitName);
+                        local traitDescription = self:BuildTraitLocString(traitKey, traitName);
+                        local traitImagePath = self:GetImagePathForTrait(humanSubCulture, traitKey);
+
+                        --Custom_Log("TraitName: "..traitName);
                         skillIcon:SetStateText(traitName);
                         skillIcon:SetTooltipText(traitDescription);
                         skillIcon:SetImage(traitImagePath);
@@ -77,15 +80,71 @@ function CRPUI:GetGeneralCandidates(humanFactionName, humanSubCulture, lordsInPo
             end
         end
 end
+function CRPUI:BuildTraitNameString(traitKey)
+    --Custom_Log("Trait key"..traitKey);
+    local traitName = effect.get_localised_string("character_trait_levels_onscreen_name_"..traitKey);
+    return traitName;
+end
+
+function CRPUI:BuildTraitLocString(traitKey, traitName)
+    traitName = "\t\t    "..traitName.."\n";
+    local traitDescription = traitName..effect.get_localised_string("character_trait_levels_colour_text_"..traitKey);
+    local traitData = self:GetTraitEffects(traitKey);
+    --Custom_Log("Get trait data");
+    for effectIndex, effectKey in pairs(traitData.Effects) do
+        local effectData = self:GetEffectData(effectKey); 
+        --Custom_Log("Got effect data for key "..effectKey);
+        local effectLoc = effect.get_localised_string("effects_description_"..effectKey);
+        --Custom_Log("Got effect loc "..effectLoc);
+        local effectValue = tonumber(traitData.Values[effectIndex]);
+       --Custom_Log("Effect value "..effectValue);
+        local effectSign = "";
+        if effectValue > 0 then
+            effectSign = "+";
+        else
+            effectSign = "";
+        end
+
+        effectLoc = effectLoc:gsub("%%%+n", effectSign .. tostring(effectValue));
+        effectLoc = effectLoc:gsub("%+n%", effectValue);
+
+        --Custom_Log("Added Image and subbed "..effectLoc);
+        if effectData[3] and effectValue > 0 then
+            effectLoc = "[[col:green]]"..effectLoc.."[[/col]]";
+        else
+            effectLoc = "[[col:red]]"..effectLoc.."[[/col]]";
+        end
+        --Custom_Log("Set colour "..effectLoc);
+        effectLoc = "[[img:".."ui/campaign ui/effect_bundles/"..effectData[1].."]][[/img]]   "..effectLoc;
+        --Custom_Log("Set image");
+        traitDescription = traitDescription.."\n"..effectLoc;
+        --Custom_Log("Completed loc "..effectLoc);
+    end
+    return traitDescription;
+end
+
+function CRPUI:GetTraitEffects(traitKey)
+    local effects = self.UIData.DBResources.trait_level_effects[traitKey];
+    return effects;
+end
+
+function CRPUI:GetEffectData(effectKey)
+    local effectData = self.UIData.DBResources.effects[effectKey];
+    return effectData;
+end
 
 function CRPUI:GetImagePathForTrait(humanSubCulture, traitKey)
     local subCultureUIData = self.UIData.CulturePoolResources[humanSubCulture];
     if subCultureUIData ~= nil and subCultureUIData.Traits[traitKey] ~= nil then
-        Custom_Log("Found Culture UI Data "..subCultureUIData.IconPath);
+        --Custom_Log("Found Culture UI Data "..subCultureUIData.IconPath);
         return subCultureUIData.IconPath;
     elseif self.UIData.CulturePoolResources["shared"].Traits[traitKey] ~= nil then
-        Custom_Log("Found Culture UI Data "..subCultureUIData.IconPath);
-        return subCultureUIData.IconPath;
+        --Custom_Log("Found Culture UI Data "..subCultureUIData.IconPath);
+        return self.UIData.CulturePoolResources["shared"].IconPath;
     end
     return "";
+end
+
+function CRPUI:RemoveFileExtension(fileName)
+    return fileName:match("(.+)%..+");
 end

@@ -43,6 +43,13 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
+        Traits = {
+            "wh2_main_skill_innate_def_cruel",
+            "wh2_main_skill_innate_def_malevolent",
+            "wh2_main_skill_innate_def_spiteful",
+            "wh2_main_skill_innate_def_malicious",
+            "wh2_main_skill_innate_def_vicious",
+        },
         PoolMaxSize = 6,
     },
     -- Major Faction specific distributions

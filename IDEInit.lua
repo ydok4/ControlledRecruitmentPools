@@ -1,10 +1,10 @@
 -- Mock Data
 testFaction = {
     name = function()
-        return "wh_main_emp_empire";
+        return "wh2_main_def_naggarond";
     end,
     subculture = function()
-        return "wh_main_sc_emp_empire";
+        return "wh2_main_sc_def_dark_elves";
     end,
     character_list = function()
         return {
@@ -12,6 +12,12 @@ testFaction = {
                 return 0;
             end
         };
+    end,
+}
+
+effect = {
+    get_localised_string = function() 
+        return "Campaign movement range: %+n%";
     end,
 }
 
@@ -73,8 +79,10 @@ crp = ControlledRecruitmentPools:new({
 
 crp:Initialise();
 crp:GetCurrentPoolForFaction(testFaction);
-local trait = crp:GetRandomCharacterTrait(testFaction, "emp_lord");
-
+local trait = crp:GetRandomCharacterTrait(testFaction, "wh2_main_def_dreadlord");
+local artSetId = crp:GetArtSetForSubType("wh2_main_def_dreadlord");
+local traitEffects = crp.UIController:GetTraitEffects("wh2_main_skill_innate_all_aggressive");
+local traitDescription = crp.UIController:BuildTraitLocString("wh2_main_skill_innate_all_aggressive", "Aggressive");
 --crp.UIController:GetImagePathForTrait("wh_main_sc_vmp_vampire_counts", "");
 --local factionResources = crp:GetFactionPoolResources(testFaction);
 --local supported = crp:IsSupportedSubCulture(testFaction:subculture()) or crp:IsRogueArmy(testFaction:name());

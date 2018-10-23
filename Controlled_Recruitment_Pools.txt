@@ -1,0 +1,7 @@
+CRP:  Loading Core Data   : [23, 10 2018 18:38:30]
+CRP:  Setting default values   : [23, 10 2018 18:38:30]
+CRP:  Human faction table: 00848D60   : [23, 10 2018 18:38:30]
+CRP:  Recalculating pool limits   : [23, 10 2018 18:38:30]
+CRP:  CRPUI Setting default values   : [23, 10 2018 18:38:30]
+CRP:  CRPUI Listeners initialising   : [23, 10 2018 18:38:30]
+CRP:  Created panel opened listener   : [23, 10 2018 18:38:30]
