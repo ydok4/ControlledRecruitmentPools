@@ -27,6 +27,14 @@ WoodElfRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
+        Traits = {
+            wh2_main_skill_innate_wef_ariels_chosen = {
+
+            },
+            wh2_main_skill_innate_wef_talon_of_kurnous = {
+
+            },
+        },
         PoolMaxSize = 6,
     },
 }

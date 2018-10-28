@@ -27,6 +27,27 @@ SkavenRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
+        Traits = {
+            wh2_main_skill_innate_skv_sharp_claws = {
+
+            },
+            wh2_main_skill_innate_skv_sharp_teeth = {
+
+            },
+            wh2_main_skill_innate_skv_sneaky = {
+
+            },
+            wh2_main_skill_innate_skv_warpstone_hoarder = {
+
+            },
+        },
+        ExcludedTraits = {
+            "wh_main_skill_innate_all_charismatic",
+            "wh_main_skill_innate_all_boring",
+            "wh_main_skill_innate_all_handsome",
+            "wh_main_skill_innate_all_magnanimous",
+            "wh_main_skill_innate_all_melancholic",
+        },
         PoolMaxSize = 8,
     },
 }

@@ -24,10 +24,15 @@ function SetupListeners(lordsInPool)
         "CharacterCreated",
         true,
         function(context)
+            --Custom_Log("Character Created Listener");
             local char = context:character();
             local factionName = char:faction():name();
             local localisedForeName = effect.get_localised_string(char:get_forename());
-            local localisedSurname = effect.get_localised_string(char:get_surname());
+            local localisedSurname = "";
+            local surnameKey =  char:get_surname();
+            if surnameKey ~= nil and surnameKey ~= "" then
+                localisedSurname = effect.get_localised_string(char:get_surname());
+            end
 
             local keyName = localisedForeName..localisedSurname;
             -- This removes any spaces within names, eg the surname "Von Carstein";
@@ -35,15 +40,18 @@ function SetupListeners(lordsInPool)
             keyName = keyName:gsub("%s+", "");
 
             if lordsInPool[factionName] ~= nil then
+                --Custom_Log("Character key: "..keyName.."end");
                 if lordsInPool[factionName][keyName] ~= nil then
-                    Custom_Log("Character is in pool");
+                    --Custom_Log("Character is in pool for faction: "..factionName);
                     -- If the character is tracked in the pool
                     local poolData = lordsInPool[factionName][keyName];
+                    --Custom_Log("Adding trait: "..poolData.InnateTrait.." for character: "..keyName);
+                    cm:disable_event_feed_events(true, "wh_event_category_traits_ancillaries", "", "");
                     -- Add their trait
                     cm:force_add_trait("character_cqi:"..char:cqi(), poolData.InnateTrait, true);
                     -- Then remove from the pool
                     lordsInPool[factionName][keyName] = nil;
-
+                    cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_traits_ancillaries", "", "") end, 1);
                     -- Note: Removal is necessary since we now track the character from the faction's character_list
                 end
             end

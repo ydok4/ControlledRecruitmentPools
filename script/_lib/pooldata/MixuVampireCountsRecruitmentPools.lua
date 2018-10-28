@@ -31,6 +31,20 @@ VampireCountsRecruitmentPoolData =  {
                 SubPoolMaxSize = 3,
             },
         },
+        Traits = {
+            wh2_innate_vampire_hunter_in_the_dark = {
+
+            },
+            wh2_innate_vampire_night_creature = {
+
+            },
+            wh2_innate_vampire_swiftness = {
+
+            },
+            wh2_innate_vampire_defy_the_dawn = {
+
+            },
+        },
         PoolMaxSize = 5,
     },
     -- Major Faction specific distributions
@@ -206,14 +220,21 @@ VampireCountsRecruitmentPoolData =  {
             },
         },
         PoolMaxSize = 7,
+        Traits = {
+            wh2_innate_vampire_countess_spectral_form = {
+
+            },
+        },
         LordsToReplace = {
             vmp_lord = {
                 replacementKey = "vmp_vampire_countess",
                 traitKeyPool = {
-                    "wh_main_skill_innate_vmp_dark_acolyte",
-                    "wh2_main_skill_innate_vmp_dread_incarnate",
+                    "wh2_innate_vampire_defy_the_dawn",
+                    "wh2_innate_vampire_night_creature",
                     "wh2_main_skill_innate_vmp_devious",
-                    "wh2_main_skill_innate_vmp_dark_majesty"
+                    "wh2_main_skill_innate_vmp_dark_majesty",
+                    "wh2_innate_vampire_swiftness",
+                    "wh2_innate_vampire_countess_spectral_form",
                 },
             },
         },
@@ -244,6 +265,11 @@ VampireCountsRecruitmentPoolData =  {
             },
         },
         PoolMaxSize = 5,
+        Traits = {
+            wh2_innate_necrarch_ghoul_lover = {
+
+            },
+        },
         LordsToReplace = {
             vmp_lord = {
                 replacementKey = "dlc04_vmp_strigoi_ghoul_king",
@@ -251,7 +277,8 @@ VampireCountsRecruitmentPoolData =  {
                     "wh_main_skill_innate_vmp_ghoul_whisperer",
                     "wh2_main_skill_innate_vmp_dread_incarnate",
                     "wh2_main_skill_innate_vmp_devious",
-                    "wh2_main_skill_innate_vmp_dark_majesty"
+                    "wh2_main_skill_innate_vmp_dark_majesty",
+                    "wh2_innate_necrarch_ghoul_lover",
                 },
             },
         },
@@ -283,14 +310,47 @@ VampireCountsRecruitmentPoolData =  {
             },
         },
         PoolMaxSize = 5,
+        Traits = {
+            wh2_innate_necrarch_arcane_knowledge = {
+
+            },
+            wh2_innate_necrarch_seeker_of_the_prophecy = {
+
+            },
+            wh2_innate_necrarch_scavenger = {
+
+            },
+            wh2_innate_necrarch_thinker = {
+
+            },
+            wh2_innate_necrarch_engulfed_by_flames = {
+
+            },
+            wh2_innate_necrarch_infamous = {
+
+            },
+            wh2_innate_necrarch_ghoul_lover = {
+
+            },
+            wh2_innate_necrarch_corrupted_by_warpstone = {
+
+            },
+            wh2_innate_necrarch_spectral_form = {
+
+            },
+        },
         LordsToReplace = {
             vmp_lord = {
                 replacementKey = "vmp_necrarch",
                 traitKeyPool = {
-                    "wh2_main_skill_innate_vmp_dark_majesty",
-                    "wh2_main_skill_innate_vmp_lore_keeper",
-                    "wh2_main_skill_innate_vmp_master_of_the_black_arts",
-                    "wh_main_skill_innate_vmp_dark_acolyte"
+                    "wh2_innate_necrarch_arcane_knowledge",
+                    "wh2_innate_necrarch_scavenger",
+                    "wh2_innate_necrarch_thinker",
+                    "wh2_innate_necrarch_engulfed_by_flames",
+                    "wh2_innate_necrarch_infamous",
+                    "wh2_innate_necrarch_ghoul_lover",
+                    "wh2_innate_necrarch_corrupted_by_warpstone",
+                    "wh2_innate_necrarch_spectral_form",
                 },
             },
         },

@@ -61,6 +61,7 @@ function CRPUI:GetGeneralCandidates(humanFactionName, humanSubCulture, lordsInPo
                         local poolData = lordsInPool[humanFactionName][keyName];
                         Custom_Log("General Found In List "..keyName);
                         local traitKey = poolData.InnateTrait;
+                        --Custom_Log("Trait Key: "..traitKey);
                         local traitName = self:BuildTraitNameString(traitKey);
                         --Custom_Log("Trait Name: "..traitName);
                         local traitDescription = self:BuildTraitLocString(traitKey, traitName);
@@ -82,7 +83,7 @@ function CRPUI:GetGeneralCandidates(humanFactionName, humanSubCulture, lordsInPo
         end
 end
 function CRPUI:BuildTraitNameString(traitKey)
-    Custom_Log("Trait key: "..traitKey);
+    --Custom_Log("Trait key: "..traitKey);
     local traitName = effect.get_localised_string("character_trait_levels_onscreen_name_"..traitKey);
     return traitName;
 end

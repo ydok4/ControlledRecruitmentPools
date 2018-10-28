@@ -1,10 +1,10 @@
 -- Mock Data
 testFaction = {
     name = function()
-        return "wh_main_brt_bretonnia";
+        return "wh2_main_rogue_def_chs_vashnaar";
     end,
     subculture = function()
-        return "wh_main_sc_brt_bretonnia";
+        return "rogue";
     end,
     character_list = function()
         return {
@@ -16,7 +16,7 @@ testFaction = {
 }
 
 effect = {
-    get_localised_string = function() 
+    get_localised_string = function()
         return "[test]";
     end,
 }
@@ -88,7 +88,7 @@ crp:Initialise();
 crp:GetCurrentPoolForFaction(testFaction);
 local trait = crp:GetRandomCharacterTrait(testFaction, "dlc07_brt_prophetess_beasts");
 local traitPath = crp.UIController:GetImagePathForTrait(trait);
-local artSetId = crp:GetArtSetForSubType("wh2_main_def_dreadlord");
+local artSetId = crp:GetArtSetForSubType("nor_marauder_chieftain");
 local traitEffects = crp.UIController:GetTraitEffects("wh2_main_skill_innate_all_aggressive");
 local traitDescription = crp.UIController:BuildTraitLocString("wh2_main_skill_innate_all_aggressive", "Knowledgeable");
 --crp.UIController:GetImagePathForTrait("wh_main_sc_vmp_vampire_counts", "");

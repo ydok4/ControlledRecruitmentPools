@@ -25,12 +25,34 @@ GreenskinRecruitmentPoolData =  {
         },
         PoolMaxSize = 5,
         Traits = {
-            "wh2_main_skill_innate_grn_big_bully",
-            "wh2_main_skill_innate_grn_bragga",
-            "wh2_main_skill_innate_grn_mushroom_addicted",
-            "wh2_main_skill_innate_grn_serial_danca",
-            "wh2_main_skill_innate_grn_tortura",
-            "wh_main_skill_innate_grn_choppa_envy",
+            wh2_main_skill_innate_grn_big_bully = {
+
+            },
+            wh2_main_skill_innate_grn_bragga = {
+
+            },
+            wh2_main_skill_innate_grn_mushroom_addicted = {
+
+            },
+            wh2_main_skill_innate_grn_serial_danca = {
+
+            },
+            wh2_main_skill_innate_grn_tortura = {
+
+            },
+            wh_main_skill_innate_grn_choppa_envy = {
+
+            },
+            wh_main_skill_innate_grn_stabba_envy = {
+
+            },
+        },
+        ExcludedTraits = {
+            "wh_main_skill_innate_all_charismatic",
+            "wh_main_skill_innate_all_boring",
+            "wh_main_skill_innate_all_handsome",
+            "wh_main_skill_innate_all_magnanimous",
+            "wh_main_skill_innate_all_melancholic",
         },
     },
     -- Major Faction specific distributions

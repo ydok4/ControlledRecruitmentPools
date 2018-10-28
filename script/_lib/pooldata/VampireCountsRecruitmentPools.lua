@@ -23,6 +23,36 @@ VampireCountsRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
+        Traits = {
+            wh2_main_skill_innate_vmp_dark_majesty = {
+
+            },
+            wh2_main_skill_innate_vmp_devious = {
+
+            },
+            wh2_main_skill_innate_vmp_dread_incarnate = {
+
+            },
+            wh2_main_skill_innate_vmp_lore_keeper = {
+
+            },
+            wh2_main_skill_innate_vmp_master_of_the_black_arts = {
+
+            },
+            wh_main_skill_innate_vmp_dark_acolyte = {
+
+            },
+            wh_main_skill_innate_vmp_ghoul_whisperer = {
+
+            },
+            wh_main_skill_innate_vmp_summon_creatures = {
+
+            },
+        },
+        ExcludedTraits = {
+            "wh_main_skill_innate_all_boring",
+            "wh_main_skill_innate_all_magnanimous",
+        },
         PoolMaxSize = 5,
     },
     -- Major Faction specific distributions

@@ -34,6 +34,14 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
+        Traits = {
+            wh_main_skill_grn_innate_moar_paint = {
+
+            },
+            wh_main_skill_grn_innate_savage_danca = {
+
+            },
+        },
         PoolMaxSize = 5,
     },
     -- Major Faction specific distributions

@@ -271,6 +271,34 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 1,
             },
         },
+        Traits = {
+            wh2_main_skill_innate_chs_diabolic_spendour = {
+
+            },
+            wh2_main_skill_innate_chs_dominance = {
+
+            },
+            wh2_main_skill_innate_def_cruel = {
+
+            },
+            wh2_main_skill_innate_def_malevolent = {
+
+            },
+            wh2_main_skill_innate_def_spiteful = {
+
+            },
+            wh2_main_skill_innate_def_malicious = {
+
+            },
+            wh2_main_skill_innate_def_vicious = {
+
+            },
+        },
+        ExcludedTraits = {
+            "wh_main_skill_innate_all_boring",
+            "wh_main_skill_innate_all_magnanimous",
+            "wh_main_skill_innate_all_melancholic",
+        },
         PoolMaxSize = 6,
     },
     -- Mengil's Manflayers

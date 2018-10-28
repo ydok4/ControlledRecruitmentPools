@@ -34,6 +34,15 @@ function GetRandomObjectFromList(objectList)
     return objectList[index];
 end
 
+function GetRandomObjectKeyFromList(objectList)
+    local tempTable = {}
+    for key, value in pairs(objectList) do
+      tempTable[#tempTable + 1] = key; --Store keys in another table
+    end
+    local index = tempTable[Random(#tempTable)];
+    return index;
+end
+
 function GetStringifiedUnitList(character)
     local unitList = character:military_force():unit_list();
 

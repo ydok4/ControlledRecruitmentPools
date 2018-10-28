@@ -23,6 +23,20 @@ DwarfRecruitmentPoolData =  {
                 SubPoolMaxSize = 1,
             },
         },
+        Traits = {
+            wh2_main_skill_innate_dwf_ancestral_blood_grimnir = {
+                
+            },
+            wh2_main_skill_innate_dwf_ancestral_blood_grungni = {
+
+            },
+            wh2_main_skill_innate_dwf_ancestral_blood_valaya = {
+
+            },
+            wh_main_skill_innate_dwf_axe_envy = {
+
+            },
+        },
         PoolMaxSize = 5,
     },
     -- Major Faction specific distributions

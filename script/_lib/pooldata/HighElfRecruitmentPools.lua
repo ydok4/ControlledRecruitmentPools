@@ -17,6 +17,7 @@ HighElfRecruitmentPoolData = {
                 SubPoolMaxSize = 5,
             },
         },
+
         PoolMaxSize = 5,
     },
 }

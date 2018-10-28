@@ -112,6 +112,22 @@ _G.CRPResources = {
                 end
                 ConcatTableWithKeys(coreResources[key1].LordsToReplace, additionalFactionData.LordsToReplace);
             end
+
+            -- Merge Trait data
+            if additionalFactionData.Traits ~= nil then
+                if coreResources[key1].Traits == nil then
+                    coreResources[key1].Traits = {};
+                end
+                ConcatTableWithKeys(coreResources[key1].Traits, additionalFactionData.Traits);
+            end
+
+            -- Merge Excluded Trait data
+            if additionalFactionData.ExcludedTraits ~= nil then
+                if coreResources[key1].ExcludedTraits == nil then
+                    coreResources[key1].ExcludedTraits = {};
+                end
+                ConcatTableWithKeys(coreResources[key1].ExcludedTraits, additionalFactionData.ExcludedTraits);
+            end
         end
     end,
     AddAdditionalDBResources = function(dbResourceKey, resourceData)

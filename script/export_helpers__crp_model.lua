@@ -314,7 +314,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
             local agentSubTypeKey = self:SelectGeneralToGenerateFromPool(factionPoolResources, currentPoolCounts, poolKey);
             Custom_Log("Selected "..agentSubTypeKey);
             local artSetId = self:GetArtSetForSubType(agentSubTypeKey);
-            --Custom_Log("Art set Id: "..artSetId);
+            Custom_Log("Art set Id: "..artSetId);
             -- If this is the players faction this should happen straight away
             -- so the recruitment event message can be supressed
             if faction:name() == self.HumanFaction:name() then
@@ -516,23 +516,59 @@ function ControlledRecruitmentPools:GetRandomCharacterTrait(faction, generalSubT
         isRogueArmy = true;
     end
 
+    local defaultSubCultureData = cultureData[subculture];
+
     local cultureTraits = {};
-    if cultureData[factionName] ~= nil and cultureData[factionName].Traits ~= nil then
-        ConcatTable(cultureTraits, cultureData[factionName].Traits);
+    local foundCultureTraits = false;
+    -- Get traits for the subculture
+    if defaultSubCultureData ~= nil and defaultSubCultureData.Traits ~= nil then
+        ConcatTableWithKeys(cultureTraits, defaultSubCultureData.Traits);
+        foundCultureTraits = true;
     end
 
-    if cultureData[subculture] ~= nil and cultureData[subculture].Traits ~= nil then
-        ConcatTable(cultureTraits, cultureData[subculture].Traits);
+    local defaultFactionData = cultureData[factionName];
+    -- Then get the traits for the factions
+    if defaultFactionData ~= nil and defaultFactionData.Traits ~= nil then
+        ConcatTableWithKeys(cultureTraits, defaultFactionData.Traits);
+        foundCultureTraits = true;
     end
 
-    -- There is a flat 30% chance to get a culture / faction trait
-    if #cultureTraits > 0 and Roll100(30) then
-        return GetRandomObjectFromList(cultureTraits);
+    if defaultFactionData ~= nil and defaultFactionData.ExcludedTraits ~= nil then
+        -- Then remove any excluded traits
+        for index, traitKey in pairs(defaultFactionData.ExcludedTraits) do
+            if cultureTraits[traitKey] ~= nil then
+                cultureTraits[traitKey] = nil;
+            end
+        end
+    end
+
+    -- There is a flat 50% chance to get a culture / faction trait
+    if foundCultureTraits == true and Roll100(50) then
+        return GetRandomObjectKeyFromList(cultureTraits);
     end
 
     -- Otherwise get a random trait from the shared traits
     local sharedTraits = self.CRPResources.CulturePoolResources["shared"]["shared"].Traits;
-    return GetRandomObjectFromList(sharedTraits)
+
+    if defaultFactionData ~= nil and defaultFactionData.ExcludedTraits ~= nil then
+        -- Then remove any excluded traits
+        for index, traitKey in pairs(defaultFactionData.ExcludedTraits) do
+            if sharedTraits[traitKey] ~= nil then
+                sharedTraits[traitKey] = nil;
+            end
+        end
+    end
+
+    if defaultSubCultureData ~= nil and defaultSubCultureData.ExcludedTraits ~= nil then
+        -- Then remove any excluded traits
+        for index, traitKey in pairs(defaultSubCultureData.ExcludedTraits) do
+            if sharedTraits[traitKey] ~= nil then
+                sharedTraits[traitKey] = nil;
+            end
+        end
+    end
+
+    return GetRandomObjectKeyFromList(sharedTraits)
 end
 
 function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, generatedName, innateTrait, subType, artSetId)

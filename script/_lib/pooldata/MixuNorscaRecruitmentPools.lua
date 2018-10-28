@@ -41,6 +41,23 @@ NorscaRecruitmentPoolData = {
                 SubPoolMaxSize = 1,
             },
         },
+        Traits = {
+            wh2_innate_nor_lord_hates_humans = {
+
+            },
+            wh2_innate_nor_lord_booze_cravings = {
+
+            },
+            wh2_innate_nor_lord_nurgles_foul_stink = {
+
+            },
+            wh2_innate_nor_lord_cruel = {
+
+            },
+            wh2_innate_nor_lord_resilient = {
+
+            },
+        },
         PoolMaxSize = 6,
     },
 }

@@ -44,11 +44,24 @@ DarkElfRecruitmentPoolData =  {
             },
         },
         Traits = {
-            "wh2_main_skill_innate_def_cruel",
-            "wh2_main_skill_innate_def_malevolent",
-            "wh2_main_skill_innate_def_spiteful",
-            "wh2_main_skill_innate_def_malicious",
-            "wh2_main_skill_innate_def_vicious",
+            wh2_main_skill_innate_def_cruel = {
+
+            },
+            wh2_main_skill_innate_def_malevolent = {
+
+            },
+            wh2_main_skill_innate_def_spiteful = {
+
+            },
+            wh2_main_skill_innate_def_malicious = {
+
+            },
+            wh2_main_skill_innate_def_vicious = {
+
+            },
+        },
+        ExcludedTraits = {
+            "wh_main_skill_innate_all_magnanimous",
         },
         PoolMaxSize = 6,
     },

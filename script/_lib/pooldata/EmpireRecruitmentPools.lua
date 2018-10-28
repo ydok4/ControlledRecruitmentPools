@@ -15,11 +15,21 @@ EmpireRecruitmentPoolData =  {
         },
         PoolMaxSize = 5,
         Traits = {
-            "wh2_main_skill_innate_emp_imperious",
-            "wh2_main_skill_innate_emp_monster_hunter",
-            "wh2_main_skill_innate_emp_monster_tracker",
-            "wh2_main_skill_innate_emp_noble",
-            "wh2_main_skill_innate_emp_regal",
+            h2_main_skill_innate_emp_imperious = {
+
+            },
+            wh2_main_skill_innate_emp_monster_hunter = {
+
+            },
+            wh2_main_skill_innate_emp_monster_tracker = {
+
+            },
+            wh2_main_skill_innate_emp_noble = {
+
+            },
+            wh2_main_skill_innate_emp_regal = {
+
+            },
         },
     },
     -- Major Faction specific distributions
