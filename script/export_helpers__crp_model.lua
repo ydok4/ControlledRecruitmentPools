@@ -286,10 +286,15 @@ function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
     end
     --Custom_Log("Finished check existing characters");
     local factionName = faction:name();
+        -- I couldn't store skull-takerz as a key in the lua table because of the -
+    -- So this takes care of that edge case
+    if faction:name() == "wh_main_grn_skull-takerz" then
+        factionName = "wh_main_grn_skull_takerz";
+    end
     if self.CRPLordsInPools[factionName] ~= nil then
         --Custom_Log("Checking tracked lords");
         for key, char in pairs(self.CRPLordsInPools[factionName]) do
-            --Custom_Log("Found tracked character subtype: "..tostring(char.SubType));
+            Custom_Log("Found tracked character subtype: "..tostring(char.SubType));
             if currentPoolCounts[char.SubType] then
                 currentPoolCounts[char.SubType] = currentPoolCounts[char.SubType] + 1;
             else
