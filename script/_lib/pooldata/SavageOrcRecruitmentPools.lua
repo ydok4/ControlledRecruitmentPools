@@ -61,6 +61,7 @@ SavageOrcRecruitmentPoolData =  {
             "wh_main_skill_innate_all_handsome",
             "wh_main_skill_innate_all_magnanimous",
             "wh_main_skill_innate_all_melancholic",
+            "wh_main_skill_innate_all_sanguine",
         },
         PoolMaxSize = 5,
     },

@@ -18,6 +18,9 @@ end
 function CRPUI:InitialiseListeners(humanFaction, lordsInPool)
     Custom_Log("CRPUI Listeners initialising");
     local humanFactionName = humanFaction:name();
+    if humanFactionName == "wh_main_grn_skull-takerz" then
+        humanFactionName = "wh_main_grn_skull_takerz";
+    end
     local humanSubCulture = humanFaction:subculture();
     core:add_listener(
         "GeneralRecruitmentOpened",
@@ -36,7 +39,7 @@ function CRPUI:InitialiseListeners(humanFaction, lordsInPool)
     core:add_listener(
         "GeneralRecruitmentClosed",
         "PanelClosedCampaign",
-        function(context) 
+        function(context)
             return context.string == "character_panel";
         end,
         function(context)

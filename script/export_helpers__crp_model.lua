@@ -314,7 +314,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
             local agentSubTypeKey = self:SelectGeneralToGenerateFromPool(factionPoolResources, currentPoolCounts, poolKey);
             Custom_Log("Selected "..agentSubTypeKey);
             local artSetId = self:GetArtSetForSubType(agentSubTypeKey);
-            Custom_Log("Art set Id: "..artSetId);
+            --Custom_Log("Art set Id: "..artSetId);
             -- If this is the players faction this should happen straight away
             -- so the recruitment event message can be supressed
             if faction:name() == self.HumanFaction:name() then
@@ -485,7 +485,7 @@ function ControlledRecruitmentPools:GenerateGeneral(generalSubType, faction, art
     -- it was only intended for agents but luckily we can take advantage of this.
     --Custom_Log("Generating general "..tostring(generalSubType));
     cm:create_agent(
-        factionName,
+        faction:name(),
         "general",
         generalSubType,
         -- Used to identify the recent spawned lord and get cqi for callback
@@ -500,7 +500,8 @@ function ControlledRecruitmentPools:GenerateGeneral(generalSubType, faction, art
     local innateTrait = self:GetRandomCharacterTrait(faction, generalSubType);
     --Custom_Log("Giving character innate trait "..innateTrait);
     -- Then spawn the character so that they appear normally
-    cm:spawn_character_to_pool(factionName, generatedName.foreName, generatedName.surname, "", "", 18, true, "general", generalSubType, false, artSetId);
+    cm:spawn_character_to_pool(faction:name(), generatedName.foreName, generatedName.surname, "", "", 18, true, "general", generalSubType, false, artSetId);
+    --Custom_Log("Spawned character into pool");
     -- Add the character to the pool table so we can track them
     local trackedData = self:TrackCharacterInPoolData(factionName, generatedName, innateTrait, generalSubType, artSetId);
     return trackedData;
@@ -509,6 +510,9 @@ end
 function ControlledRecruitmentPools:GetRandomCharacterTrait(faction, generalSubType)
     local subculture = faction:subculture();
     local factionName = faction:name();
+    if factionName == "wh_main_grn_skull-takerz" then
+        factionName = "wh_main_grn_skull_takerz";
+    end
     local isRogueArmy = false;
     local cultureData = self.CRPResources.CulturePoolResources[subculture];
     if cultureData == nil then
@@ -597,6 +601,7 @@ function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, genera
     };
 
     self.CRPLordsInPools[factionName][nameAsKey] = general;
+    --Custom_Log("Tracking "..nameAsKey);
     return general;
 end
 --[[function ControlledRecruitmentPools:GenerateAgent(agentSubType)

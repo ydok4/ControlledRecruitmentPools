@@ -1,10 +1,10 @@
 -- Mock Data
 testFaction = {
     name = function()
-        return "wh2_main_rogue_def_chs_vashnaar";
+        return "wh_main_grn_skull-takerz";
     end,
     subculture = function()
-        return "rogue";
+        return "wh_main_sc_grn_savage_orcs";
     end,
     character_list = function()
         return {
@@ -86,7 +86,7 @@ crp = ControlledRecruitmentPools:new({
 
 crp:Initialise();
 crp:GetCurrentPoolForFaction(testFaction);
-local trait = crp:GetRandomCharacterTrait(testFaction, "dlc07_brt_prophetess_beasts");
+local trait = crp:GetRandomCharacterTrait(testFaction, "grn_savage_orc_warboss");
 local traitPath = crp.UIController:GetImagePathForTrait(trait);
 local artSetId = crp:GetArtSetForSubType("nor_marauder_chieftain");
 local traitEffects = crp.UIController:GetTraitEffects("wh2_main_skill_innate_all_aggressive");
