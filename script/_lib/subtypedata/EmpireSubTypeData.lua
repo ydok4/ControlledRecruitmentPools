@@ -1,4 +1,0 @@
-EmpireSubTypeData = {
-    emp_lord = {
-    },
-}

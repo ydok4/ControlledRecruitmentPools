@@ -114,4 +114,7 @@ _G.CRPResources = {
             end
         end
     end,
+    AddAdditionalDBResources = function(dbResourceKey, resourceData)
+        ConcatTableWithKeys(_G.CRPResources.DBResources[dbResourceKey], resourceData);
+    end,
 }

@@ -3,6 +3,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_unit_enable_attribute_guerrilla_deployment",
 		},
+		Icon = 			"trait_skaven.png",
 		Values = {
  			"1",
 		},
@@ -12,6 +13,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_melee_attack_tmb_characters", "wh2_dlc09_effect_melee_defence_tmb_characters",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"5", "5",
 		},
@@ -21,6 +23,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_melee_attack_tmb_tomb_prince_steed", "wh2_dlc09_effect_melee_defence_tmb_tomb_prince_steed", "wh2_dlc09_effect_tech_unit_xp_levels_tmb_all_horsemen_serpent_cavalry",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"8", "8", "1",
 		},
@@ -30,6 +33,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_ability_mod_cooldown_arcane_conduit",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"-25",
 		},
@@ -39,6 +43,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_melee_attack_tmb_tomb_prince_chariot", "wh2_dlc09_effect_melee_defence_tmb_tomb_prince_chariot", "wh2_dlc09_effect_tech_unit_xp_levels_tmb_all_chariots",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"8", "8", "1",
 		},
@@ -48,6 +53,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_tech_melee_damage_increase_tmb_chariots", "wh2_dlc09_effect_tech_missile_damage_increase_archer_chariots", "wh2_dlc09_effect_unit_cap_tmb_veh_skeleton_archer_chariot_0", "wh2_dlc09_effect_unit_cap_tmb_veh_skeleton_chariot_0", "wh2_dlc09_title_king", "wh_main_effect_force_army_battle_movement_speed",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"20", "20", "2", "2", "1", "5",
 		},
@@ -57,6 +63,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_missile_damage_tmb_ushabti", "wh2_dlc09_effect_tech_melee_attack_increase_tmb_ushabti", "wh2_dlc09_effect_unit_cap_tmb_mon_ushabti_0", "wh2_dlc09_title_king", "wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"10", "6", "2", "1", "8",
 		},
@@ -66,6 +73,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_title_king", "wh2_main_effect_public_order_characters_factionwide", "wh_main_effect_character_stat_mod_personal_aura_morale_effect", "wh_main_effect_character_stat_mod_personal_aura_size", "wh_main_effect_character_stat_mod_ward_save", "wh_main_effect_economy_tax_mod",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"1", "1", "5", "20", "5", "5",
 		},
@@ -75,6 +83,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_agent_action_success_chance_wizard_tmb", "wh2_dlc09_effect_agent_recruitment_xp_tmb_liche_priest", "wh2_dlc09_title_king", "wh_main_effect_character_stat_mod_ward_save_magic", "wh_main_effect_military_force_winds_of_magic_depletion_mod_character", "wh_main_effect_religion_conversion_untainted",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"5", "2", "1", "20", "5", "5",
 		},
@@ -84,6 +93,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_tech_armour_increase_tmb_sphinxes", "wh2_dlc09_effect_unit_cap_tmb_veh_khemrian_warsphinx_0", "wh2_dlc09_title_king", "wh2_main_effect_building_construction_time_mod_all", "wh_main_effect_character_stat_mod_armour", "wh_main_effect_economy_trade_good_commodity_mod",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"5", "1", "1", "-35", "10", "10",
 		},
@@ -93,6 +103,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_title_king", "wh2_main_effect_force_unit_stat_melee_attack_in_desert_terrain", "wh_main_effect_character_stat_mod_charge_add", "wh_main_effect_force_army_campaign_ambush_attack_success_chance", "wh_main_effect_force_unit_stat_missile_range", "wh_main_effect_unit_enable_attribute_stalk",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"1", "8", "16", "20", "10", "1",
 		},
@@ -102,6 +113,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_physical",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"5",
 		},
@@ -111,6 +123,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_unit_xp_levels_tmb_sphinxes", "wh2_dlc09_effect_unit_xp_levels_tmb_ushabti",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"1", "1",
 		},
@@ -120,6 +133,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_melee_attack_tmb_tomb_prince_foot", "wh2_dlc09_effect_melee_defence_tmb_tomb_prince_foot", "wh2_dlc09_effect_unit_xp_tmb_all_skeleton",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"8", "8", "1",
 		},
@@ -129,6 +143,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_enable_poison_attacks", "wh_main_effect_force_army_campaign_attrition_all_resistance", "wh_main_effect_religion_conversion_untainted",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"1", "-50", "3",
 		},
@@ -138,6 +153,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_agent_cap_increase_tmb_liche_priest", "wh2_dlc09_effect_agent_recruitment_xp_tmb_liche_priest",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"2", "3",
 		},
@@ -147,6 +163,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_religion_conversion_untainted",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"2",
 		},
@@ -156,6 +173,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_ammunition", "wh_main_effect_force_unit_stat_missile_damage",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"20", "5",
 		},
@@ -165,6 +183,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_miscast_chance",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"-10",
 		},
@@ -174,6 +193,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_mod_ancillary_drop", "wh_main_effect_character_mod_ancillary_steal", "wh_main_effect_force_all_campaign_post_battle_loot_mod",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"3", "20", "10",
 		},
@@ -183,6 +203,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_unit_cap_tmb_mon_tomb_scorpion_0",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"2",
 		},
@@ -192,6 +213,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_unit_cap_tmb_mon_sepulchral_stalkers_0",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"2",
 		},
@@ -201,6 +223,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_replenishment_tomb_guard_chariots", "wh_main_effect_character_stat_mod_personal_aura_size",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"10", "100",
 		},
@@ -210,6 +233,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_unit_cap_tmb_veh_khemrian_warsphinx_0",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"1",
 		},
@@ -219,6 +243,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_tech_melee_attack_increase_tmb_scorpions", "wh2_dlc09_effect_tech_melee_defence_increase_tmb_scorpions", "wh_main_effect_agent_action_success_chance",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"5", "5", "5",
 		},
@@ -228,6 +253,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_faction_political_diplomacy_mod", "wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"5", "1",
 		},
@@ -237,6 +263,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_effect_unit_cap_tmb_mon_ushabti_0", "wh2_dlc09_effect_unit_cap_tmb_mon_ushabti_1",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"1", "1",
 		},
@@ -246,6 +273,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc09_pooled_resource_canopic_jars_characters", "wh_main_effect_force_all_campaign_experience_base_all",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"2", "1",
 		},
@@ -255,6 +283,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_bonus_v_small",
 		},
+		Icon = 			"trait_tomb_kings.png",
 		Values = {
  			"10",
 		},
@@ -264,6 +293,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc10_effect_tech_upkeep_cost_reduction_def_khaine_units",
 		},
+		Icon = 			"trait_dark_elves.png",
 		Values = {
  			"-50",
 		},
@@ -273,6 +303,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc10_effect_force_army_battle_missile_damage_sisters_of_avelorn_handmaidens",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"15",
 		},
@@ -282,6 +313,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc10_effect_upkeep_reduction_hef_shadow_warriors", "wh_main_effect_force_army_campaign_ambush_attack_success_chance",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-50", "25",
 		},
@@ -291,6 +323,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_skill_melee_attack_increase_hef_spears_seaguard_archers", "wh2_main_effect_skill_melee_defence_increase_hef_spears_seaguard_archers",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-3", "-3",
 		},
@@ -300,6 +333,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_dlc10_effect_upkeep_reduction_hef_sisters_of_avelorn_units",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"20",
 		},
@@ -309,6 +343,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_success_chance",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -318,6 +353,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_character_stat_mod_ward_save_magic_enemy",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -327,6 +363,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_morale",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -336,6 +373,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_ward_save_missile_infantry", "wh2_main_effect_unit_stat_mod_ward_save_magic_all_units", "wh_main_effect_force_unit_stat_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5", "5",
 		},
@@ -345,6 +383,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_charge_bonus",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -354,6 +393,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_skill_melee_attack_increase_hef_spears_seaguard_archers", "wh2_main_effect_skill_melee_defence_increase_hef_spears_seaguard_archers", "wh2_main_effect_tech_melee_attack_increase_hef_silverhelms", "wh2_main_effect_tech_melee_defence_increase_hef_silverhelms",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5", "5", "5",
 		},
@@ -363,6 +403,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_character_stat_enable_flaming_attacks", "wh_main_effect_character_stat_mod_charge_add", "wh_main_effect_character_stat_mod_melee_attack", "wh_main_effect_character_stat_mod_melee_damage", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1", "70", "10", "70", "10",
 		},
@@ -372,6 +413,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_physical",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -381,6 +423,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_missile",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -390,6 +433,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_battle_movement_speed",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -399,6 +443,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_armour", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "10",
 		},
@@ -408,6 +453,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_defence", "wh_main_effect_character_stat_mod_ward_save_physical",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "10",
 		},
@@ -417,6 +463,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-2",
 		},
@@ -426,6 +473,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_province_growth_characters",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -435,6 +483,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_economy_gdp_mod_all",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -444,6 +493,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_building_construction_cost_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -453,6 +503,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_religion_conversion_untainted",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"3",
 		},
@@ -462,6 +513,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_experience_base_all",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1",
 		},
@@ -471,6 +523,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_replenishment_rate",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -480,6 +533,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_upkeep",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -489,6 +543,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_success_chance", "wh_main_effect_technology_research_points",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"3", "5",
 		},
@@ -498,6 +553,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_economy_gdp_mod_all", "wh_main_effect_economy_tax_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"30", "3",
 		},
@@ -507,6 +563,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_ability_enable_regeneration", "wh2_main_effect_province_growth_characters_factionwide", "wh_main_effect_province_growth_characters",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1", "5", "20",
 		},
@@ -516,6 +573,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_agent_action_success_chance_enemies", "wh_main_effect_agent_action_success_chance", "wh_main_effect_technology_research_points",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10", "10", "10",
 		},
@@ -525,6 +583,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_replenishment_rate", "wh_main_effect_force_army_campaign_attrition_all_resistance",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "-20",
 		},
@@ -534,6 +593,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_charge_add", "wh_main_effect_character_stat_mod_melee_damage",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"8", "5",
 		},
@@ -543,6 +603,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_morale",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"2",
 		},
@@ -552,6 +613,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_enable_poison_attacks", "wh_main_effect_force_army_campaign_ambush_attack_success_chance",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"1", "10",
 		},
@@ -561,6 +623,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_morale", "wh_main_effect_unit_enable_attribute_immune_to_psychology",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"3", "1",
 		},
@@ -570,6 +633,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_melee_attack", "wh_main_effect_force_unit_stat_morale",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"2", "2",
 		},
@@ -579,6 +643,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_battle_movement_speed", "wh_main_effect_unit_enable_attribute_strider",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"15", "1",
 		},
@@ -588,6 +653,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_defence_wound_chance_mod", "wh_main_effect_force_army_campaign_ambush_defence_success_chance",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "10",
 		},
@@ -597,6 +663,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_military_force_winds_of_magic_depletion_mod_character", "wh_main_effect_military_force_winds_of_magic_depletion_mod_character_enemy",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "-5",
 		},
@@ -606,6 +673,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_field_line_of_sight_mod", "wh_main_effect_character_mod_ancillary_drop",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"10", "15",
 		},
@@ -615,6 +683,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_movement_range_mod",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5",
 		},
@@ -624,6 +693,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_armour", "wh_main_effect_character_stat_mod_melee_attack", "wh_main_effect_character_stat_mod_melee_damage",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"3", "2", "5",
 		},
@@ -633,6 +703,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_personal_aura_morale_effect", "wh_main_effect_character_stat_mod_personal_aura_size",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"2", "10",
 		},
@@ -642,6 +713,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_armour", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "3",
 		},
@@ -651,6 +723,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ap_damage", "wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "3",
 		},
@@ -660,6 +733,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc03_effect_building_upkeep_reduction_centigors", "wh_dlc03_effect_tech_unit_xp_levels_centigors",
 		},
+		Icon = 			"trait_beastmen.png",
 		Values = {
  			"-10", "3",
 		},
@@ -669,6 +743,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc03_effect_ability_enable_banner_of_outrage",
 		},
+		Icon = 			"trait_beastmen.png",
 		Values = {
  			"1",
 		},
@@ -678,6 +753,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_enemy_unit_morale",
 		},
+		Icon = 			"trait_beastmen.png",
 		Values = {
  			"-5",
 		},
@@ -687,6 +763,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc04_effect_force_all_campaign_razing_income_not_shown", "wh_main_effect_force_all_campaign_raid_income",
 		},
+		Icon = 			"trait_beastmen.png",
 		Values = {
  			"5", "5",
 		},
@@ -696,6 +773,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc03_effect_tech_unit_stat_melee_damage_minotaurs",
 		},
+		Icon = 			"trait_beastmen.png",
 		Values = {
  			"10",
 		},
@@ -705,6 +783,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_general_aura_mod_all_during_attack",
 		},
+		Icon = 			"trait_chaos.png",
 		Values = {
  			"15",
 		},
@@ -714,6 +793,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_melee_attack",
 		},
+		Icon = 			"trait_chaos.png",
 		Values = {
  			"5",
 		},
@@ -723,6 +803,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_raid_income", "wh_main_effect_force_all_campaign_sacking_income",
 		},
+		Icon = 			"trait_dark_elves.png",
 		Values = {
  			"10", "5",
 		},
@@ -732,6 +813,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_loyalty_penalty_faction_leader_outranked", "wh2_main_effect_percentage_of_xp_to_give_other_characters_of_same_type_hidden", "wh2_main_effect_upkeep_reduction_malekith_witch_king",
 		},
+		Icon = 			"trait_dark_elves.png",
 		Values = {
  			"3", "10", "-50",
 		},
@@ -741,6 +823,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_general_aura_mod_all_during_attack",
 		},
+		Icon = 			"trait_dark_elves.png",
 		Values = {
  			"25",
 		},
@@ -750,6 +833,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_agent_recruitment_xp_def_death_hag", "wh_main_effect_building_construction_cost_mod_worship_def",
 		},
+		Icon = 			"trait_dark_elves.png",
 		Values = {
  			"2", "-40",
 		},
@@ -759,6 +843,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_character_mod_loyalty_regional", "wh_main_effect_building_construction_cost_mod_sorcery_def",
 		},
+		Icon = 			"trait_dark_elves.png",
 		Values = {
  			"2", "-25",
 		},
@@ -768,6 +853,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_melee_attack", "wh_main_effect_force_unit_stat_melee_damage",
 		},
+		Icon = 			"trait_dark_elves.png",
 		Values = {
  			"3", "5",
 		},
@@ -777,6 +863,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_attack", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_dark_elves.png",
 		Values = {
  			"3", "3",
 		},
@@ -786,6 +873,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_dwarf.png",
 		Values = {
  			"5",
 		},
@@ -795,6 +883,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_building_construction_cost_mod",
 		},
+		Icon = 			"trait_dwarf.png",
 		Values = {
  			"-15",
 		},
@@ -804,6 +893,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_success_chance_enemy",
 		},
+		Icon = 			"trait_dwarf.png",
 		Values = {
  			"-20",
 		},
@@ -813,6 +903,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_charge_bonus",
 		},
+		Icon = 			"trait_human.png",
 		Values = {
  			"10",
 		},
@@ -822,6 +913,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_bonus_v_large",
 		},
+		Icon = 			"trait_human.png",
 		Values = {
  			"6",
 		},
@@ -831,6 +923,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_field_line_of_sight_mod", "wh_main_effect_agent_movement_range_mod",
 		},
+		Icon = 			"trait_human.png",
 		Values = {
  			"10", "5",
 		},
@@ -840,6 +933,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_economy_gdp_mod_all",
 		},
+		Icon = 			"trait_human.png",
 		Values = {
  			"10",
 		},
@@ -849,6 +943,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_human.png",
 		Values = {
  			"4",
 		},
@@ -858,6 +953,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_tech_recruitment_cost_reduction_bigun_black_orcs", "wh_main_effect_tech_unit_xp_levels_bigun_black_orcs",
 		},
+		Icon = 			"trait_greenskins.png",
 		Values = {
  			"-10", "1",
 		},
@@ -867,6 +963,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_morale",
 		},
+		Icon = 			"trait_greenskins.png",
 		Values = {
  			"5",
 		},
@@ -876,6 +973,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc06_effect_upkeep_for_goblin_units",
 		},
+		Icon = 			"trait_greenskins.png",
 		Values = {
  			"-15",
 		},
@@ -885,6 +983,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc03_effect_ability_enable_banner_of_outrage",
 		},
+		Icon = 			"trait_greenskins.png",
 		Values = {
  			"1",
 		},
@@ -894,6 +993,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_greenskins.png",
 		Values = {
  			"-3",
 		},
@@ -903,6 +1003,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_building_recruitment_cost_reduction_hef_resource_furs", "wh2_main_effect_buildling_upkeep_reduction_hef_resource_furs", "wh_main_effect_force_army_campaign_ambush_defence_success_chance",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-30", "-25", "15",
 		},
@@ -912,6 +1013,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_upkeep_reduction_hef_swordmasters_whitelions",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"20",
 		},
@@ -921,6 +1023,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_success_chance",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -930,6 +1033,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_melee_defence_increase_hef_phoenix", "wh_main_effect_force_all_campaign_post_battle_loot_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-8", "-10",
 		},
@@ -939,6 +1043,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_success_chance",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -948,6 +1053,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_melee_defence_increase_hef_phoenix", "wh_main_effect_force_all_campaign_post_battle_loot_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"8", "10",
 		},
@@ -957,6 +1063,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_charge_speed_increase_hef_swordmasters_lions", "wh2_main_effect_tech_upkeep_reduction_hef_swordmasters_whitelions",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "-10",
 		},
@@ -966,6 +1073,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_success_chance", "wh_main_effect_character_stat_mod_battle_movement_speed", "wh_main_effect_character_stat_mod_charge_add",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "12", "25",
 		},
@@ -975,6 +1083,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_charge_speed_increase_hef_swordmasters_lions", "wh2_main_effect_tech_upkeep_reduction_hef_swordmasters_whitelions", "wh2_main_effect_trait_unit_recruitment_duration_hef_swordmasters",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "-20", "-1",
 		},
@@ -984,6 +1093,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_melee_defence_increase_hef_phoenix", "wh_main_effect_character_mod_ancillary_drop", "wh_main_effect_force_all_campaign_post_battle_loot_mod", "wh_main_effect_general_mod_tunnel_interception_chance",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"12", "25", "25", "50",
 		},
@@ -993,6 +1103,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_physical",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -1002,6 +1113,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_military_force_winds_of_magic_depletion_mod_character",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1011,6 +1123,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1020,6 +1133,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_battle_movement_speed", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5",
 		},
@@ -1029,6 +1143,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_missile",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -1038,6 +1153,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_miscast_chance", "wh_main_effect_military_force_winds_of_magic_depletion_mod_character",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10", "5",
 		},
@@ -1047,6 +1163,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_ability_enable_arcane_conduit", "wh_main_effect_character_stat_mod_miscast_chance", "wh_main_effect_military_force_winds_of_magic_depletion_mod_character",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1", "-15", "10",
 		},
@@ -1056,6 +1173,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_magic", "wh_main_effect_character_stat_mod_ward_save_missile",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "20",
 		},
@@ -1065,6 +1183,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_armour", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "10",
 		},
@@ -1074,6 +1193,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_religion_conversion_chaos",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1",
 		},
@@ -1083,6 +1203,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_province_growth_characters",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1092,6 +1213,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_replenishment_rate",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1101,6 +1223,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_religion_conversion_untainted",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"3",
 		},
@@ -1110,6 +1233,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_province_growth_characters_factionwide", "wh_main_effect_province_growth_characters",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"2", "5",
 		},
@@ -1119,6 +1243,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_replenishment_rate",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -1128,6 +1253,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc06_effect_bonus_damage_fighting_against_chaos", "wh_main_effect_religion_conversion_untainted",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"15", "6",
 		},
@@ -1137,6 +1263,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_ability_enable_regeneration", "wh2_main_effect_province_growth_characters_factionwide", "wh_main_effect_province_growth_characters",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1", "5", "20",
 		},
@@ -1146,6 +1273,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_replenishment_rate", "wh_main_effect_force_army_campaign_attrition_all_resistance",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "-20",
 		},
@@ -1155,6 +1283,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_missile_enemy",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -1164,6 +1293,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_character_stat_mod_ward_save_magic_enemy",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -1173,6 +1303,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_trait_unit_recruitment_duration_hef_phoenix",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1",
 		},
@@ -1182,6 +1313,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_military_force_winds_of_magic_depletion_mod_character_enemy",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-8",
 		},
@@ -1191,6 +1323,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_ward_save_hef_phoenix",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -1200,6 +1333,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_magic",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -1209,6 +1343,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_character_stat_enable_flaming_attacks", "wh_main_effect_character_stat_mod_charge_add", "wh_main_effect_character_stat_mod_melee_attack", "wh_main_effect_character_stat_mod_melee_damage", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1", "100", "10", "100", "10",
 		},
@@ -1218,6 +1353,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_magic_shadow_enable_melkoths_enfeebling_foe_upgraded", "wh2_main_effect_magic_shadow_enable_melkoths_mystifying_miasma_upgraded",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1", "1",
 		},
@@ -1227,6 +1363,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_magic_metal_enable_glittering_robe_upgraded", "wh2_main_effect_magic_metal_enable_transmutation_of_lead_upgraded",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1", "1",
 		},
@@ -1236,6 +1373,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_military_force_winds_of_magic_depletion_mod_character",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1245,6 +1383,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_physical",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -1254,6 +1393,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_battle_movement_speed",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-15",
 		},
@@ -1263,6 +1403,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_missile",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -1272,6 +1413,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_miscast_chance", "wh_main_effect_military_force_winds_of_magic_depletion_mod_character",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10", "5",
 		},
@@ -1281,6 +1423,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_battle_movement_speed",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -1290,6 +1433,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_magic_heavens_enable_urannons_thunderbolt_upgraded", "wh_main_effect_character_stat_mod_miscast_chance", "wh_main_effect_military_force_winds_of_magic_depletion_mod_character",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1", "-15", "10",
 		},
@@ -1299,6 +1443,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_battle_movement_speed", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"30", "20",
 		},
@@ -1308,6 +1453,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_magic", "wh_main_effect_character_stat_mod_ward_save_missile",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "20",
 		},
@@ -1317,6 +1463,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_economy_gdp_mod_all",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -1326,6 +1473,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_technology_research_points",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1335,6 +1483,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_building_construction_cost_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -1344,6 +1493,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_building_construction_cost_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -1353,6 +1503,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_economy_gdp_mod_all",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -1362,6 +1513,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_success_chance", "wh_main_effect_technology_research_points",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"3", "5",
 		},
@@ -1371,6 +1523,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_building_construction_time_mod_all", "wh_main_effect_building_construction_cost_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-30", "-30",
 		},
@@ -1380,6 +1533,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_economy_gdp_mod_all", "wh_main_effect_economy_tax_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"30", "3",
 		},
@@ -1389,6 +1543,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_agent_action_success_chance_enemies", "wh_main_effect_agent_action_success_chance", "wh_main_effect_technology_research_points",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10", "10", "10",
 		},
@@ -1398,6 +1553,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_skill_melee_attack_increase_hef_spears_seaguard_archers", "wh2_main_effect_skill_melee_defence_increase_hef_spears_seaguard_archers",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-3", "-3",
 		},
@@ -1407,6 +1563,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_morale",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1416,6 +1573,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_charge_bonus",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1425,6 +1583,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_morale",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -1434,6 +1593,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_charge_bonus",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -1443,6 +1603,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_skill_melee_attack_increase_hef_spears_seaguard_archers",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"3",
 		},
@@ -1452,6 +1613,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_charge_bonus",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -1461,6 +1623,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_campaign_attrition_all_resistance", "wh_main_effect_force_unit_stat_morale",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-20", "10",
 		},
@@ -1470,6 +1633,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_skill_melee_attack_increase_hef_spears_seaguard_archers", "wh2_main_effect_skill_melee_defence_increase_hef_spears_seaguard_archers", "wh2_main_effect_tech_melee_attack_increase_hef_silverhelms", "wh2_main_effect_tech_melee_defence_increase_hef_silverhelms",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5", "5", "5",
 		},
@@ -1479,6 +1643,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1488,6 +1653,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_physical",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -1497,6 +1663,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1506,6 +1673,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_battle_movement_speed", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5",
 		},
@@ -1515,6 +1683,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_physical",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -1524,6 +1693,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_charge_add", "wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5",
 		},
@@ -1533,6 +1703,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_charge_add", "wh_main_effect_character_stat_mod_melee_attack", "wh_main_effect_unit_enable_attribute_fear",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"20", "10", "1",
 		},
@@ -1542,6 +1713,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_armour", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"20", "10",
 		},
@@ -1551,6 +1723,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_defence", "wh_main_effect_character_stat_mod_ward_save_physical",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "10",
 		},
@@ -1560,6 +1733,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-2",
 		},
@@ -1569,6 +1743,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_recruitment_cost_all",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -1578,6 +1753,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_upkeep",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -1587,6 +1763,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_experience_base_all",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1",
 		},
@@ -1596,6 +1773,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"2",
 		},
@@ -1605,6 +1783,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_upkeep",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1614,6 +1793,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_agent_recruitment_xp_hef_noble", "wh2_main_effect_diplomacy_bonus_humans_elves", "wh_main_effect_force_all_campaign_experience_base_all", "wh_main_faction_xp_increase_generals",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"2", "5", "1", "2",
 		},
@@ -1623,6 +1803,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_economy_gdp_mod_culture_hef", "wh2_main_effect_public_order_characters_factionwide", "wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "1", "5",
 		},
@@ -1632,6 +1813,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_upkeep",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-15",
 		},
@@ -1641,6 +1823,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_unit_stat_mod_ward_save_magic_all_units",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -1650,6 +1833,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_field_line_of_sight_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-20",
 		},
@@ -1659,6 +1843,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_battle_morale_increase_hef_white_lions_swordmasters_phoenix_guard",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -1668,6 +1853,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"3",
 		},
@@ -1677,6 +1863,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_battle_morale_increase_hef_white_lions_swordmasters_phoenix_guard",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -1686,6 +1873,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_unit_stat_mod_ward_save_magic_all_units",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -1695,6 +1883,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_battle_morale_increase_hef_white_lions_swordmasters_phoenix_guard", "wh2_main_effect_tech_melee_attack_increase_hef_white_lions_swordmasters_phoenix_guard", "wh2_main_effect_tech_melee_damage_increase_hef_white_lions_swordmasters_phoenix_guard",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "5", "10",
 		},
@@ -1704,6 +1893,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_upkeep_reduction_hef_dragons", "wh2_main_effect_trait_unit_recruitment_duration_hef_dragons", "wh2_main_effect_unit_stat_mod_ward_save_magic_all_units",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-20", "-1", "10",
 		},
@@ -1713,6 +1903,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_ward_save_missile_infantry", "wh2_main_effect_unit_stat_mod_ward_save_magic_all_units", "wh_main_effect_force_unit_stat_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5", "5",
 		},
@@ -1722,6 +1913,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1731,6 +1923,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_physical",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -1740,6 +1933,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1749,6 +1943,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_battle_movement_speed", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5",
 		},
@@ -1758,6 +1953,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_physical",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5",
 		},
@@ -1767,6 +1963,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_charge_add", "wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5",
 		},
@@ -1776,6 +1973,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_charge_add", "wh_main_effect_character_stat_mod_melee_attack", "wh_main_effect_unit_enable_attribute_fear",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"20", "10", "1",
 		},
@@ -1785,6 +1983,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_armour", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"20", "10",
 		},
@@ -1794,6 +1993,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_defence", "wh_main_effect_character_stat_mod_ward_save_physical",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "10",
 		},
@@ -1803,6 +2003,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_recruitment_cost_all",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"15",
 		},
@@ -1812,6 +2013,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_buildling_upkeep_reduction_hef_resource_wood",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -1821,6 +2023,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_force_all_campaign_sacking_income", "wh_main_effect_force_all_campaign_post_battle_loot_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-30", "-50",
 		},
@@ -1830,6 +2033,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_outcome_parent_army_xp_gain",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"100",
 		},
@@ -1839,6 +2043,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_buildling_upkeep_reduction_hef_resource_wood",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -1848,6 +2053,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_force_all_campaign_sacking_income", "wh_main_effect_force_all_campaign_post_battle_loot_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "25",
 		},
@@ -1857,6 +2063,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_outcome_parent_army_xp_gain",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"250",
 		},
@@ -1866,6 +2073,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_force_all_campaign_sacking_income", "wh_main_effect_character_mod_ancillary_drop", "wh_main_effect_force_all_campaign_post_battle_loot_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"25", "10", "50",
 		},
@@ -1875,6 +2083,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_buildling_upkeep_reduction_hef_resource_pastures", "wh2_main_effect_buildling_upkeep_reduction_hef_resource_wood",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-15", "-25",
 		},
@@ -1884,6 +2093,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_movement_speed",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1893,6 +2103,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_personal_aura_size",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-50",
 		},
@@ -1902,6 +2113,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_missile_damage_increase_hef_bow_units",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-5",
 		},
@@ -1911,6 +2123,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_missile_attack_rate", "wh_main_effect_force_army_battle_movement_speed",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5",
 		},
@@ -1920,6 +2133,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_charge_bonus", "wh_main_effect_force_unit_stat_morale",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5",
 		},
@@ -1929,6 +2143,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_missile_damage_increase_hef_bow_units", "wh_main_effect_agent_defence_wound_chance_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "5",
 		},
@@ -1938,6 +2153,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_buildling_upkeep_reduction_hef_resource_pastures", "wh2_main_effect_tech_melee_damage_increase_hef_reavers_silverhelms", "wh2_main_effect_tech_missile_damage_increase_hef_reavers", "wh_main_effect_force_army_battle_charge_bonus",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-30", "20", "20", "20",
 		},
@@ -1947,6 +2163,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_movement_range_mod", "wh_main_effect_character_stat_mod_missile_attack_rate", "wh_main_effect_force_army_battle_movement_speed",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "10", "10",
 		},
@@ -1956,6 +2173,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_force_stat_mod_ward_save_missile_enemy_army", "wh2_main_effect_tech_missile_damage_increase_hef_bow_units", "wh_main_effect_agent_defence_wound_chance_mod",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10", "20", "15",
 		},
@@ -1965,6 +2183,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_damage",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-30",
 		},
@@ -1974,6 +2193,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_missile_damage", "wh_main_effect_character_stat_mod_range",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10", "-20",
 		},
@@ -1983,6 +2203,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_missile",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -1992,6 +2213,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_missile_damage", "wh_main_effect_character_stat_mod_range",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "10",
 		},
@@ -2001,6 +2223,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ward_save_missile",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -2010,6 +2233,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_armour", "wh_main_effect_character_stat_mod_melee_damage",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"20", "10",
 		},
@@ -2019,6 +2243,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc03_effect_ability_enable_bound_amber_spear", "wh_main_effect_character_stat_mod_ward_save_magic", "wh_main_effect_character_stat_mod_ward_save_missile", "wh_main_effect_military_force_winds_of_magic_depletion_mod_character",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1", "10", "20", "-5",
 		},
@@ -2028,6 +2253,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_missile_damage", "wh_main_effect_character_stat_mod_range",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"30", "30",
 		},
@@ -2037,6 +2263,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_armour", "wh_main_effect_character_stat_mod_melee_damage",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"40", "20",
 		},
@@ -2046,6 +2273,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_campaign_ambush_attack_success_chance",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-50",
 		},
@@ -2055,6 +2283,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_upkeep_reduction_hef_archers_seaguard_reavers",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10",
 		},
@@ -2064,6 +2293,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_upkeep_reduction_hef_chariots_boltthrowers",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"30",
 		},
@@ -2073,6 +2303,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_field_line_of_sight_mod", "wh_main_effect_force_army_campaign_ambush_attack_success_chance",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"12", "15",
 		},
@@ -2082,6 +2313,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_missile_rate_of_fire_increase_hef_boltthrower", "wh2_main_effect_tech_movement_speed_increase_hef_chariots", "wh2_main_effect_tech_upkeep_reduction_hef_chariots_boltthrowers",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"5", "5", "-10",
 		},
@@ -2091,6 +2323,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_upkeep_reduction_hef_archers_seaguard_reavers",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10",
 		},
@@ -2100,6 +2333,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_skill_missile_range_increase_hef_archers_reavers_seaguard", "wh2_main_effect_tech_upkeep_reduction_hef_archers_seaguard_reavers",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "-30",
 		},
@@ -2109,6 +2343,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_tech_missile_rate_of_fire_increase_hef_boltthrower", "wh2_main_effect_tech_movement_speed_increase_hef_chariots", "wh2_main_effect_tech_upkeep_reduction_hef_chariots_boltthrowers", "wh2_main_effect_trait_unit_recruitment_duration_hef_chariot",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"10", "10", "-30", "-1",
 		},
@@ -2118,6 +2353,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_agent_action_success_chance_enemies", "wh_main_effect_agent_defence_wound_chance_mod", "wh_main_effect_force_army_campaign_ambush_attack_success_chance",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-10", "20", "30",
 		},
@@ -2127,6 +2363,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_agent_action_success_chance_mage_loremaster", "wh2_main_effect_skill_hef_reduction_action_cost_for_loremaster_mages", "wh2_main_effect_skill_hef_ward_save_for_loremaster", "wh2_main_effect_skill_hef_ward_save_for_mages", "wh_main_effect_agent_action_success_chance_enemy_skill", "wh_main_effect_agent_action_success_chance_skill",
 		},
+		Icon = 			"magic_character.png",
 		Values = {
  			"5", "-15", "10", "10", "-1", "1",
 		},
@@ -2136,6 +2373,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_ability_enable_fireball", "wh_main_effect_military_force_winds_of_magic_depletion_mod_character",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"1", "30",
 		},
@@ -2145,6 +2383,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_upkeep_reduction_hef_spearmen_archers_silverhelms",
 		},
+		Icon = 			"trait_high_elves.png",
 		Values = {
  			"-35",
 		},
@@ -2154,6 +2393,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_charge_add", "wh_main_effect_unit_enable_attribute_immune_to_psychology",
 		},
+		Icon = 			"trait_lizardmen.png",
 		Values = {
  			"10", "1",
 		},
@@ -2163,6 +2403,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_recruitment_xp_all_agents",
 		},
+		Icon = 			"trait_lizardmen.png",
 		Values = {
  			"2",
 		},
@@ -2172,6 +2413,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_upkeep_reduction_lzd_saurus_coldones", "wh_main_effect_force_army_campaign_ambush_attack_success_chance", "wh_main_effect_force_unit_stat_morale",
 		},
+		Icon = 			"trait_lizardmen.png",
 		Values = {
  			"-50", "25", "10",
 		},
@@ -2181,6 +2423,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_upkeep_reduction_lzd_temple_guard",
 		},
+		Icon = 			"trait_lizardmen.png",
 		Values = {
  			"-50",
 		},
@@ -2190,6 +2433,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_enemy_unit_morale",
 		},
+		Icon = 			"trait_lizardmen.png",
 		Values = {
  			"-4",
 		},
@@ -2199,6 +2443,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_defence_wound_chance_mod",
 		},
+		Icon = 			"trait_lizardmen.png",
 		Values = {
  			"15",
 		},
@@ -2208,6 +2453,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_ability_army_enable_the_menace_below", "wh2_main_effect_ability_army_num_uses_the_menace_below", "wh2_main_effect_faction_trait_upkeep_reduction_skv_stormvermin_clanrats", "wh2_main_effect_percentage_of_xp_to_steal_from_characters_of_same_type_hidden",
 		},
+		Icon = 			"trait_skaven.png",
 		Values = {
  			"1", "2", "-50", "10",
 		},
@@ -2217,6 +2463,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_charge_add", "wh_main_effect_character_stat_mod_melee_damage",
 		},
+		Icon = 			"trait_skaven.png",
 		Values = {
  			"4", "5",
 		},
@@ -2226,6 +2473,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_ap_damage", "wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_skaven.png",
 		Values = {
  			"5", "3",
 		},
@@ -2235,6 +2483,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_upkeep_reduction_skv_plague_units", "wh_main_effect_religion_conversion_skaven",
 		},
+		Icon = 			"trait_skaven.png",
 		Values = {
  			"-50", "3",
 		},
@@ -2244,6 +2493,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_campaign_ambush_attack_success_chance",
 		},
+		Icon = 			"trait_skaven.png",
 		Values = {
  			"25",
 		},
@@ -2253,6 +2503,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_skv_warp_unit_upkeep_down",
 		},
+		Icon = 			"trait_skaven.png",
 		Values = {
  			"-12",
 		},
@@ -2262,6 +2513,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_personal_aura_morale_effect", "wh_main_effect_character_stat_mod_personal_aura_size",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"3", "20",
 		},
@@ -2271,6 +2523,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_cost_mod", "wh_main_effect_agent_action_success_chance",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"-10", "5",
 		},
@@ -2280,6 +2533,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_unit_enable_attribute_terror",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"1",
 		},
@@ -2289,6 +2543,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_building_construction_cost_mod",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"-10",
 		},
@@ -2298,6 +2553,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_force_stat_mod_miscast_chance",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"-10",
 		},
@@ -2307,6 +2563,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc05_effect_force_army_battle_melee_attack_during_forest", "wh_main_effect_military_force_winds_of_magic_depletion_mod_character",
 		},
+		Icon = 			"trait_wood_elves.png",
 		Values = {
  			"4", "10",
 		},
@@ -2316,6 +2573,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_missile_range",
 		},
+		Icon = 			"trait_wood_elves.png",
 		Values = {
  			"10",
 		},
@@ -2325,6 +2583,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc03_effect_tech_recruitment_cost_reduction_bestigors",
 		},
+		Icon = 			"trait_beastmen.png",
 		Values = {
  			"-30",
 		},
@@ -2334,6 +2593,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc03_effect_agent_recruitment_xp_wizard_beastmen",
 		},
+		Icon = 			"trait_beastmen.png",
 		Values = {
  			"1",
 		},
@@ -2343,6 +2603,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc03_effect_force_army_campaign_attrition_chaos_territory", "wh_dlc05_morghur_trait_immortalitiy",
 		},
+		Icon = 			"trait_beastmen.png",
 		Values = {
  			"8", "-100",
 		},
@@ -2352,6 +2613,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_recruitment_xp_dignitary_empire",
 		},
+		Icon = 			"trait_human.png",
 		Values = {
  			"2",
 		},
@@ -2361,6 +2623,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc03_effect_technology_research_points",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"10",
 		},
@@ -2370,6 +2633,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc04_effect_unit_enable_can_siege_dummy",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"1",
 		},
@@ -2379,6 +2643,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc05_effect_force_army_battle_melee_attack_during_forest", "wh_main_effect_military_force_winds_of_magic_depletion_mod_character",
 		},
+		Icon = 			"trait_wood_elves.png",
 		Values = {
  			"4", "15",
 		},
@@ -2388,6 +2653,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc05_durthu_trait_effect_attrition_immunity",
 		},
+		Icon = 			"trait_wood_elves.png",
 		Values = {
  			"1",
 		},
@@ -2397,6 +2663,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc05_effect_battle_speed_elf_units",
 		},
+		Icon = 			"trait_wood_elves.png",
 		Values = {
  			"8",
 		},
@@ -2406,6 +2673,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_missile_range",
 		},
+		Icon = 			"trait_wood_elves.png",
 		Values = {
  			"12",
 		},
@@ -2415,6 +2683,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc04_effect_unit_enable_can_siege_dummy", "wh_dlc06_effect_belegar_trait_enable_attribute_guerrilla_deployment_for_all_dummy", "wh_main_effect_force_army_campaign_tunnelling_evasion_chance",
 		},
+		Icon = 			"trait_dwarf.png",
 		Values = {
  			"1", "1", "30",
 		},
@@ -2424,6 +2693,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_conquest_enable_night_battles",
 		},
+		Icon = 			"trait_greenskins.png",
 		Values = {
  			"1",
 		},
@@ -2433,6 +2703,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc06_effect_character_stat_mod_ward_save_physical_savage", "wh_dlc06_effect_upkeep_savage_orcs",
 		},
+		Icon = 			"trait_greenskins.png",
 		Values = {
  			"15", "-50",
 		},
@@ -2442,6 +2713,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_character_stat_mod_morale",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "10",
 		},
@@ -2451,6 +2723,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_agent_defence_wound_chance_mod", "wh_main_effect_force_army_campaign_ambush_defence_success_chance", "wh_main_effect_name_epithet_brt_the_astute", "wh_main_effect_name_epithet_chs_the_astute", "wh_main_effect_name_epithet_dwf_the_astute", "wh_main_effect_name_epithet_emp_the_astute", "wh_main_effect_name_epithet_grn_the_astute", "wh_main_effect_name_epithet_vmp_the_astute",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "5", "10", "1", "1", "1", "1", "1", "1",
 		},
@@ -2460,6 +2733,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_economy_gdp_mod_all",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "5",
 		},
@@ -2469,6 +2743,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_agent_defence_wound_chance_mod", "wh_main_effect_public_order_characters_negative",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "-5", "-1",
 		},
@@ -2478,6 +2753,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_agent_field_line_of_sight_mod", "wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "5", "1",
 		},
@@ -2487,6 +2763,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_agent_action_success_chance_enemy", "wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "-3", "5",
 		},
@@ -2496,6 +2773,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_agent_defence_wound_chance_mod",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "10",
 		},
@@ -2505,6 +2783,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_ability_enable_blessing_of_the_lady", "wh_main_effect_unit_enable_attribute_fear",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "1", "1",
 		},
@@ -2514,6 +2793,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc04_effect_unit_enable_can_siege_dummy", "wh_dlc08_effect_throgg_attrition_immunity", "wh_main_effect_public_order_characters", "wh_main_effect_religion_conversion_chaos",
 		},
+		Icon = 			"trait_norsca.png",
 		Values = {
  			"1", "1", "1", "2",
 		},
@@ -2523,6 +2803,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc04_effect_unit_enable_can_siege_dummy", "wh_dlc08_effect_unit_enable_attribute_fear_wulfrik", "wh_main_effect_force_all_campaign_reinforcement_range",
 		},
+		Icon = 			"trait_norsca.png",
 		Values = {
  			"1", "1", "20",
 		},
@@ -2532,6 +2813,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_morale", "wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"3", "-1",
 		},
@@ -2541,6 +2823,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_attack", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_physical.png",
 		Values = {
  			"3", "-3",
 		},
@@ -2550,6 +2833,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_attack", "wh_main_effect_character_stat_mod_morale",
 		},
+		Icon = 			"trait_military.png",
 		Values = {
  			"4", "6",
 		},
@@ -2559,6 +2843,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_movement_range_mod", "wh_main_effect_economy_gdp_mod_all", "wh_main_effect_name_epithet_brt_lord_of_droners", "wh_main_effect_name_epithet_chs_lord_of_droners", "wh_main_effect_name_epithet_dwf_lord_of_droners", "wh_main_effect_name_epithet_emp_lord_of_droners", "wh_main_effect_name_epithet_grn_lord_of_droners", "wh_main_effect_name_epithet_vmp_lord_of_droners",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"-5", "5", "1", "1", "1", "1", "1", "1",
 		},
@@ -2568,6 +2853,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_personal_aura_morale_effect",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"6",
 		},
@@ -2577,6 +2863,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5",
 		},
@@ -2586,6 +2873,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_damage",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"10",
 		},
@@ -2595,6 +2883,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_enemy_unit_morale",
 		},
+		Icon = 			"trait_physical.png",
 		Values = {
  			"-2",
 		},
@@ -2604,6 +2893,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_success_chance_enemy",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"2",
 		},
@@ -2613,6 +2903,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_movement_range_mod", "wh_main_effect_character_stat_mod_morale",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"-7", "2",
 		},
@@ -2622,6 +2913,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_success_chance_enemy",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"3",
 		},
@@ -2631,6 +2923,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_physical.png",
 		Values = {
  			"1",
 		},
@@ -2640,6 +2933,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_morale",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"10",
 		},
@@ -2649,6 +2943,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_personal_aura_size",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"15",
 		},
@@ -2658,6 +2953,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_defence_wound_chance_mod", "wh_main_effect_force_army_campaign_ambush_defence_success_chance", "wh_main_effect_name_epithet_brt_the_astute", "wh_main_effect_name_epithet_chs_the_astute", "wh_main_effect_name_epithet_dwf_the_astute", "wh_main_effect_name_epithet_emp_the_astute", "wh_main_effect_name_epithet_grn_the_astute", "wh_main_effect_name_epithet_vmp_the_astute",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "10", "1", "1", "1", "1", "1", "1",
 		},
@@ -2667,6 +2963,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_movement_range_mod", "wh_main_effect_building_construction_cost_mod",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "4",
 		},
@@ -2676,6 +2973,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_economy_gdp_mod_all",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5",
 		},
@@ -2685,6 +2983,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_attack", "wh_main_effect_force_unit_stat_melee_defence",
 		},
+		Icon = 			"trait_physical.png",
 		Values = {
  			"-6", "3",
 		},
@@ -2694,6 +2993,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_battle_movement_speed", "wh_main_effect_force_unit_stat_morale",
 		},
+		Icon = 			"trait_physical.png",
 		Values = {
  			"-15", "3",
 		},
@@ -2703,6 +3003,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_defence_wound_chance_mod", "wh_main_effect_public_order_characters_negative",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"-5", "-1",
 		},
@@ -2712,6 +3013,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_morale_foreign_territory",
 		},
+		Icon = 			"trait_military.png",
 		Values = {
  			"2",
 		},
@@ -2721,6 +3023,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_field_line_of_sight_mod", "wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5", "1",
 		},
@@ -2730,6 +3033,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_success_chance_enemy", "wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"-3", "5",
 		},
@@ -2739,6 +3043,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_enemy_unit_morale", "wh_main_effect_name_epithet_brt_the_scarred", "wh_main_effect_name_epithet_chs_the_scarred", "wh_main_effect_name_epithet_dwf_the_scarred", "wh_main_effect_name_epithet_emp_the_scarred", "wh_main_effect_name_epithet_grn_the_scarred", "wh_main_effect_name_epithet_vmp_the_scarred",
 		},
+		Icon = 			"trait_physical.png",
 		Values = {
  			"-3", "1", "1", "1", "1", "1", "1",
 		},
@@ -2748,6 +3053,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_enemy_unit_morale", "wh_main_effect_name_epithet_brt_the_scarred", "wh_main_effect_name_epithet_chs_the_scarred", "wh_main_effect_name_epithet_dwf_the_scarred", "wh_main_effect_name_epithet_emp_the_scarred", "wh_main_effect_name_epithet_grn_the_scarred", "wh_main_effect_name_epithet_vmp_the_scarred",
 		},
+		Icon = 			"trait_physical.png",
 		Values = {
  			"-2", "1", "1", "1", "1", "1", "1",
 		},
@@ -2757,6 +3063,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_action_success_chance",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"5",
 		},
@@ -2766,6 +3073,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_morale", "wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"2", "-1",
 		},
@@ -2775,6 +3083,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_charge_bonus",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"10",
 		},
@@ -2784,6 +3093,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_army_battle_enemy_unit_morale", "wh_main_effect_public_order_characters",
 		},
+		Icon = 			"trait_physical.png",
 		Values = {
  			"-5", "-1",
 		},
@@ -2793,6 +3103,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_defence_wound_chance_mod",
 		},
+		Icon = 			"trait_personality.png",
 		Values = {
  			"10",
 		},
@@ -2802,6 +3113,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_ability_enable_blessing_of_the_lady",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "1",
 		},
@@ -2811,6 +3123,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_character_stat_mod_melee_damage",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "5",
 		},
@@ -2820,6 +3133,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "5",
 		},
@@ -2829,6 +3143,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_battle_defence_knights_of_the_realm", "wh_dlc07_effect_chivalry_dummy",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"5", "10",
 		},
@@ -2838,6 +3153,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_battle_morale_knights", "wh_dlc07_effect_chivalry_dummy",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"5", "10",
 		},
@@ -2847,6 +3163,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_character_stat_mod_bonus_v_large",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "8",
 		},
@@ -2856,6 +3173,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_character_stat_mod_melee_attack", "wh_main_effect_character_stat_mod_melee_defence",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "5", "5",
 		},
@@ -2865,6 +3183,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_character_stat_mod_battle_movement_speed",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "10",
 		},
@@ -2874,6 +3193,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_force_army_battle_charge_bonus",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "15",
 		},
@@ -2883,6 +3203,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "5",
 		},
@@ -2892,6 +3213,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_character_stat_mod_ward_save_missile",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "10",
 		},
@@ -2901,6 +3223,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_character_stat_mod_ward_save",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "3",
 		},
@@ -2910,6 +3233,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_character_stat_mod_morale",
 		},
+		Icon = 			"trait_bretonnia.png",
 		Values = {
  			"10", "10",
 		},
@@ -2919,6 +3243,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_force_army_battle_ward_save_physical_chaos_knights", "wh_main_effect_force_all_campaign_razing_income",
 		},
+		Icon = 			"trait_chaos.png",
 		Values = {
  			"10", "25",
 		},
@@ -2928,6 +3253,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_general_aura_mod_all_during_attack",
 		},
+		Icon = 			"trait_chaos.png",
 		Values = {
  			"10",
 		},
@@ -2937,6 +3263,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_melee_attack",
 		},
+		Icon = 			"trait_chaos.png",
 		Values = {
  			"5",
 		},
@@ -2946,6 +3273,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_tech_melee_attack_increase_dragon_ogre_saggoths", "wh_main_effect_tech_recruitment_cost_reduction_dragon_ogres",
 		},
+		Icon = 			"trait_chaos.png",
 		Values = {
  			"10", "-30",
 		},
@@ -2955,6 +3283,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_hordebuilding_growth_characters",
 		},
+		Icon = 			"trait_chaos.png",
 		Values = {
  			"1",
 		},
@@ -2964,6 +3293,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_personal_aura_morale_effect", "wh_main_effect_character_stat_mod_personal_aura_size",
 		},
+		Icon = 			"trait_dwarf.png",
 		Values = {
  			"8", "15",
 		},
@@ -2973,6 +3303,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_tech_melee_attack_increase_slayers",
 		},
+		Icon = 			"trait_dwarf.png",
 		Values = {
  			"6",
 		},
@@ -2982,6 +3313,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_agent_recruitment_xp_wizard_empire",
 		},
+		Icon = 			"trait_human.png",
 		Values = {
  			"2",
 		},
@@ -2991,6 +3323,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc05_tech_diplomacy_bonus_empire", "wh_main_effect_force_unit_stat_morale",
 		},
+		Icon = 			"trait_human.png",
 		Values = {
  			"10", "2",
 		},
@@ -3000,6 +3333,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_personal_aura_morale_effect", "wh_main_effect_character_stat_mod_personal_aura_size",
 		},
+		Icon = 			"trait_greenskins.png",
 		Values = {
  			"8", "15",
 		},
@@ -3009,6 +3343,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_attack",
 		},
+		Icon = 			"trait_greenskins.png",
 		Values = {
  			"-4",
 		},
@@ -3018,6 +3353,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_tech_armour_increase_black_orcs", "wh_main_effect_tech_battle_morale_increase_black_orcs",
 		},
+		Icon = 			"trait_greenskins.png",
 		Values = {
  			"5", "6",
 		},
@@ -3027,6 +3363,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_melee_damage",
 		},
+		Icon = 			"trait_greenskins.png",
 		Values = {
  			"-4",
 		},
@@ -3036,6 +3373,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_magic_vampires_cooldown_invocation_of_nehek",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"-10",
 		},
@@ -3045,6 +3383,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_religion_conversion_undeath",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"3",
 		},
@@ -3054,6 +3393,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_dlc08_effect_ability_enable_krell", "wh_main_effect_agent_recruitment_xp_wizard_vampire_counts", "wh_main_effect_krell_dummy",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"1", "2", "1",
 		},
@@ -3063,6 +3403,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_unit_stat_morale_versus_men",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"5",
 		},
@@ -3072,6 +3413,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_battle_creatures_of_the_night_unit_size",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"10",
 		},
@@ -3081,6 +3423,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_main_effect_force_all_campaign_reinforcement_range",
 		},
+		Icon = 			"trait_dwarf.png",
 		Values = {
  			"30",
 		},
@@ -3090,6 +3433,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh_pro02_effect_vampire_heroes_isabella_trait_attack", "wh_pro02_effect_vampire_heroes_isabella_trait_defence",
 		},
+		Icon = 			"trait_vampire_counts.png",
 		Values = {
  			"10", "10",
 		},

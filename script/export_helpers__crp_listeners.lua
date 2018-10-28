@@ -12,7 +12,7 @@ function SetupListeners(lordsInPool)
             if context:faction():subculture() == "rebels" then
                 Custom_Log("Updating rebels");
             else
-                --crp:UpdateRecruitmentPool(context:faction(), 1);
+                crp:UpdateRecruitmentPool(context:faction(), 1);
             end
             Custom_Log_Finished();
         end,
@@ -30,6 +30,10 @@ function SetupListeners(lordsInPool)
             local localisedSurname = effect.get_localised_string(char:get_surname());
 
             local keyName = localisedForeName..localisedSurname;
+            -- This removes any spaces within names, eg the surname "Von Carstein";
+            -- Otherwise the key is invalid and the character won't be tracked
+            keyName = keyName:gsub("%s+", "");
+
             if lordsInPool[factionName] ~= nil then
                 if lordsInPool[factionName][keyName] ~= nil then
                     Custom_Log("Character is in pool");
