@@ -107,7 +107,7 @@ function ControlledRecruitmentPools:FactionStartup()
     Custom_Log("Faction Start up");
 	for i = 0, faction_list:num_items() - 1 do
         local faction = faction_list:item_at(i);
-        if self:IsSupportedSubCulture(faction:subculture()) or self:IsRogueArmy(faction:name()) then
+        if faction:is_quest_battle_faction() == false and self:IsSupportedSubCulture(faction:subculture()) or self:IsRogueArmy(faction:name()) then
             --if faction:name() == self.HumanFaction:name() then
                 Custom_Log("INITIALISING: "..tostring(faction:name()));
                 -- After replacing calculate the current pools for the faction
@@ -230,7 +230,9 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
     -- Iterate over all existing characters and calculate the current pool
     -- values
     Custom_Log("STARTING pool update for "..tostring(faction:name()));
-    cm:disable_event_feed_events(true, "wh_event_category_agent", "", "");
+    if faction:name() == self.HumanFaction:name() then
+        cm:disable_event_feed_events(true, "wh_event_category_agent", "", "");
+    end
 
     local currentPoolCounts = self:GetCurrentPoolForFaction(faction);
     Custom_Log("Got current pool for faction");
@@ -242,7 +244,9 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
 
     -- Generate extra characters up to the pool size for that faction
     self:AddGeneralsToPool(faction, currentPoolCounts, amountToGenerate);
-    cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
+    if faction:name() == self.HumanFaction:name() then
+        cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
+    end
     Custom_Log("FINISHED pool update for "..tostring(faction:name()));
 end
 
@@ -273,7 +277,7 @@ function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
         local character = character_list:item_at(i);
         local charSubType = character:character_subtype_key();
         -- We do not want to count garrison commands and agents
-        if (character:has_military_force() and character:military_force():is_armed_citizenry()) == false
+        if character:has_military_force() and character:military_force():is_armed_citizenry() == false
         and cm:char_is_agent(character) == false then
             Custom_Log("Found existing character subtype: "..tostring(charSubType));
             if currentPoolCounts[charSubType] then
