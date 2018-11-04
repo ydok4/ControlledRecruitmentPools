@@ -14,7 +14,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = {
+                    vmp_lord_rebel = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
@@ -64,7 +64,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = {
+                    vmp_lord_rebel = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
@@ -109,7 +109,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = {
+                    vmp_lord_rebel = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
@@ -156,7 +156,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = {
+                    vmp_lord_rebel = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
@@ -205,7 +205,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = false,
+                    vmp_lord_rebel = false,
                     vmp_vampire_countess = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
@@ -299,7 +299,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = false,
+                    vmp_lord_rebel = false,
                     vmp_necrarch = {
                         MinimumAmount = 2,
                         MaximumAmount = 5,

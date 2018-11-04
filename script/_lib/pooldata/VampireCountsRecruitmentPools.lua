@@ -14,7 +14,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = {
+                    vmp_lord_rebel = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
@@ -53,6 +53,20 @@ VampireCountsRecruitmentPoolData =  {
             "wh_main_skill_innate_all_boring",
             "wh_main_skill_innate_all_magnanimous",
         },
+        LordsToReplace = {
+            vmp_lord = {
+                replacementKey = "vmp_lord_rebel",
+                traitKeyPool = {
+                    "wh2_main_skill_innate_vmp_dark_majesty",
+                    "wh2_main_skill_innate_vmp_devious",
+                    "wh2_main_skill_innate_vmp_dread_incarnate",
+                    "wh2_main_skill_innate_vmp_lore_keeper",
+                    "wh2_main_skill_innate_vmp_master_of_the_black_arts",
+                    "wh_main_skill_innate_vmp_dark_acolyte",
+                    "wh_main_skill_innate_vmp_summon_creatures",
+                },
+            },
+        },
         PoolMaxSize = 5,
     },
     -- Major Faction specific distributions
@@ -72,7 +86,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = {
+                    vmp_lord_rebel = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
@@ -103,7 +117,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = {
+                    vmp_lord_rebel = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
@@ -136,7 +150,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = {
+                    vmp_lord_rebel = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
@@ -167,7 +181,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = {
+                    vmp_lord_rebel = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
@@ -227,7 +241,7 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord = {
+                    vmp_lord_rebel = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
                     },

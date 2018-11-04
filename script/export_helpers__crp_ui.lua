@@ -21,7 +21,7 @@ function CRPUI:InitialiseListeners(humanFaction, lordsInPool)
     if humanFactionName == "wh_main_grn_skull-takerz" then
         humanFactionName = "wh_main_grn_skull_takerz";
     end
-    local humanSubCulture = humanFaction:subculture();
+
     core:add_listener(
         "GeneralRecruitmentOpened",
         "PanelOpenedCampaign",
@@ -29,29 +29,54 @@ function CRPUI:InitialiseListeners(humanFaction, lordsInPool)
             return context.string == "character_panel";
         end,
         function(context)
-            Custom_Log("\nCharacter panel ppened");
-            self:GetGeneralCandidates(humanFactionName, humanSubCulture, lordsInPool);
+            Custom_Log("\n"..context.string.." opened");
+            local uiContext = context.string;
+            cm:callback(function()
+                local generalsList = find_uicomponent(core:get_ui_root(), "character_panel", "general_selection_panel", "character_list_parent", "character_list", "listview", "list_clip", "list_box");
+                self:GetGeneralCandidates(humanFactionName, generalsList, lordsInPool);
+            end,
+            0);
         end,
         true
     );
     Custom_Log("Created panel opened listener");
 
     core:add_listener(
+        "ClickedReplaceButton",
+        "ComponentLClickUp",
+        function(context)
+            return context.string == "button_replace_general";
+        end,
+        function(context)
+            Custom_Log("Clicked replace");
+            cm:callback(function()
+                local generalsList = find_uicomponent(core:get_ui_root(), "character_details_panel", "general_selection_panel", "character_list", "listview", "list_clip", "list_box");
+                self:GetGeneralCandidates(humanFactionName, generalsList, lordsInPool);
+            end,
+            0);
+        end,
+        true
+    );
+
+
+    core:add_listener(
         "GeneralRecruitmentClosed",
         "PanelClosedCampaign",
         function(context)
-            return context.string == "character_panel";
+            return context.string == "character_panel"
+            or context.string == "appoint_new_general"
+            or context.string == "character_details_panel";
         end,
         function(context)
-            Custom_Log("Panel closed");
+            Custom_Log("Panel closed\n");
         end,
         true
     );
 end
 
-function CRPUI:GetGeneralCandidates(humanFactionName, humanSubCulture, lordsInPool)
-    local generalsList = find_uicomponent(core:get_ui_root(), "character_panel", "general_selection_panel", "character_list_parent", "character_list", "listview", "list_clip", "list_box");
-        if generalsList then
+function CRPUI:GetGeneralCandidates(humanFactionName, generalsList, lordsInPool)
+        if generalsList and generalsList:ChildCount() > 0 then
+            Custom_Log("There are "..generalsList:ChildCount().." in the list");
             for i = 0, generalsList:ChildCount() - 1  do
                 local generalPanel = UIComponent(generalsList:Find(i));
 
@@ -59,6 +84,7 @@ function CRPUI:GetGeneralCandidates(humanFactionName, humanSubCulture, lordsInPo
                 local skillIcon = find_uicomponent(generalPanel, "icon_background_skill");
 
                 local keyName = name:gsub("%s+", "");
+
                 if lordsInPool[humanFactionName] ~= nil then
                     Custom_Log("Checking Key: "..keyName);
                     if lordsInPool[humanFactionName][keyName] ~= nil then
@@ -84,6 +110,8 @@ function CRPUI:GetGeneralCandidates(humanFactionName, humanSubCulture, lordsInPo
 
                 local toolTipText = skillIcon:GetTooltipText();
             end
+        else
+            Custom_Log("There are no generals in the list");
         end
 end
 function CRPUI:BuildTraitNameString(traitKey)
@@ -117,7 +145,7 @@ function CRPUI:BuildTraitLocString(traitKey, traitName)
                 effectLoc = effectLoc:gsub("%+n%", effectValue);
 
                 --Custom_Log("Added Image and subbed "..effectLoc);
-                if effectData[3] and effectValue > 0 then
+                if (effectData[3] == "true" and effectValue > 0) or (effectData[3] == "false" and effectValue < 0) then
                     effectLoc = "[[col:green]]"..effectLoc.."[[/col]]";
                 else
                     effectLoc = "[[col:red]]"..effectLoc.."[[/col]]";

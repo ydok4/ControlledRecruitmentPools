@@ -1,3 +1,4 @@
+--out("CRP: Loading DataHelpers");
 function ConcatTableWithKeys(destinationTable, sourceTable)
     for key, value in pairs(sourceTable) do
         destinationTable[key] = value;

@@ -18,8 +18,7 @@ require 'script/_lib/pooldata/RogueArmyRecruitmentPools'
 require 'script/_lib/pooldata/SharedRecruitmentPools'
 
 require 'script/_lib/dbexports/AgentArtSetResources'
-
-Custom_Log_Start();
+require 'script/_lib/dbexports/CustomAgentArtSetResources'
 
 Custom_Log("Loading Core Data");
 
@@ -134,3 +133,5 @@ _G.CRPResources = {
         ConcatTableWithKeys(_G.CRPResources.DBResources[dbResourceKey], resourceData);
     end,
 }
+
+_G.CRPResources.AddAdditionalDBResources("campaign_character_art_sets", CustomAgentArtSetResources);

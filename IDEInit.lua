@@ -21,6 +21,10 @@ effect = {
     end,
 }
 
+function out()
+    return;
+end
+
 -- Mock functions
 function get_cm()
     return   {
@@ -64,7 +68,7 @@ require 'script/export_helpers__crp_ui'
 require 'script/export_helpers__crp_z_mixu_resource_loader'
 require 'script/export_helpers__crp_z_mixu_ui_resource_loader'
 
-require 'script/campaign/mod/controlled_recruitment_pools'
+--require 'script/campaign/mod/controlled_recruitment_pools'
 
 math.randomseed(os.time())
 
@@ -86,9 +90,10 @@ crp = ControlledRecruitmentPools:new({
 
 crp:Initialise();
 crp:GetCurrentPoolForFaction(testFaction);
+
 local trait = crp:GetRandomCharacterTrait(testFaction, "grn_savage_orc_warboss");
 local traitPath = crp.UIController:GetImagePathForTrait(trait);
-local artSetId = crp:GetArtSetForSubType("nor_marauder_chieftain");
+local artSetId = crp:GetArtSetForSubType("vmp_lord_rebel");
 local traitEffects = crp.UIController:GetTraitEffects("wh2_main_skill_innate_all_aggressive");
 local traitDescription = crp.UIController:BuildTraitLocString("wh2_main_skill_innate_all_aggressive", "Knowledgeable");
 --crp.UIController:GetImagePathForTrait("wh_main_sc_vmp_vampire_counts", "");

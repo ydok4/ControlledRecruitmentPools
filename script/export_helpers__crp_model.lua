@@ -19,6 +19,7 @@ function ControlledRecruitmentPools:new (o)
 end
 
 function ControlledRecruitmentPools:Initialise()
+    out("CRP: Setting default values");
     Custom_Log("Setting default values");
     self.HumanFaction = self:GetHumanFaction();
     -- These coordinates are between Lustria and
@@ -38,6 +39,7 @@ function ControlledRecruitmentPools:Initialise()
 
     });
     self.UIController:InitialiseUI(self.HumanFaction, self.CRPLordsInPools);
+    out("CRP: Finished default values");
 end
 
 -- The pool limit should be greater than or equal to the highest Agent Sub Type
@@ -243,11 +245,12 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
     self:EnforceMinimumValues(faction, currentPoolCounts);
 
     -- Generate extra characters up to the pool size for that faction
-    self:AddGeneralsToPool(faction, currentPoolCounts, amountToGenerate);
+    local addedGenerals = self:AddGeneralsToPool(faction, currentPoolCounts, amountToGenerate);
     if faction:name() == self.HumanFaction:name() then
         cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
     end
     Custom_Log("FINISHED pool update for "..tostring(faction:name()));
+    return addedGenerals;
 end
 
 function ControlledRecruitmentPools:ReplaceAnyVampireLords(faction, currentPoolCounts)
@@ -270,6 +273,7 @@ function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
     -- Grab all characters in the faction. This includes recruited and
     -- characters in the pool
     local character_list = faction:character_list();
+    local ignoreVampires = faction:subculture() ~= "wh_main_sc_vmp_vampire_counts";
 
     local currentPoolCounts = {};
     currentPoolCounts["total"] = 0;
@@ -278,7 +282,7 @@ function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
         local charSubType = character:character_subtype_key();
         -- We do not want to count garrison commands and agents
         if character:has_military_force() and character:military_force():is_armed_citizenry() == false
-        and cm:char_is_agent(character) == false then
+        and cm:char_is_agent(character) == false and (ignoreVampires == false or (ignoreVampires == true and charSubType ~= "vmp_lord")) then
             Custom_Log("Found existing character subtype: "..tostring(charSubType));
             if currentPoolCounts[charSubType] then
                 currentPoolCounts[charSubType] = currentPoolCounts[charSubType] + 1;
@@ -323,7 +327,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
             local agentSubTypeKey = self:SelectGeneralToGenerateFromPool(factionPoolResources, currentPoolCounts, poolKey);
             Custom_Log("Selected "..agentSubTypeKey);
             local artSetId = self:GetArtSetForSubType(agentSubTypeKey);
-            --Custom_Log("Art set Id: "..artSetId);
+            Custom_Log("Art set Id: "..artSetId);
             -- If this is the players faction this should happen straight away
             -- so the recruitment event message can be supressed
             if faction:name() == self.HumanFaction:name() then
@@ -380,8 +384,9 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
     end
 
     Custom_Log("Generating extras for pool");
+    local newGenerals = {};
     local factionResources = self:GetFactionPoolResources(faction);
-    for i = 0, maximumAmount do
+    for i = 1, maximumAmount do
         if currentPoolCounts["total"] < factionResources.PoolMaxSize then
             -- Select a general to generate
             local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts);
@@ -403,11 +408,18 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
             end
             currentPoolCounts[agentSubTypeKey] = count + 1;
             currentPoolCounts["total"] = currentPoolCounts["total"] + 1;
+
+            newGenerals[#newGenerals + 1] = {
+                AgentSubType = agentSubTypeKey,
+                ArtSetId = artSetId,
+            };
         else
             Custom_Log("Hit poolsize already");
             break;
         end
     end
+
+    return newGenerals;
 end
 
 function ControlledRecruitmentPools:GetFactionPoolResources(faction)
@@ -670,5 +682,15 @@ function ControlledRecruitmentPools:GetArtSetForSubType(subType)
     --Custom_Log("Getting art set for sub type: "..subType);
     local subTypeData = self.CRPResources.DBResources.campaign_character_art_sets[subType];
     local artSetId = GetRandomObjectFromList(subTypeData.ArtSetIds);
+    return artSetId;
+end
+
+function ControlledRecruitmentPools:GetValidAgentArtSetForFaction(faction)
+    local currentFactionPools = self:GetCurrentPoolForFaction(faction);
+    currentFactionPools["total"] = nil;
+    local agentSubType = GetRandomObjectKeyFromList(currentFactionPools);
+    Custom_Log("Selected random agent sub type"..agentSubType);
+    local artSetId = self:GetArtSetForSubType(agentSubType);
+    Custom_Log("Selected random art set for sub type: "..artSetId);
     return artSetId;
 end
