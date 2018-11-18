@@ -714,7 +714,20 @@ function ControlledRecruitmentPools:GetValidAgentArtSetForFaction(faction)
     local currentFactionPools = self:GetCurrentPoolForFaction(faction);
     currentFactionPools["total"] = nil;
     local agentSubType = GetRandomObjectKeyFromList(currentFactionPools);
-    Custom_Log("Selected random agent sub type"..agentSubType);
+    Custom_Log("Selected random agent sub type "..agentSubType);
+
+    if agentSubType == "vmp_lord_replacement" then
+        Custom_Log("Current faction pools is null, try and get an art set from the faction pool resources");
+        local factionPoolResources = self:GetFactionPoolResources(faction);
+        --Custom_Log("Got faction pools resources for faction");
+        local poolData = GetRandomObjectFromList(factionPoolResources.FactionPools);
+        --Custom_Log("Got poolkey");
+        local agentSubTypeKey = GetRandomObjectKeyFromList(poolData.AgentSubTypes);
+        --Custom_Log("Selected "..agentSubTypeKey);
+        local artSetId = self:GetArtSetForSubType(agentSubTypeKey);
+        return artSetId;
+    end
+
     local artSetId = self:GetArtSetForSubType(agentSubType);
     Custom_Log("Selected random art set for sub type: "..artSetId);
     return artSetId;

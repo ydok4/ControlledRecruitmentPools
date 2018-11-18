@@ -21,6 +21,7 @@ function SetupListeners(lordsInPool)
         "UpdateRecruitmentPool",
         "FactionTurnEnd",
         function(context)
+            Custom_Log_Finished();
             Custom_Log("Checking faction: "..tostring(context:faction():name()));
             return crp:IsSupportedSubCulture(context:faction():subculture()) or crp:IsRogueArmy(context:faction():name());
         end,
@@ -128,6 +129,21 @@ end
 function PendingBattleResult(humanFactionName, canContainHuman)
     Custom_Log("CRP: Battle has been fought");
 
+    local num_defenders = cm:pending_battle_cache_num_defenders();
+    local defenders = {};
+    for i = 1, num_defenders do
+        local defender_cqi, defender_force_cqi, defender_faction_name = cm:pending_battle_cache_get_defender(i);
+        Custom_Log("CRP: defender faction name "..defender_faction_name);
+        if canContainHuman == false and humanFactionName == defender_faction_name then
+            Custom_Log("CRP: Defender is human and must exit");
+            return;
+        end
+        defenders[tostring(defender_force_cqi)] = defender_cqi;
+    end
+    Custom_Log("CRP: Got defenders");
+    ProcessBattleCacheData(defenders, "defenders");
+    Custom_Log_Finished();
+
     local num_attackers = cm:pending_battle_cache_num_attackers();
     local attackers = {};
 
@@ -140,49 +156,44 @@ function PendingBattleResult(humanFactionName, canContainHuman)
         end
         attackers[tostring(attacker_force_cqi)] = attacker_cqi;
     end
+
     Custom_Log("CRP: Got attackers");
-    local num_defenders = cm:pending_battle_cache_num_defenders();
-    local defenders = {};
-    for i = 1, num_defenders do
-        local defender_cqi, defender_force_cqi, defender_faction_name = cm:pending_battle_cache_get_defender(i);
-        Custom_Log("CRP: attacker faction name "..defender_faction_name);
-        if canContainHuman == false and humanFactionName == defender_faction_name then
-            Custom_Log("CRP: Defender is human and must exit");
-            return;
-        end
-        defenders[tostring(defender_force_cqi)] = defender_cqi;
-    end
-    Custom_Log("CRP: Got defenders");
-    Custom_Log_Finished();
     ProcessBattleCacheData(attackers, "attackers");
-    ProcessBattleCacheData(defenders, "defenders");
     Custom_Log_Finished();
 end
 
 function ProcessBattleCacheData(cachedBattleData, type)
     for force_cqi, char_cqi in pairs(cachedBattleData) do
-        Custom_Log("CRP: Getting character: "..char_cqi);
+        Custom_Log("CRP: Getting character cqi: "..char_cqi);
         local character = nil;
 
         if char_cqi ~= nil then
             character = cm:model():character_for_command_queue_index(char_cqi);
         end
-        if not character or character:is_null_interface() or character:is_wounded() then
+        local faction = character:faction();
+        local factionName = faction:name();
+        if factionName == "wh2_dlc11_cst_vampire_coast_encounters" then
+            Custom_Log("Found wh2_dlc11_cst_vampire_coast_encounters");
+            local artSetId = crp:GetArtSetForSubType("wh2_dlc11_cst_admiral");--crp:GetValidAgentArtSetForFaction(faction);
+            cm:add_unit_model_overrides(cm:char_lookup_str(char_cqi), artSetId);
+        elseif not character or character:is_null_interface() or character:is_wounded() then
             Custom_Log("CRP: "..type.." is dead/wounded");
             local militaryForce = cm:get_military_force_by_cqi(force_cqi);
             if militaryForce ~= false then
-                Custom_Log("CRP: Found military force")
+                Custom_Log("CRP: Found military force");
                 local general = militaryForce:general_character();
                 Custom_Log("Current general type is "..general:character_subtype_key());
                 local generalCQI = general:cqi();
                 if general:is_null_interface() == false and char_cqi ~= generalCQI then
                     Custom_Log("CRP: Setting "..generalCQI.." with new artset");
-                    local factionName = general:faction();
-                    -- Add a new character to replace the dead character
-                    crp:UpdateRecruitmentPool(factionName, 1);
-                    -- Then find an art set for the faction and set the temporary lord as that
-                    local artSetId = crp:GetValidAgentArtSetForFaction(general:faction());
-                    cm:add_unit_model_overrides(cm:char_lookup_str(generalCQI), artSetId);
+                    local generalFaction = general:faction();
+                    local generalFactionName = faction:name();
+                    if crp:IsSupportedSubCulture(general:faction():subculture()) or crp:IsRogueArmy(generalFactionName) then
+                        crp:UpdateRecruitmentPool(faction, 1);
+                        -- Then find an art set for the faction and set the temporary lord as that
+                        local artSetId = crp:GetValidAgentArtSetForFaction(generalFaction);
+                        cm:add_unit_model_overrides(cm:char_lookup_str(generalCQI), artSetId);
+                    end
                 else
                     Custom_Log("CRP: General is null interface");
                 end

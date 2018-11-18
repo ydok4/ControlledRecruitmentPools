@@ -172,6 +172,19 @@ core:add_listener(
 );
 
 core:add_listener(
+    "PreBattlePopUp",
+    "PanelOpenedCampaign",
+    function(context)
+        return context.string == "popup_pre_battle";
+    end,
+    function(context)
+        out("CRP: PreBattlePopUp");
+        cm:callback(function() PendingBattleResult(crp.HumanFaction:name(), true) end, 0);
+    end,
+    true
+);
+
+core:add_listener(
     "AppointGeneralOpened",
     "PanelOpenedCampaign",
     function(context)
