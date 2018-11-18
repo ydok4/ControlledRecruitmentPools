@@ -23,6 +23,12 @@ AgentArtSetResources = {
 		},
 
 	},
+	brt_louen_leoncouer = {
+		ArtSetIds = {
+ 			"wh_main_art_set_brt_louen_leoncoeur",
+		},
+
+	},
 	brt_paladin = {
 		ArtSetIds = {
  			"wh_main_art_set_brt_paladin_01", "wh_main_art_set_brt_paladin_02", "wh_main_art_set_brt_paladin_03", "wh_main_art_set_brt_paladin_04",
@@ -32,6 +38,24 @@ AgentArtSetResources = {
 	chs_archaon = {
 		ArtSetIds = {
  			"wh_main_art_set_chs_archaon",
+		},
+
+	},
+	chs_chaos_sorcerer_death = {
+		ArtSetIds = {
+ 			"wh_main_art_set_chs_sorcerer_death_01", "wh_main_art_set_chs_sorcerer_death_01_general", "wh_main_art_set_chs_sorcerer_death_02", "wh_main_art_set_chs_sorcerer_death_03", "wh_main_art_set_chs_sorcerer_death_04",
+		},
+
+	},
+	chs_chaos_sorcerer_fire = {
+		ArtSetIds = {
+ 			"wh_main_art_set_chs_sorcerer_fire_01", "wh_main_art_set_chs_sorcerer_fire_02", "wh_main_art_set_chs_sorcerer_fire_03", "wh_main_art_set_chs_sorcerer_fire_04",
+		},
+
+	},
+	chs_chaos_sorcerer_metal = {
+		ArtSetIds = {
+ 			"wh_main_art_set_chs_sorcerer_metal_01", "wh_main_art_set_chs_sorcerer_metal_02", "wh_main_art_set_chs_sorcerer_metal_03", "wh_main_art_set_chs_sorcerer_metal_04",
 		},
 
 	},
@@ -49,7 +73,7 @@ AgentArtSetResources = {
 	},
 	chs_lord = {
 		ArtSetIds = {
- 			"wh_main_art_set_chs_lord_01", "wh_main_art_set_chs_lord_02", "wh_main_art_set_chs_lord_03", "wh_main_art_set_chs_lord_of_change",
+ 			"wh_main_art_set_chs_lord_01", "wh_main_art_set_chs_lord_02", "wh_main_art_set_chs_lord_03",
 		},
 
 	},
@@ -167,6 +191,12 @@ AgentArtSetResources = {
 		},
 
 	},
+	dlc04_vmp_vlad_con_carstein = {
+		ArtSetIds = {
+ 			"wh_dlc04_art_set_grn_vlad_von_carstein",
+		},
+
+	},
 	dlc05_bst_morghur = {
 		ArtSetIds = {
  			"wh_dlc05_art_set_bst_morghur",
@@ -199,7 +229,7 @@ AgentArtSetResources = {
 	},
 	dlc05_wef_glade_lord = {
 		ArtSetIds = {
- 			"wh_dlc05_art_set_wef_glade_lord_01", "wh_dlc05_art_set_wef_glade_lord_02", "wh_dlc05_art_set_wef_glade_lord_03", "wh_dlc05_art_set_wef_glade_lord_04", "wh_dlc05_art_set_wef_glade_lord_05", "wh_dlc05_art_set_wef_glade_lord_fem_01", "wh_dlc05_art_set_wef_glade_lord_fem_02", "wh_dlc05_art_set_wef_glade_lord_fem_03", "wh_dlc05_art_set_wef_glade_lord_fem_04", "wh_dlc05_art_set_wef_glade_lord_fem_05",
+ 			"wh_dlc05_art_set_wef_glade_lord_01", "wh_dlc05_art_set_wef_glade_lord_02", "wh_dlc05_art_set_wef_glade_lord_03", "wh_dlc05_art_set_wef_glade_lord_04", "wh_dlc05_art_set_wef_glade_lord_05",
 		},
 
 	},
@@ -245,6 +275,12 @@ AgentArtSetResources = {
 		},
 
 	},
+	dlc06_dwf_master_engineer_ghost = {
+		ArtSetIds = {
+ 			"wh_dlc06_art_set_dwf_engineer_ghost_01",
+		},
+
+	},
 	dlc06_dwf_runelord = {
 		ArtSetIds = {
  			"wh_dlc06_art_set_dwf_runelord_01", "wh_dlc06_art_set_dwf_runelord_02", "wh_dlc06_art_set_dwf_runelord_03", "wh_dlc06_art_set_dwf_runelord_04",
@@ -257,6 +293,18 @@ AgentArtSetResources = {
 		},
 
 	},
+	dlc06_dwf_thane_ghost_1 = {
+		ArtSetIds = {
+ 			"wh_dlc06_art_set_dwf_thane_ghost_01",
+		},
+
+	},
+	dlc06_dwf_thane_ghost_2 = {
+		ArtSetIds = {
+ 			"wh_dlc06_art_set_dwf_thane_ghost_02",
+		},
+
+	},
 	dlc06_grn_night_goblin_warboss = {
 		ArtSetIds = {
  			"wh_dlc06_art_set_grn_night_goblin_warboss_01", "wh_dlc06_art_set_grn_night_goblin_warboss_02", "wh_dlc06_art_set_grn_night_goblin_warboss_03", "wh_dlc06_art_set_grn_night_goblin_warboss_04",
@@ -266,6 +314,12 @@ AgentArtSetResources = {
 	dlc06_grn_skarsnik = {
 		ArtSetIds = {
  			"wh_dlc06_art_set_grn_skarsnik",
+		},
+
+	},
+	dlc06_grn_wurrzag_da_great_prophet = {
+		ArtSetIds = {
+ 			"wh_dlc06_art_set_grn_wurrzag_da_green_prophet",
 		},
 
 	},
@@ -305,6 +359,12 @@ AgentArtSetResources = {
 		},
 
 	},
+	dlc07_chs_chaos_sorcerer_shadow = {
+		ArtSetIds = {
+ 			"wh_dlc07_art_set_chs_sorcerer_shadow_01", "wh_dlc07_art_set_chs_sorcerer_shadow_02", "wh_dlc07_art_set_chs_sorcerer_shadow_03", "wh_dlc07_art_set_chs_sorcerer_shadow_04",
+		},
+
+	},
 	dlc07_chs_sorcerer_lord_shadow = {
 		ArtSetIds = {
  			"wh_dlc07_art_set_chs_sorcerer_lord_shadow_01", "wh_dlc07_art_set_chs_sorcerer_lord_shadow_02", "wh_dlc07_art_set_chs_sorcerer_lord_shadow_03", "wh_dlc07_art_set_chs_sorcerer_lord_shadow_04",
@@ -323,15 +383,21 @@ AgentArtSetResources = {
 		},
 
 	},
+	dwf_master_engineer = {
+		ArtSetIds = {
+ 			"wh_main_art_set_dwf_engineer_01", "wh_main_art_set_dwf_engineer_02",
+		},
+
+	},
 	dwf_runesmith = {
 		ArtSetIds = {
- 			"wh_dlc06_art_set_dwf_runesmith_ghost_01", "wh_main_art_set_dwf_runesmith_01", "wh_main_art_set_dwf_runesmith_02", "wh_main_art_set_dwf_runesmith_03", "wh_main_art_set_dwf_runesmith_04", "wh_main_art_set_dwf_runesmith_05",
+ 			"wh_main_art_set_dwf_runesmith_01", "wh_main_art_set_dwf_runesmith_02", "wh_main_art_set_dwf_runesmith_03", "wh_main_art_set_dwf_runesmith_04", "wh_main_art_set_dwf_runesmith_05",
 		},
 
 	},
 	dwf_thane = {
 		ArtSetIds = {
- 			"wh_dlc06_art_set_dwf_thane_ghost_01", "wh_dlc06_art_set_dwf_thane_ghost_02", "wh_main_art_set_dwf_thane_01", "wh_main_art_set_dwf_thane_02", "wh_main_art_set_dwf_thane_03",
+ 			"wh_main_art_set_dwf_thane_01", "wh_main_art_set_dwf_thane_02", "wh_main_art_set_dwf_thane_03",
 		},
 
 	},
@@ -455,6 +521,12 @@ AgentArtSetResources = {
 		},
 
 	},
+	ksl_lord = {
+		ArtSetIds = {
+ 			"wh_main_art_set_ksl_general_01", "wh_main_art_set_ksl_general_02", "wh_main_art_set_ksl_general_03", "wh_main_art_set_ksl_general_04", "wh_main_art_set_ksl_general_05",
+		},
+
+	},
 	nor_chaos_sorcerer_metal = {
 		ArtSetIds = {
  			"wh_main_art_set_nor_chaos_sorcerer_metal",
@@ -473,6 +545,18 @@ AgentArtSetResources = {
 		},
 
 	},
+	pro01_dwf_grombrindal = {
+		ArtSetIds = {
+ 			"wh_pro01_art_set_dwf_grombrindal",
+		},
+
+	},
+	pro02_vmp_isabella_von_carstein = {
+		ArtSetIds = {
+ 			"wh_pro02_art_set_vmp_isabella",
+		},
+
+	},
 	teb_bright_wizard = {
 		ArtSetIds = {
  			"wh_main_art_set_teb_bright_wizard",
@@ -482,6 +566,12 @@ AgentArtSetResources = {
 	teb_captain = {
 		ArtSetIds = {
  			"wh_main_art_set_teb_captain",
+		},
+
+	},
+	teb_lord = {
+		ArtSetIds = {
+ 			"wh_main_art_set_teb_general_01", "wh_main_art_set_teb_general_02", "wh_main_art_set_teb_general_03", "wh_main_art_set_teb_general_04", "wh_main_art_set_teb_general_05",
 		},
 
 	},
@@ -587,12 +677,6 @@ AgentArtSetResources = {
 		},
 
 	},
-	wh2_dlc09_tmb_necrotect_ritual = {
-		ArtSetIds = {
- 			"wh2_dlc09_art_set_tmb_necrotect_01", "wh2_dlc09_art_set_tmb_necrotect_02", "wh2_dlc09_art_set_tmb_necrotect_03", "wh2_dlc09_art_set_tmb_necrotect_04",
-		},
-
-	},
 	wh2_dlc09_tmb_settra = {
 		ArtSetIds = {
  			"wh2_dlc09_art_set_tmb_settra",
@@ -600,42 +684,6 @@ AgentArtSetResources = {
 
 	},
 	wh2_dlc09_tmb_tomb_king = {
-		ArtSetIds = {
- 			"wh2_dlc09_art_set_tmb_tomb_king_01", "wh2_dlc09_art_set_tmb_tomb_king_02", "wh2_dlc09_art_set_tmb_tomb_king_03", "wh2_dlc09_art_set_tmb_tomb_king_04", "wh2_dlc09_art_set_tmb_tomb_king_05",
-		},
-
-	},
-	wh2_dlc09_tmb_tomb_king_alkhazzar_ii = {
-		ArtSetIds = {
- 			"wh2_dlc09_art_set_tmb_tomb_king_01", "wh2_dlc09_art_set_tmb_tomb_king_02", "wh2_dlc09_art_set_tmb_tomb_king_03", "wh2_dlc09_art_set_tmb_tomb_king_04", "wh2_dlc09_art_set_tmb_tomb_king_05",
-		},
-
-	},
-	wh2_dlc09_tmb_tomb_king_lahmizzash = {
-		ArtSetIds = {
- 			"wh2_dlc09_art_set_tmb_tomb_king_01", "wh2_dlc09_art_set_tmb_tomb_king_02", "wh2_dlc09_art_set_tmb_tomb_king_03", "wh2_dlc09_art_set_tmb_tomb_king_04", "wh2_dlc09_art_set_tmb_tomb_king_05",
-		},
-
-	},
-	wh2_dlc09_tmb_tomb_king_rakhash = {
-		ArtSetIds = {
- 			"wh2_dlc09_art_set_tmb_tomb_king_01", "wh2_dlc09_art_set_tmb_tomb_king_02", "wh2_dlc09_art_set_tmb_tomb_king_03", "wh2_dlc09_art_set_tmb_tomb_king_04", "wh2_dlc09_art_set_tmb_tomb_king_05",
-		},
-
-	},
-	wh2_dlc09_tmb_tomb_king_setep = {
-		ArtSetIds = {
- 			"wh2_dlc09_art_set_tmb_tomb_king_01", "wh2_dlc09_art_set_tmb_tomb_king_02", "wh2_dlc09_art_set_tmb_tomb_king_03", "wh2_dlc09_art_set_tmb_tomb_king_04", "wh2_dlc09_art_set_tmb_tomb_king_05",
-		},
-
-	},
-	wh2_dlc09_tmb_tomb_king_thutep = {
-		ArtSetIds = {
- 			"wh2_dlc09_art_set_tmb_tomb_king_01", "wh2_dlc09_art_set_tmb_tomb_king_02", "wh2_dlc09_art_set_tmb_tomb_king_03", "wh2_dlc09_art_set_tmb_tomb_king_04", "wh2_dlc09_art_set_tmb_tomb_king_05",
-		},
-
-	},
-	wh2_dlc09_tmb_tomb_king_wakhaf = {
 		ArtSetIds = {
  			"wh2_dlc09_art_set_tmb_tomb_king_01", "wh2_dlc09_art_set_tmb_tomb_king_02", "wh2_dlc09_art_set_tmb_tomb_king_03", "wh2_dlc09_art_set_tmb_tomb_king_04", "wh2_dlc09_art_set_tmb_tomb_king_05",
 		},
@@ -650,6 +698,12 @@ AgentArtSetResources = {
 	wh2_dlc10_def_crone_hellebron = {
 		ArtSetIds = {
  			"wh2_dlc10_art_set_def_crone_hellebron",
+		},
+
+	},
+	wh2_dlc10_def_mon_war_hydra_boss = {
+		ArtSetIds = {
+ 			"wh2_dlc10_def_mon_war_hydra_01",
 		},
 
 	},
@@ -719,9 +773,165 @@ AgentArtSetResources = {
 		},
 
 	},
+	wh2_dlc10_lzd_mon_carnosaur_boss = {
+		ArtSetIds = {
+ 			"wh2_dlc10_art_set_carnosuar_01",
+		},
+
+	},
+	wh2_dlc10_nor_phoenix_flamespyre_boss = {
+		ArtSetIds = {
+ 			"wh2_dlc10_art_set_flamespyre_phoenix_01",
+		},
+
+	},
+	wh2_dlc10_skv_mon_hell_pit_abomination_boss = {
+		ArtSetIds = {
+ 			"wh2_dlc10_skv_mon_hell_pit_abomination_01",
+		},
+
+	},
+	wh2_dlc11_cst_admiral = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_admiral_vampires_01", "wh2_dlc11_art_set_cst_admiral_vampires_02", "wh2_dlc11_art_set_cst_admiral_vampires_03", "wh2_dlc11_art_set_cst_admiral_vampires_04",
+		},
+
+	},
+	wh2_dlc11_cst_admiral_death = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_admiral_death_01", "wh2_dlc11_art_set_cst_admiral_death_02", "wh2_dlc11_art_set_cst_admiral_death_03", "wh2_dlc11_art_set_cst_admiral_death_04", "wh2_dlc11_art_set_cst_barron_von_heastie",
+		},
+
+	},
+	wh2_dlc11_cst_admiral_deep = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_admiral_deep_01", "wh2_dlc11_art_set_cst_admiral_deep_02", "wh2_dlc11_art_set_cst_admiral_deep_03", "wh2_dlc11_art_set_cst_admiral_deep_04",
+		},
+
+	},
+	wh2_dlc11_cst_admiral_fem = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_admiral_female_vampires_01", "wh2_dlc11_art_set_cst_admiral_female_vampires_02", "wh2_dlc11_art_set_cst_admiral_female_vampires_03", "wh2_dlc11_art_set_cst_admiral_female_vampires_04",
+		},
+
+	},
+	wh2_dlc11_cst_admiral_fem_death = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_admiral_female_death_01", "wh2_dlc11_art_set_cst_admiral_female_death_02", "wh2_dlc11_art_set_cst_admiral_female_death_03", "wh2_dlc11_art_set_cst_admiral_female_death_04",
+		},
+
+	},
+	wh2_dlc11_cst_admiral_fem_deep = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_admiral_female_deep_01", "wh2_dlc11_art_set_cst_admiral_female_deep_02", "wh2_dlc11_art_set_cst_admiral_female_deep_03", "wh2_dlc11_art_set_cst_admiral_female_deep_04",
+		},
+
+	},
+	wh2_dlc11_cst_admiral_tech_01 = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_admiral_tech_01",
+		},
+
+	},
+	wh2_dlc11_cst_admiral_tech_02 = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_admiral_tech_02",
+		},
+
+	},
+	wh2_dlc11_cst_admiral_tech_03 = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_admiral_tech_03",
+		},
+
+	},
+	wh2_dlc11_cst_admiral_tech_04 = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_admiral_tech_04_female",
+		},
+
+	},
+	wh2_dlc11_cst_aranessa = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_aranessa_1", "wh2_dlc11_art_set_cst_aranessa_2", "wh2_dlc11_art_set_cst_aranessa_3", "wh2_dlc11_art_set_cst_aranessa_4",
+		},
+
+	},
+	wh2_dlc11_cst_cylostra = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_cylostra_1", "wh2_dlc11_art_set_cst_cylostra_2", "wh2_dlc11_art_set_cst_cylostra_3", "wh2_dlc11_art_set_cst_cylostra_4",
+		},
+
+	},
+	wh2_dlc11_cst_ghost_paladin = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_ghost_paladin",
+		},
+
+	},
+	wh2_dlc11_cst_gunnery_wight = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_gunnery_wight_01", "wh2_dlc11_art_set_cst_gunnery_wight_02",
+		},
+
+	},
+	wh2_dlc11_cst_harkon = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_harkon_1", "wh2_dlc11_art_set_cst_harkon_2", "wh2_dlc11_art_set_cst_harkon_3", "wh2_dlc11_art_set_cst_harkon_4",
+		},
+
+	},
+	wh2_dlc11_cst_mourngul = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_mourngul_haunter_01", "wh2_dlc11_art_set_cst_mourngul_haunter_02", "wh2_dlc11_art_set_cst_mourngul_haunter_03",
+		},
+
+	},
+	wh2_dlc11_cst_noctilus = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_cst_noctilus_1", "wh2_dlc11_art_set_cst_noctilus_2", "wh2_dlc11_art_set_cst_noctilus_3", "wh2_dlc11_art_set_cst_noctilus_4",
+		},
+
+	},
+	wh2_dlc11_def_lokhir = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_def_lokhir_1",
+		},
+
+	},
+	wh2_dlc11_vmp_bloodline_blood_dragon = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_vmp_bloodline_blood_dragon_01",
+		},
+
+	},
+	wh2_dlc11_vmp_bloodline_lahmian = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_vmp_bloodline_lahmian_01",
+		},
+
+	},
+	wh2_dlc11_vmp_bloodline_necrarch = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_vmp_bloodline_necrarch_01",
+		},
+
+	},
+	wh2_dlc11_vmp_bloodline_strigoi = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_vmp_bloodline_strigoi_01",
+		},
+
+	},
+	wh2_dlc11_vmp_bloodline_von_carstein = {
+		ArtSetIds = {
+ 			"wh2_dlc11_art_set_vmp_bloodline_von_carstein_01",
+		},
+
+	},
 	wh2_main_def_black_ark = {
 		ArtSetIds = {
- 			"wh2_main_art_set_def_black_ark",
+ 			"wh2_main_art_set_def_black_ark", "wh2_main_art_set_def_black_ark_lokhir_1", "wh2_main_art_set_def_black_ark_lokhir_2", "wh2_main_art_set_def_black_ark_lokhir_3",
 		},
 
 	},
@@ -733,7 +943,7 @@ AgentArtSetResources = {
 	},
 	wh2_main_def_dreadlord = {
 		ArtSetIds = {
- 			"wh2_main_art_set_def_dreadlord_01", "wh2_main_art_set_def_dreadlord_02", "wh2_main_art_set_def_dreadlord_03", "wh2_main_art_set_def_dreadlord_fem_01", "wh2_main_art_set_def_dreadlord_fem_02", "wh2_main_art_set_def_dreadlord_fem_03",
+ 			"wh2_main_art_set_def_dreadlord_01", "wh2_main_art_set_def_dreadlord_02", "wh2_main_art_set_def_dreadlord_03",
 		},
 
 	},
@@ -811,7 +1021,7 @@ AgentArtSetResources = {
 	},
 	wh2_main_hef_prince = {
 		ArtSetIds = {
- 			"wh2_main_art_set_hef_prince_01", "wh2_main_art_set_hef_prince_02", "wh2_main_art_set_hef_prince_03", "wh2_main_art_set_hef_prince_04", "wh2_main_art_set_hef_prince_alastar", "wh2_main_art_set_hef_princess_01", "wh2_main_art_set_hef_princess_02", "wh2_main_art_set_hef_princess_03",
+ 			"wh2_main_art_set_hef_prince_01", "wh2_main_art_set_hef_prince_02", "wh2_main_art_set_hef_prince_03", "wh2_main_art_set_hef_prince_04",
 		},
 
 	},
@@ -911,12 +1121,6 @@ AgentArtSetResources = {
 		},
 
 	},
-	wh2_main_skv_plague_priest_ritual = {
-		ArtSetIds = {
- 			"wh2_main_art_set_skv_plague_priest_01", "wh2_main_art_set_skv_plague_priest_02", "wh2_main_art_set_skv_plague_priest_03",
-		},
-
-	},
 	wh2_main_skv_queek_headtaker = {
 		ArtSetIds = {
  			"wh2_main_art_set_skv_queek_headtaker",
@@ -929,21 +1133,75 @@ AgentArtSetResources = {
 		},
 
 	},
-	wh2_main_skv_warlock_engineer_ritual = {
-		ArtSetIds = {
- 			"wh2_main_art_set_skv_warlock_engineer_01", "wh2_main_art_set_skv_warlock_engineer_02", "wh2_main_art_set_skv_warlock_engineer_03",
-		},
-
-	},
 	wh2_main_skv_warlord = {
 		ArtSetIds = {
  			"wh2_main_art_set_skv_warlord_01", "wh2_main_art_set_skv_warlord_02", "wh2_main_art_set_skv_warlord_03",
 		},
 
 	},
-	wh_dlc05_vmp_vampire_shadow = {
+	wh_dlc05_vmp_red_duke = {
 		ArtSetIds = {
- 			"wh_main_art_set_vmp_vampire_01", "wh_main_art_set_vmp_vampire_02", "wh_main_art_set_vmp_vampire_03",
+ 			"wh_dlc05_art_set_vmp_red_duke_01",
+		},
+
+	},
+	wh_dlc05_wef_branchwraith = {
+		ArtSetIds = {
+ 			"wh_dlc05_wef_branchwraith",
+		},
+
+	},
+	wh_dlc08_bst_cygor_boss = {
+		ArtSetIds = {
+ 			"wh_dlc08_art_set_bst_cygor_01",
+		},
+
+	},
+	wh_dlc08_chs_challenger_khorne = {
+		ArtSetIds = {
+ 			"wh_dlc08_chs_challenger_khorne",
+		},
+
+	},
+	wh_dlc08_chs_challenger_nurgle = {
+		ArtSetIds = {
+ 			"wh_dlc08_chs_challenger_nurgle",
+		},
+
+	},
+	wh_dlc08_chs_challenger_slaanesh = {
+		ArtSetIds = {
+ 			"wh_dlc08_chs_challenger_slaanesh",
+		},
+
+	},
+	wh_dlc08_chs_challenger_tzeentch = {
+		ArtSetIds = {
+ 			"wh_dlc08_chs_challenger_tzeentch",
+		},
+
+	},
+	wh_dlc08_chs_dragon_ogre_shaggoth_boss = {
+		ArtSetIds = {
+ 			"wh_dlc08_art_set_dragon_ogre_shaggoth_01",
+		},
+
+	},
+	wh_dlc08_grn_giant_boss = {
+		ArtSetIds = {
+ 			"wh_dlc08_art_set_giant_01",
+		},
+
+	},
+	wh_dlc08_grn_venom_queen_boss = {
+		ArtSetIds = {
+ 			"wh_dlc08_art_set_venom_queen_01",
+		},
+
+	},
+	wh_dlc08_nor_arzik = {
+		ArtSetIds = {
+ 			"wh_dlc08_art_set_nor_arzik",
 		},
 
 	},
@@ -956,6 +1214,12 @@ AgentArtSetResources = {
 	wh_dlc08_nor_fimir_balefiend_shadow = {
 		ArtSetIds = {
  			"wh_dlc08_art_set_nor_fimir_balefiend_01", "wh_dlc08_art_set_nor_fimir_balefiend_02", "wh_dlc08_art_set_nor_fimir_balefiend_03",
+		},
+
+	},
+	wh_dlc08_nor_frost_wyrm_boss = {
+		ArtSetIds = {
+ 			"wh_dlc08_art_set_frost_wyrm_01",
 		},
 
 	},
@@ -974,6 +1238,36 @@ AgentArtSetResources = {
 	wh_dlc08_nor_shaman_sorcerer_metal = {
 		ArtSetIds = {
  			"wh_dlc08_art_set_nor_shaman_sorcerer_01", "wh_dlc08_art_set_nor_shaman_sorcerer_02", "wh_dlc08_art_set_nor_shaman_sorcerer_03",
+		},
+
+	},
+	wh_dlc08_nor_skin_wolf_werekin = {
+		ArtSetIds = {
+ 			"wh_dlc08_art_set_nor_skin_wolf_werekin_01", "wh_dlc08_art_set_nor_skin_wolf_werekin_02", "wh_dlc08_art_set_nor_skin_wolf_werekin_03",
+		},
+
+	},
+	wh_dlc08_nor_throgg = {
+		ArtSetIds = {
+ 			"wh_dlc08_art_set_nor_throgg",
+		},
+
+	},
+	wh_dlc08_nor_wulfrik = {
+		ArtSetIds = {
+ 			"wh_dlc08_art_set_nor_wulfrik",
+		},
+
+	},
+	wh_dlc08_vmp_terrorgheist_boss = {
+		ArtSetIds = {
+ 			"wh_dlc08_art_set_terrorgheist_01",
+		},
+
+	},
+	wh_dlc08_wef_forest_dragon_boss = {
+		ArtSetIds = {
+ 			"wh_dlc08_art_set_forest_dragon_01",
 		},
 
 	},

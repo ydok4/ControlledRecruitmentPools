@@ -49,10 +49,10 @@ function GetStringifiedUnitList(character)
 
     local unitString = "";
     -- This starts at one so it skips the first unit, which is the general
-    for i = 1, unitList:num_items() - 1 do
+    for i = 0, unitList:num_items() - 1 do
         -- If this is the last unit we should not add a comma to the end
         local unitKey = unitList:item_at(i):unit_key();
-        if unitKey ~= character:character_subtype_key() then
+        if i ~= 0 then
             if i == unitList:num_items() - 1 then
                 unitString = unitString..unitKey;
             else
@@ -60,7 +60,7 @@ function GetStringifiedUnitList(character)
             end
         end
     end
-    --Custom_Log("Built Unit string: "..tostring(unitString));
+    Custom_Log("Built Unit string: "..tostring(unitString));
     return unitString;
 end
 

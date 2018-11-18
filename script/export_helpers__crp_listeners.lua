@@ -19,7 +19,7 @@ function SetupListeners(lordsInPool)
     -- Handles the basic faction lord replenishment
     core:add_listener(
         "UpdateRecruitmentPool",
-        "FactionTurnStart",
+        "FactionTurnEnd",
         function(context)
             Custom_Log("Checking faction: "..tostring(context:faction():name()));
             return crp:IsSupportedSubCulture(context:faction():subculture()) or crp:IsRogueArmy(context:faction():name());
@@ -42,37 +42,66 @@ function SetupListeners(lordsInPool)
         "CharacterCreated",
         true,
         function(context)
-            --Custom_Log("Character Created Listener");
             local char = context:character();
             local factionName = char:faction():name();
-            local localisedForeName = effect.get_localised_string(char:get_forename());
-            local localisedSurname = "";
-            local surnameKey =  char:get_surname();
-            if surnameKey ~= nil and surnameKey ~= "" then
-                localisedSurname = effect.get_localised_string(char:get_surname());
-            end
-
-            local keyName = localisedForeName..localisedSurname;
-            -- This removes any spaces within names, eg the surname "Von Carstein";
-            -- Otherwise the key is invalid and the character won't be tracked
-            keyName = keyName:gsub("%s+", "");
+            --Custom_Log("Character Created Listener "..factionName);
+            --Custom_Log("Faction "..factionName.." KeyName: "..keyName);
 
             if lordsInPool[factionName] ~= nil then
+                local localisedForeName = effect.get_localised_string(char:get_forename());
+                local localisedSurname = "";
+                local surnameKey =  char:get_surname();
+                if surnameKey ~= nil and surnameKey ~= "" then
+                    localisedSurname = effect.get_localised_string(char:get_surname());
+                end
+                local keyName = localisedForeName..localisedSurname;
+                -- This removes any spaces within names, eg the surname "Von Carstein";
+                -- Otherwise the key is invalid and the character won't be tracked
+                keyName = keyName:gsub("%s+", "");
                 --Custom_Log("Character key: "..keyName.."end");
                 if lordsInPool[factionName][keyName] ~= nil then
                     --Custom_Log("Character is in pool for faction: "..factionName);
                     -- If the character is tracked in the pool
                     local poolData = lordsInPool[factionName][keyName];
-                    --Custom_Log("Adding trait: "..poolData.InnateTrait.." for character: "..keyName);
-                    cm:disable_event_feed_events(true, "wh_event_category_traits_ancillaries", "", "");
-                    -- Add their trait
-                    cm:force_add_trait("character_cqi:"..char:cqi(), poolData.InnateTrait, true);
-                    -- Then remove from the pool
-                    lordsInPool[factionName][keyName] = nil;
-                    cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_traits_ancillaries", "", "") end, 1);
-                    -- Note: Removal is necessary since we now track the character from the faction's character_list
+                    local subCulture = char:faction():subculture();
+                    if poolData then
+                        if subCulture == "wh2_main_sc_def_dark_elves" or subCulture == "wh2_main_sc_skv_skaven" then
+                            --Custom_Log("Found skaven or dark elves");
+                            --crp:ReplaceCharacter(char:faction(), char, poolData.SubType, poolData.ArtSetId, poolData.InnateTrait);
+                            --Custom_Log("Finished replacing general");
+                            --cm:remove_all_units_from_general(char);
+                            --Custom_Log("Increased loyalty");
+                        else
+                            --Custom_Log("Adding trait: "..poolData.InnateTrait.." for character: "..keyName);
+                            cm:disable_event_feed_events(true, "wh_event_category_traits_ancillaries", "", "");
+                            -- Add their trait
+                            --cm:force_add_trait("character_cqi:"..char:cqi(), poolData.InnateTrait, true);
+                            -- Then remove from the pool
+                            lordsInPool[factionName][keyName] = nil;
+                            --cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_traits_ancillaries", "", "") end, 1);
+                            -- Note: Removal is necessary since we now track the character from the faction's character_list
+
+                            if subCulture == "wh2_main_sc_hef_high_elves" and factionName == crp.HumanFaction:name() then
+                                Custom_Log("High elf character recruited listener");
+                                if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
+                                    cm:suppress_all_event_feed_messages(true);
+                                    cm:trigger_incident(factionName, "wh2_main_hef_mid_lord_influence_cost", true);
+                                    cm:suppress_all_event_feed_messages(false);
+                                    Custom_Log("Lord is mid prince or princess");
+                                elseif poolData.SubType == "wh2_main_hef_prince_high"or poolData.SubType == "wh2_main_hef_princess_high" then
+                                    cm:suppress_all_event_feed_messages(true);
+                                    cm:trigger_incident(factionName, "wh2_main_hef_high_lord_influence_cost", true);
+                                    cm:suppress_all_event_feed_messages(false);
+                                    Custom_Log("Lord is high prince or princess");
+                                end
+                            end
+                        end
+                    else
+                        Custom_Log("Character is not in pool");
+                    end
                 end
             end
+           -- Custom_Log("Finished Character created listener");
         end,
         true
     );
@@ -136,7 +165,7 @@ function ProcessBattleCacheData(cachedBattleData, type)
         local character = nil;
 
         if char_cqi ~= nil then
-            character = cm:get_character_by_cqi(char_cqi);
+            character = cm:model():character_for_command_queue_index(char_cqi);
         end
         if not character or character:is_null_interface() or character:is_wounded() then
             Custom_Log("CRP: "..type.." is dead/wounded");
@@ -144,14 +173,16 @@ function ProcessBattleCacheData(cachedBattleData, type)
             if militaryForce ~= false then
                 Custom_Log("CRP: Found military force")
                 local general = militaryForce:general_character();
-                if general:is_null_interface() == false then
-                    Custom_Log("CRP: Setting "..general:cqi().." with new artset");
+                Custom_Log("Current general type is "..general:character_subtype_key());
+                local generalCQI = general:cqi();
+                if general:is_null_interface() == false and char_cqi ~= generalCQI then
+                    Custom_Log("CRP: Setting "..generalCQI.." with new artset");
                     local factionName = general:faction();
                     -- Add a new character to replace the dead character
                     crp:UpdateRecruitmentPool(factionName, 1);
                     -- Then find an art set for the faction and set the temporary lord as that
                     local artSetId = crp:GetValidAgentArtSetForFaction(general:faction());
-                    cm:add_unit_model_overrides(cm:char_lookup_str(general:cqi()), artSetId);
+                    cm:add_unit_model_overrides(cm:char_lookup_str(generalCQI), artSetId);
                 else
                     Custom_Log("CRP: General is null interface");
                 end

@@ -41,7 +41,7 @@ NorscaRecruitmentPoolData = {
                 SubPoolMaxSize = 1,
             },
         },
-        Traits = {
+        --[[Traits = {
             wh2_innate_nor_lord_hates_humans = {
 
             },
@@ -57,7 +57,7 @@ NorscaRecruitmentPoolData = {
             wh2_innate_nor_lord_resilient = {
 
             },
-        },
+        },--]]
         PoolMaxSize = 6,
     },
 }

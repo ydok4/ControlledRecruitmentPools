@@ -1,10 +1,10 @@
 -- Mock Data
 testFaction = {
     name = function()
-        return "wh_main_grn_skull-takerz";
+        return "wh2_dlc11_cst_the_drowned";
     end,
     subculture = function()
-        return "wh_main_sc_grn_savage_orcs";
+        return "wh2_dlc11_sc_cst_vampire_coast";
     end,
     character_list = function()
         return {
@@ -28,6 +28,7 @@ end
 -- Mock functions
 function get_cm()
     return   {
+        is_new_game = function() return false; end,
         create_agent = function()
             return;
         end,
@@ -46,6 +47,7 @@ function get_cm()
                 end
             }
         end,
+        first_tick_callbacks = {},
         add_listener = function () end,
         add_saving_game_callback = function() end,
         add_loading_game_callback = function() end,
@@ -68,7 +70,7 @@ require 'script/export_helpers__crp_ui'
 require 'script/export_helpers__crp_z_mixu_resource_loader'
 require 'script/export_helpers__crp_z_mixu_ui_resource_loader'
 
---require 'script/campaign/mod/controlled_recruitment_pools'
+require 'script/campaign/mod/controlled_recruitment_pools'
 
 math.randomseed(os.time())
 
@@ -86,14 +88,15 @@ crp = ControlledRecruitmentPools:new({
 
 
 
---controlled_recruitment_pools();
+controlled_recruitment_pools();
 
 crp:Initialise();
 crp:GetCurrentPoolForFaction(testFaction);
 
-local trait = crp:GetRandomCharacterTrait(testFaction, "grn_savage_orc_warboss");
+local factionPoolResources = crp:GetFactionPoolResources(testFaction);
+local trait = crp:GetRandomCharacterTrait(testFaction, "wh2_dlc11_vmp_bloodline_blood_dragon");
 local traitPath = crp.UIController:GetImagePathForTrait(trait);
-local artSetId = crp:GetArtSetForSubType("vmp_lord_rebel");
+local artSetId = crp:GetArtSetForSubType("wh2_dlc11_vmp_bloodline_blood_dragon");
 local traitEffects = crp.UIController:GetTraitEffects("wh2_main_skill_innate_all_aggressive");
 local traitDescription = crp.UIController:BuildTraitLocString("wh2_main_skill_innate_all_aggressive", "Knowledgeable");
 --crp.UIController:GetImagePathForTrait("wh_main_sc_vmp_vampire_counts", "");

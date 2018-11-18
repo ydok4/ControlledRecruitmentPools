@@ -29,14 +29,6 @@ SavageOrcRecruitmentPoolData =  {
             },
         },
         PoolMaxSize = 5,
-        Traits = {
-            wh_main_skill_grn_innate_moar_paint = {
-
-            },
-            wh_main_skill_grn_innate_savage_danca = {
-
-            },
-        },
         LordsToReplace = {
             grn_orc_warboss = {
                 replacementKey = "grn_savage_orc_warboss",

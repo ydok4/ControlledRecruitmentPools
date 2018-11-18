@@ -1,11 +1,11 @@
 TraitsToEffects = {
 	wh2_dlc09_skill_innate_skv_tretch_craventail = {
 		Effects = {
- 			"wh_main_effect_unit_enable_attribute_guerrilla_deployment",
+ 			"wh2_dlc09_effect_force_army_battle_unit_melee_attack_during_ambushes", "wh2_dlc09_effect_force_unit_stat_melee_attack_when_retreating_dummy", "wh_main_effect_unit_enable_attribute_guerrilla_deployment",
 		},
 		Icon = 			"trait_skaven.png",
 		Values = {
- 			"1",
+ 			"13", "13", "1",
 		},
 
 	},
@@ -589,6 +589,166 @@ TraitsToEffects = {
 		},
 
 	},
+	wh2_dlc11_skill_cst_innate_admiral_tech_01 = {
+		Effects = {
+ 			"wh2_dlc11_enable_immortal_hidden", "wh2_dlc11_lord_trait_tech_admiral_ship", "wh_main_effect_character_mod_ancillary_steal", "wh_main_effect_force_all_campaign_recruitment_cost_all", "wh_main_effect_general_aura_mod_all_during_defence",
+		},
+		Icon = 			"trait_vampire_coast.png",
+		Values = {
+ 			"1", "1", "20", "-15", "100",
+		},
+
+	},
+	wh2_dlc11_skill_cst_innate_admiral_tech_02 = {
+		Effects = {
+ 			"wh2_dlc11_enable_immortal_hidden", "wh2_dlc11_lord_trait_tech_admiral_ship", "wh_main_effect_character_stat_mod_armour", "wh_main_effect_force_army_battle_unit_morale_siege_attack", "wh_main_effect_force_army_campaign_ambush_defence_success_chance",
+		},
+		Icon = 			"trait_vampire_coast.png",
+		Values = {
+ 			"1", "1", "15", "10", "15",
+		},
+
+	},
+	wh2_dlc11_skill_cst_innate_admiral_tech_03 = {
+		Effects = {
+ 			"wh2_dlc11_enable_immortal_hidden", "wh2_dlc11_lord_trait_tech_admiral_ship", "wh2_main_effect_physical_resistance_increase", "wh_main_effect_force_unit_stat_melee_damage", "wh_main_effect_province_growth_characters",
+		},
+		Icon = 			"trait_vampire_coast.png",
+		Values = {
+ 			"1", "1", "10", "15", "20",
+		},
+
+	},
+	wh2_dlc11_skill_cst_innate_admiral_tech_04 = {
+		Effects = {
+ 			"wh2_dlc11_enable_immortal_hidden", "wh2_dlc11_lord_trait_tech_admiral_ship", "wh_main_effect_character_stat_mod_bonus_v_large", "wh_main_effect_force_army_battle_charge_bonus", "wh_main_effect_force_unit_stat_missile_range",
+		},
+		Icon = 			"trait_vampire_coast.png",
+		Values = {
+ 			"1", "1", "10", "10", "10",
+		},
+
+	},
+	wh2_dlc11_skill_innate_cst_aranessa = {
+		Effects = {
+ 			"wh2_dlc11_cst_lord_trait_aranessa_melee_attack_increase_free_company", "wh2_dlc11_cst_lord_trait_aranessa_weapon_strength_increase_free_company", "wh_main_effect_character_stat_mod_personal_aura_morale_effect",
+		},
+		Icon = 			"trait_vampire_coast.png",
+		Values = {
+ 			"8", "20", "12",
+		},
+
+	},
+	wh2_dlc11_skill_innate_cst_arsonist = {
+		Effects = {
+ 			"wh2_dlc11_cst_lord_innate_brute_dummy", "wh2_dlc11_skill_innate_cst_arsonist_dummy", "wh_main_effect_force_army_campaign_siege_attack_holdout_time",
+		},
+		Icon = 			"trait_physical.png",
+		Values = {
+ 			"-500", "1", "-2",
+		},
+
+	},
+	wh2_dlc11_skill_innate_cst_cylostra = {
+		Effects = {
+ 			"wh2_dlc11_effect_unit_stat_mod_ward_physical_all_units", "wh_main_effect_character_stat_enable_magic_attacks",
+		},
+		Icon = 			"trait_vampire_coast.png",
+		Values = {
+ 			"5", "1",
+		},
+
+	},
+	wh2_dlc11_skill_innate_cst_damned_paladin = {
+		Effects = {
+ 			"wh_main_effect_character_stat_mod_melee_damage", "wh_main_effect_character_stat_mod_personal_aura_size", "wh_main_effect_character_stat_mod_ward_save",
+		},
+		Icon = 			"trait_vampire_coast.png",
+		Values = {
+ 			"5", "10", "3",
+		},
+
+	},
+	wh2_dlc11_skill_innate_cst_harkon = {
+		Effects = {
+ 			"wh2_main_effect_force_unit_stat_morale_versus_lizardmen", "wh2_main_effect_unit_stat_mod_ward_save_magic_all_units", "wh_main_effect_religion_conversion_undeath",
+		},
+		Icon = 			"trait_vampire_coast.png",
+		Values = {
+ 			"8", "25", "3",
+		},
+
+	},
+	wh2_dlc11_skill_innate_cst_looter = {
+		Effects = {
+ 			"wh2_dlc11_cst_lord_innate_brute_dummy", "wh2_dlc11_skill_innate_cst_looter_dummy", "wh_main_effect_force_all_campaign_raid_income",
+		},
+		Icon = 			"trait_physical.png",
+		Values = {
+ 			"-500", "1", "10",
+		},
+
+	},
+	wh2_dlc11_skill_innate_cst_murderer = {
+		Effects = {
+ 			"wh2_dlc11_cst_lord_innate_brute_dummy", "wh2_dlc11_skill_innate_cst_murderer_dummy", "wh_main_effect_force_army_battle_enemy_unit_morale",
+		},
+		Icon = 			"trait_physical.png",
+		Values = {
+ 			"-500", "1", "-3",
+		},
+
+	},
+	wh2_dlc11_skill_innate_cst_noctilus = {
+		Effects = {
+ 			"wh2_dlc11_effect_faction_trait_melee_damage_large_units", "wh2_dlc11_effect_faction_trait_upkeep_reduction_necrofex",
+		},
+		Icon = 			"trait_vampire_coast.png",
+		Values = {
+ 			"15", "-20",
+		},
+
+	},
+	wh2_dlc11_skill_innate_cst_ringleader = {
+		Effects = {
+ 			"wh2_dlc11_cst_lord_innate_mastermind_dummy", "wh2_dlc11_skill_innate_cst_ringleader_dummy", "wh_main_effect_force_all_campaign_experience_base_all",
+		},
+		Icon = 			"trait_navy.png",
+		Values = {
+ 			"-500", "1", "1",
+		},
+
+	},
+	wh2_dlc11_skill_innate_cst_schemer = {
+		Effects = {
+ 			"wh2_dlc11_cst_lord_innate_mastermind_dummy", "wh2_dlc11_skill_innate_cst_schemer_dummy", "wh_main_effect_force_army_campaign_ambush_attack_success_chance",
+		},
+		Icon = 			"trait_navy.png",
+		Values = {
+ 			"-500", "1", "25",
+		},
+
+	},
+	wh2_dlc11_skill_innate_cst_smuggler = {
+		Effects = {
+ 			"wh2_dlc11_cst_lord_innate_mastermind_dummy", "wh2_dlc11_skill_innate_cst_smuggler_dummy", "wh_main_effect_economy_gdp_mod_all",
+		},
+		Icon = 			"trait_navy.png",
+		Values = {
+ 			"-500", "1", "8",
+		},
+
+	},
+	wh2_dlc11_skill_innate_def_lokhir = {
+		Effects = {
+ 			"wh2_main_effect_tech_upkeep_cost_reduction_def_corsairs",
+		},
+		Icon = 			"trait_dark_elves.png",
+		Values = {
+ 			"-50",
+		},
+
+	},
 	wh2_main_skill_innate_all_aggressive = {
 		Effects = {
  			"wh_main_effect_character_stat_mod_charge_add", "wh_main_effect_character_stat_mod_melee_damage",
@@ -841,11 +1001,11 @@ TraitsToEffects = {
 	},
 	wh2_main_skill_innate_def_morathi = {
 		Effects = {
- 			"wh2_main_effect_character_mod_loyalty_regional", "wh_main_effect_building_construction_cost_mod_sorcery_def",
+ 			"wh2_main_effect_character_mod_loyalty_regional",
 		},
 		Icon = 			"trait_dark_elves.png",
 		Values = {
- 			"2", "-25",
+ 			"2",
 		},
 
 	},
@@ -2363,7 +2523,7 @@ TraitsToEffects = {
 		Effects = {
  			"wh2_main_effect_agent_action_success_chance_mage_loremaster", "wh2_main_effect_skill_hef_reduction_action_cost_for_loremaster_mages", "wh2_main_effect_skill_hef_ward_save_for_loremaster", "wh2_main_effect_skill_hef_ward_save_for_mages", "wh_main_effect_agent_action_success_chance_enemy_skill", "wh_main_effect_agent_action_success_chance_skill",
 		},
-		Icon = 			"magic_character.png",
+		Icon = 			"character_magic.png",
 		Values = {
  			"5", "-15", "10", "10", "-1", "1",
 		},
@@ -2381,11 +2541,11 @@ TraitsToEffects = {
 	},
 	wh2_main_skill_innate_hef_tyrion_great_warrior = {
 		Effects = {
- 			"wh2_main_effect_upkeep_reduction_hef_spearmen_archers_silverhelms",
+ 			"wh2_main_effect_tech_unit_xp_levels_hef_sea_guard", "wh2_main_effect_upkeep_reduction_hef_spearmen_archers_silverhelms",
 		},
 		Icon = 			"trait_high_elves.png",
 		Values = {
- 			"-35",
+ 			"3", "-50",
 		},
 
 	},
@@ -2581,61 +2741,61 @@ TraitsToEffects = {
 	},
 	wh_dlc03_skill_innate_bst_khazrak_the_one_eye = {
 		Effects = {
- 			"wh_dlc03_effect_tech_recruitment_cost_reduction_bestigors",
+ 			"wh2_dlc11_effect_upkeep_reduction_bestigor", "wh_dlc03_effect_lord_recruitment_duration_bestigors", "wh_dlc03_effect_tech_recruitment_cost_reduction_bestigors", "wh_dlc03_effect_tech_unit_xp_levels_bestigors",
 		},
 		Icon = 			"trait_beastmen.png",
 		Values = {
- 			"-30",
+ 			"-30", "-1", "-50", "3",
 		},
 
 	},
 	wh_dlc03_skill_innate_bst_malagor = {
 		Effects = {
- 			"wh_dlc03_effect_agent_recruitment_xp_wizard_beastmen",
+ 			"wh2_dlc11_effect_force_all_enemy_campaign_replenishment_rate", "wh_dlc03_effect_agent_recruitment_xp_wizard_beastmen", "wh_main_effect_force_army_battle_enemy_unit_morale",
 		},
 		Icon = 			"trait_beastmen.png",
 		Values = {
- 			"1",
+ 			"-8", "3", "-8",
 		},
 
 	},
 	wh_dlc03_skill_innate_bst_morghur_shadowgave = {
 		Effects = {
- 			"wh_dlc03_effect_force_army_campaign_attrition_chaos_territory", "wh_dlc05_morghur_trait_immortalitiy",
+ 			"wh_dlc03_effect_force_army_campaign_attrition_chaos_territory", "wh_dlc03_effect_force_ward_save_missile_spawn", "wh_dlc05_morghur_trait_immortalitiy", "wh_main_effect_tech_melee_attack_increase_chaos_spawns",
 		},
 		Icon = 			"trait_beastmen.png",
 		Values = {
- 			"8", "-100",
+ 			"12", "20", "-100", "8",
 		},
 
 	},
 	wh_dlc04_skill_innate_emp_volkmar_the_grim = {
 		Effects = {
- 			"wh_main_effect_agent_recruitment_xp_dignitary_empire",
+ 			"wh2_dlc11_effect_force_flagellants_campaign_replenishment_rate", "wh2_dlc11_effect_force_ward_save_physical", "wh_dlc04_effect_force_melee_defence_increase_flagellants",
 		},
 		Icon = 			"trait_human.png",
 		Values = {
- 			"2",
+ 			"30", "12", "14",
 		},
 
 	},
 	wh_dlc04_skill_innate_vmp_helman_ghorst = {
 		Effects = {
- 			"wh_dlc03_effect_technology_research_points",
+ 			"wh_main_effect_character_stat_enable_poison_attacks_dummy",
 		},
 		Icon = 			"trait_vampire_counts.png",
 		Values = {
- 			"10",
+ 			"1",
 		},
 
 	},
 	wh_dlc04_skill_innate_vmp_vlad_von_carstein = {
 		Effects = {
- 			"wh_dlc04_effect_unit_enable_can_siege_dummy",
+ 			"wh_dlc04_effect_unit_enable_can_siege_dummy", "wh_main_effect_unit_enable_attribute_guerrilla_deployment_dummy", "wh_pro02_faction_trait_isabella_vlad_dummy",
 		},
 		Icon = 			"trait_vampire_counts.png",
 		Values = {
- 			"1",
+ 			"1", "1", "15",
 		},
 
 	},
@@ -2651,21 +2811,21 @@ TraitsToEffects = {
 	},
 	wh_dlc05_skill_innate_wef_durthu = {
 		Effects = {
- 			"wh_dlc05_durthu_trait_effect_attrition_immunity",
+ 			"wh2_dlc11_effect_charge_increase_wef_treespirits", "wh_dlc05_durthu_trait_effect_attrition_immunity", "wh_dlc05_effect_tech_upkeep_reduction_treespirits",
 		},
 		Icon = 			"trait_wood_elves.png",
 		Values = {
- 			"1",
+ 			"10", "1", "-30",
 		},
 
 	},
 	wh_dlc05_skill_innate_wef_orion = {
 		Effects = {
- 			"wh_dlc05_effect_battle_speed_elf_units",
+ 			"wh2_dlc11_effect_charge_bonus_increase_wild_riders", "wh2_dlc11_effect_weapon_strength_increase_wild_riders",
 		},
 		Icon = 			"trait_wood_elves.png",
 		Values = {
- 			"8",
+ 			"8", "20",
 		},
 
 	},
@@ -2681,31 +2841,31 @@ TraitsToEffects = {
 	},
 	wh_dlc06_skill_innate_dwf_belegar = {
 		Effects = {
- 			"wh_dlc04_effect_unit_enable_can_siege_dummy", "wh_dlc06_effect_belegar_trait_enable_attribute_guerrilla_deployment_for_all_dummy", "wh_main_effect_force_army_campaign_tunnelling_evasion_chance",
+ 			"wh2_dlc11_effect_force_unit_stat_morale_versus_greenskins_skaven", "wh_dlc04_effect_unit_enable_can_siege_dummy", "wh_dlc06_effect_belegar_trait_enable_attribute_guerrilla_deployment_for_all_dummy",
 		},
 		Icon = 			"trait_dwarf.png",
 		Values = {
- 			"1", "1", "30",
+ 			"10", "1", "1",
 		},
 
 	},
 	wh_dlc06_skill_innate_grn_skarsnik = {
 		Effects = {
- 			"wh_main_effect_conquest_enable_night_battles",
+ 			"wh2_dlc11_effect_charge_increase_squig_hoppers", "wh_main_effect_conquest_enable_night_battles",
 		},
 		Icon = 			"trait_greenskins.png",
 		Values = {
- 			"1",
+ 			"14", "1",
 		},
 
 	},
 	wh_dlc06_skill_innate_grn_wurrzag = {
 		Effects = {
- 			"wh_dlc06_effect_character_stat_mod_ward_save_physical_savage", "wh_dlc06_effect_upkeep_savage_orcs",
+ 			"wh_dlc06_effect_character_stat_mod_ward_save_physical_savage", "wh_dlc06_effect_upkeep_savage_orcs", "wh_main_effect_tech_recruitment_cost_reduction_savage_orcs",
 		},
 		Icon = 			"trait_greenskins.png",
 		Values = {
- 			"15", "-50",
+ 			"20", "-50", "-50",
 		},
 
 	},
@@ -2805,7 +2965,7 @@ TraitsToEffects = {
 		},
 		Icon = 			"trait_norsca.png",
 		Values = {
- 			"1", "1", "20",
+ 			"1", "1", "30",
 		},
 
 	},
@@ -3111,11 +3271,11 @@ TraitsToEffects = {
 	},
 	wh_main_skill_innate_brt_louen_leoncouer = {
 		Effects = {
- 			"wh_dlc07_effect_chivalry_dummy", "wh_main_effect_ability_enable_blessing_of_the_lady",
+ 			"wh2_dlc11_effect_bonus_melee_attack_fighting_against_bretonnia_enemies", "wh2_dlc11_effect_bonus_morale_fighting_against_bretonnia_enemies", "wh_dlc07_effect_chivalry_dummy", "wh_main_effect_ability_enable_blessing_of_the_lady",
 		},
 		Icon = 			"trait_bretonnia.png",
 		Values = {
- 			"10", "1",
+ 			"8", "12", "10", "1",
 		},
 
 	},
@@ -3145,7 +3305,7 @@ TraitsToEffects = {
 		},
 		Icon = 			"trait_bretonnia.png",
 		Values = {
- 			"5", "10",
+ 			"10", "10",
 		},
 
 	},
@@ -3241,11 +3401,11 @@ TraitsToEffects = {
 	},
 	wh_main_skill_innate_chs_archaon_the_everchosen = {
 		Effects = {
- 			"wh2_main_effect_force_army_battle_ward_save_physical_chaos_knights", "wh_main_effect_force_all_campaign_razing_income",
+ 			"wh_main_effect_force_all_campaign_razing_income", "wh_main_effect_unit_stat_mod_ward_save",
 		},
 		Icon = 			"trait_chaos.png",
 		Values = {
- 			"10", "25",
+ 			"50", "5",
 		},
 
 	},
@@ -3271,7 +3431,7 @@ TraitsToEffects = {
 	},
 	wh_main_skill_innate_chs_kholek_suneater = {
 		Effects = {
- 			"wh_main_effect_tech_melee_attack_increase_dragon_ogre_saggoths", "wh_main_effect_tech_recruitment_cost_reduction_dragon_ogres",
+ 			"wh_main_effect_tech_melee_attack_increase_dragon_ogre_saggoths", "wh_main_effect_tech_upkeep_reduction_dragon_ogres",
 		},
 		Icon = 			"trait_chaos.png",
 		Values = {
@@ -3281,11 +3441,11 @@ TraitsToEffects = {
 	},
 	wh_main_skill_innate_chs_prince_sigvald_the_magnificent = {
 		Effects = {
- 			"wh_main_effect_hordebuilding_growth_characters",
+ 			"wh_main_effect_building_upkeep_reduction_chaos_marauders", "wh_main_effect_hordebuilding_growth_characters", "wh_main_effect_tech_unit_xp_levels_marauders",
 		},
 		Icon = 			"trait_chaos.png",
 		Values = {
- 			"1",
+ 			"-60", "3", "3",
 		},
 
 	},
@@ -3295,37 +3455,37 @@ TraitsToEffects = {
 		},
 		Icon = 			"trait_dwarf.png",
 		Values = {
- 			"8", "15",
+ 			"8", "75",
 		},
 
 	},
 	wh_main_skill_innate_dwf_ungrim_ironfist = {
 		Effects = {
- 			"wh_main_effect_tech_melee_attack_increase_slayers",
+ 			"wh2_dlc11_effect_force_slayer_campaign_replenishment_rate", "wh_main_effect_tech_melee_attack_increase_slayers", "wh_main_effect_tech_upkeep_cost_reduction_slayers",
 		},
 		Icon = 			"trait_dwarf.png",
 		Values = {
- 			"6",
+ 			"30", "10", "-25",
 		},
 
 	},
 	wh_main_skill_innate_emp_balthasar_gelt = {
 		Effects = {
- 			"wh_main_effect_agent_recruitment_xp_wizard_empire",
+ 			"wh2_dlc11_effect_magic_gelt_reduce_wom_cost_metal", "wh_main_effect_agent_recruitment_xp_wizard_empire", "wh_main_effect_force_army_battle_artillery_damage",
 		},
 		Icon = 			"trait_human.png",
 		Values = {
- 			"2",
+ 			"-20", "2", "10",
 		},
 
 	},
 	wh_main_skill_innate_emp_karl_franz = {
 		Effects = {
- 			"wh_dlc05_tech_diplomacy_bonus_empire", "wh_main_effect_force_unit_stat_morale",
+ 			"wh_main_effect_force_unit_stat_morale",
 		},
 		Icon = 			"trait_human.png",
 		Values = {
- 			"10", "2",
+ 			"8",
 		},
 
 	},
@@ -3335,7 +3495,7 @@ TraitsToEffects = {
 		},
 		Icon = 			"trait_greenskins.png",
 		Values = {
- 			"8", "15",
+ 			"8", "75",
 		},
 
 	},
@@ -3351,11 +3511,11 @@ TraitsToEffects = {
 	},
 	wh_main_skill_innate_grn_grimgor_ironhide = {
 		Effects = {
- 			"wh_main_effect_tech_armour_increase_black_orcs", "wh_main_effect_tech_battle_morale_increase_black_orcs",
+ 			"wh_main_effect_force_all_campaign_post_battle_loot_mod", "wh_main_effect_tech_armour_increase_black_orcs", "wh_main_effect_tech_battle_morale_increase_black_orcs",
 		},
 		Icon = 			"trait_greenskins.png",
 		Values = {
- 			"5", "6",
+ 			"30", "10", "12",
 		},
 
 	},
@@ -3391,21 +3551,21 @@ TraitsToEffects = {
 	},
 	wh_main_skill_innate_vmp_heinrich_kemmler = {
 		Effects = {
- 			"wh_dlc08_effect_ability_enable_krell", "wh_main_effect_agent_recruitment_xp_wizard_vampire_counts", "wh_main_effect_krell_dummy",
+ 			"wh2_dlc11_effect_force_army_campaign_attrition_immunity_land_of_living", "wh_dlc08_effect_ability_enable_krell", "wh_main_effect_agent_recruitment_xp_wizard_vampire_counts",
 		},
 		Icon = 			"trait_vampire_counts.png",
 		Values = {
- 			"1", "2", "1",
+ 			"1", "1", "2",
 		},
 
 	},
 	wh_main_skill_innate_vmp_mannfred_von_carstein = {
 		Effects = {
- 			"wh_main_effect_force_unit_stat_morale_versus_men",
+ 			"wh_main_effect_force_unit_stat_morale_versus_men", "wh_main_effect_military_force_winds_of_magic_depletion_mod_character",
 		},
 		Icon = 			"trait_vampire_counts.png",
 		Values = {
- 			"5",
+ 			"10", "30",
 		},
 
 	},
@@ -3421,21 +3581,21 @@ TraitsToEffects = {
 	},
 	wh_pro01_skill_innate_dwf_grombrindal = {
 		Effects = {
- 			"wh_main_effect_force_all_campaign_reinforcement_range",
+ 			"wh_main_effect_force_all_campaign_reinforcement_range", "wh_main_effect_force_unit_stat_morale",
 		},
 		Icon = 			"trait_dwarf.png",
 		Values = {
- 			"30",
+ 			"50", "10",
 		},
 
 	},
 	wh_pro02_skill_innate_vmp_isabella = {
 		Effects = {
- 			"wh_pro02_effect_vampire_heroes_isabella_trait_attack", "wh_pro02_effect_vampire_heroes_isabella_trait_defence",
+ 			"wh_pro02_effect_vampire_heroes_isabella_trait_attack", "wh_pro02_effect_vampire_heroes_isabella_trait_defence", "wh_pro02_faction_trait_isabella_vlad_dummy",
 		},
 		Icon = 			"trait_vampire_counts.png",
 		Values = {
- 			"10", "10",
+ 			"10", "10", "15",
 		},
 
 	},

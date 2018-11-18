@@ -733,4 +733,235 @@ RogueArmyRecruitmentPoolData = {
         },
         PoolMaxSize = 2,
     },
+
+    -- Vampire Coast Update
+    -- Bleak Coast Bucaneers
+    wh2_dlc11_cst_rogue_bleak_coast_buccaneers = {
+        FactionPools = {
+            Lords = {
+                AgentSubTypes = {
+                    dwf_lord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 2,
+    },
+
+    -- Boys of the forbidden coast
+    wh2_dlc11_cst_rogue_boyz_of_the_forbidden_coast = {
+        FactionPools = {
+            Lords = {
+                AgentSubTypes = {
+                    grn_orc_warboss = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 2,
+    },
+
+    wh2_dlc11_cst_rogue_freebooters_of_port_royale = {
+        FactionPools = {
+            Lords = {
+                AgentSubTypes = {
+                    emp_lord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 2,
+    },
+
+    wh2_dlc11_cst_rogue_grey_point_scuttlers = {
+        FactionPools = {
+            Lords = {
+                AgentSubTypes = {
+                    skv_warlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 2,
+    },
+
+    wh2_dlc11_cst_rogue_terrors_of_the_dark_straights = {
+        FactionPools = {
+            Lords = {
+                AgentSubTypes = {
+                    wh2_dlc11_cst_admiral = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_death = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_deep = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_fem = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_fem_death = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_fem_deep = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 2,
+    },
+
+    wh2_dlc11_cst_rogue_the_churning_gulf_raiders = {
+        FactionPools = {
+            Lords = {
+                AgentSubTypes = {
+                    nor_marauder_chieftain = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 2,
+    },
+
+    wh2_dlc11_cst_rogue_tyrants_of_the_black_ocean = {
+        FactionPools = {
+            Lords = {
+                AgentSubTypes = {
+                    wh2_main_def_dreadlord_fem = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_main_def_dreadlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 2,
+    },
+
+    wh2_dlc11_cst_shanty_dragon_spine_privateers = {
+        FactionPools = {
+            Lords = {
+                AgentSubTypes = {
+                    wh2_main_hef_prince = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_main_hef_princess = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 2,
+    },
+
+    wh2_dlc11_cst_shanty_middle_sea_brigands = {
+        FactionPools = {
+            Lords = {
+                AgentSubTypes = {
+                    wh2_dlc11_cst_admiral = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_death = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_deep = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_fem = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_fem_death = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_fem_deep = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 2,
+    },
+
+    wh2_dlc11_cst_shanty_shark_straight_seadogs = {
+        FactionPools = {
+            Lords = {
+                AgentSubTypes = {
+                    wh2_dlc11_cst_admiral = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_death = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_deep = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_fem = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_fem_death = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_fem_deep = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 2,
+    },
 }

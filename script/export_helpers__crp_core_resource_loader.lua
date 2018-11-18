@@ -10,6 +10,7 @@ require 'script/_lib/pooldata/HighElfRecruitmentPools'
 require 'script/_lib/pooldata/LizardmenRecruitmentPools'
 require 'script/_lib/pooldata/NorscaRecruitmentPools'
 require 'script/_lib/pooldata/SkavenRecruitmentPools'
+require 'script/_lib/pooldata/VampireCoastRecruitmentPools'
 require 'script/_lib/pooldata/VampireCountsRecruitmentPools'
 require 'script/_lib/pooldata/WoodElfRecruitmentPools'
 
@@ -50,6 +51,8 @@ _G.CRPResources = {
         wh_main_sc_nor_norsca = NorscaRecruitmentPoolData,
         -- Skaven
         wh2_main_sc_skv_skaven = SkavenRecruitmentPoolData,
+        -- Vampire Coast
+        wh2_dlc11_sc_cst_vampire_coast = VampireCoastRecruitmentPoolData,
         -- Vampire Counts
         wh_main_sc_vmp_vampire_counts = VampireCountsRecruitmentPoolData,
         -- Wood Elf
@@ -61,10 +64,10 @@ _G.CRPResources = {
         -- Rogue Armies
         wh_rogue_armies = RogueArmyRecruitmentPoolData,
     },
-    CultureSubTypeResources = {
+    --[[CultureSubTypeResources = {
         -- Empire
         wh_main_sc_emp_empire = EmpireSubTypeData,
-    },
+    },--]]
     -- Additional loader function
     -- This is intended to be used by other mods to load custom data.
     -- This can be used to change agent sub type distribution or add

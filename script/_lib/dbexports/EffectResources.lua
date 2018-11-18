@@ -1,4 +1,10 @@
 EffectResources = {
+	wh2_dlc09_effect_force_army_battle_unit_melee_attack_during_ambushes = {
+		"melee.png", "melee.png", "true",
+	},
+	wh2_dlc09_effect_force_unit_stat_melee_attack_when_retreating_dummy = {
+		"melee.png", "melee.png", "true",
+	},
 	wh_main_effect_unit_enable_attribute_guerrilla_deployment = {
 		"attribute_guerrilla_deploy.png", "attribute_guerrilla_deploy.png", "true",
 	},
@@ -198,7 +204,7 @@ EffectResources = {
 		"experience.png", "experience.png", "true",
 	},
 	wh_main_effect_character_stat_mod_bonus_v_small = {
-		"bonus_vs_small.png", "bonus_vs_small.png", "true",
+		"bonus_vs_small_character.png", "bonus_vs_small_character.png", "true",
 	},
 	wh2_dlc10_effect_tech_upkeep_cost_reduction_def_khaine_units = {
 		"military_spending.png", "military_spending.png", "false",
@@ -284,6 +290,93 @@ EffectResources = {
 	wh2_main_effect_agent_action_success_chance_enemies = {
 		"agent.png", "agent.png", "false",
 	},
+	wh2_dlc11_enable_immortal_hidden = {
+		"", "", "true",
+	},
+	wh2_dlc11_lord_trait_tech_admiral_ship = {
+		"pirate_crew.png", "pirate_crew.png", "true",
+	},
+	wh_main_effect_force_all_campaign_recruitment_cost_all = {
+		"treasury.png", "treasury.png", "false",
+	},
+	wh_main_effect_general_aura_mod_all_during_defence = {
+		"general_ability.png", "general_ability.png", "true",
+	},
+	wh_main_effect_force_army_battle_unit_morale_siege_attack = {
+		"morale.png", "morale.png", "true",
+	},
+	wh_main_effect_force_army_campaign_ambush_defence_success_chance = {
+		"icon_effects_ambush.png", "icon_effects_ambush.png", "true",
+	},
+	wh2_main_effect_physical_resistance_increase = {
+		"resistance_physical.png", "resistance_physical.png", "true",
+	},
+	wh_main_effect_force_unit_stat_melee_damage = {
+		"weapon_damage.png", "weapon_damage.png", "true",
+	},
+	wh_main_effect_character_stat_mod_bonus_v_large = {
+		"bonus_vs_large_character.png", "bonus_vs_large_character.png", "true",
+	},
+	wh2_dlc11_cst_lord_trait_aranessa_melee_attack_increase_free_company = {
+		"melee.png", "melee.png", "true",
+	},
+	wh2_dlc11_cst_lord_trait_aranessa_weapon_strength_increase_free_company = {
+		"weapon_damage.png", "weapon_damage.png", "true",
+	},
+	wh2_dlc11_cst_lord_innate_brute_dummy = {
+		"loyalty.png", "loyalty.png", "false",
+	},
+	wh2_dlc11_skill_innate_cst_arsonist_dummy = {
+		"loyalty.png", "loyalty.png", "true",
+	},
+	wh_main_effect_force_army_campaign_siege_attack_holdout_time = {
+		"siege_attack.png", "siege_attack.png", "false",
+	},
+	wh2_dlc11_effect_unit_stat_mod_ward_physical_all_units = {
+		"resistance_physical.png", "resistance_physical.png", "true",
+	},
+	wh_main_effect_character_stat_enable_magic_attacks = {
+		"magical_attacks.png", "magical_attacks.png", "true",
+	},
+	wh2_main_effect_force_unit_stat_morale_versus_lizardmen = {
+		"morale.png", "morale.png", "true",
+	},
+	wh_main_effect_religion_conversion_undeath = {
+		"religion_undeath.png", "religion_undeath.png", "true",
+	},
+	wh2_dlc11_skill_innate_cst_looter_dummy = {
+		"loyalty.png", "loyalty.png", "true",
+	},
+	wh_main_effect_force_all_campaign_raid_income = {
+		"income.png", "income.png", "true",
+	},
+	wh2_dlc11_skill_innate_cst_murderer_dummy = {
+		"loyalty.png", "loyalty.png", "true",
+	},
+	wh_main_effect_force_army_battle_enemy_unit_morale = {
+		"morale.png", "morale.png", "false",
+	},
+	wh2_dlc11_effect_faction_trait_melee_damage_large_units = {
+		"weapon_damage.png", "weapon_damage.png", "true",
+	},
+	wh2_dlc11_effect_faction_trait_upkeep_reduction_necrofex = {
+		"military_spending.png", "military_spending.png", "false",
+	},
+	wh2_dlc11_cst_lord_innate_mastermind_dummy = {
+		"loyalty.png", "loyalty.png", "false",
+	},
+	wh2_dlc11_skill_innate_cst_ringleader_dummy = {
+		"loyalty.png", "loyalty.png", "true",
+	},
+	wh2_dlc11_skill_innate_cst_schemer_dummy = {
+		"loyalty.png", "loyalty.png", "true",
+	},
+	wh2_dlc11_skill_innate_cst_smuggler_dummy = {
+		"loyalty.png", "loyalty.png", "true",
+	},
+	wh2_main_effect_tech_upkeep_cost_reduction_def_corsairs = {
+		"military_spending.png", "military_spending.png", "false",
+	},
 	wh_main_effect_character_stat_mod_morale = {
 		"morale_character.png", "morale_character.png", "true",
 	},
@@ -298,9 +391,6 @@ EffectResources = {
 	},
 	wh_main_effect_agent_defence_wound_chance_mod = {
 		"agent.png", "agent.png", "true",
-	},
-	wh_main_effect_force_army_campaign_ambush_defence_success_chance = {
-		"icon_effects_ambush.png", "icon_effects_ambush.png", "true",
 	},
 	wh_main_effect_military_force_winds_of_magic_depletion_mod_character_enemy = {
 		"magic.png", "magic.png", "false",
@@ -323,13 +413,7 @@ EffectResources = {
 	wh_dlc03_effect_ability_enable_banner_of_outrage = {
 		"item_ability.png", "item_ability.png", "true",
 	},
-	wh_main_effect_force_army_battle_enemy_unit_morale = {
-		"morale.png", "morale.png", "false",
-	},
 	wh_dlc04_effect_force_all_campaign_razing_income_not_shown = {
-		"income.png", "income.png", "true",
-	},
-	wh_main_effect_force_all_campaign_raid_income = {
 		"income.png", "income.png", "true",
 	},
 	wh_dlc03_effect_tech_unit_stat_melee_damage_minotaurs = {
@@ -342,10 +426,10 @@ EffectResources = {
 		"income.png", "income.png", "true",
 	},
 	wh2_main_effect_loyalty_penalty_faction_leader_outranked = {
-		"loyalty.png", "loyalty.png", "false",
+		"", "", "false",
 	},
 	wh2_main_effect_percentage_of_xp_to_give_other_characters_of_same_type_hidden = {
-		"experience.png", "experience.png", "true",
+		"", "", "true",
 	},
 	wh2_main_effect_upkeep_reduction_malekith_witch_king = {
 		"military_spending.png", "military_spending.png", "false",
@@ -359,20 +443,11 @@ EffectResources = {
 	wh2_main_effect_character_mod_loyalty_regional = {
 		"loyalty.png", "loyalty.png", "true",
 	},
-	wh_main_effect_building_construction_cost_mod_sorcery_def = {
-		"treasury.png", "treasury.png", "false",
-	},
-	wh_main_effect_force_unit_stat_melee_damage = {
-		"weapon_damage.png", "weapon_damage.png", "true",
-	},
 	wh_main_effect_agent_action_success_chance_enemy = {
 		"agent.png", "agent.png", "false",
 	},
 	wh_main_effect_character_stat_mod_charge_bonus = {
 		"charge_character.png", "charge_character.png", "true",
-	},
-	wh_main_effect_character_stat_mod_bonus_v_large = {
-		"bonus_vs_large_character.png", "bonus_vs_large_character.png", "true",
 	},
 	wh_main_effect_tech_recruitment_cost_reduction_bigun_black_orcs = {
 		"treasury.png", "treasury.png", "false",
@@ -439,9 +514,6 @@ EffectResources = {
 	},
 	wh_main_effect_unit_enable_attribute_fear = {
 		"attribute_causes_fear.png", "attribute_causes_fear.png", "true",
-	},
-	wh_main_effect_force_all_campaign_recruitment_cost_all = {
-		"treasury.png", "treasury.png", "false",
 	},
 	wh2_main_effect_agent_recruitment_xp_hef_noble = {
 		"noble.png", "noble.png", "true",
@@ -537,13 +609,16 @@ EffectResources = {
 		"resistance_ward_save.png", "resistance_ward_save.png", "true",
 	},
 	wh_main_effect_agent_action_success_chance_enemy_skill = {
-		"agent.png", "agent.png", "true",
+		"", "", "true",
 	},
 	wh_main_effect_agent_action_success_chance_skill = {
-		"agent.png", "agent.png", "true",
+		"", "", "true",
 	},
 	wh_main_effect_ability_enable_fireball = {
 		"spell_ability.png", "spell_ability.png", "true",
+	},
+	wh2_main_effect_tech_unit_xp_levels_hef_sea_guard = {
+		"experience.png", "experience.png", "true",
 	},
 	wh2_main_effect_upkeep_reduction_hef_spearmen_archers_silverhelms = {
 		"military_spending.png", "military_spending.png", "false",
@@ -567,7 +642,7 @@ EffectResources = {
 		"military_spending.png", "military_spending.png", "false",
 	},
 	wh2_main_effect_percentage_of_xp_to_steal_from_characters_of_same_type_hidden = {
-		"experience.png", "experience.png", "true",
+		"", "", "true",
 	},
 	wh2_main_effect_upkeep_reduction_skv_plague_units = {
 		"military_spending.png", "military_spending.png", "false",
@@ -590,8 +665,20 @@ EffectResources = {
 	wh_dlc05_effect_force_army_battle_melee_attack_during_forest = {
 		"melee.png", "melee.png", "true",
 	},
+	wh2_dlc11_effect_upkeep_reduction_bestigor = {
+		"military_spending.png", "military_spending.png", "false",
+	},
+	wh_dlc03_effect_lord_recruitment_duration_bestigors = {
+		"turns.png", "turns.png", "false",
+	},
 	wh_dlc03_effect_tech_recruitment_cost_reduction_bestigors = {
 		"treasury.png", "treasury.png", "false",
+	},
+	wh_dlc03_effect_tech_unit_xp_levels_bestigors = {
+		"experience.png", "experience.png", "true",
+	},
+	wh2_dlc11_effect_force_all_enemy_campaign_replenishment_rate = {
+		"replenishment.png", "replenishment.png", "false",
 	},
 	wh_dlc03_effect_agent_recruitment_xp_wizard_beastmen = {
 		"wizard.png", "wizard.png", "true",
@@ -599,29 +686,59 @@ EffectResources = {
 	wh_dlc03_effect_force_army_campaign_attrition_chaos_territory = {
 		"disaster.png", "disaster.png", "true",
 	},
+	wh_dlc03_effect_force_ward_save_missile_spawn = {
+		"resistance_missile.png", "resistance_missile.png", "true",
+	},
 	wh_dlc05_morghur_trait_immortalitiy = {
 		"wound_time.png", "wound_time.png", "false",
 	},
-	wh_main_effect_agent_recruitment_xp_dignitary_empire = {
-		"warrior_priest.png", "warrior_priest.png", "true",
+	wh_main_effect_tech_melee_attack_increase_chaos_spawns = {
+		"melee.png", "melee.png", "true",
 	},
-	wh_dlc03_effect_technology_research_points = {
-		"technology.png", "technology.png", "true",
+	wh2_dlc11_effect_force_flagellants_campaign_replenishment_rate = {
+		"replenishment.png", "replenishment.png", "true",
+	},
+	wh2_dlc11_effect_force_ward_save_physical = {
+		"resistance_physical.png", "resistance_physical.png", "true",
+	},
+	wh_dlc04_effect_force_melee_defence_increase_flagellants = {
+		"defence.png", "defence.png", "true",
+	},
+	wh_main_effect_character_stat_enable_poison_attacks_dummy = {
+		"phase_posion.png", "phase_posion.png", "true",
 	},
 	wh_dlc04_effect_unit_enable_can_siege_dummy = {
 		"attribute_can_siege.png", "attribute_can_siege.png", "true",
 	},
+	wh_main_effect_unit_enable_attribute_guerrilla_deployment_dummy = {
+		"attribute_guerrilla_deploy.png", "attribute_guerrilla_deploy.png", "true",
+	},
+	wh_pro02_faction_trait_isabella_vlad_dummy = {
+		"melee_character.png", "melee_character.png", "true",
+	},
+	wh2_dlc11_effect_charge_increase_wef_treespirits = {
+		"charge.png", "charge.png", "true",
+	},
 	wh_dlc05_durthu_trait_effect_attrition_immunity = {
 		"disaster.png", "disaster.png", "true",
 	},
-	wh_dlc05_effect_battle_speed_elf_units = {
-		"battle_movement.png", "battle_movement.png", "true",
+	wh_dlc05_effect_tech_upkeep_reduction_treespirits = {
+		"military_spending.png", "military_spending.png", "false",
+	},
+	wh2_dlc11_effect_charge_bonus_increase_wild_riders = {
+		"charge.png", "charge.png", "true",
+	},
+	wh2_dlc11_effect_weapon_strength_increase_wild_riders = {
+		"weapon_damage.png", "weapon_damage.png", "true",
+	},
+	wh2_dlc11_effect_force_unit_stat_morale_versus_greenskins_skaven = {
+		"morale.png", "morale.png", "true",
 	},
 	wh_dlc06_effect_belegar_trait_enable_attribute_guerrilla_deployment_for_all_dummy = {
 		"attribute_guerrilla_deploy.png", "attribute_guerrilla_deploy.png", "true",
 	},
-	wh_main_effect_force_army_campaign_tunnelling_evasion_chance = {
-		"subterranean.png", "subterranean.png", "true",
+	wh2_dlc11_effect_charge_increase_squig_hoppers = {
+		"charge.png", "charge.png", "true",
 	},
 	wh_main_effect_conquest_enable_night_battles = {
 		"subterfuge.png", "subterfuge.png", "true",
@@ -631,6 +748,9 @@ EffectResources = {
 	},
 	wh_dlc06_effect_upkeep_savage_orcs = {
 		"military_spending.png", "military_spending.png", "false",
+	},
+	wh_main_effect_tech_recruitment_cost_reduction_savage_orcs = {
+		"treasury.png", "treasury.png", "false",
 	},
 	wh_dlc07_effect_chivalry_dummy = {
 		"chivalry_positive.png", "chivalry_negative.png", "true",
@@ -707,35 +827,56 @@ EffectResources = {
 	wh_main_effect_name_epithet_vmp_the_scarred = {
 		"", "", "true",
 	},
+	wh2_dlc11_effect_bonus_melee_attack_fighting_against_bretonnia_enemies = {
+		"melee.png", "melee.png", "true",
+	},
+	wh2_dlc11_effect_bonus_morale_fighting_against_bretonnia_enemies = {
+		"morale.png", "morale.png", "true",
+	},
 	wh_dlc07_effect_battle_defence_knights_of_the_realm = {
 		"defence.png", "defence.png", "true",
 	},
 	wh_dlc07_effect_battle_morale_knights = {
 		"morale.png", "morale.png", "true",
 	},
-	wh2_main_effect_force_army_battle_ward_save_physical_chaos_knights = {
-		"resistance_physical.png", "resistance_physical.png", "true",
-	},
 	wh_main_effect_force_all_campaign_razing_income = {
 		"income.png", "income.png", "true",
+	},
+	wh_main_effect_unit_stat_mod_ward_save = {
+		"resistance_ward_save.png", "resistance_ward_save.png", "true",
 	},
 	wh_main_effect_tech_melee_attack_increase_dragon_ogre_saggoths = {
 		"melee.png", "melee.png", "true",
 	},
-	wh_main_effect_tech_recruitment_cost_reduction_dragon_ogres = {
-		"treasury.png", "treasury.png", "false",
+	wh_main_effect_tech_upkeep_reduction_dragon_ogres = {
+		"wh_main_chs_chaos/military_spending.png", "wh_main_chs_chaos/military_spending.png", "false",
+	},
+	wh_main_effect_building_upkeep_reduction_chaos_marauders = {
+		"military_spending.png", "military_spending.png", "false",
 	},
 	wh_main_effect_hordebuilding_growth_characters = {
 		"growth.png", "growth.png", "true",
 	},
+	wh_main_effect_tech_unit_xp_levels_marauders = {
+		"experience.png", "experience.png", "true",
+	},
+	wh2_dlc11_effect_force_slayer_campaign_replenishment_rate = {
+		"replenishment.png", "replenishment.png", "true",
+	},
 	wh_main_effect_tech_melee_attack_increase_slayers = {
 		"melee.png", "melee.png", "true",
+	},
+	wh_main_effect_tech_upkeep_cost_reduction_slayers = {
+		"military_spending.png", "military_spending.png", "false",
+	},
+	wh2_dlc11_effect_magic_gelt_reduce_wom_cost_metal = {
+		"magic.png", "magic.png", "false",
 	},
 	wh_main_effect_agent_recruitment_xp_wizard_empire = {
 		"wizard.png", "wizard.png", "true",
 	},
-	wh_dlc05_tech_diplomacy_bonus_empire = {
-		"diplomacy.png", "diplomacy.png", "true",
+	wh_main_effect_force_army_battle_artillery_damage = {
+		"ranged_damage.png", "ranged_damage.png", "true",
 	},
 	wh_main_effect_tech_armour_increase_black_orcs = {
 		"armour.png", "armour.png", "true",
@@ -746,17 +887,14 @@ EffectResources = {
 	wh_main_effect_magic_vampires_cooldown_invocation_of_nehek = {
 		"magic_cooldown.png", "magic_cooldown.png", "false",
 	},
-	wh_main_effect_religion_conversion_undeath = {
-		"religion_undeath.png", "religion_undeath.png", "true",
+	wh2_dlc11_effect_force_army_campaign_attrition_immunity_land_of_living = {
+		"disaster.png", "disaster.png", "true",
 	},
 	wh_dlc08_effect_ability_enable_krell = {
 		"general_ability.png", "general_ability.png", "true",
 	},
 	wh_main_effect_agent_recruitment_xp_wizard_vampire_counts = {
 		"wizard.png", "wizard.png", "true",
-	},
-	wh_main_effect_krell_dummy = {
-		"magic_character.png", "magic_character.png", "true",
 	},
 	wh_main_effect_force_unit_stat_morale_versus_men = {
 		"morale.png", "morale.png", "true",

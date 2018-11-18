@@ -6,6 +6,7 @@ require 'script/export_helpers__crp__datahelpers';
 local MAX_NUM_SAVE_TABLE_KEYS = 400;
 
 function controlled_recruitment_pools()
+    Custom_Log_Start();
     out("CRP: Main mod function");
     crp = ControlledRecruitmentPools:new({
         HumanFaction = {},
@@ -19,14 +20,15 @@ function controlled_recruitment_pools()
     if cm:is_new_game()  then
         Custom_Log("New Game");
         -- Clear existing generals
-        crp:FactionStartup();
+        crp:ReplaceCharactersForNewGame();
     else
         Custom_Log("Existing game");
         if #crp.CRPLordsInPools > 0 then
             Custom_Log("Loaded lord data");
         end
     end
-    SetupListeners(crp.CRPLordsInPools);
+
+    cm:callback(function() SetupListeners(crp.CRPLordsInPools); end, 1);
     Custom_Log_Finished();
     Custom_Log("CRP: Finished");
 end
@@ -53,7 +55,12 @@ cm:add_saving_game_callback(
             for characterKey, characterData in pairs(factionLords) do
                 characterCount = characterCount + 1;
                 --Custom_Log("Adding character key and character: "..characterKey.. " Innate Trait: "..characterData.InnateTrait);
-                nthTable[factionKey..characterKey] = {characterData.InnateTrait, characterData.SubType, characterData.ArtSetId};
+                if characterKey == "initialised" then
+                    nthTable[factionKey..characterKey] = "initialised";
+                else
+                    nthTable[factionKey..characterKey] = {characterData.InnateTrait, characterData.SubType, characterData.ArtSetId};
+                end
+
                 if characterCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then
                     Custom_Log("Saving table "..tostring(tableCount));
                     out("CRP: Saving table "..tostring(tableCount));
@@ -120,12 +127,16 @@ cm:add_loading_game_callback(
             for index, characterKey in pairs(factionData) do
                 local characterData = serialised_save_table_characters[factionKey..characterKey];
                 if characterData ~= nil and characterData ~= {} then
-                    local mappedCharacter = {
-                        InnateTrait = characterData[1],
-                        SubType = characterData[2],
-                        ArtSetId = characterData[3],
-                    };
-                    crp.CRPLordsInPools[factionKey][characterKey] = mappedCharacter;
+                    if characterKey == "initialised" then
+                        crp.CRPLordsInPools[factionKey][characterKey] = "initialised";
+                    else
+                        local mappedCharacter = {
+                            InnateTrait = characterData[1],
+                            SubType = characterData[2],
+                            ArtSetId = characterData[3],
+                        };
+                        crp.CRPLordsInPools[factionKey][characterKey] = mappedCharacter;
+                    end
                 else
                     out("CRP: Character data not found for "..characterKey.." in faction "..factionKey);
                 end
@@ -139,15 +150,15 @@ cm:add_loading_game_callback(
 -- is called by the game. The actual function which does things
 -- is wrapped in a callback which delays execution until the Constructor
 -- is called.
-events.FirstTickAfterWorldCreated[#events.FirstTickAfterWorldCreated+1] = function()
+--[[cm.first_tick_callbacks[#cm.first_tick_callbacks + 1] = function(context)
     if cm:model():pending_battle():has_been_fought() then
         out("CRP: Pending battle has been fought");
         PendingBattleResult(crp.HumanFaction:name(), true);
         --cm:callback(function() PendingBattleResult(crp.HumanFaction:name(), true) end, 0);
     end
-end
+end--]]
 
---[[core:add_listener(
+core:add_listener(
     "PopUpBattleResults",
     "PanelOpenedCampaign",
     function(context)
@@ -158,7 +169,7 @@ end
         cm:callback(function() PendingBattleResult(crp.HumanFaction:name(), true) end, 1);
     end,
     true
-);--]]
+);
 
 core:add_listener(
     "AppointGeneralOpened",
@@ -171,7 +182,7 @@ core:add_listener(
         cm:callback(function()
             Custom_Log("In appoint new general callback");
             local generalsList = find_uicomponent(core:get_ui_root(), "panel_manager", "appoint_new_general", "event_appoint_new_general", "general_selection_panel", "character_list", "listview", "list_clip", "list_box");
-            crp.UIController:GetGeneralCandidates(crp.HumanFaction:name(), generalsList, crp.CRPLordsInPools);
+            --crp.UIController:GetGeneralCandidates(crp.HumanFaction:name(), crp.HumanFaction:subculture(), generalsList, crp.CRPLordsInPools);
         end,
         0);
     end,

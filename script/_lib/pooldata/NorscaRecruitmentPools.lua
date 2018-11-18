@@ -13,14 +13,14 @@ NorscaRecruitmentPoolData = {
                 SubPoolMaxSize = 5,
             },
         },
-        Traits = {
+        --[[Traits = {
             wh2_main_skill_innate_chs_diabolic_spendour = {
 
             },
             wh2_main_skill_innate_chs_dominance = {
 
             },
-        },
+        },--]]
         ExcludedTraits = {
             "wh_main_skill_innate_all_charismatic",
             "wh_main_skill_innate_all_boring",

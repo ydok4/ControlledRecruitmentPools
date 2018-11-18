@@ -83,30 +83,6 @@ MixuAgentArtSetResources = {
 		},
 
 	},
-	vmp_necrarch = {
-		ArtSetIds = {
- 			"wh2_main_art_set_vmp_necrarch_1", "wh2_main_art_set_vmp_necrarch_2", "wh2_main_art_set_vmp_necrarch_3",
-		},
-
-	},
-	vmp_vampire_countess = {
-		ArtSetIds = {
- 			"wh2_main_art_set_vmp_vampire_countess_1", "wh2_main_art_set_vmp_vampire_countess_2", "wh2_main_art_set_vmp_vampire_countess_3", "wh2_main_art_set_vmp_vampire_countess_4", "wh2_main_art_set_vmp_vampire_countess_5", "wh2_main_art_set_vmp_vampire_countess_shadow_1", "wh2_main_art_set_vmp_vampire_countess_shadow_2", "wh2_main_art_set_vmp_vampire_countess_shadow_3", "wh2_main_art_set_vmp_vampire_countess_shadow_4", "wh2_main_art_set_vmp_vampire_countess_shadow_5",
-		},
-
-	},
-	vmp_vampire_countess_shadow = {
-		ArtSetIds = {
- 			"wh2_main_art_set_vmp_vampire_countess_1", "wh2_main_art_set_vmp_vampire_countess_2", "wh2_main_art_set_vmp_vampire_countess_3", "wh2_main_art_set_vmp_vampire_countess_4", "wh2_main_art_set_vmp_vampire_countess_5", "wh2_main_art_set_vmp_vampire_countess_shadow_1", "wh2_main_art_set_vmp_vampire_countess_shadow_2", "wh2_main_art_set_vmp_vampire_countess_shadow_3", "wh2_main_art_set_vmp_vampire_countess_shadow_4", "wh2_main_art_set_vmp_vampire_countess_shadow_5",
-		},
-
-	},
-	vmp_blood_knight_lord = {
-		ArtSetIds = {
- 			"wh2_main_art_set_vmp_blood_knight_lord_1", "wh2_main_art_set_vmp_blood_knight_lord_2", "wh2_main_art_set_vmp_blood_knight_lord_3",
-		},
-
-	},
 	chs_shaggoth_champion = {
 		ArtSetIds = {
  			"wh2_main_art_set_chs_shaggoth_champion_1", "wh2_main_art_set_chs_shaggoth_champion_2", "wh2_main_art_set_chs_shaggoth_champion_3",
@@ -136,5 +112,35 @@ MixuAgentArtSetResources = {
  			"wh2_main_art_set_nor_shaman_sorcerer_lord_metal_1", "wh2_main_art_set_nor_shaman_sorcerer_lord_metal_2", "wh2_main_art_set_nor_shaman_sorcerer_lord_metal_3",
 		},
 
+	},
+	emp_wizard_lord_shadow = {
+		ArtSetIds = {
+ 			"wh2_main_art_set_emp_wizard_lord_shadow_1", "wh2_main_art_set_emp_wizard_lord_shadow_2",
+		},
+
+	},
+	emp_wizard_lord_heavens = {
+		ArtSetIds = {
+ 			"wh2_main_art_set_emp_wizard_lord_heavens_1",
+		},
+
+	},
+
+	wh2_dlc11_vmp_bloodline_lahmian = {
+		ArtSetIds = {
+			"wh2_main_art_set_vmp_vampire_countess_1", "wh2_main_art_set_vmp_vampire_countess_2", "wh2_main_art_set_vmp_vampire_countess_3", "wh2_main_art_set_vmp_vampire_countess_4", "wh2_main_art_set_vmp_vampire_countess_5",
+	   },
+	},
+
+	wh2_dlc11_vmp_bloodline_necrarch = {
+		ArtSetIds = {
+			"wh2_main_art_set_vmp_necrarch_1", "wh2_main_art_set_vmp_necrarch_2", "wh2_main_art_set_vmp_necrarch_3",
+	   },
+	},
+
+	wh2_dlc11_vmp_bloodline_blood_dragon = {
+		ArtSetIds = {
+			"wh2_main_art_set_vmp_blood_knight_lord_1", "wh2_main_art_set_vmp_blood_knight_lord_2", "wh2_main_art_set_vmp_blood_knight_lord_3",
+	   },
 	},
 }

@@ -14,35 +14,13 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord_rebel = {
+                    vmp_lord = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
-                    },
-                    vmp_vampire_countess = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                    vmp_vampire_countess_shadow = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
                     },
                 },
                 SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 3,
-            },
-        },
-        Traits = {
-            wh2_innate_vampire_hunter_in_the_dark = {
-
-            },
-            wh2_innate_vampire_night_creature = {
-
-            },
-            wh2_innate_vampire_swiftness = {
-
-            },
-            wh2_innate_vampire_defy_the_dawn = {
-
             },
         },
         PoolMaxSize = 5,
@@ -55,7 +33,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 0,
+                        MinimumAmount = 1,
                         MaximumAmount = 5,
                     },
                 },
@@ -64,31 +42,17 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord_rebel = {
+                    vmp_lord = {
                         MinimumAmount = 0,
-                        MaximumAmount = 5,
+                        MaximumAmount = 2,
                     },
-                    dlc04_vmp_strigoi_ghoul_king = {
+                    wh2_dlc11_vmp_bloodline_von_carstein = {
                         MinimumAmount = 0,
-                        MaximumAmount = 3,
+                        MaximumAmount = 1,
                     },
                 },
                 SubPoolInitialMinSize = 3,
                 SubPoolMaxSize = 7,
-            },
-            VampireCountesses = {
-                AgentSubTypes = {
-                    vmp_vampire_countess = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                    vmp_vampire_countess_shadow = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 0,
-                SubPoolMaxSize = 2,
             },
         },
         PoolMaxSize = 10,
@@ -109,31 +73,17 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord_rebel = {
+                    vmp_lord = {
                         MinimumAmount = 0,
-                        MaximumAmount = 5,
+                        MaximumAmount = 2,
                     },
-                    dlc04_vmp_strigoi_ghoul_king = {
+                    wh2_dlc11_vmp_bloodline_von_carstein = {
                         MinimumAmount = 0,
-                        MaximumAmount = 3,
+                        MaximumAmount = 2,
                     },
                 },
                 SubPoolInitialMinSize = 3,
                 SubPoolMaxSize = 7,
-            },
-            VampireCountesses = {
-                AgentSubTypes = {
-                    vmp_vampire_countess = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                    vmp_vampire_countess_shadow = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 0,
-                SubPoolMaxSize = 2,
             },
         },
         PoolMaxSize = 10,
@@ -147,7 +97,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 1,
                         MaximumAmount = 5,
                     },
                 },
@@ -156,35 +106,17 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord_rebel = {
+                    vmp_lord = {
                         MinimumAmount = 0,
-                        MaximumAmount = 5,
+                        MaximumAmount = 1,
                     },
-                    dlc04_vmp_strigoi_ghoul_king = {
+                    wh2_dlc11_vmp_bloodline_blood_dragon = {
                         MinimumAmount = 0,
-                        MaximumAmount = 3,
+                        MaximumAmount = 2,
                     },
-                    vmp_blood_knight_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 3,
-                    }
                 },
                 SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 5,
-            },
-            VampireCountesses = {
-                AgentSubTypes = {
-                    vmp_vampire_countess = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                    vmp_vampire_countess_shadow = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 0,
-                SubPoolMaxSize = 2,
             },
         },
         PoolMaxSize = 7,
@@ -197,7 +129,7 @@ VampireCountsRecruitmentPoolData =  {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
                         MinimumAmount = 0,
-                        MaximumAmount = 5,
+                        MaximumAmount = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -205,12 +137,8 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord_rebel = false,
-                    vmp_vampire_countess = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                    vmp_vampire_countess_shadow = {
+                    vmp_lord = false,
+                    wh2_dlc11_vmp_bloodline_lahmian = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
@@ -220,21 +148,12 @@ VampireCountsRecruitmentPoolData =  {
             },
         },
         PoolMaxSize = 7,
-        Traits = {
-            wh2_innate_vampire_countess_spectral_form = {
-
-            },
-        },
         LordsToReplace = {
             vmp_lord = {
-                replacementKey = "vmp_vampire_countess",
+                replacementKey = "wh2_dlc11_vmp_bloodline_lahmian",
                 traitKeyPool = {
-                    "wh2_innate_vampire_defy_the_dawn",
-                    "wh2_innate_vampire_night_creature",
                     "wh2_main_skill_innate_vmp_devious",
                     "wh2_main_skill_innate_vmp_dark_majesty",
-                    "wh2_innate_vampire_swiftness",
-                    "wh2_innate_vampire_countess_spectral_form",
                 },
             },
         },
@@ -246,7 +165,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 3,
                     },
                 },
@@ -256,8 +175,12 @@ VampireCountsRecruitmentPoolData =  {
             VampireLords = {
                 AgentSubTypes = {
                     dlc04_vmp_strigoi_ghoul_king = {
-                        MinimumAmount = 2,
-                        MaximumAmount = 5,
+                        MinimumAmount = 1,
+                        MaximumAmount = 3,
+                    },
+                    wh2_dlc11_vmp_bloodline_strigoi = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
                     },
                 },
                 SubPoolInitialMinSize = 2,
@@ -265,23 +188,6 @@ VampireCountsRecruitmentPoolData =  {
             },
         },
         PoolMaxSize = 5,
-        Traits = {
-            wh2_innate_necrarch_ghoul_lover = {
-
-            },
-        },
-        LordsToReplace = {
-            vmp_lord = {
-                replacementKey = "dlc04_vmp_strigoi_ghoul_king",
-                traitKeyPool = {
-                    "wh_main_skill_innate_vmp_ghoul_whisperer",
-                    "wh2_main_skill_innate_vmp_dread_incarnate",
-                    "wh2_main_skill_innate_vmp_devious",
-                    "wh2_main_skill_innate_vmp_dark_majesty",
-                    "wh2_innate_necrarch_ghoul_lover",
-                },
-            },
-        },
     },
 
     -- The Necrarch Brotherhood
@@ -299,8 +205,8 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    vmp_lord_rebel = false,
-                    vmp_necrarch = {
+                    vmp_lord = false,
+                    wh2_dlc11_vmp_bloodline_necrarch = {
                         MinimumAmount = 2,
                         MaximumAmount = 5,
                     },
@@ -310,47 +216,14 @@ VampireCountsRecruitmentPoolData =  {
             },
         },
         PoolMaxSize = 5,
-        Traits = {
-            wh2_innate_necrarch_arcane_knowledge = {
-
-            },
-            wh2_innate_necrarch_seeker_of_the_prophecy = {
-
-            },
-            wh2_innate_necrarch_scavenger = {
-
-            },
-            wh2_innate_necrarch_thinker = {
-
-            },
-            wh2_innate_necrarch_engulfed_by_flames = {
-
-            },
-            wh2_innate_necrarch_infamous = {
-
-            },
-            wh2_innate_necrarch_ghoul_lover = {
-
-            },
-            wh2_innate_necrarch_corrupted_by_warpstone = {
-
-            },
-            wh2_innate_necrarch_spectral_form = {
-
-            },
-        },
         LordsToReplace = {
             vmp_lord = {
-                replacementKey = "vmp_necrarch",
+                replacementKey = "wh2_dlc11_vmp_bloodline_necrarch",
                 traitKeyPool = {
-                    "wh2_innate_necrarch_arcane_knowledge",
-                    "wh2_innate_necrarch_scavenger",
-                    "wh2_innate_necrarch_thinker",
-                    "wh2_innate_necrarch_engulfed_by_flames",
-                    "wh2_innate_necrarch_infamous",
-                    "wh2_innate_necrarch_ghoul_lover",
-                    "wh2_innate_necrarch_corrupted_by_warpstone",
-                    "wh2_innate_necrarch_spectral_form",
+                    "wh_main_skill_innate_vmp_ghoul_whisperer",
+                    "wh2_main_skill_innate_vmp_dread_incarnate",
+                    "wh2_main_skill_innate_vmp_devious",
+                    "wh2_main_skill_innate_vmp_dark_majesty",
                 },
             },
         },
