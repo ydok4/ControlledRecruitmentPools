@@ -1,10 +1,10 @@
 -- Mock Data
 testFaction = {
     name = function()
-        return "wh2_main_bst_shadowgor";
+        return "wh_dlc05_wef_wood_elves";
     end,
     subculture = function()
-        return "wh_dlc03_sc_bst_beastmen";
+        return "wh_dlc05_sc_wef_wood_elves";
     end,
     character_list = function()
         return {
@@ -92,7 +92,7 @@ local test = string.match(factionName, "qb");
 
 crp:Initialise();
 crp:GetCurrentPoolForFaction(testFaction);
-local name = crp:GetCharacterNameForSubculture(testFaction, "dlc03_bst_beastlord");
+local name = crp:GetCharacterNameForSubculture(testFaction, "wef_highweaver");
 local artSetId = crp:GetArtSetForSubType("grn_orc_warboss");
 local factionPoolResources = crp:GetFactionPoolResources(testFaction);
 local trait = crp:GetRandomCharacterTrait(testFaction, "wh2_dlc11_vmp_bloodline_blood_dragon");

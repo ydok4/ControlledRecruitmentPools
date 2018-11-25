@@ -52,6 +52,19 @@ function FindTableObjectByKeyPartial(objectList, partialValue)
     end
 end
 
+function CreateValidLuaTableKey(value)
+    -- This removes any spaces within names, eg the surname "Von Carstein";
+    -- Otherwise the key is invalid and the character won't be tracked
+    value = value:gsub("%s+", "");
+    -- This replaces any apostrophes in names with _
+    value = value:gsub("'", "_");
+    value = value:gsub("-", "_");
+    value = value:gsub("é", "e");
+    value = value:gsub("‘", "_");
+    value = value:gsub(",", "_");
+    return value;
+end
+
 function GetStringifiedUnitList(character)
     local unitList = character:military_force():unit_list();
 

@@ -121,6 +121,9 @@ function ControlledRecruitmentPools:NewGameStartUp()
                 -- Then set the initial pools for human faction
                 self:SetupInitialMinimumValues(faction, currentFactionPools);
             end
+            -- This will replace any vmp_lord_replacements present at the start of the game
+            -- This will usually be from armies spawned by scripted. Eg the Artois army for Kemmler start.
+           self:ReplaceAnyVampireLordReplacementsInFaction(faction, currentFactionPools);
         end
     end
     cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
@@ -284,19 +287,21 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
     return addedGenerals;
 end
 
-function ControlledRecruitmentPools:ReplaceAnyVampireLordReplacementsInFaction(faction)
+function ControlledRecruitmentPools:ReplaceAnyVampireLordReplacementsInFaction(faction, currentPoolCounts)
     -- Grab all characters in the faction. This includes recruited and
     -- characters in the pool
-    Custom_Log("Replacing faction vmp_lord_replacements");
     local factionResources = self:GetFactionPoolResources(faction);
     local character_list = faction:character_list();
     for i = 0, character_list:num_items() - 1 do
         local character = character_list:item_at(i);
         local charSubType = character:character_subtype_key();
-        if charSubType == "vmp_lord_replacement" then
-            Custom_Log("Found the vmp_lord_replacement");
+        if charSubType == "vmp_lord_replacement" and character:has_military_force()
+        and character:military_force():is_armed_citizenry() == false and cm:char_is_agent(character) == false then
+            Custom_Log("Found the vmp_lord_replacement for faction "..faction:name());
             -- Select a general to generate
-            local currentPoolCounts = self:GetCurrentPoolForFaction(faction);
+            if not currentPoolCounts then
+                currentPoolCounts = self:GetCurrentPoolForFaction(faction);
+            end
             local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts, true);
             Custom_Log("Replacing with "..agentSubTypeKey);
             self:ReplaceCharacter(faction, character, agentSubTypeKey, nil, nil);
@@ -308,7 +313,6 @@ function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
     -- Grab all characters in the faction. This includes recruited and
     -- characters in the pool
     local character_list = faction:character_list();
-    local ignoreVampires = faction:subculture() ~= "wh_main_sc_vmp_vampire_counts";
 
     local currentPoolCounts = {};
     currentPoolCounts["total"] = 0;
@@ -317,7 +321,7 @@ function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
         local charSubType = character:character_subtype_key();
         -- We do not want to count garrison commands and agents
         if character:has_military_force() and character:military_force():is_armed_citizenry() == false
-        and cm:char_is_agent(character) == false and (ignoreVampires == false or (ignoreVampires == true and charSubType ~= "vmp_lord")) then
+        and cm:char_is_agent(character) == false and charSubType ~= "vmp_lord_replacement" then
             --Custom_Log("Found existing character subtype: "..tostring(charSubType));
             if currentPoolCounts[charSubType] then
                 currentPoolCounts[charSubType] = currentPoolCounts[charSubType] + 1;
@@ -453,7 +457,7 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
                 ArtSetId = artSetId,
             };
         else
-            Custom_Log("Hit poolsize already");
+            Custom_Log("Hit poolsize already "..factionResources.PoolMaxSize);
             break;
         end
     end
@@ -574,7 +578,6 @@ function ControlledRecruitmentPools:GenerateGeneral(generalSubType, faction, art
         nil
     );
     -- Grab the name from the generated character
-    
     local generatedName = self:GetCharacterNameFromNewGeneral(faction);--]]
     local generatedName = self:GetCharacterNameForSubculture(faction, generalSubType);
     -- Generate a trait from the trait pool (WIP)
@@ -620,12 +623,30 @@ function ControlledRecruitmentPools:GetCharacterNameForSubculture(faction, agent
     nameGroup = "name_group_"..nameGroup;
     local namePool = self.CRPResources.DBResources.name_groups_to_names[nameGroup];
     local canUseFemaleNames = self:GetGenderForAgentSubType(agentSubType);
-    local validClanName = self:GetValidNameForType(namePool, canUseFemaleNames, "clan_name");
-    local validForeName = self:GetValidNameForType(namePool, canUseFemaleNames, "forename");
+
+    local doOnce = false;
+    local nameKey = "";
+    local clan_name_object = "";
+    local forename_object = "";
+
+    local factionLords = self.CRPLordsInPools[factionName];
+    while doOnce == false or factionLords[nameKey] ~= nil do
+        clan_name_object = self:GetValidNameForType(namePool, canUseFemaleNames, "clan_name");
+        forename_object = self:GetValidNameForType(namePool, canUseFemaleNames, "forename");
+
+        nameKey = clan_name_object.Text..forename_object.Text;
+        nameKey = CreateValidLuaTableKey(nameKey);
+        Custom_Log("Generated name key is "..nameKey);
+        doOnce = true;
+        if factionLords == nil then
+            Custom_Log("Faction has no tracked lords. Using first generated name.");
+            break;
+        end
+    end
 
     local generatedName = {
-        clan_name = validClanName,
-        forename = validForeName,
+        clan_name = clan_name_object.Id,
+        forename = forename_object.Id,
     };
 
     return generatedName;
@@ -651,10 +672,18 @@ function ControlledRecruitmentPools:GetValidNameForType(namePool, canUseFemaleNa
             --Custom_Log("Generating name "..randomName);
             local nameId = nameTypes[randomName];
             --Custom_Log("Name id "..nameId);
-            return "names_name_"..tostring(nameId);
+            local nameObject = {
+                Id = "names_name_"..tostring(nameId),
+                Text = randomName,
+            };
+            return nameObject;
         end
     end
-    return "";
+    local nameObject = {
+        Id = "",
+        Text = "",
+    };
+    return nameObject;
 end
 
 function ControlledRecruitmentPools:GetGenderForAgentSubType(agentSubType)
@@ -749,15 +778,7 @@ function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, genera
     end
 
     local keyName = localisedForeName..localisedSurname;
-    -- This removes any spaces within names, eg the surname "Von Carstein";
-    -- Otherwise the key is invalid and the character won't be tracked
-    keyName = keyName:gsub("%s+", "");
-    -- This replaces any apostrophes in names with _
-    keyName = keyName:gsub("'", "_");
-    keyName = keyName:gsub("-", "_");
-    keyName = keyName:gsub("é", "e");
-    keyName = keyName:gsub("‘", "_");
-    keyName = keyName:gsub(",", "_");
+    keyName = CreateValidLuaTableKey(keyName);
     local general = {
         InnateTrait = innateTrait,
         SubType = subType,

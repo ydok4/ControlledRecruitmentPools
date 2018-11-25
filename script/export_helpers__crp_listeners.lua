@@ -49,86 +49,6 @@ function SetupListeners(lordsInPool)
         true
     );
 
-    -- Performs post character created/recruited functionality
-    -- like adding traits
-    core:add_listener(
-        "CRP_CharacterCreated",
-        "CharacterCreated",
-        true,
-        function(context)
-            local char = context:character();
-            local factionName = char:faction():name();
-            Custom_Log("Character Created Listener "..factionName);
-
-            if lordsInPool[factionName] ~= nil then
-                local localisedForeName = effect.get_localised_string(char:get_forename());
-                local localisedSurname = "";
-                local surnameKey =  char:get_surname();
-                if surnameKey ~= nil and surnameKey ~= "" then
-                    localisedSurname = effect.get_localised_string(char:get_surname());
-                end
-                local keyName = localisedForeName..localisedSurname;
-                -- This removes any spaces within names, eg the surname "Von Carstein";
-                -- Otherwise the key is invalid and the character won't be tracked
-                keyName = keyName:gsub("%s+", "");
-                keyName = keyName:gsub("'", "_");
-                keyName = keyName:gsub("-", "_");
-                keyName = keyName:gsub("é", "e");
-                keyName = keyName:gsub("‘", "_");
-                keyName = keyName:gsub(",", "_");
-                --Custom_Log("Character key: "..keyName.."end");
-                if lordsInPool[factionName][keyName] ~= nil then
-                    --Custom_Log("Character is in pool for faction: "..factionName);
-                    -- If the character is tracked in the pool
-                    local poolData = lordsInPool[factionName][keyName];
-                    local subCulture = char:faction():subculture();
-                    if poolData then
-                        if subCulture == "wh2_main_sc_def_dark_elves" or subCulture == "wh2_main_sc_skv_skaven" then
-                            --Custom_Log("Found skaven or dark elves");
-                            --crp:ReplaceCharacter(char:faction(), char, poolData.SubType, poolData.ArtSetId, poolData.InnateTrait);
-                            --Custom_Log("Finished replacing general");
-                            --cm:remove_all_units_from_general(char);
-                            --Custom_Log("Increased loyalty");
-                        else
-                            --Custom_Log("Adding trait: "..poolData.InnateTrait.." for character: "..keyName);
-                            cm:disable_event_feed_events(true, "wh_event_category_traits_ancillaries", "", "");
-                            -- Add their trait
-                            --cm:force_add_trait("character_cqi:"..char:cqi(), poolData.InnateTrait, true);
-                            -- Then remove from the pool
-                            lordsInPool[factionName][keyName] = nil;
-                            --cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_traits_ancillaries", "", "") end, 1);
-                            -- Note: Removal is necessary since we now track the character from the faction's character_list
-
-                            if subCulture == "wh2_main_sc_hef_high_elves" and factionName == crp.HumanFaction:name() then
-                                Custom_Log("High elf character recruited listener");
-                                if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
-                                    cm:suppress_all_event_feed_messages(true);
-                                    cm:trigger_incident(factionName, "wh2_main_hef_mid_lord_influence_cost", true);
-                                    cm:suppress_all_event_feed_messages(false);
-                                    Custom_Log("Lord is mid prince or princess");
-                                elseif poolData.SubType == "wh2_main_hef_prince_high"or poolData.SubType == "wh2_main_hef_princess_high" then
-                                    cm:suppress_all_event_feed_messages(true);
-                                    cm:trigger_incident(factionName, "wh2_main_hef_high_lord_influence_cost", true);
-                                    cm:suppress_all_event_feed_messages(false);
-                                    Custom_Log("Lord is high prince or princess");
-                                end
-                            end
-                        end
-                    else
-                        Custom_Log("Character is not in pool");
-                    end
-                end
-            elseif char:character_subtype_key() == "vmp_lord_replacement" then
-                local faction = char:faction();
-                Custom_Log("Character is a vampire replacement");
-                crp:UpdateRecruitmentPool(faction, 1);
-                crp:ReplaceAnyVampireLordReplacementsInFaction(faction);
-            end
-           Custom_Log("Finished Character created listener");
-        end,
-        true
-    );
-
     -- Handles character pool updates and the setting of general art sets
     -- after battle is completed for battles ONLY containing ai
     -- There is another listener for battles involving humans inside
@@ -322,4 +242,65 @@ function AssignNewCharacterAsInvasionGeneral(faction, invasionKey, agentSubType)
         Custom_Log("Assigned general to "..invasionKey);
     end
 
+end
+
+function ProcessNewCharacter(context)
+    local char = context:character();
+    local factionName = char:faction():name();
+    Custom_Log("Character Created Listener "..factionName);
+    local factionLords = crp.CRPLordsInPools[factionName];
+    if factionLords ~= nil then
+        local localisedForeName = effect.get_localised_string(char:get_forename());
+        local localisedSurname = "";
+        local surnameKey =  char:get_surname();
+        if surnameKey ~= nil and surnameKey ~= "" then
+            localisedSurname = effect.get_localised_string(char:get_surname());
+        end
+        local keyName = localisedForeName..localisedSurname;
+        -- This removes any spaces within names, eg the surname "Von Carstein";
+        -- Otherwise the key is invalid and the character won't be tracked
+        keyName = CreateValidLuaTableKey(keyName);
+        --Custom_Log("Character key: "..keyName.."end");
+        if factionLords[keyName] ~= nil then
+            --Custom_Log("Character is in pool for faction: "..factionName);
+            -- If the character is tracked in the pool
+            local poolData = factionLords[keyName];
+            local subCulture = char:faction():subculture();
+            if poolData then
+                --Custom_Log("Adding trait: "..poolData.InnateTrait.." for character: "..keyName);
+                cm:disable_event_feed_events(true, "wh_event_category_traits_ancillaries", "", "");
+                -- Add their trait
+                --cm:force_add_trait("character_cqi:"..char:cqi(), poolData.InnateTrait, true);
+                -- Then remove from the pool
+                factionLords[keyName] = nil;
+                --cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_traits_ancillaries", "", "") end, 1);
+                -- Note: Removal is necessary since we now track the character from the faction's character_list
+
+                if subCulture == "wh2_main_sc_hef_high_elves" and factionName == crp.HumanFaction:name() then
+                    Custom_Log("High elf character recruited listener");
+                    if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
+                        cm:suppress_all_event_feed_messages(true);
+                        cm:trigger_incident(factionName, "wh2_main_hef_mid_lord_influence_cost", true);
+                        cm:suppress_all_event_feed_messages(false);
+                        Custom_Log("Lord is mid prince or princess");
+                    elseif poolData.SubType == "wh2_main_hef_prince_high" or poolData.SubType == "wh2_main_hef_princess_high" then
+                        cm:suppress_all_event_feed_messages(true);
+                        cm:trigger_incident(factionName, "wh2_main_hef_high_lord_influence_cost", true);
+                        cm:suppress_all_event_feed_messages(false);
+                        Custom_Log("Lord is high prince or princess");
+                    end
+                end
+            else
+                Custom_Log("Character is not in pool");
+            end
+        end
+    elseif char:character_subtype_key() == "vmp_lord_replacement" then
+        local faction = char:faction();
+        if faction:name() ~= "rebels" then
+            Custom_Log("Character is a vampire replacement");
+            crp:UpdateRecruitmentPool(faction, 1);
+            crp:ReplaceAnyVampireLordReplacementsInFaction(faction);
+        end
+    end
+   Custom_Log("Finished Character created listener");
 end

@@ -90,12 +90,7 @@ function CRPUI:GetGeneralCandidates(humanFactionName, humanSubCulture, generalsL
 
                 local name = find_uicomponent(generalPanel, "dy_name"):GetStateText();
                 local keyName = "";
-                keyName = name:gsub("%s+", "");
-                keyName = keyName:gsub("'", "_");
-                keyName = keyName:gsub("-", "_");
-                keyName = keyName:gsub("é", "e");
-                keyName = keyName:gsub("‘", "_");
-                keyName = keyName:gsub(",", "_");
+                keyName = CreateValidLuaTableKey(name);
                 if humanSubCulture == "wh2_main_sc_hef_high_elves" then
                     local intrigueCostContainer = find_uicomponent(generalPanel, "IntrigueCost");
                     if intrigueCostContainer ~= nil then

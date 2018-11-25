@@ -20,8 +20,9 @@ function controlled_recruitment_pools()
     crp:Initialise();
     if cm:is_new_game()  then
         Custom_Log("New Game");
-        -- Clear existing generals
-        crp:NewGameStartUp();
+        -- This callback is required so that startup happens after
+        -- the game spawns any startup armies. This allows them to be replaced if required.
+        cm:callback(function() crp:NewGameStartUp(); end, 0);
     else
         Custom_Log("Existing game");
         if #crp.CRPLordsInPools > 0 then
@@ -43,20 +44,31 @@ cm:add_saving_game_callback(
         Custom_Log_Finished();
         Custom_Log("Saving callback");
         out("CRP: Saving callback");
+
+        out("CRP: Saving pre-battle data");
         local preBattleAttackers = {};
-        for force_key, characterData in pairs(crp.PreBattleData["attackers"]) do
-            preBattleAttackers[force_key] = { characterData.character_cqi, characterData.character_faction_name, characterData.character_sub_type };
-            out("CRP: Finished saving attacker "..force_key);
+        if crp.PreBattleData and crp.PreBattleData["attackers"] then
+            for force_key, characterData in pairs(crp.PreBattleData["attackers"]) do
+                if characterData then
+                    preBattleAttackers[force_key] = { characterData.character_cqi, characterData.character_faction_name, characterData.character_sub_type };
+                end
+                out("CRP: Finished saving attacker "..force_key);
+            end
         end
         cm:save_named_value("crp_pre_battle_attackers", preBattleAttackers, context);
 
         local preBattleDefenders = {};
-        for force_key, characterData in pairs(crp.PreBattleData["defenders"]) do
-            preBattleDefenders[force_key] = { characterData.character_cqi, characterData.character_faction_name, characterData.character_sub_type };
-            out("CRP: Finished saving defender "..force_key);
+        if crp.PreBattleData and crp.PreBattleData["defenders"] then
+            for force_key, characterData in pairs(crp.PreBattleData["defenders"]) do
+                if characterData then
+                    preBattleDefenders[force_key] = { characterData.character_cqi, characterData.character_faction_name, characterData.character_sub_type };
+                end
+                out("CRP: Finished saving defender "..force_key);
+            end
         end
         cm:save_named_value("crp_pre_battle_defenders", preBattleDefenders, context);
 
+        out("CRP: Starting to save character data");
         local crp_lord_pools_header = {};
         local serialised_save_table_factions = {};
 
@@ -64,16 +76,21 @@ cm:add_saving_game_callback(
         local tableCount = 1;
         local nthTable = {};
         nthTable[tableCount] = {};
+
         for factionKey, factionLords in pairs(crp.CRPLordsInPools) do
             local characterKeysForFaction = {};
             --Custom_Log("Adding faction key: "..factionKey);
             for characterKey, characterData in pairs(factionLords) do
                 characterCount = characterCount + 1;
-                --Custom_Log("Adding character key and character: "..characterKey.. " Innate Trait: "..characterData.InnateTrait);
+                local innateTrait = characterData.InnateTrait;
+                if innateTrait == nil then
+                    innateTrait = "";
+                end
+                --Custom_Log("Adding character key and character: "..characterKey.. " Innate Trait: "..innateTrait);
                 if characterKey == "initialised" then
                     nthTable[factionKey..characterKey] = "initialised";
                 else
-                    nthTable[factionKey..characterKey] = {characterData.InnateTrait, characterData.SubType, characterData.ArtSetId};
+                    nthTable[factionKey..characterKey] = {innateTrait, characterData.SubType, characterData.ArtSetId};
                 end
 
                 if characterCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then
@@ -90,7 +107,7 @@ cm:add_saving_game_callback(
         end
 
         Custom_Log("Saving "..tostring(characterCount).." total characters");
-        Custom_Log("Saving table"..tostring(tableCount));
+        --Custom_Log("Saving table"..tostring(tableCount));
 
         out("CRP: Saving "..tostring(characterCount).." total characters");
         crp_lord_pools_header["TotalCharacters"] = characterCount;
@@ -98,9 +115,9 @@ cm:add_saving_game_callback(
         cm:save_named_value("crp_lord_pools_faction", serialised_save_table_factions, context);
         out("CRP: Saving table"..tostring(tableCount));
         cm:save_named_value("crp_lord_pools_characters_"..tableCount, nthTable, context);
-        out("Finished saving");
-        Custom_Log_Finished();
+        out("CRP: Finished saving");
         Custom_Log("CRP: Finished saving");
+        Custom_Log_Finished();
     end
 );
 
@@ -250,3 +267,15 @@ core:add_listener(
     end,
     true
 );
+
+    -- Performs post character created/recruited functionality
+    -- like adding traits
+    core:add_listener(
+        "CRP_CharacterCreated",
+        "CharacterCreated",
+        true,
+        function(context)
+            cm:callback(function() ProcessNewCharacter(context) end, 0);
+        end,
+        true
+    );
