@@ -4,7 +4,7 @@ require 'script/_lib/pooldata/MixuSavageOrcRecruitmentPools'
 require 'script/_lib/pooldata/MixuVampireCountsRecruitmentPools'
 require 'script/_lib/pooldata/MixuWoodElfRecruitmentPools'
 
-require 'script/_lib/dbexports/MixuAgentArtSetResources'
+require 'script/_lib/dbexports/MixuDataResources'
 
 Custom_Log("Loading mixus data");
 
@@ -14,4 +14,4 @@ _G.CRPResources.AddAdditionalResources("wh_main_sc_grn_savage_orcs", SavageOrcRe
 _G.CRPResources.AddAdditionalResources("wh_main_sc_vmp_vampire_counts", VampireCountsRecruitmentPoolData);
 _G.CRPResources.AddAdditionalResources("wh_dlc05_sc_wef_wood_elves", WoodElfRecruitmentPoolData);
 
-_G.CRPResources.AddAdditionalDBResources("campaign_character_art_sets", MixuAgentArtSetResources);
+_G.CRPResources.AddAdditionalDBResources("campaign_character_data", MixuDataResources);

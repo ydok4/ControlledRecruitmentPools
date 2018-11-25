@@ -147,8 +147,8 @@ BretonniaRecruitmentPoolData =  {
                         MaximumAmount = 7,
                     },
                 },
-                SubPoolInitialMinSize = 0,
-                SubPoolMaxSize = 7,
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 4,
             },
             ProphetessPool = {
                 AgentSubTypes = {
@@ -166,7 +166,7 @@ BretonniaRecruitmentPoolData =  {
                     },
                 },
                 SubPoolInitialMinSize = 0,
-                SubPoolMaxSize = 3,
+                SubPoolMaxSize = 2,
             },
         },
         PoolMaxSize = 10,

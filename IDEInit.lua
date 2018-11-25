@@ -1,10 +1,10 @@
 -- Mock Data
 testFaction = {
     name = function()
-        return "wh2_dlc11_cst_the_drowned";
+        return "wh2_main_bst_shadowgor";
     end,
     subculture = function()
-        return "wh2_dlc11_sc_cst_vampire_coast";
+        return "wh_dlc03_sc_bst_beastmen";
     end,
     character_list = function()
         return {
@@ -86,17 +86,18 @@ crp = ControlledRecruitmentPools:new({
     DefaultYCoordinate = 0,
 });
 
-
-
-controlled_recruitment_pools();
+local factionName = "wh2_main_hef_high_elves_qb1";
+local test = string.match(factionName, "qb");
+--controlled_recruitment_pools();
 
 crp:Initialise();
 crp:GetCurrentPoolForFaction(testFaction);
-
+local name = crp:GetCharacterNameForSubculture(testFaction, "dlc03_bst_beastlord");
+local artSetId = crp:GetArtSetForSubType("grn_orc_warboss");
 local factionPoolResources = crp:GetFactionPoolResources(testFaction);
 local trait = crp:GetRandomCharacterTrait(testFaction, "wh2_dlc11_vmp_bloodline_blood_dragon");
 local traitPath = crp.UIController:GetImagePathForTrait(trait);
-local artSetId = crp:GetArtSetForSubType("wh2_dlc11_vmp_bloodline_blood_dragon");
+
 local traitEffects = crp.UIController:GetTraitEffects("wh2_main_skill_innate_all_aggressive");
 local traitDescription = crp.UIController:BuildTraitLocString("wh2_main_skill_innate_all_aggressive", "Knowledgeable");
 --crp.UIController:GetImagePathForTrait("wh_main_sc_vmp_vampire_counts", "");

@@ -44,6 +44,14 @@ function GetRandomObjectKeyFromList(objectList)
     return index;
 end
 
+function FindTableObjectByKeyPartial(objectList, partialValue)
+    for key, value in pairs(objectList) do
+        if string.match(key, partialValue) then
+            return value;
+        end
+    end
+end
+
 function GetStringifiedUnitList(character)
     local unitList = character:military_force():unit_list();
 
@@ -60,7 +68,7 @@ function GetStringifiedUnitList(character)
             end
         end
     end
-    Custom_Log("Built Unit string: "..tostring(unitString));
+    --Custom_Log("Built Unit string: "..tostring(unitString));
     return unitString;
 end
 

@@ -6,11 +6,11 @@ BeastmentRecruitmentPoolData = {
                 AgentSubTypes = {
                     dlc03_bst_beastlord = {
                         MinimumAmount = 0,
-                        MaximumAmount = 5,
+                        MaximumAmount = 8,
                     },
                 },
                 SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
+                SubPoolMaxSize = 8,
             },
         },
         Traits = {
@@ -37,6 +37,6 @@ BeastmentRecruitmentPoolData = {
             "wh_main_skill_innate_all_magnanimous",
             "wh_main_skill_innate_all_melancholic",
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 8,
     },
 }

@@ -89,8 +89,13 @@ function CRPUI:GetGeneralCandidates(humanFactionName, humanSubCulture, generalsL
                 local generalPanel = UIComponent(generalsList:Find(i));
 
                 local name = find_uicomponent(generalPanel, "dy_name"):GetStateText();
-                local keyName = name:gsub("%s+", "");
-
+                local keyName = "";
+                keyName = name:gsub("%s+", "");
+                keyName = keyName:gsub("'", "_");
+                keyName = keyName:gsub("-", "_");
+                keyName = keyName:gsub("é", "e");
+                keyName = keyName:gsub("‘", "_");
+                keyName = keyName:gsub(",", "_");
                 if humanSubCulture == "wh2_main_sc_hef_high_elves" then
                     local intrigueCostContainer = find_uicomponent(generalPanel, "IntrigueCost");
                     if intrigueCostContainer ~= nil then
@@ -212,13 +217,15 @@ function CRPUI:BuildTraitLocString(traitKey, traitName)
                 effectLoc = effectLoc:gsub("%+n%", effectValue);
 
                 --Custom_Log("Added Image and subbed "..effectLoc);
-                if (effectData[3] == "true" and effectValue > 0) or (effectData[3] == "false" and effectValue < 0) then
+                if (effectData.IsPositiveGood == "true" and effectValue > 0) or (effectData.IsPositiveGood == "false" and effectValue < 0) then
                     effectLoc = "[[col:green]]"..effectLoc.."[[/col]]";
+                    effectLoc = "[[img:".."ui/campaign ui/effect_bundles/"..effectData.IconPositive.."]][[/img]]   "..effectLoc;
                 else
                     effectLoc = "[[col:red]]"..effectLoc.."[[/col]]";
+                    effectLoc = "[[img:".."ui/campaign ui/effect_bundles/"..effectData.IconNegative.."]][[/img]]   "..effectLoc;
                 end
                 --Custom_Log("Set colour "..effectLoc);
-                effectLoc = "[[img:".."ui/campaign ui/effect_bundles/"..effectData[1].."]][[/img]]   "..effectLoc;
+                
                 --Custom_Log("Set image");
                 traitDescription = traitDescription.."\n"..effectLoc;
                 --Custom_Log("Completed loc "..effectLoc);

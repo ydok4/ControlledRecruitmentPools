@@ -15,12 +15,13 @@ function controlled_recruitment_pools()
         -- If this is a new game crp.CRPLordsInPools will be nil
         -- Otherwise it should be populated from the loading callback
         CRPLordsInPools = crp.CRPLordsInPools,
+        PreBattleData = crp.PreBattleData,
     });
     crp:Initialise();
     if cm:is_new_game()  then
         Custom_Log("New Game");
         -- Clear existing generals
-        crp:ReplaceCharactersForNewGame();
+        crp:NewGameStartUp();
     else
         Custom_Log("Existing game");
         if #crp.CRPLordsInPools > 0 then
@@ -31,6 +32,7 @@ function controlled_recruitment_pools()
     cm:callback(function() SetupListeners(crp.CRPLordsInPools); end, 1);
     Custom_Log_Finished();
     Custom_Log("CRP: Finished");
+    out("CRP: Finished startup");
 end
 
 -- Saving/Loading Callbacks
@@ -41,9 +43,22 @@ cm:add_saving_game_callback(
         Custom_Log_Finished();
         Custom_Log("Saving callback");
         out("CRP: Saving callback");
+        local preBattleAttackers = {};
+        for force_key, characterData in pairs(crp.PreBattleData["attackers"]) do
+            preBattleAttackers[force_key] = { characterData.character_cqi, characterData.character_faction_name, characterData.character_sub_type };
+            out("CRP: Finished saving attacker "..force_key);
+        end
+        cm:save_named_value("crp_pre_battle_attackers", preBattleAttackers, context);
+
+        local preBattleDefenders = {};
+        for force_key, characterData in pairs(crp.PreBattleData["defenders"]) do
+            preBattleDefenders[force_key] = { characterData.character_cqi, characterData.character_faction_name, characterData.character_sub_type };
+            out("CRP: Finished saving defender "..force_key);
+        end
+        cm:save_named_value("crp_pre_battle_defenders", preBattleDefenders, context);
+
         local crp_lord_pools_header = {};
         local serialised_save_table_factions = {};
-        local serialised_save_table_characters = {};
 
         local characterCount = 0;
         local tableCount = 1;
@@ -64,8 +79,6 @@ cm:add_saving_game_callback(
                 if characterCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then
                     Custom_Log("Saving table "..tostring(tableCount));
                     out("CRP: Saving table "..tostring(tableCount));
-                    --local save_table = {};
-                    --ConcatTableWithKeys(save_table, nthTable);
                     cm:save_named_value("crp_lord_pools_characters_"..tableCount, nthTable, context);
                     tableCount = tableCount + 1;
                     nthTable = {};
@@ -104,6 +117,42 @@ end
 cm:add_loading_game_callback(
     function(context)
         out("CRP: Loading callback");
+
+        crp.PreBattleData = {};
+        out("CRP: Loading crp_pre_battle_attackers");
+        local preBattleDataAttackers = cm:load_named_value("crp_pre_battle_attackers", {}, context);
+        for attacker_force_cqi, preBattleData in pairs(preBattleDataAttackers) do
+            out("CRP: Loading force "..attacker_force_cqi);
+            --out("CRP: character_cqi "..preBattleData[1]);
+            --out("CRP: character_faction_name "..preBattleData[2]);
+            preBattleDataAttackers[tostring(attacker_force_cqi)] = {
+                character_cqi = preBattleData[1],
+                character_faction_name = preBattleData[2],
+            };
+            if preBattleData[3] then
+                --out("CRP: Setting character sub type as "..preBattleData[3]);
+                preBattleDataAttackers[tostring(attacker_force_cqi)].character_sub_type = preBattleData[3];
+            end
+            out("CRP: Finished Loading force "..attacker_force_cqi);
+        end
+        crp.PreBattleData["attackers"] = preBattleDataAttackers;
+        out("CRP: Loading crp_pre_battle_defenders");
+        local preBattleDataDefenders = cm:load_named_value("crp_pre_battle_defenders", {}, context);
+        for defender_force_cqi, preBattleData in pairs(preBattleDataDefenders) do
+            out("CRP: Loading force "..defender_force_cqi);
+            preBattleDataDefenders[tostring(defender_force_cqi)] = {
+                character_cqi = preBattleData[1],
+                character_faction_name = preBattleData[2],
+            };
+            if preBattleData[3] then
+                --out("CRP: Setting character sub type as "..preBattleData[3]);
+                preBattleDataDefenders[tostring(defender_force_cqi)].character_sub_type = preBattleData[3];
+            end
+            out("CRP: Finished Loading force "..defender_force_cqi);
+        end
+        crp.PreBattleData["defenders"] = preBattleDataDefenders;
+        out("CRP: Finished preBattleData loading");
+
         local crp_lord_pools_header = cm:load_named_value("crp_lord_pools_header", {}, context);
         if crp_lord_pools_header["TotalCharacters"] == nil then
             out("CRP: No characters to load");
@@ -179,7 +228,7 @@ core:add_listener(
     end,
     function(context)
         out("CRP: PreBattlePopUp");
-        cm:callback(function() PendingBattleResult(crp.HumanFaction:name(), true) end, 0);
+        cm:callback(function() PendingBattleResult(crp.HumanFaction:name(), true, true) end, 0);
     end,
     true
 );

@@ -18,14 +18,19 @@ require 'script/_lib/pooldata/RogueArmyRecruitmentPools'
 
 require 'script/_lib/pooldata/SharedRecruitmentPools'
 
-require 'script/_lib/dbexports/AgentArtSetResources'
-require 'script/_lib/dbexports/CustomAgentArtSetResources'
+require 'script/_lib/dbexports/AgentDataResources'
+require 'script/_lib/dbexports/CustomAgentDataResources'
+require 'script/_lib/dbexports/RebelLeadersDataResource'
+require 'script/_lib/dbexports/NameGroupResources'
+require 'script/_lib/dbexports/NameResources'
 
 Custom_Log("Loading Core Data");
 
 _G.CRPResources = {
     DBResources = {
-        campaign_character_art_sets = AgentArtSetResources,
+        campaign_character_data = AgentDataResources,
+        faction_to_name_groups = NameGroupResources,
+        name_groups_to_names = NameResources,
     },
     CulturePoolResources = {
         -- Beastmen 
@@ -137,4 +142,5 @@ _G.CRPResources = {
     end,
 }
 
-_G.CRPResources.AddAdditionalDBResources("campaign_character_art_sets", CustomAgentArtSetResources);
+_G.CRPResources.AddAdditionalDBResources("campaign_character_data", CustomAgentDataResources);
+_G.CRPResources.AddAdditionalDBResources("campaign_character_data", RebelLeadersDataResource);
