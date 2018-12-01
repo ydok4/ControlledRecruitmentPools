@@ -40,6 +40,34 @@ function CRPUI:InitialiseListeners(humanFaction, lordsInPool)
         end,
         true
     );
+
+    --[[core:add_listener(
+        "UnitRecruitmentOpend",
+        "PanelOpenedCampaign",
+        function(context)
+            Custom_Log("OPENED: "..context.string);
+            return context.string == "units_recruitment";
+        end,
+        function(context)
+            Custom_Log("\n"..context.string.." opened");
+            local unitList = find_uicomponent(core:get_ui_root(), "units_panel", "main_units_panel", "recruitment_docker", "recruitment_options", "recruitment_listbox", "local1", "unit_list", "listview", "list_box");
+            for j = 0, unitList:ChildCount() - 1  do
+                local child = UIComponent(unitList:Find(j));
+                Custom_Log("unit ID "..child:Id());
+                local unit_cap =  find_uicomponent(child, "unit_cap");
+                unit_cap:SetVisible(true);
+
+                for k = 0, unit_cap:ChildCount() - 1  do
+                    local subChild = UIComponent(unit_cap:Find(k));
+                    Custom_Log("Sub child Id: "..subChild:Id());
+                    Custom_Log("Sub child text: "..subChild:GetStateText());
+                end
+                --local max_units =  find_uicomponent(child, "max_units");
+                --max_units:SetVisible(true);
+            end
+        end,
+        true
+    );--]]
     Custom_Log("Created panel opened listener");
 
     core:add_listener(

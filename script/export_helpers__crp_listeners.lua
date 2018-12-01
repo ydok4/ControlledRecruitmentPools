@@ -43,7 +43,7 @@ function SetupListeners(lordsInPool)
                 Custom_Log("Ignoring rebels");
             else
                 crp:UpdateRecruitmentPool(context:faction(), 1);
-                crp:ReplaceAnyVampireLordReplacementsInFaction(context:faction());
+                crp:RemoveAnyVampireLordReplacementsInFaction(context:faction());
             end
             Custom_Log_Finished();
         end,
@@ -161,7 +161,7 @@ function ProcessBattleCacheData(cachedBattleData, type, isPreBattle)
                 if general:is_null_interface() == false and char_cqi ~= generalCQI then
                     local generalSubType = general:character_subtype_key();
                     Custom_Log("Current general type is "..generalSubType);
-                    if generalSubType == "vmp_lord_replacement" and general:faction() == "rebels" then
+                    if generalSubType == "vmp_lord_replacement" and general:faction():name() == "rebels" then
                         local preBattleSubTypeForCharacter = crp:GetPreBattleSubTypeForCharacter(char_cqi, type);
                         Custom_Log("Got pre battle sub type "..preBattleSubTypeForCharacter);
                         local artSetId = crp:GetArtSetForSubType(preBattleSubTypeForCharacter);
@@ -250,7 +250,15 @@ function ProcessNewCharacter(context)
     local factionName = char:faction():name();
     Custom_Log("Character Created Listener "..factionName);
     local factionLords = crp.CRPLordsInPools[factionName];
-    if factionLords ~= nil then
+
+    if char:character_subtype_key() == "vmp_lord_replacement" then
+        local faction = char:faction();
+        if faction:name() ~= "rebels" then
+            Custom_Log("Character is a vampire replacement");
+            crp:UpdateRecruitmentPool(faction, 1);
+            crp:RemoveAnyVampireLordReplacementsInFaction(faction);
+        end
+    elseif factionLords ~= nil then
         local localisedForeName = effect.get_localised_string(char:get_forename());
         local localisedSurname = "";
         local surnameKey =  char:get_surname();
@@ -294,13 +302,6 @@ function ProcessNewCharacter(context)
             else
                 Custom_Log("Character is not in pool");
             end
-        end
-    elseif char:character_subtype_key() == "vmp_lord_replacement" then
-        local faction = char:faction();
-        if faction:name() ~= "rebels" then
-            Custom_Log("Character is a vampire replacement");
-            crp:UpdateRecruitmentPool(faction, 1);
-            crp:ReplaceAnyVampireLordReplacementsInFaction(faction);
         end
     end
    Custom_Log("Finished Character created listener");

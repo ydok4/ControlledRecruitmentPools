@@ -22,7 +22,7 @@ function controlled_recruitment_pools()
         Custom_Log("New Game");
         -- This callback is required so that startup happens after
         -- the game spawns any startup armies. This allows them to be replaced if required.
-        cm:callback(function() crp:NewGameStartUp(); end, 0);
+        cm:callback(function() crp:NewGameStartUp(); end, 1);
     else
         Custom_Log("Existing game");
         if #crp.CRPLordsInPools > 0 then

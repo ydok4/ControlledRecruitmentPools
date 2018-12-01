@@ -13,7 +13,7 @@ end
 
 function Roll100(passValue)
     return Random(99) < passValue;
-  end
+end
 
 function TableHasAnyValue(table)
     for key, value in pairs(table) do
@@ -66,6 +66,10 @@ function CreateValidLuaTableKey(value)
 end
 
 function GetStringifiedUnitList(character)
+    if character:has_military_force() == false then
+        Custom_Log("Replaced character does not have military force");
+        return "";
+    end
     local unitList = character:military_force():unit_list();
 
     local unitString = "";
