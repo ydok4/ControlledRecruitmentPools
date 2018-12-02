@@ -6,12 +6,15 @@ require 'script/_lib/pooldata/MixuWoodElfRecruitmentPools'
 
 require 'script/_lib/dbexports/MixuDataResources'
 
-Custom_Log("Loading mixus data");
-
 _G.CRPResources.AddAdditionalResources("wh_main_sc_grn_greenskins", GreenskinRecruitmentPoolData);
 _G.CRPResources.AddAdditionalResources("wh_main_sc_nor_norsca", NorscaRecruitmentPoolData);
 _G.CRPResources.AddAdditionalResources("wh_main_sc_grn_savage_orcs", SavageOrcRecruitmentPoolData);
 _G.CRPResources.AddAdditionalResources("wh_main_sc_vmp_vampire_counts", VampireCountsRecruitmentPoolData);
 _G.CRPResources.AddAdditionalResources("wh_dlc05_sc_wef_wood_elves", WoodElfRecruitmentPoolData);
-
 _G.CRPResources.AddAdditionalDBResources("campaign_character_data", MixuDataResources);
+
+require 'script/_lib/dbexports/MixuEffectResources'
+require 'script/_lib/dbexports/MixuTraitsToEffects'
+
+_G.CRPUIResources.AddAdditionalUIDBResources("effects", MixuEffectResources);
+_G.CRPUIResources.AddAdditionalUIDBResources("trait_level_effects", MixuTraitsToEffects);

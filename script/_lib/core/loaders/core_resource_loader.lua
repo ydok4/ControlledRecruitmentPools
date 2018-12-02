@@ -69,10 +69,7 @@ _G.CRPResources = {
         -- Rogue Armies
         wh_rogue_armies = RogueArmyRecruitmentPoolData,
     },
-    --[[CultureSubTypeResources = {
-        -- Empire
-        wh_main_sc_emp_empire = EmpireSubTypeData,
-    },--]]
+
     -- Additional loader function
     -- This is intended to be used by other mods to load custom data.
     -- This can be used to change agent sub type distribution or add

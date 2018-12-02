@@ -1,71 +1,11 @@
-crp = _G.crp;
+crp = {};
 
-function SetupListeners(lordsInPool)
+function SetupListeners(crpObject)
     out("CRP: SetupListeners");
+    Custom_Log("SetupListeners");
+    crp = crpObject;
+    Custom_Log("Initialised crp in listeners");
 
-    -- Clears the log file on human faction turn end
-    core:add_listener(
-        "ClearLog",
-        "FactionTurnEnd",
-        function(context)
-            return crp.HumanFaction:name() == context:faction():name();
-        end,
-        function(context)
-            Custom_Log_Start();
-            out("CRP: Human turn end");
-            local turnNumber = cm:turn_number();
-            Custom_Log("Ending turn "..turnNumber);
-            if turnNumber == 1 then
-                if crp.HumanFaction:subculture() == "wh_dlc05_sc_wef_wood_elves" then
-                    Custom_Log("Human is wood elves");
-                    AssignGeneralsToForBeastmenInvasion();
-                elseif crp.HumanFaction:subculture() == "wh_main_sc_nor_norsca" then
-                    --Custom_Log("Human is norsca");
-                    --AssignGeneralsToForNorscaInvasion();
-                end
-            end
-            Custom_Log_Finished();
-        end,
-        true
-    );
-
-    -- Handles the basic faction lord replenishment
-    core:add_listener(
-        "UpdateRecruitmentPool",
-        "FactionTurnEnd",
-        function(context)
-            Custom_Log_Finished();
-            Custom_Log("Checking faction: "..tostring(context:faction():name()));
-            return crp:IsSupportedSubCulture(context:faction():subculture()) or crp:IsRogueArmy(context:faction():name());
-        end,
-        function(context)
-            if context:faction():subculture() == "rebels" then
-                Custom_Log("Ignoring rebels");
-            else
-                crp:UpdateRecruitmentPool(context:faction(), 1);
-                crp:RemoveAnyVampireLordReplacementsInFaction(context:faction());
-            end
-            Custom_Log_Finished();
-        end,
-        true
-    );
-
-    -- Handles character pool updates and the setting of general art sets
-    -- after battle is completed for battles ONLY containing ai
-    -- There is another listener for battles involving humans inside
-    -- controlled_recruitment_pools.lua which listens for a UI panel
-    core:add_listener(
-        "BattleCompletedListener",
-        "BattleCompleted",
-        function(context)
-            return cm:model():pending_battle():has_been_fought();
-        end,
-        function(context)
-            out("CRP: BattleCompletedListener");
-            cm:callback(function() PendingBattleResult(crp.HumanFaction:name(), false) end, 0);
-        end,
-        true
-    );
 end
 
 -- This should only run if the battle contains the human faction
@@ -160,7 +100,6 @@ function ProcessBattleCacheData(cachedBattleData, type, isPreBattle)
                 local generalCQI = general:cqi();
                 if general:is_null_interface() == false and char_cqi ~= generalCQI then
                     local generalSubType = general:character_subtype_key();
-                    Custom_Log("Current general type is "..generalSubType);
                     if generalSubType == "vmp_lord_replacement" and general:faction():name() == "rebels" then
                         local preBattleSubTypeForCharacter = crp:GetPreBattleSubTypeForCharacter(char_cqi, type);
                         Custom_Log("Got pre battle sub type "..preBattleSubTypeForCharacter);
@@ -173,8 +112,10 @@ function ProcessBattleCacheData(cachedBattleData, type, isPreBattle)
                         local generalFactionName = generalFaction:name();
                         Custom_Log("General faction "..generalFactionName);
                         if crp:IsSupportedSubCulture(general:faction():subculture()) or crp:IsRogueArmy(generalFactionName) then
+                            Custom_Log("Found supported faction");
                             crp:UpdateRecruitmentPool(generalFaction, 1);
                         end
+                        Custom_Log("Updated recruitment pool");
                         -- Then find an art set for the faction and set the temporary lord as that
                         local artSetId = crp:GetValidAgentArtSetForFaction(generalFaction);
                         Custom_Log("Setting character with art set id "..artSetId);
@@ -207,7 +148,7 @@ function ProcessBattleCacheData(cachedBattleData, type, isPreBattle)
             Custom_Log("CRP: Other");
         end
     end
-    if not isPreBattle then
+    if not isPreBattle and crp.PreBattleData[type] ~= nil then
         Custom_Log("Clearing pre battle data");
         crp.PreBattleData[type] = nil;
     end
@@ -243,66 +184,4 @@ function AssignNewCharacterAsInvasionGeneral(faction, invasionKey, agentSubType)
         Custom_Log("Assigned general to "..invasionKey);
     end
 
-end
-
-function ProcessNewCharacter(context)
-    local char = context:character();
-    local factionName = char:faction():name();
-    Custom_Log("Character Created Listener "..factionName);
-    local factionLords = crp.CRPLordsInPools[factionName];
-
-    if char:character_subtype_key() == "vmp_lord_replacement" then
-        local faction = char:faction();
-        if faction:name() ~= "rebels" then
-            Custom_Log("Character is a vampire replacement");
-            crp:UpdateRecruitmentPool(faction, 1);
-            crp:RemoveAnyVampireLordReplacementsInFaction(faction);
-        end
-    elseif factionLords ~= nil then
-        local localisedForeName = effect.get_localised_string(char:get_forename());
-        local localisedSurname = "";
-        local surnameKey =  char:get_surname();
-        if surnameKey ~= nil and surnameKey ~= "" then
-            localisedSurname = effect.get_localised_string(char:get_surname());
-        end
-        local keyName = localisedForeName..localisedSurname;
-        -- This removes any spaces within names, eg the surname "Von Carstein";
-        -- Otherwise the key is invalid and the character won't be tracked
-        keyName = CreateValidLuaTableKey(keyName);
-        --Custom_Log("Character key: "..keyName.."end");
-        if factionLords[keyName] ~= nil then
-            --Custom_Log("Character is in pool for faction: "..factionName);
-            -- If the character is tracked in the pool
-            local poolData = factionLords[keyName];
-            local subCulture = char:faction():subculture();
-            if poolData then
-                --Custom_Log("Adding trait: "..poolData.InnateTrait.." for character: "..keyName);
-                cm:disable_event_feed_events(true, "wh_event_category_traits_ancillaries", "", "");
-                -- Add their trait
-                --cm:force_add_trait("character_cqi:"..char:cqi(), poolData.InnateTrait, true);
-                -- Then remove from the pool
-                factionLords[keyName] = nil;
-                --cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_traits_ancillaries", "", "") end, 1);
-                -- Note: Removal is necessary since we now track the character from the faction's character_list
-
-                if subCulture == "wh2_main_sc_hef_high_elves" and factionName == crp.HumanFaction:name() then
-                    Custom_Log("High elf character recruited listener");
-                    if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
-                        cm:suppress_all_event_feed_messages(true);
-                        cm:trigger_incident(factionName, "wh2_main_hef_mid_lord_influence_cost", true);
-                        cm:suppress_all_event_feed_messages(false);
-                        Custom_Log("Lord is mid prince or princess");
-                    elseif poolData.SubType == "wh2_main_hef_prince_high" or poolData.SubType == "wh2_main_hef_princess_high" then
-                        cm:suppress_all_event_feed_messages(true);
-                        cm:trigger_incident(factionName, "wh2_main_hef_high_lord_influence_cost", true);
-                        cm:suppress_all_event_feed_messages(false);
-                        Custom_Log("Lord is high prince or princess");
-                    end
-                end
-            else
-                Custom_Log("Character is not in pool");
-            end
-        end
-    end
-   Custom_Log("Finished Character created listener");
 end

@@ -60,7 +60,7 @@ core = {
     add_listener = function() end,
 }
 
-require 'script/export_helpers__crp__datahelpers'
+--[[require 'script/export_helpers__crp__datahelpers'
 require 'script/export_helpers__crp_core_resource_loader'
 require 'script/export_helpers__crp_ui_resource_loader'
 require 'script/export_helpers__crp_listeners'
@@ -68,7 +68,7 @@ require 'script/export_helpers__crp_model'
 require 'script/export_helpers__crp_ui'
 
 require 'script/export_helpers__crp_z_mixu_resource_loader'
-require 'script/export_helpers__crp_z_mixu_ui_resource_loader'
+require 'script/export_helpers__crp_z_mixu_ui_resource_loader'--]]
 
 require 'script/campaign/mod/controlled_recruitment_pools'
 
@@ -88,7 +88,7 @@ crp = ControlledRecruitmentPools:new({
 
 local factionName = "wh2_main_hef_high_elves_qb1";
 local test = string.match(factionName, "qb");
---controlled_recruitment_pools();
+controlled_recruitment_pools();
 
 crp:Initialise();
 crp:GetCurrentPoolForFaction(testFaction);

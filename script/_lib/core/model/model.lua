@@ -39,7 +39,7 @@ function ControlledRecruitmentPools:Initialise()
     self.UIController = CRPUI:new({
 
     });
-    self.UIController:InitialiseUI(self.HumanFaction, self.CRPLordsInPools);
+    Custom_Log("Finished default values");
     out("CRP: Finished default values");
 end
 
@@ -85,9 +85,7 @@ function ControlledRecruitmentPools:RecalculatePoolLimits()
 end
 
 function ControlledRecruitmentPools:IsSupportedSubCulture(subculture)
-    --Custom_Log("Checking subculture "..tostring(subculture));
     if subculture == "rebels" or self.CRPResources.CulturePoolResources[subculture] then
-        --Custom_Log("Found supported subculture "..tostring(subculture));
         return true;
     else
         return false;
@@ -104,22 +102,24 @@ function ControlledRecruitmentPools:IsRogueArmy(factionName)
 end
 
 function ControlledRecruitmentPools:NewGameStartUp()
+    Custom_Log("New game startup");
 	local faction_list = cm:model():world():faction_list();
-
     cm:disable_event_feed_events(true, "wh_event_category_agent", "", "");
     Custom_Log("Faction Start up");
 	for i = 0, faction_list:num_items() - 1 do
         local faction = faction_list:item_at(i);
-        if faction:is_quest_battle_faction() == false and (self:IsSupportedSubCulture(faction:subculture()) or self:IsRogueArmy(faction:name())) then
+        if faction:is_quest_battle_faction() == false then
             -- After replacing calculate the current pools for the faction
             local currentFactionPools = self:GetCurrentPoolForFaction(faction);
-            -- Replace existing lords with specified values (if any)
-            -- The current faction pools will be updated with these values
-            self:ReplaceExistingLords(faction, currentFactionPools);
-            if faction:name() == self.HumanFaction:name() then --faction:is_dead() == false then
-                Custom_Log("Setting minimum for player faction "..faction:name());
-                -- Then set the initial pools for human faction
-                self:SetupInitialMinimumValues(faction, currentFactionPools);
+            if self:IsSupportedSubCulture(faction:subculture()) or self:IsRogueArmy(faction:name()) then
+                -- Replace existing lords with specified values (if any)
+                -- The current faction pools will be updated with these values
+                self:ReplaceExistingLords(faction, currentFactionPools);
+                if faction:name() == self.HumanFaction:name() then
+                    Custom_Log("Setting minimum for player faction "..faction:name());
+                    -- Then set the initial pools for human faction
+                    self:SetupInitialMinimumValues(faction, currentFactionPools);
+                end
             end
             -- This will replace any vmp_lord_replacements present at the start of the game
             -- This will usually be from armies spawned by scripted. Eg the Artois army for Kemmler start.
@@ -311,28 +311,31 @@ function ControlledRecruitmentPools:RemoveAnyVampireLordReplacementsInFaction(fa
     local factionResources = self:GetFactionPoolResources(faction);
     local character_list = faction:character_list();
     for i = 0, character_list:num_items() - 1 do
-        local character = character_list:item_at(i);
-        local charSubType = character:character_subtype_key();
-        if charSubType == "vmp_lord_replacement" and cm:char_is_agent(character) == false and (character:has_military_force() == false or character:military_force():is_armed_citizenry() == false) then
-            -- If they have a military force, replace them with a character
-            if character:has_military_force() then
-                Custom_Log("Found the vmp_lord_replacement for faction "..faction:name());
-                -- Select a general to generate
-                if not currentPoolCounts then
-                    currentPoolCounts = self:GetCurrentPoolForFaction(faction);
-                end
-                local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts, true);
-                Custom_Log("Replacing character with "..agentSubTypeKey);
-                self:ReplaceCharacter(faction, character, agentSubTypeKey, nil, nil);
+        local char = character_list:item_at(i);
+        local charSubType = char:character_subtype_key();
+        if char:character_subtype_key() == "vmp_lord_replacement" and (char:has_military_force() == true and char:military_force():is_armed_citizenry() == false) then
+            Custom_Log("Found the vmp_lord_replacement for faction "..faction:name());
+            -- Select a general to generate
+            if not currentPoolCounts then
+                currentPoolCounts = self:GetCurrentPoolForFaction(faction);
+            end
+            local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts, true);
+            Custom_Log("Replacing character with "..agentSubTypeKey);
+            self:ReplaceCharacter(faction, char, agentSubTypeKey, nil, nil);
             -- This has been removed because I was not able to find a way to kill the characters successfully from within the pool
             -- but will attempt again in the future if it is required
             -- Otherwise they are in the recruitement pool. Typically this happens when killing a lord
             -- with immortality and (I think) the immortality command doesn't process
-            --[[else
-                Custom_Log("Found vampire in faction pool "..faction:name().." cqi "..character:cqi());
-                cm:set_character_immortality("character_cqi:"..character:cqi(), false);
-                cm:kill_character(character:cqi(), false, false); --]]
-            end
+            --[[elseif charSubType == "vmp_lord" then
+                --cm:teleport_to("character_cqi:"..char:cqi(), 231, 94, true);
+                
+                cm:callback(function() cm:kill_character(char:cqi(), true, true); end, 1); 
+                --cm:set_character_immortality("character_cqi:"..char:cqi(), false);
+                --cm:callback(function() Custom_Log("Killing character "..char:cqi());  end, 1);
+            end--]]
+        elseif char:character_subtype_key() == "vmp_lord" and (char:has_military_force() == false) then
+            Custom_Log("Found vampire_lord in faction pool "..char:faction():name().." cqi "..char:cqi());
+            cm:kill_character(char:cqi(), true, true);
         end
     end
 end
@@ -398,7 +401,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
             Custom_Log("Selected "..agentSubTypeKey);
             local artSetId = self:GetArtSetForSubType(agentSubTypeKey);
             --Custom_Log("Art set Id: "..artSetId);
-            -- If this is the players faction this should happen straight away
+            -- If this is the players faction this should happen straight away - Not right now. 
             -- so the recruitment event message can be supressed
             --if faction:name() == self.HumanFaction:name() then
                 self:GenerateGeneral(agentSubTypeKey, faction, artSetId);
@@ -652,11 +655,20 @@ function ControlledRecruitmentPools:GetCharacterNameForSubculture(faction, agent
     local nameKey = "";
     local clan_name_object = "";
     local forename_object = "";
+    local forename_chance = self:GetForeNameChance(factionSubculture);
 
     local factionLords = self.CRPLordsInPools[factionName];
     while doOnce == false or factionLords[nameKey] ~= nil do
         clan_name_object = self:GetValidNameForType(namePool, canUseFemaleNames, "clan_name");
-        forename_object = self:GetValidNameForType(namePool, canUseFemaleNames, "forename");
+        if Roll100(forename_chance) then
+            --Custom_Log("Generating forename");
+            forename_object = self:GetValidNameForType(namePool, canUseFemaleNames, "forename");
+        else
+            --Custom_Log("Not Generating forename");
+            forename_object = {};
+            forename_object.Text = "";
+            forename_object.Id = "";
+        end
 
         nameKey = clan_name_object.Text..forename_object.Text;
         nameKey = CreateValidLuaTableKey(nameKey);
@@ -674,6 +686,21 @@ function ControlledRecruitmentPools:GetCharacterNameForSubculture(faction, agent
     };
 
     return generatedName;
+end
+
+function ControlledRecruitmentPools:GetForeNameChance(factionSubculture)
+    if factionSubculture == "wh_main_sc_chs_chaos" then
+        return 100 - 60;
+    elseif factionSubculture == "wh2_main_sc_skv_skaven" then
+        return 100 - 75;
+    elseif factionSubculture == "wh_main_sc_nor_norsca" then
+        return 100 - 30;
+    elseif factionSubculture == "wh_dlc03_sc_bst_beastmen" then
+        return 100 - 75;
+    elseif factionSubculture == "wh_main_sc_grn_greenskins" or factionSubCulture == "wh_main_sc_grn_savage_orcs" then
+        return 100 - 40;
+    end
+    return 100;
 end
 
 function ControlledRecruitmentPools:GetValidNameForType(namePool, canUseFemaleNames, nameType)
@@ -935,4 +962,105 @@ function ControlledRecruitmentPools:GetPreBattleSubTypeForCharacter(char_cqi, ty
             return preBattleCombatant.character_sub_type;
         end
     end
+end
+
+function ControlledRecruitmentPools:ProcessNewCharacter(context)
+    local char = context:character();
+    local factionName = char:faction():name();
+    local factionLords = self.CRPLordsInPools[factionName];
+
+    local localisedForeName = effect.get_localised_string(char:get_forename());
+    local localisedSurname = "";
+    local surnameKey =  char:get_surname();
+    if surnameKey ~= nil and surnameKey ~= "" then
+        localisedSurname = effect.get_localised_string(char:get_surname());
+    end
+    local keyName = localisedForeName..localisedSurname;
+    -- This removes any spaces within names, eg the surname "Von Carstein";
+    -- Otherwise the key is invalid and the character won't be tracked
+    keyName = CreateValidLuaTableKey(keyName);
+    --Custom_Log("Character key: "..keyName.."end");
+    if factionLords ~= nil and factionLords[keyName] ~= nil then
+        --Custom_Log("Character is in pool for faction: "..factionName);
+        -- If the character is tracked in the pool
+        local poolData = factionLords[keyName];
+        local subCulture = char:faction():subculture();
+        if poolData then
+            --Custom_Log("Adding trait: "..poolData.InnateTrait.." for character: "..keyName);
+            --cm:disable_event_feed_events(true, "wh_event_category_traits_ancillaries", "", "");
+            -- Add their trait
+            --cm:force_add_trait("character_cqi:"..char:cqi(), poolData.InnateTrait, true);
+            -- Then remove from the pool
+            factionLords[keyName] = nil;
+            --cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_traits_ancillaries", "", "") end, 1);
+            -- Note: Removal is necessary since we now track the character from the faction's character_list
+
+            if subCulture == "wh2_main_sc_hef_high_elves" and factionName == self.HumanFaction:name() then
+                Custom_Log("High elf character recruited listener");
+                if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
+                    cm:suppress_all_event_feed_messages(true);
+                    cm:trigger_incident(factionName, "wh2_main_hef_mid_lord_influence_cost", true);
+                    cm:suppress_all_event_feed_messages(false);
+                    Custom_Log("Lord is mid prince or princess");
+                elseif poolData.SubType == "wh2_main_hef_prince_high" or poolData.SubType == "wh2_main_hef_princess_high" then
+                    cm:suppress_all_event_feed_messages(true);
+                    cm:trigger_incident(factionName, "wh2_main_hef_high_lord_influence_cost", true);
+                    cm:suppress_all_event_feed_messages(false);
+                    Custom_Log("Lord is high prince or princess");
+                end
+            end
+        else
+            Custom_Log("Character is not in pool");
+        end
+    -- If the character isn't tracked, that means CRP didn't spawn it.
+    -- This check is to specifically check the "Extra" spawned characters from the system. This occurs when using kill_character() and create_force_with_general().
+    -- Weirdly enough this won't use vmp_lord_replacement but vmp_lord (even though it does in every other case).
+    -- We also don't want to do this with characters without military forces and definitely not on garrison commands.
+    -- Also since this character is not tracked, it means we can safely delete vmp_lords for the Vampire Counts factions.
+    elseif char:character_subtype_key() == "vmp_lord" and (char:has_military_force() == false or char:military_force():is_armed_citizenry() == false) then
+        Custom_Log("Character is a vampire lord");
+        Custom_Log("Character Details "..factionName.." sub type "..char:character_subtype_key().." cqi "..char:cqi());
+        local faction = char:faction();
+        if faction:name() == self.HumanFaction:name() and faction:subculture() ~= "wh_main_sc_vmp_vampire_counts" then
+            if faction:name() ~= "rebels" then
+                cm:callback(function() cm:kill_character(char:cqi(), true, true); end, 1);
+                Custom_Log("Killed character "..char:cqi());
+            end
+        end
+        Custom_Log("Finished Character created listener");
+        Custom_Log_Finished();
+    -- This condition checks for armies created with create_force
+    -- This army will be replaced
+    elseif char:character_subtype_key() == "vmp_lord_replacement" and (char:has_military_force() == true and char:military_force():is_armed_citizenry() == false) then
+        Custom_Log("Found spawned replacement");
+        Custom_Log("Character Details "..factionName.." sub type "..char:character_subtype_key().." cqi "..char:cqi());
+        Custom_Log("Finished Character created listener");
+        Custom_Log_Finished();
+    end
+end
+
+function ControlledRecruitmentPools:ProcessKilledCharacter(context)
+    local char = context:character();
+    local factionName = char:faction():name();
+    local factionLords = self.CRPLordsInPools[factionName];
+    --Custom_Log("Killed Character Details "..factionName.." sub type "..char:character_subtype_key().." cqi "..char:cqi());
+    if factionLords ~= nil then
+        local localisedForeName = effect.get_localised_string(char:get_forename());
+        local localisedSurname = "";
+        local surnameKey =  char:get_surname();
+        if surnameKey ~= nil and surnameKey ~= "" then
+            localisedSurname = effect.get_localised_string(char:get_surname());
+        end
+        local keyName = localisedForeName..localisedSurname;
+        -- This removes any spaces within names, eg the surname "Von Carstein";
+        -- Otherwise the key is invalid and the character won't be tracked
+        keyName = CreateValidLuaTableKey(keyName);
+        --Custom_Log("Character is in pool for faction: "..factionName);
+        -- If the character is tracked in the pool
+        if factionLords[keyName] ~= nil then
+            Custom_Log("Setting "..keyName.." as nil");
+            factionLords[keyName] = nil;
+        end
+    end
+    --Custom_Log_Finished();
 end
