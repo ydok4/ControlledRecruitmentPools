@@ -51,6 +51,8 @@ function get_cm()
         add_listener = function () end,
         add_saving_game_callback = function() end,
         add_loading_game_callback = function() end,
+        spawn_character_to_pool = function() end,
+        callback = function() end,
     };
 end
 
@@ -90,7 +92,12 @@ local factionName = "wh2_main_hef_high_elves_qb1";
 local test = string.match(factionName, "qb");
 controlled_recruitment_pools();
 
-crp:Initialise();
+local destinationTable = {};
+local sourceTable = {};
+if destinationTable == {} then
+    local test = ""; 
+end
+--crp:Initialise();
 crp:GetCurrentPoolForFaction(testFaction);
 local name = crp:GetCharacterNameForSubculture(testFaction, "wef_highweaver");
 local artSetId = crp:GetArtSetForSubType("grn_orc_warboss");
@@ -107,4 +114,4 @@ local traitDescription = crp.UIController:BuildTraitLocString("wh2_main_skill_in
 local imagePath = crp.UIController:GetImagePathForTrait(testFaction:subculture(), "wh2_main_skill_innate_all_aggressive");
 --local test = crp:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, "EmpireGenerals");
 
---crp:UpdateRecruitmentPool(testFaction, 0);
+crp:UpdateRecruitmentPool(testFaction, 1, true);

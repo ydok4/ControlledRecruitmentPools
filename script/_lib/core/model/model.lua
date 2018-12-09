@@ -274,7 +274,7 @@ function ControlledRecruitmentPools:CreateForceWithGeneral(character)
     cm:kill_character(character.oldCharCqi, true);
 end
 
-function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGenerate)
+function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGenerate, forceGenerate)
     local factionName = faction:name();
     -- Iterate over all existing characters and calculate the current pool
     -- values
@@ -297,7 +297,7 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
     end
 
     -- Generate extra characters up to the pool size for that faction
-    local addedGenerals = self:AddGeneralsToPool(faction, currentPoolCounts, amountToGenerate);
+    local addedGenerals = self:AddGeneralsToPool(faction, currentPoolCounts, amountToGenerate, forceGenerate);
     if faction:name() == self.HumanFaction:name() then
         cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
     end
@@ -319,7 +319,7 @@ function ControlledRecruitmentPools:RemoveAnyVampireLordReplacementsInFaction(fa
             if not currentPoolCounts then
                 currentPoolCounts = self:GetCurrentPoolForFaction(faction);
             end
-            local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts, true);
+            local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts, true, false);
             Custom_Log("Replacing character with "..agentSubTypeKey);
             self:ReplaceCharacter(faction, char, agentSubTypeKey, nil, nil);
             -- This has been removed because I was not able to find a way to kill the characters successfully from within the pool
@@ -328,7 +328,6 @@ function ControlledRecruitmentPools:RemoveAnyVampireLordReplacementsInFaction(fa
             -- with immortality and (I think) the immortality command doesn't process
             --[[elseif charSubType == "vmp_lord" then
                 --cm:teleport_to("character_cqi:"..char:cqi(), 231, 94, true);
-                
                 cm:callback(function() cm:kill_character(char:cqi(), true, true); end, 1); 
                 --cm:set_character_immortality("character_cqi:"..char:cqi(), false);
                 --cm:callback(function() Custom_Log("Killing character "..char:cqi());  end, 1);
@@ -452,18 +451,22 @@ function ControlledRecruitmentPools:EnforceMinimumValues(faction, currentPoolCou
     --Custom_Log("Finished enforcing minimum values");
 end
 
-function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts, maximumAmount)
+function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts, maximumAmount, forceGenerate)
     if maximumAmount == 0 then
         return;
     end
 
-    Custom_Log("Generating extras for pool");
+    Custom_Log("Generating "..maximumAmount.." extras for pool");
+    if forceGenerate == true then
+        Custom_Log("forceGenerate is specified. General(s) will be created");
+    end
     local newGenerals = {};
     local factionResources = self:GetFactionPoolResources(faction);
     for i = 1, maximumAmount do
-        if currentPoolCounts["total"] < factionResources.PoolMaxSize then
+        Custom_Log("Generating general "..i);
+        if currentPoolCounts["total"] < factionResources.PoolMaxSize or forceGenerate == true then
             -- Select a general to generate
-            local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts);
+            local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts, forceGenerate, false);
             Custom_Log("Selected general "..agentSubTypeKey);
             -- Generate the general
             -- If this is the players faction this should happen straight away
@@ -516,6 +519,9 @@ end
 
 function ControlledRecruitmentPools:SelectGeneralToGenerate(factionResources, currentPoolCounts, forceGenerationIfNoValues, overrideLimit)
     local validAgentSubTypes = {};
+    if overrideLimit then
+        Custom_Log("Forcing general to generate");
+    end
     if currentPoolCounts == nil then
         Custom_Log("Current pool counts is nil");
         currentPoolCounts = {};
@@ -527,7 +533,7 @@ function ControlledRecruitmentPools:SelectGeneralToGenerate(factionResources, cu
         local currentSubPoolCount = 0;
         --Custom_Log("Checking agent pool "..tostring(poolKey));
         for agentKey, agentSubType in pairs(pool.AgentSubTypes) do
-           -- Custom_Log("Checking agent key "..agentKey);
+            --Custom_Log("Checking agent key "..agentKey);
             local count = currentPoolCounts[agentKey];
             if count == nil then
                 count = 0;
@@ -538,21 +544,23 @@ function ControlledRecruitmentPools:SelectGeneralToGenerate(factionResources, cu
             if count < agentSubType.MaximumAmount then
                 agentSubTypesBelowMax[agentKey] = agentKey;
             elseif overrideLimit then
-                Custom_Log("Overriding limit for pool");
                 agentSubTypesBelowMax[agentKey] = agentKey;
+            else
+                --Custom_Log("Sub type is not below max");
             end
 
             currentSubPoolCount = currentSubPoolCount + count;
         end
         Custom_Log("Finished checking pool "..poolKey);
-        if currentSubPoolCount < pool.SubPoolMaxSize then
+        if currentSubPoolCount < pool.SubPoolMaxSize or overrideLimit == true then
             ConcatTableWithKeys(validAgentSubTypes, agentSubTypesBelowMax);
         end
     end
-    if validAgentSubTypes == nil then
+
+    if next(validAgentSubTypes) == nil then
         Custom_Log("There are no valid agent sub types");
-        if forceGenerationIfNoValues then
-            SelectGeneralToGenerate(factionResources, currentPoolCounts, true, true);
+        if forceGenerationIfNoValues == true and overrideLimit == false then
+            return self:SelectGeneralToGenerate(factionResources, currentPoolCounts, true, true);
         end
     end
     -- Randomly select type from valid agents
@@ -658,7 +666,7 @@ function ControlledRecruitmentPools:GetCharacterNameForSubculture(faction, agent
     local forename_chance = self:GetForeNameChance(factionSubculture);
 
     local factionLords = self.CRPLordsInPools[factionName];
-    while doOnce == false or factionLords[nameKey] ~= nil do
+    while doOnce == false or factionLords[nameKey] ~= nil or nameKey == "" do
         clan_name_object = self:GetValidNameForType(namePool, canUseFemaleNames, "clan_name");
         if Roll100(forename_chance) then
             --Custom_Log("Generating forename");
@@ -674,7 +682,7 @@ function ControlledRecruitmentPools:GetCharacterNameForSubculture(faction, agent
         nameKey = CreateValidLuaTableKey(nameKey);
         Custom_Log("Generated name key is "..nameKey);
         doOnce = true;
-        if factionLords == nil then
+        if factionLords == nil and nameKey ~= "" then
             Custom_Log("Faction has no tracked lords. Using first generated name.");
             break;
         end
@@ -684,7 +692,7 @@ function ControlledRecruitmentPools:GetCharacterNameForSubculture(faction, agent
         clan_name = clan_name_object.Id,
         forename = forename_object.Id,
     };
-
+    --Custom_Log("Got generated name");
     return generatedName;
 end
 
@@ -697,7 +705,7 @@ function ControlledRecruitmentPools:GetForeNameChance(factionSubculture)
         return 100 - 30;
     elseif factionSubculture == "wh_dlc03_sc_bst_beastmen" then
         return 100 - 75;
-    elseif factionSubculture == "wh_main_sc_grn_greenskins" or factionSubCulture == "wh_main_sc_grn_savage_orcs" then
+    elseif factionSubculture == "wh_main_sc_grn_greenskins" or factionSubculture == "wh_main_sc_grn_savage_orcs" then
         return 100 - 40;
     end
     return 100;
@@ -708,11 +716,13 @@ function ControlledRecruitmentPools:GetValidNameForType(namePool, canUseFemaleNa
     if canUseFemaleNames then
         genderNames = namePool.Gender["Female"];
     else
-        if namePool.Gender["Male"] ~= nil then
+        if namePool.Gender["Male"] ~= nil and namePool.Gender["Special"]  ~= nil then
             ConcatTableWithKeys(genderNames, namePool.Gender["Male"]);
-        end
-        if namePool.Gender["Special"] then
             ConcatTableWithKeys(genderNames, namePool.Gender["Special"]);
+        elseif namePool.Gender["Male"] ~= nil then
+            genderNames = namePool.Gender["Male"];
+        elseif namePool.Gender["Special"]  ~= nil then
+            genderNames = namePool.Gender["Special"];
         end
     end
 

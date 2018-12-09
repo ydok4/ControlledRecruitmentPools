@@ -113,7 +113,7 @@ function ProcessBattleCacheData(cachedBattleData, type, isPreBattle)
                         Custom_Log("General faction "..generalFactionName);
                         if crp:IsSupportedSubCulture(general:faction():subculture()) or crp:IsRogueArmy(generalFactionName) then
                             Custom_Log("Found supported faction");
-                            crp:UpdateRecruitmentPool(generalFaction, 1);
+                            crp:UpdateRecruitmentPool(generalFaction, 1, true);
                         end
                         Custom_Log("Updated recruitment pool");
                         -- Then find an art set for the faction and set the temporary lord as that
