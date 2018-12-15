@@ -469,8 +469,10 @@ core:add_listener(
     "FactionTurnEnd",
     function(context)
         Custom_Log_Finished();
-        Custom_Log("Checking faction: "..tostring(context:faction():name()));
-        return crp:IsSupportedSubCulture(context:faction():subculture()) or crp:IsRogueArmy(context:faction():name());
+        local faction = context:faction();
+        local factionName = faction:name();
+        Custom_Log("Checking faction: "..factionName);
+        return (crp:IsSupportedSubCulture(faction:subculture()) or crp:IsRogueArmy(factionName)) and crp:IsExcludedFaction(faction) == false;
     end,
     function(context)
         if context:faction():subculture() == "rebels" then

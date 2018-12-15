@@ -188,15 +188,15 @@ BretonniaRecruitmentPoolData =  {
             ProphetessPool = {
                 AgentSubTypes = {
                     dlc07_brt_prophetess_beasts = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                     dlc07_brt_prophetess_heavens = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                     dlc07_brt_prophetess_life = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                 },

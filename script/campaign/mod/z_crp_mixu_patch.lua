@@ -5,7 +5,7 @@ require 'script/_lib/pooldata/MixuVampireCountsRecruitmentPools'
 require 'script/_lib/pooldata/MixuWoodElfRecruitmentPools'
 
 require 'script/_lib/dbexports/MixuDataResources'
-
+out("CRP: Loading Mixu Patch");
 _G.CRPResources.AddAdditionalResources("wh_main_sc_grn_greenskins", GreenskinRecruitmentPoolData);
 _G.CRPResources.AddAdditionalResources("wh_main_sc_nor_norsca", NorscaRecruitmentPoolData);
 _G.CRPResources.AddAdditionalResources("wh_main_sc_grn_savage_orcs", SavageOrcRecruitmentPoolData);
@@ -18,3 +18,4 @@ require 'script/_lib/dbexports/MixuTraitsToEffects'
 
 _G.CRPUIResources.AddAdditionalUIDBResources("effects", MixuEffectResources);
 _G.CRPUIResources.AddAdditionalUIDBResources("trait_level_effects", MixuTraitsToEffects);
+out("CRP: Finished loading Mixu Patch");

@@ -5,7 +5,7 @@ EmpireRecruitmentPoolData =  {
             EmpireGenerals = {
                 AgentSubTypes = {
                     emp_lord = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -40,7 +40,7 @@ EmpireRecruitmentPoolData =  {
             EmpireGenerals = {
                 AgentSubTypes = {
                     emp_lord = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },

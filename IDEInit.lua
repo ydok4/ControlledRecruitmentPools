@@ -1,10 +1,10 @@
 -- Mock Data
 testFaction = {
     name = function()
-        return "wh_dlc05_wef_wood_elves";
+        return "wh_main_grn_crooked_moon";
     end,
     subculture = function()
-        return "wh_dlc05_sc_wef_wood_elves";
+        return "wh_main_sc_grn_greenskins";
     end,
     character_list = function()
         return {
@@ -62,17 +62,12 @@ core = {
     add_listener = function() end,
 }
 
---[[require 'script/export_helpers__crp__datahelpers'
-require 'script/export_helpers__crp_core_resource_loader'
-require 'script/export_helpers__crp_ui_resource_loader'
-require 'script/export_helpers__crp_listeners'
-require 'script/export_helpers__crp_model'
-require 'script/export_helpers__crp_ui'
-
-require 'script/export_helpers__crp_z_mixu_resource_loader'
-require 'script/export_helpers__crp_z_mixu_ui_resource_loader'--]]
-
 require 'script/campaign/mod/controlled_recruitment_pools'
+require 'script/campaign/mod/z_crp_deco_goblin_patch'
+require 'script/campaign/mod/z_crp_mixu_patch'
+
+
+
 
 math.randomseed(os.time())
 
@@ -82,29 +77,23 @@ function --Custom_Log(text)
   print(text)
 end
 
-crp = ControlledRecruitmentPools:new({
-    HumanFaction = {},
-    DefaultXCoordinate = 0,
-    DefaultYCoordinate = 0,
-});
-
-local factionName = "wh2_main_hef_high_elves_qb1";
-local test = string.match(factionName, "qb");
 controlled_recruitment_pools();
-
+crp = _G.crp;
 local destinationTable = {};
 local sourceTable = {};
 if destinationTable == {} then
     local test = ""; 
 end
---crp:Initialise();
-crp:GetCurrentPoolForFaction(testFaction);
-local name = crp:GetCharacterNameForSubculture(testFaction, "wef_highweaver");
-local artSetId = crp:GetArtSetForSubType("grn_orc_warboss");
+local currentFactionPools = crp:GetCurrentPoolForFaction(testFaction);
+local agentSubTypeKey = "wh_grn_forest_goblin_warboss";
+crp:ReplaceExistingLords(testFaction, currentFactionPools);
+crp:RecalculatePoolLimits();
+local name = crp:GetCharacterNameForSubculture(testFaction, agentSubTypeKey);
+local artSetId = crp:GetArtSetForSubType(agentSubTypeKey);
 local factionPoolResources = crp:GetFactionPoolResources(testFaction);
-local trait = crp:GetRandomCharacterTrait(testFaction, "wh2_dlc11_vmp_bloodline_blood_dragon");
+local trait = crp:GetRandomCharacterTrait(testFaction, agentSubTypeKey);
 local traitPath = crp.UIController:GetImagePathForTrait(trait);
-
+crp:SetupInitialMinimumValues(testFaction, currentFactionPools);
 local traitEffects = crp.UIController:GetTraitEffects("wh2_main_skill_innate_all_aggressive");
 local traitDescription = crp.UIController:BuildTraitLocString("wh2_main_skill_innate_all_aggressive", "Knowledgeable");
 --crp.UIController:GetImagePathForTrait("wh_main_sc_vmp_vampire_counts", "");
@@ -115,3 +104,4 @@ local imagePath = crp.UIController:GetImagePathForTrait(testFaction:subculture()
 --local test = crp:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, "EmpireGenerals");
 
 crp:UpdateRecruitmentPool(testFaction, 1, true);
+crp:IsThereACharacterInPool(testFaction);

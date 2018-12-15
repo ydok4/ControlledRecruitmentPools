@@ -54,10 +54,10 @@ VampireCountsRecruitmentPoolData =  {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                     },
-                    wh2_dlc11_vmp_bloodline_von_carstein = {
+                    --[[wh2_dlc11_vmp_bloodline_von_carstein = {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
-                    },
+                    },--]]
                 },
                 SubPoolInitialMinSize = 3,
                 SubPoolMaxSize = 7,
@@ -89,10 +89,10 @@ VampireCountsRecruitmentPoolData =  {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                     },
-                    wh2_dlc11_vmp_bloodline_von_carstein = {
+                    --[[wh2_dlc11_vmp_bloodline_von_carstein = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
-                    },
+                    },--]]
                 },
                 SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 5,
@@ -107,7 +107,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -139,10 +139,10 @@ VampireCountsRecruitmentPoolData =  {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                     },
-                    wh2_dlc11_vmp_bloodline_blood_dragon = {
+                    --[[wh2_dlc11_vmp_bloodline_blood_dragon = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
-                    },
+                    },--]]
                 },
                 SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 5,
@@ -166,8 +166,8 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    wh2_dlc11_vmp_bloodline_lahmian = {
-                        MinimumAmount = 1,
+                    vmp_lord = {
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -176,7 +176,7 @@ VampireCountsRecruitmentPoolData =  {
             },
         },
         PoolMaxSize = 7,
-        LordsToReplace = {
+        --[[LordsToReplace = {
             vmp_lord = {
                 replacementKey = "wh2_dlc11_vmp_bloodline_lahmian",
                 traitKeyPool = {
@@ -184,7 +184,7 @@ VampireCountsRecruitmentPoolData =  {
                     "wh2_main_skill_innate_vmp_dark_majesty",
                 },
             },
-        },
+        },--]]
     },
 
     -- The Strygos Empire
@@ -203,13 +203,13 @@ VampireCountsRecruitmentPoolData =  {
             VampireLords = {
                 AgentSubTypes = {
                     dlc04_vmp_strigoi_ghoul_king = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 3,
                     },
-                    wh2_dlc11_vmp_bloodline_strigoi = {
+                    --[[wh2_dlc11_vmp_bloodline_strigoi = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
-                    },
+                    },--]]
                 },
                 SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 5,
@@ -224,7 +224,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 3,
                     },
                 },
@@ -233,8 +233,8 @@ VampireCountsRecruitmentPoolData =  {
             },
             VampireLords = {
                 AgentSubTypes = {
-                    wh2_dlc11_vmp_bloodline_necrarch = {
-                        MinimumAmount = 2,
+                    vmp_lord = {
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -243,7 +243,7 @@ VampireCountsRecruitmentPoolData =  {
             },
         },
         PoolMaxSize = 5,
-        LordsToReplace = {
+        --[[LordsToReplace = {
             vmp_lord = {
                 replacementKey = "wh2_dlc11_vmp_bloodline_necrarch",
                 traitKeyPool = {
@@ -253,6 +253,6 @@ VampireCountsRecruitmentPoolData =  {
                     "wh2_main_skill_innate_vmp_dark_majesty",
                 },
             },
-        },
+        },--]]
     },
 }

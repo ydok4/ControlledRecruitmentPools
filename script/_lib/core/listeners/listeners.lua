@@ -97,6 +97,7 @@ function ProcessBattleCacheData(cachedBattleData, type, isPreBattle)
             if militaryForce ~= false then
                 Custom_Log("CRP: Found military force");
                 local general = militaryForce:general_character();
+                local generalFaction = general:faction();
                 local generalCQI = general:cqi();
                 if general:is_null_interface() == false and char_cqi ~= generalCQI then
                     local generalSubType = general:character_subtype_key();
@@ -106,16 +107,20 @@ function ProcessBattleCacheData(cachedBattleData, type, isPreBattle)
                         local artSetId = crp:GetArtSetForSubType(preBattleSubTypeForCharacter);
                         Custom_Log("Setting character with art set id "..artSetId);
                         cm:add_unit_model_overrides(cm:char_lookup_str(generalCQI), artSetId);
-                    else
+                    elseif crp:IsExcludedFaction(generalFaction) == false then
                         Custom_Log("CRP: Setting "..generalCQI.." with new artset");
-                        local generalFaction = general:faction();
                         local generalFactionName = generalFaction:name();
                         Custom_Log("General faction "..generalFactionName);
-                        if crp:IsSupportedSubCulture(general:faction():subculture()) or crp:IsRogueArmy(generalFactionName) then
+                        if crp:IsSupportedSubCulture(generalFaction:subculture()) or crp:IsRogueArmy(generalFactionName) then
                             Custom_Log("Found supported faction");
-                            crp:UpdateRecruitmentPool(generalFaction, 1, true);
+                            if crp:IsThereACharacterInPool(generalFaction) == false then
+                                Custom_Log("No more characters in the pool");
+                                crp:UpdateRecruitmentPool(generalFaction, 1, true);
+                                Custom_Log("Updated recruitment pool");
+                            else
+                                Custom_Log("There are already characters in the pool, no need to generate a new one");
+                            end
                         end
-                        Custom_Log("Updated recruitment pool");
                         -- Then find an art set for the faction and set the temporary lord as that
                         local artSetId = crp:GetValidAgentArtSetForFaction(generalFaction);
                         Custom_Log("Setting character with art set id "..artSetId);

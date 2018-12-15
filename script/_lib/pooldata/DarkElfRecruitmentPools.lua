@@ -35,7 +35,7 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                     wh2_dlc10_def_supreme_sorceress_shadow = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                 },
@@ -73,11 +73,11 @@ DarkElfRecruitmentPoolData =  {
             DreadlordPool = {
                 AgentSubTypes = {
                     wh2_main_def_dreadlord_fem = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                     wh2_main_def_dreadlord = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -133,23 +133,23 @@ DarkElfRecruitmentPoolData =  {
             SorceressSupremePool = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                     wh2_dlc10_def_supreme_sorceress_dark = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                     wh2_dlc10_def_supreme_sorceress_death = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                     wh2_dlc10_def_supreme_sorceress_fire = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                     wh2_dlc10_def_supreme_sorceress_shadow = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                 },
@@ -166,11 +166,11 @@ DarkElfRecruitmentPoolData =  {
             DreadlordPool = {
                 AgentSubTypes = {
                     wh2_main_def_dreadlord_fem = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                     wh2_main_def_dreadlord = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                 },
@@ -227,23 +227,23 @@ DarkElfRecruitmentPoolData =  {
             SorceressSupremePool = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                     wh2_dlc10_def_supreme_sorceress_dark = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                     wh2_dlc10_def_supreme_sorceress_death = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                     wh2_dlc10_def_supreme_sorceress_fire = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                     wh2_dlc10_def_supreme_sorceress_shadow = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                 },
@@ -258,11 +258,11 @@ DarkElfRecruitmentPoolData =  {
             DreadlordPool = {
                 AgentSubTypes = {
                     wh2_main_def_dreadlord_fem = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 3,
                     },
                     wh2_main_def_dreadlord = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 4,
                     },
                 },

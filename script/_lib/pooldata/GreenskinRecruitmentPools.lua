@@ -5,21 +5,21 @@ GreenskinRecruitmentPoolData =  {
             GreenskinWarbosses = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
-                SubPoolInitialMinSize = 2,
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 5,
             },
             GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                 },
-                SubPoolInitialMinSize = 1,
+                SubPoolInitialMinSize = 0,
                 SubPoolMaxSize = 2,
             },
         },
@@ -64,7 +64,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinWarbosses = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
-                        MinimumAmount = 4,
+                        MinimumAmount = 0,
                         MaximumAmount = 9,
                     },
                 },
@@ -74,8 +74,8 @@ GreenskinRecruitmentPoolData =  {
             GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 1,
-                        MaximumAmount = 3,
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
                     },
                 },
                 SubPoolInitialMinSize = 1,
@@ -90,7 +90,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinWarbosses = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
-                        MinimumAmount = 3,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -100,7 +100,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 3,
                     },
                 },
@@ -117,7 +117,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinWarbosses = {
                 AgentSubTypes = {
                     dlc06_grn_night_goblin_warboss = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -127,7 +127,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 3,
                     },
                 },
@@ -172,107 +172,209 @@ GreenskinRecruitmentPoolData =  {
             SubPoolMaxSize = 3,
         },
         PoolMaxSize = 8,
-    },
+    },--]]
     -- Goblin Tribes
     wh_main_grn_broken_nose = {
-        DreadlordPool = {
-            AgentSubTypes = {
-                wh2_main_def_dreadlord_fem = {
-                    MinimumAmount = 2,
-                    MaximumAmount = 3,
+        FactionPools = {
+            GreenskinWarbosses = {
+                AgentSubTypes = {
+                    grn_orc_warboss = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 5,
+                    },
                 },
-                wh2_main_def_dreadlord = {
-                    MinimumAmount = 2,
-                    MaximumAmount = 3,
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 5,
+            },
+            GreenskinShamans = {
+                AgentSubTypes = {
+                    grn_goblin_great_shaman = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 5,
+        LordsToReplace = {
+            grn_orc_warboss = {
+                replacementKey = "grn_goblin_great_shaman",
+                traitKeyPool = {
+                    "wh2_main_skill_innate_grn_big_bully",
+                    "wh2_main_skill_innate_grn_bragga",
+                    "wh2_main_skill_innate_grn_serial_danca",
+                    "wh2_main_skill_innate_grn_tortura"
                 },
             },
-            SubPoolMaxSize = 5,
         },
-        PoolMaxSize = 8,
     },
     wh_main_grn_scabby_eye = {
-        DreadlordPool = {
-            AgentSubTypes = {
-                wh2_main_def_dreadlord_fem = {
-                    MinimumAmount = 0,
-                    MaximumAmount = 2,
+        FactionPools = {
+            GreenskinWarbosses = {
+                AgentSubTypes = {
+                    grn_orc_warboss = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 5,
+                    },
                 },
-                wh2_main_def_dreadlord = {
-                    MinimumAmount = 0,
-                    MaximumAmount = 2,
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 5,
+            },
+            GreenskinShamans = {
+                AgentSubTypes = {
+                    grn_goblin_great_shaman = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 5,
+        LordsToReplace = {
+            grn_orc_warboss = {
+                replacementKey = "grn_goblin_great_shaman",
+                traitKeyPool = {
+                    "wh2_main_skill_innate_grn_big_bully",
+                    "wh2_main_skill_innate_grn_bragga",
+                    "wh2_main_skill_innate_grn_serial_danca",
+                    "wh2_main_skill_innate_grn_tortura"
                 },
             },
-            SubPoolMaxSize = 3,
         },
-        PoolMaxSize = 8,
     },
     wh_main_grn_teef_snatchaz = {
-        DreadlordPool = {
-            AgentSubTypes = {
-                wh2_main_def_dreadlord_fem = {
-                    MinimumAmount = 0,
-                    MaximumAmount = 2,
+        FactionPools = {
+            GreenskinWarbosses = {
+                AgentSubTypes = {
+                    grn_orc_warboss = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 5,
+                    },
                 },
-                wh2_main_def_dreadlord = {
-                    MinimumAmount = 0,
-                    MaximumAmount = 2,
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 5,
+            },
+            GreenskinShamans = {
+                AgentSubTypes = {
+                    grn_goblin_great_shaman = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 5,
+        LordsToReplace = {
+            grn_orc_warboss = {
+                replacementKey = "grn_goblin_great_shaman",
+                traitKeyPool = {
+                    "wh2_main_skill_innate_grn_big_bully",
+                    "wh2_main_skill_innate_grn_bragga",
+                    "wh2_main_skill_innate_grn_serial_danca",
+                    "wh2_main_skill_innate_grn_tortura"
                 },
             },
-            SubPoolMaxSize = 3,
         },
-        PoolMaxSize = 8,
     },
     -- Night Goblin Tribes
     wh_main_grn_bloody_spearz = {
-        DreadlordPool = {
-            AgentSubTypes = {
-                wh2_main_def_dreadlord_fem = {
-                    MinimumAmount = 0,
-                    MaximumAmount = 2,
+        FactionPools = {
+            GreenskinWarbosses = {
+                AgentSubTypes = {
+                    dlc06_grn_night_goblin_warboss = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 4,
+                    },
                 },
-                wh2_main_def_dreadlord = {
-                    MinimumAmount = 0,
-                    MaximumAmount = 2,
-                },
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 4,
             },
-            SubPoolMaxSize = 3,
+            GreenskinShamans = {
+                AgentSubTypes = {
+                    grn_goblin_great_shaman = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 5,
     },
     wh_main_grn_red_eye = {
-        DreadlordPool = {
-            AgentSubTypes = {
-                wh2_main_def_dreadlord_fem = {
-                    MinimumAmount = 0,
-                    MaximumAmount = 2,
+        FactionPools = {
+            GreenskinWarbosses = {
+                AgentSubTypes = {
+                    dlc06_grn_night_goblin_warboss = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 4,
+                    },
                 },
-                wh2_main_def_dreadlord = {
-                    MinimumAmount = 0,
-                    MaximumAmount = 2,
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 4,
+            },
+            GreenskinShamans = {
+                AgentSubTypes = {
+                    grn_goblin_great_shaman = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 5,
+        LordsToReplace = {
+            grn_orc_warboss = {
+                replacementKey = "dlc06_grn_night_goblin_warboss",
+                traitKeyPool = {
+                    "wh2_main_skill_innate_grn_big_bully",
+                    "wh2_main_skill_innate_grn_bragga",
+                    "wh2_main_skill_innate_grn_serial_danca",
+                    "wh2_main_skill_innate_grn_tortura"
                 },
             },
-            SubPoolMaxSize = 3,
         },
-        PoolMaxSize = 8,
+    },
+    wh_main_grn_necksnappers = {
+        FactionPools = {
+            GreenskinWarbosses = {
+                AgentSubTypes = {
+                    dlc06_grn_night_goblin_warboss = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 4,
+                    },
+                    grn_orc_warboss = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 4,
+            },
+            GreenskinShamans = {
+                AgentSubTypes = {
+                    grn_goblin_great_shaman = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
+        },
+        PoolMaxSize = 5,
     },
     -- Orc Tribes
-    wh_main_grn_necksnappers = {
-        DreadlordPool = {
-            AgentSubTypes = {
-                wh2_main_def_dreadlord_fem = {
-                    MinimumAmount = 2,
-                    MaximumAmount = 3,
-                },
-                wh2_main_def_dreadlord = {
-                    MinimumAmount = 2,
-                    MaximumAmount = 3,
-                },
-            },
-            SubPoolMaxSize = 5,
-        },
-        PoolMaxSize = 8,
-    },
-    wh_main_grn_skullsmasherz = {
+    --[[wh_main_grn_skullsmasherz = {
         DreadlordPool = {
             AgentSubTypes = {
                 wh2_main_def_dreadlord_fem = {

@@ -80,27 +80,31 @@ _G.CRPResources = {
         for key1, additionalFactionData in pairs(resources) do
             for key2, additionalSubPoolData in pairs(additionalFactionData.FactionPools) do
                 if type(additionalSubPoolData) == "table" then
-                    local existingData = coreResources[key1].FactionPools[key2];
-                    if existingData == nil then
-                        coreResources[key1].FactionPools[key2] = additionalSubPoolData;
+                    if coreResources[key1] == nil then
+                        coreResources[key1] = additionalFactionData;
                     else
-                        local additionalAgenySubTypes = {};
-                        for key3, subPool in pairs(additionalSubPoolData.AgentSubTypes) do
-                            -- If an agent has been marked for deletion from a pool
-                            if subPool == false then
-                                existingData.AgentSubTypes[key3] = nil;
-                            else
-                                additionalAgenySubTypes[key3] = subPool;
+                        local existingData = coreResources[key1].FactionPools[key2];
+                        if existingData == nil then
+                            coreResources[key1].FactionPools[key2] = additionalSubPoolData;
+                        else
+                            local additionalAgentSubTypes = {};
+                            for key3, subPool in pairs(additionalSubPoolData.AgentSubTypes) do
+                                -- If an agent has been marked for deletion from a pool
+                                if subPool == false then
+                                    existingData.AgentSubTypes[key3] = nil;
+                                else
+                                    additionalAgentSubTypes[key3] = subPool;
+                                end
                             end
-                        end
-                        -- Add all the new agent sub types
-                        ConcatTableWithKeys(existingData.AgentSubTypes, additionalAgenySubTypes);
-                        if additionalSubPoolData.SubPoolInitialMinSize ~= nil then
-                            existingData.SubPoolInitialMinSize = additionalSubPoolData.SubPoolInitialMinSize;
-                        end
-
-                        if additionalSubPoolData.SubPoolMaxSize ~= nil then
-                            existingData.SubPoolMaxSize = additionalSubPoolData.SubPoolMaxSize;
+                            -- Add all the new agent sub types
+                            ConcatTableWithKeys(existingData.AgentSubTypes, additionalAgentSubTypes);
+                            if additionalSubPoolData.SubPoolInitialMinSize ~= nil then
+                                existingData.SubPoolInitialMinSize = additionalSubPoolData.SubPoolInitialMinSize;
+                            end
+    
+                            if additionalSubPoolData.SubPoolMaxSize ~= nil then
+                                existingData.SubPoolMaxSize = additionalSubPoolData.SubPoolMaxSize;
+                            end
                         end
                     end
                 -- If a pool has been marked for deletion or there are no longer any agent

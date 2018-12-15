@@ -22,15 +22,6 @@ SavageOrcRecruitmentPoolData =  {
                 SubPoolInitialMinSize = 0,
                 SubPoolMaxSize = 2,
             },
-            --[[GoblinGreatShaman = {
-                AgentSubTypes = {
-                    grn_goblin_great_shaman = {
-                        MinimumAmount = 1,
-                        MaximumAmount = 2,
-                    },
-                },
-                SubPoolMaxSize = 2,
-            },--]]
         },
         Traits = {
             wh2_main_skill_innate_grn_big_bully = {
@@ -83,7 +74,7 @@ SavageOrcRecruitmentPoolData =  {
         GoblinGreatShaman = {
             AgentSubTypes = {
                 grn_goblin_great_shaman = {
-                    MinimumAmount = 1,
+                    MinimumAmount = 0,
                     MaximumAmount = 2,
                 },
             },
@@ -104,7 +95,7 @@ SavageOrcRecruitmentPoolData =  {
         GoblinGreatShaman = {
             AgentSubTypes = {
                 grn_goblin_great_shaman = {
-                    MinimumAmount = 1,
+                    MinimumAmount = 0,
                     MaximumAmount = 2,
                 },
             },
@@ -125,7 +116,7 @@ SavageOrcRecruitmentPoolData =  {
         GoblinGreatShaman = {
             AgentSubTypes = {
                 grn_goblin_great_shaman = {
-                    MinimumAmount = 1,
+                    MinimumAmount = 0,
                     MaximumAmount = 2,
                 },
             },

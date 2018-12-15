@@ -5,11 +5,11 @@ DwarfRecruitmentPoolData =  {
             DwarfLords = {
                 AgentSubTypes = {
                     dwf_lord = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 4,
                     },
                 },
-                SubPoolInitialMinSize = 2,
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 4,
             },
             RuneLord = {
@@ -25,7 +25,7 @@ DwarfRecruitmentPoolData =  {
         },
         Traits = {
             wh2_main_skill_innate_dwf_ancestral_blood_grimnir = {
-                
+
             },
             wh2_main_skill_innate_dwf_ancestral_blood_grungni = {
 
@@ -47,17 +47,17 @@ DwarfRecruitmentPoolData =  {
             DwarfLords = {
                 AgentSubTypes = {
                     dwf_lord = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
-                SubPoolInitialMinSize = 2,
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 5,
             },
             RuneLord = {
                 AgentSubTypes = {
                     dlc06_dwf_runelord = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
                 },
@@ -65,7 +65,7 @@ DwarfRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 7,
+        PoolMaxSize = 5,
     },
 
     -- Karak Kadrin
@@ -74,11 +74,11 @@ DwarfRecruitmentPoolData =  {
             DwarfLords = {
                 AgentSubTypes = {
                     dwf_lord = {
-                        MinimumAmount = 2,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
-                SubPoolInitialMinSize = 2,
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 5,
             },
             RuneLord = {
@@ -92,7 +92,7 @@ DwarfRecruitmentPoolData =  {
                 SubPoolMaxSize = 1,
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 5,
     },
 
     -- Clan Angrund
@@ -101,7 +101,7 @@ DwarfRecruitmentPoolData =  {
             DwarfLords = {
                 AgentSubTypes = {
                     dwf_lord = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 1,
                     },
                 },

@@ -33,7 +33,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -51,8 +51,8 @@ VampireCountsRecruitmentPoolData =  {
                         MaximumAmount = 1,
                     },
                 },
-                SubPoolInitialMinSize = 3,
-                SubPoolMaxSize = 7,
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
             },
         },
         PoolMaxSize = 10,
@@ -64,7 +64,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -77,13 +77,13 @@ VampireCountsRecruitmentPoolData =  {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
-                    wh2_dlc11_vmp_bloodline_von_carstein = {
+                    --[[wh2_dlc11_vmp_bloodline_von_carstein = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
-                    },
+                    },--]]
                 },
-                SubPoolInitialMinSize = 3,
-                SubPoolMaxSize = 7,
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 2,
             },
         },
         PoolMaxSize = 10,
@@ -97,7 +97,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 5,
                     },
                 },
@@ -110,10 +110,10 @@ VampireCountsRecruitmentPoolData =  {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                     },
-                    wh2_dlc11_vmp_bloodline_blood_dragon = {
+                    --[[wh2_dlc11_vmp_bloodline_blood_dragon = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
-                    },
+                    },--]]
                 },
                 SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 5,
@@ -138,17 +138,17 @@ VampireCountsRecruitmentPoolData =  {
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = false,
-                    wh2_dlc11_vmp_bloodline_lahmian = {
+                    --[[wh2_dlc11_vmp_bloodline_lahmian = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
-                    },
+                    },--]]
                 },
                 SubPoolInitialMinSize = 3,
                 SubPoolMaxSize = 5,
             },
         },
         PoolMaxSize = 7,
-        LordsToReplace = {
+        --[[LordsToReplace = {
             vmp_lord = {
                 replacementKey = "wh2_dlc11_vmp_bloodline_lahmian",
                 traitKeyPool = {
@@ -156,7 +156,7 @@ VampireCountsRecruitmentPoolData =  {
                     "wh2_main_skill_innate_vmp_dark_majesty",
                 },
             },
-        },
+        },--]]
     },
 
     -- The Strygos Empire
@@ -175,13 +175,13 @@ VampireCountsRecruitmentPoolData =  {
             VampireLords = {
                 AgentSubTypes = {
                     dlc04_vmp_strigoi_ghoul_king = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 3,
                     },
-                    wh2_dlc11_vmp_bloodline_strigoi = {
+                    --[[wh2_dlc11_vmp_bloodline_strigoi = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
-                    },
+                    },--]]
                 },
                 SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 5,
@@ -196,7 +196,7 @@ VampireCountsRecruitmentPoolData =  {
             Necromancers = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 1,
+                        MinimumAmount = 0,
                         MaximumAmount = 3,
                     },
                 },
