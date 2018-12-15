@@ -68,7 +68,7 @@ GreenskinRecruitmentPoolData =  {
                         MaximumAmount = 9,
                     },
                 },
-                SubPoolInitialMinSize = 4,
+                SubPoolInitialMinSize = 3,
                 SubPoolMaxSize = 9,
             },
             GreenskinShamans = {
@@ -94,7 +94,7 @@ GreenskinRecruitmentPoolData =  {
                         MaximumAmount = 5,
                     },
                 },
-                SubPoolInitialMinSize = 3,
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 5,
             },
             GreenskinShamans = {
