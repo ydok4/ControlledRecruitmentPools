@@ -10,6 +10,8 @@ GreenskinRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                 },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 1,
             },
             GreenskinShamans = {
                 AgentSubTypes = {
@@ -23,6 +25,8 @@ GreenskinRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     }
                 },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 1,
             },
         },
     },
@@ -35,9 +39,11 @@ GreenskinRecruitmentPoolData =  {
                 AgentSubTypes = {
                     grn_savage_orc_warboss = {
                         MinimumAmount = 0,
-                        MaximumAmount = 4,
+                        MaximumAmount = 2,
                     },
                 },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
             },
             GreenskinShamans = {
                 AgentSubTypes = {
@@ -50,6 +56,8 @@ GreenskinRecruitmentPoolData =  {
                         MaximumAmount = 1,
                     }
                 },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
             },
         },
     },
@@ -62,8 +70,11 @@ GreenskinRecruitmentPoolData =  {
                     grn_savage_orc_warboss = {
                         MinimumAmount = 0,
                         MaximumAmount = 4,
+                        HumanPlayerOnly = true,
                     },
                 },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 3,
             },
             GreenskinShamans = {
                 AgentSubTypes = {
@@ -79,6 +90,19 @@ GreenskinRecruitmentPoolData =  {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                     },
+                },
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 3,
+            },
+        },
+        LordsToReplace = {
+            grn_orc_warboss = {
+                replacementKey = "grn_savage_orc_warboss",
+                traitKeyPool = {
+                    "wh2_main_skill_innate_grn_big_bully",
+                    "wh2_main_skill_innate_grn_bragga",
+                    "wh2_main_skill_innate_grn_serial_danca",
+                    "wh2_main_skill_innate_grn_tortura"
                 },
             },
         },

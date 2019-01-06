@@ -2,6 +2,7 @@ crp = {};
 _G.crp = crp;
 
 require 'script/_lib/core/helpers/datahelpers';
+require 'script/_lib/core/helpers/rebelhelpers';
 
 require 'script/_lib/core/model/model';
 require 'script/_lib/core/model/ui';
@@ -26,7 +27,7 @@ function controlled_recruitment_pools()
         PreBattleData = crp.PreBattleData,
     });
     crp:Initialise();
-    if cm:is_new_game()  then
+    if cm:is_new_game() then
         Custom_Log("New Game");
         -- This callback is required so that startup happens after
         -- the game spawns any startup armies. This allows them to be replaced if required.
@@ -40,6 +41,7 @@ function controlled_recruitment_pools()
     end
     SetupListeners(crp);
     crp.UIController:InitialiseUI();
+    --cm:unlock_starting_general_recruitment("2140784160", "wh_main_dwf_dwarfs");
     Custom_Log("CRP: Finished");
     out("CRP: Finished startup");
     Custom_Log_Finished();
@@ -233,7 +235,7 @@ cm:add_loading_game_callback(
     end
 end--]]
 
-core:add_listener(
+--[[core:add_listener(
     "PopUpBattleResults",
     "PanelOpenedCampaign",
     function(context)
@@ -244,9 +246,9 @@ core:add_listener(
         cm:callback(function() PendingBattleResult(crp.HumanFaction:name(), true) end, 1);
     end,
     true
-);
+);--]]
 
-core:add_listener(
+--[[core:add_listener(
     "PreBattlePopUp",
     "PanelOpenedCampaign",
     function(context)
@@ -257,7 +259,7 @@ core:add_listener(
         cm:callback(function() PendingBattleResult(crp.HumanFaction:name(), true, true) end, 0);
     end,
     true
-);
+);--]]
 
 core:add_listener(
     "AppointGeneralOpened",
@@ -270,7 +272,7 @@ core:add_listener(
         cm:callback(function()
             Custom_Log("In appoint new general callback");
             local generalsList = find_uicomponent(core:get_ui_root(), "panel_manager", "appoint_new_general", "event_appoint_new_general", "general_selection_panel", "character_list", "listview", "list_clip", "list_box");
-            GetGeneralCandidates(crp.HumanFaction:name(), crp.HumanFaction:subculture(), generalsList, crp.CRPLordsInPools);
+            GetGeneralCandidates(crp.HumanFaction, generalsList, crp.CRPLordsInPools);
         end,
         0);
     end,
@@ -289,7 +291,7 @@ core:add_listener(
         cm:callback(function()
             Custom_Log("character_panel callback");
             local generalsList = find_uicomponent(core:get_ui_root(), "character_panel", "general_selection_panel", "character_list_parent", "character_list", "listview", "list_clip", "list_box");
-            GetGeneralCandidates(crp.HumanFaction:name(), crp.HumanFaction:subculture(), generalsList, crp.CRPLordsInPools);
+            GetGeneralCandidates(crp.HumanFaction, generalsList, crp.CRPLordsInPools);
         end,
         0);
     end,
@@ -306,7 +308,7 @@ core:add_listener(
         Custom_Log("Clicked replace");
         cm:callback(function()
             local generalsList = find_uicomponent(core:get_ui_root(), "character_details_panel", "general_selection_panel", "character_list", "listview", "list_clip", "list_box");
-            GetGeneralCandidates(crp.HumanFaction:name(), crp.HumanFaction:subculture(), generalsList, crp.CRPLordsInPools);
+            GetGeneralCandidates(crp.HumanFaction, generalsList, crp.CRPLordsInPools);
         end,
         0);
     end,
@@ -327,11 +329,13 @@ core:add_listener(
     true
 );
 
-function GetGeneralCandidates(humanFactionName, humanSubCulture, generalsList, lordsInPool)
+function GetGeneralCandidates(humanFaction, generalsList, lordsInPool)
+    local humanFactionName = humanFaction:name();
+    local humanFactionSubculture = humanFaction:subculture();
     Custom_Log("Get general candidates");
     local factionIntrigue = 0;
     local charIsSelected = false;
-    if humanSubCulture == "wh2_main_sc_hef_high_elves" then
+    if humanFactionSubculture == "wh2_main_sc_hef_high_elves" then
         --cm:trigger_incident(humanFactionName, "wh2_main_hef_add_influence", true);
         local intrigueText = find_uicomponent(core:get_ui_root(), "layout", "resources_bar", "topbar_list_parent", "dy_intrigue"):GetStateText();
         factionIntrigue = tonumber(intrigueText);
@@ -346,14 +350,29 @@ function GetGeneralCandidates(humanFactionName, humanSubCulture, generalsList, l
             local keyName = "";
             keyName = CreateValidLuaTableKey(name);
             Custom_Log("Key is "..keyName);
-            if humanSubCulture == "wh2_main_sc_hef_high_elves" then
+            local poolData = lordsInPool[humanFactionName][keyName];
+            -- If the character isn't tracked, see if it is a replacement type
+            -- If it is, hide these characters from the player
+            if poolData == nil then
+                local subType = find_uicomponent(generalPanel, "dy_subtype"):GetStateText();
+                local replacementLords = crp:GetReplacementLordsForFaction(humanFaction);
+                for replacementSubType, replacementData in pairs(replacementLords) do
+                    Custom_Log("Replacement type is "..effect.get_localised_string("agent_subtypes_onscreen_name_override_"..replacementSubType));
+                    if subType == effect.get_localised_string("agent_subtypes_onscreen_name_override_"..replacementSubType) then
+                        generalPanel:SetState("deselected");
+                        generalPanel:SetVisible(false);
+                        Custom_Log("Hiding character "..keyName);
+                    end
+                end
+            end
+
+            if humanFactionSubculture == "wh2_main_sc_hef_high_elves" then
                 Custom_Log("Human is high elves");
                 local intrigueCostContainer = find_uicomponent(generalPanel, "IntrigueCost");
                 if intrigueCostContainer ~= nil then
                     local intrigueCost = find_uicomponent(intrigueCostContainer, "Cost");
                     if intrigueCost ~= nil then
                         Custom_Log("Checking "..keyName);
-                        local poolData = lordsInPool[humanFactionName][keyName];
                         if poolData then
                             if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
                                 Custom_Log("Lord is mid prince or princess");
@@ -388,6 +407,8 @@ function GetGeneralCandidates(humanFactionName, humanSubCulture, generalsList, l
             -- High Elves require manually tracking of whether or not a character is selected
             -- because we need to disable lords if the player does not meet the influence cost
             -- for everyone else this isn't a problem (yet).
+            -- If this is the 4th character, that means the first 3 were hidden. So set the 4th (which appears as the first)
+            -- as selected
             else
                 charIsSelected = true;
             end
@@ -475,12 +496,7 @@ core:add_listener(
         return (crp:IsSupportedSubCulture(faction:subculture()) or crp:IsRogueArmy(factionName)) and crp:IsExcludedFaction(faction) == false;
     end,
     function(context)
-        if context:faction():subculture() == "rebels" then
-            Custom_Log("Ignoring rebels");
-        else
-            crp:UpdateRecruitmentPool(context:faction(), 1);
-            --crp:RemoveAnyVampireLordReplacementsInFaction(context:faction());
-        end
+        crp:UpdateRecruitmentPool(context:faction(), 1);
         Custom_Log_Finished();
     end,
     true
@@ -490,7 +506,7 @@ core:add_listener(
 -- after battle is completed for battles ONLY containing ai
 -- There is another listener for battles involving humans inside
 -- controlled_recruitment_pools.lua which listens for a UI panel
-core:add_listener(
+--[[core:add_listener(
     "BattleCompletedListener",
     "BattleCompleted",
     function(context)
@@ -501,7 +517,7 @@ core:add_listener(
         cm:callback(function() PendingBattleResult(crp.HumanFaction:name(), false) end, 0);
     end,
     true
-);
+);--]]
 -- Performs post character created/recruited functionality
 -- like adding traits
 core:add_listener(
@@ -509,17 +525,81 @@ core:add_listener(
     "CharacterCreated",
     true,
     function(context)
-        crp:ProcessNewCharacter(context);
+        local character = context:character();
+        if character:character_type("colonel") then
+            cm:kill_character(character:cqi(), true, true);
+        else
+            crp:ProcessNewCharacter(character);
+        end
+        --cm:apply_effect_bundle_to_characters_force("increase_recruitment_cost", character:cqi(), 0, true);
+        --Custom_Log("Finished char created listener");
     end,
     true
 );
 
+-- Performs post character created/recruited functionality
+-- like adding traits
+--[[core:add_listener(
+    "CRP_CharacterEnteredPool",
+    "NewCharacterEnteredRecruitmentPool",
+    true,
+    function(context)
+        Custom_Log("Character entered recruitment pool listener");
+        local character = context:character();
+        local charSubTypeKey = character:character_subtype_key();
+        local factionName = character:faction():name();
+        Custom_Log("Character entered pool "..charSubTypeKey.." faction name "..factionName);
+    end,
+    true
+);--]]
+
+-- Kills vampire lord replacement rebels
+-- and spawns a replacement force
+--[[core:add_listener(
+    "CRP_RegionRebels",
+    "RegionRebels",
+    true,
+    function(context)
+        local region = context:region();
+        local regionName = region:name();
+        local factionName = region:owning_faction():name();
+        Custom_Log("Region has rebelled ".." region name "..regionName.." faction owner "..factionName);
+
+        local rebelFaction = cm:get_faction("rebels");
+        if not rebelFaction or rebelFaction:is_null_interface() then
+            Custom_Log("Could not get rebel faction");
+            return;
+        end
+        local char_list = rebelFaction:character_list();
+        local unitList ="";
+        Custom_Log("Number of rebel factions "..char_list:num_items());
+        for i = 0, char_list:num_items() - 1 do
+            local char = char_list:item_at(i);
+            Custom_Log("Checking char "..i);
+            Custom_Log("CQI "..char:cqi().."Character subtype "..char:character_subtype_key());
+            if char:has_military_force() and char:character_subtype_key() == "vmp_lord_replacement" and char:region():name() == regionName then
+                unitList = GetStringifiedUnitList(char);
+                Custom_Log("Unit List: "..unitList);
+                Custom_Log("Killing rebel force "..char:cqi());
+                cm:kill_character(char:cqi(), true, true);
+                break;
+            end
+        end;
+        Custom_Log("Finished rebel listener");
+    end,
+    true
+);--]]
+
 core:add_listener(
     "CRP_CharacterKilled",
     "CharacterConvalescedOrKilled",
-    true,
     function(context)
-        crp:ProcessKilledCharacter(context);
+        local char = context:character();
+        return not char:character_type("colonel");
+    end,
+    function(context)
+        local char = context:character();
+        crp:ProcessKilledCharacter(char);
     end,
     true
 );

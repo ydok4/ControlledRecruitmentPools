@@ -2,16 +2,6 @@ BretonniaRecruitmentPoolData =  {
     -- Default pool distribution
     wh_main_sc_brt_bretonnia = {
         FactionPools = {
-            BretLordPool = {
-                AgentSubTypes = {
-                    brt_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 0,
-                SubPoolMaxSize = 5,
-            },
             ProphetessPool = {
                 AgentSubTypes = {
                     dlc07_brt_prophetess_beasts = {
@@ -110,11 +100,11 @@ BretonniaRecruitmentPoolData =  {
                 AgentSubTypes = {
                     brt_lord = {
                         MinimumAmount = 0,
-                        MaximumAmount = 7,
+                        MaximumAmount = 4,
                     },
                 },
-                SubPoolInitialMinSize = 2,
-                SubPoolMaxSize = 7,
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 4,
             },
             ProphetessPool = {
                 AgentSubTypes = {
@@ -140,16 +130,6 @@ BretonniaRecruitmentPoolData =  {
     -- Alberic
     wh_main_brt_bordeleaux = {
         FactionPools = {
-            BretLordPool = {
-                AgentSubTypes = {
-                    brt_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 7,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 4,
-            },
             ProphetessPool = {
                 AgentSubTypes = {
                     dlc07_brt_prophetess_beasts = {
@@ -175,16 +155,6 @@ BretonniaRecruitmentPoolData =  {
     -- Morgiana (Fay Enchantress)
     wh_main_brt_carcassonne = {
         FactionPools = {
-            BretLordPool = {
-                AgentSubTypes = {
-                    brt_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 4,
-                    },
-                },
-                SubPoolInitialMinSize = 0,
-                SubPoolMaxSize = 4,
-            },
             ProphetessPool = {
                 AgentSubTypes = {
                     dlc07_brt_prophetess_beasts = {

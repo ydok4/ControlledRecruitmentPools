@@ -146,4 +146,18 @@ MixuDataResources = {
 		IsFemale = "false",
 		NameGroup = "",
 	},
+	wh2_dlc11_vmp_bloodline_lahmian = {
+		ArtSetIds = {
+			 "wh2_main_art_set_vmp_vampire_countess_1", "wh2_main_art_set_vmp_vampire_countess_2", "wh2_main_art_set_vmp_vampire_countess_3", "wh2_main_art_set_vmp_vampire_countess_4",
+		},
+		IsFemale = "true",
+		NameGroup = "",
+	},
+	wh2_dlc11_vmp_bloodline_necrarch = {
+		ArtSetIds = {
+			 "wh2_main_art_set_vmp_necrarch_1", "wh2_main_art_set_vmp_necrarch_2",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
 }

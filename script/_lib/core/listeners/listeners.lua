@@ -23,6 +23,7 @@ function PendingBattleResult(humanFactionName, canContainHuman, isPreBattle)
         Custom_Log("CRP: defender faction name "..defender_faction_name);
         if canContainHuman == false and humanFactionName == defender_faction_name then
             Custom_Log("CRP: Defender is human and must exit");
+            Custom_Log_Finished();
             return;
         end
         local defender_sub_type = "";
@@ -101,13 +102,13 @@ function ProcessBattleCacheData(cachedBattleData, type, isPreBattle)
                 local generalCQI = general:cqi();
                 if general:is_null_interface() == false and char_cqi ~= generalCQI then
                     local generalSubType = general:character_subtype_key();
-                    if generalSubType == "vmp_lord_replacement" and general:faction():name() == "rebels" then
+                    if generalSubType == "vmp_lord_replacement" and (general:faction():name() == "rebels" or crp:IsExcludedFaction(generalFaction) == true) then
                         local preBattleSubTypeForCharacter = crp:GetPreBattleSubTypeForCharacter(char_cqi, type);
                         Custom_Log("Got pre battle sub type "..preBattleSubTypeForCharacter);
                         local artSetId = crp:GetArtSetForSubType(preBattleSubTypeForCharacter);
                         Custom_Log("Setting character with art set id "..artSetId);
                         cm:add_unit_model_overrides(cm:char_lookup_str(generalCQI), artSetId);
-                    elseif crp:IsExcludedFaction(generalFaction) == false then
+                    else
                         Custom_Log("CRP: Setting "..generalCQI.." with new artset");
                         local generalFactionName = generalFaction:name();
                         Custom_Log("General faction "..generalFactionName);

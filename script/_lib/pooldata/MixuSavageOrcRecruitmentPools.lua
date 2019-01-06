@@ -6,18 +6,23 @@ SavageOrcRecruitmentPoolData =  {
                 AgentSubTypes = {
                     grn_savage_orc_warboss = {
                         MinimumAmount = 0,
-                        MaximumAmount = 4,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
                     },
                     grn_orc_warboss = false,
                 },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 2,
             },
             SavageOrcShamans = {
                 AgentSubTypes = {
                     grn_savage_orc_shaman = {
                         MinimumAmount = 0,
-                        MaximumAmount = 3,
+                        MaximumAmount = 2,
                     },
                 },
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 2,
             },
         },
         LordsToReplace = {

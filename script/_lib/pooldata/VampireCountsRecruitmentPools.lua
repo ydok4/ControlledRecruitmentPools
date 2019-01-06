@@ -2,26 +2,7 @@ VampireCountsRecruitmentPoolData =  {
     -- Default pool distribution
     wh_main_sc_vmp_vampire_counts = {
         FactionPools = {
-            Necromancers = {
-                AgentSubTypes = {
-                    vmp_master_necromancer = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 3,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 3,
-            },
-            VampireLords = {
-                AgentSubTypes = {
-                    vmp_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
-                    },
-                },
-                SubPoolInitialMinSize = 0,
-                SubPoolMaxSize = 2,
-            },
+
         },
         ExcludedTraits = {
             "wh_main_skill_innate_all_boring",
@@ -34,16 +15,6 @@ VampireCountsRecruitmentPoolData =  {
     -- Vampire Counts (Manfred)
     wh_main_vmp_vampire_counts = {
         FactionPools = {
-            Necromancers = {
-                AgentSubTypes = {
-                    vmp_master_necromancer = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 2,
-                SubPoolMaxSize = 5,
-            },
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = {
@@ -63,22 +34,18 @@ VampireCountsRecruitmentPoolData =  {
                 SubPoolMaxSize = 7,
             },
         },
+        LegendaryLordNameKeys = {
+            dlc04_vmp_helman_ghorst = {
+                clan_name = "names_name_2147358044",
+                forename = "names_name_2147345294",
+            },
+        },
         PoolMaxSize = 10,
     },
 
     -- Von Carstein (Vlad/Isabella)
     wh_main_vmp_schwartzhafen = {
         FactionPools = {
-            Necromancers = {
-                AgentSubTypes = {
-                    vmp_master_necromancer = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 2,
-            },
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = {
@@ -98,6 +65,12 @@ VampireCountsRecruitmentPoolData =  {
                 SubPoolMaxSize = 5,
             },
         },
+        LegendaryLordNameKeys = {
+            pro02_vmp_isabella_von_carstein = {
+                clan_name = "names_name_2147345124",
+                forename = "names_name_2147343895",
+            },
+        },
         PoolMaxSize = 10,
     },
 
@@ -108,11 +81,11 @@ VampireCountsRecruitmentPoolData =  {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
                         MinimumAmount = 0,
-                        MaximumAmount = 5,
+                        MaximumAmount = 2,
                     },
                 },
                 SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
+                SubPoolMaxSize = 2,
             },
         },
         PoolMaxSize = 10,
@@ -123,16 +96,6 @@ VampireCountsRecruitmentPoolData =  {
     -- Mousillon
     wh_main_vmp_mousillon = {
         FactionPools = {
-            Necromancers = {
-                AgentSubTypes = {
-                    vmp_master_necromancer = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 2,
-                SubPoolMaxSize = 5,
-            },
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = {
@@ -180,16 +143,6 @@ VampireCountsRecruitmentPoolData =  {
     -- The Strygos Empire
     wh2_main_vmp_strygos_empire = {
         FactionPools = {
-            Necromancers = {
-                AgentSubTypes = {
-                    vmp_master_necromancer = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 3,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 3,
-            },
             VampireLords = {
                 AgentSubTypes = {
                     dlc04_vmp_strigoi_ghoul_king = {
@@ -211,16 +164,6 @@ VampireCountsRecruitmentPoolData =  {
     -- The Necrarch Brotherhood
     wh2_main_vmp_necrarch_brotherhood = {
         FactionPools = {
-            Necromancers = {
-                AgentSubTypes = {
-                    vmp_master_necromancer = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 3,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 3,
-            },
             VampireLords = {
                 AgentSubTypes = {
                     wh2_dlc11_vmp_bloodline_necrarch = {

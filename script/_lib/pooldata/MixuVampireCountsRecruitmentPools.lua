@@ -2,16 +2,6 @@ VampireCountsRecruitmentPoolData =  {
     -- Default pool distribution
     wh_main_sc_vmp_vampire_counts = {
         FactionPools = {
-            Necromancers = {
-                AgentSubTypes = {
-                    vmp_master_necromancer = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 3,
-            },
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = {
@@ -30,16 +20,6 @@ VampireCountsRecruitmentPoolData =  {
     -- Vampire Counts (Manfred)
     wh_main_vmp_vampire_counts = {
         FactionPools = {
-            Necromancers = {
-                AgentSubTypes = {
-                    vmp_master_necromancer = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 2,
-                SubPoolMaxSize = 5,
-            },
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = {
@@ -61,16 +41,6 @@ VampireCountsRecruitmentPoolData =  {
     -- Von Carstein (Vlad/Isabella)
     wh_main_vmp_schwartzhafen = {
         FactionPools = {
-            Necromancers = {
-                AgentSubTypes = {
-                    vmp_master_necromancer = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
-            },
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = {
@@ -94,26 +64,16 @@ VampireCountsRecruitmentPoolData =  {
     -- Mousillon
     wh_main_vmp_mousillon = {
         FactionPools = {
-            Necromancers = {
-                AgentSubTypes = {
-                    vmp_master_necromancer = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 2,
-                SubPoolMaxSize = 5,
-            },
             VampireLords = {
                 AgentSubTypes = {
                     vmp_lord = {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                     },
-                    --[[wh2_dlc11_vmp_bloodline_blood_dragon = {
+                    wh2_dlc11_vmp_bloodline_blood_dragon = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
-                    },--]]
+                    },
                 },
                 SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 5,

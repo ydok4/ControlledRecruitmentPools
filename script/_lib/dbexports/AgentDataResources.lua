@@ -502,7 +502,6 @@ AgentDataResources = {
 		},
 		IsFemale = "false",
 		NameGroup = "wh_main_sc_emp_empire",
-		NameGroup = "",
 	},
 	emp_celestial_wizard = {
 		ArtSetIds = {

@@ -2,16 +2,6 @@ GreenskinRecruitmentPoolData =  {
     -- Default pool distribution
     wh_main_sc_grn_greenskins = {
         FactionPools = {
-            GreenskinWarbosses = {
-                AgentSubTypes = {
-                    grn_orc_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
-            },
             GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
@@ -65,10 +55,10 @@ GreenskinRecruitmentPoolData =  {
                 AgentSubTypes = {
                     grn_orc_warboss = {
                         MinimumAmount = 0,
-                        MaximumAmount = 9,
+                        MaximumAmount = 6,
                     },
                 },
-                SubPoolInitialMinSize = 3,
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 9,
             },
             GreenskinShamans = {
@@ -82,6 +72,12 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 3,
             },
         },
+        LegendaryLordNameKeys = {
+            grn_azhag_the_slaughterer = {
+                clan_name = "names_name_2147345906",
+                forename = "names_name_2147357356",
+            },
+        },
         PoolMaxSize = 10,
     },
     -- Wurrzag
@@ -91,7 +87,7 @@ GreenskinRecruitmentPoolData =  {
                 AgentSubTypes = {
                     grn_orc_warboss = {
                         MinimumAmount = 0,
-                        MaximumAmount = 5,
+                        MaximumAmount = 2,
                     },
                 },
                 SubPoolInitialMinSize = 1,
@@ -118,11 +114,12 @@ GreenskinRecruitmentPoolData =  {
                 AgentSubTypes = {
                     dlc06_grn_night_goblin_warboss = {
                         MinimumAmount = 0,
-                        MaximumAmount = 5,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 2,
-                SubPoolMaxSize = 5,
+                SubPoolMaxSize = 2,
             },
             GreenskinShamans = {
                 AgentSubTypes = {
@@ -133,6 +130,17 @@ GreenskinRecruitmentPoolData =  {
                 },
                 SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 3,
+            },
+        },
+        LordsToReplace = {
+            grn_orc_warboss = {
+                replacementKey = "dlc06_grn_night_goblin_warboss",
+                traitKeyPool = {
+                    "wh2_main_skill_innate_grn_big_bully",
+                    "wh2_main_skill_innate_grn_bragga",
+                    "wh2_main_skill_innate_grn_serial_danca",
+                    "wh2_main_skill_innate_grn_tortura"
+                },
             },
         },
         PoolMaxSize = 8,
@@ -176,16 +184,6 @@ GreenskinRecruitmentPoolData =  {
     -- Goblin Tribes
     wh_main_grn_broken_nose = {
         FactionPools = {
-            GreenskinWarbosses = {
-                AgentSubTypes = {
-                    grn_orc_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
-            },
             GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
@@ -212,21 +210,12 @@ GreenskinRecruitmentPoolData =  {
     },
     wh_main_grn_scabby_eye = {
         FactionPools = {
-            GreenskinWarbosses = {
-                AgentSubTypes = {
-                    grn_orc_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
-            },
             GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -248,21 +237,12 @@ GreenskinRecruitmentPoolData =  {
     },
     wh_main_grn_teef_snatchaz = {
         FactionPools = {
-            GreenskinWarbosses = {
-                AgentSubTypes = {
-                    grn_orc_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 5,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
-            },
             GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -282,6 +262,7 @@ GreenskinRecruitmentPoolData =  {
             },
         },
     },
+
     -- Night Goblin Tribes
     wh_main_grn_bloody_spearz = {
         FactionPools = {
@@ -289,11 +270,11 @@ GreenskinRecruitmentPoolData =  {
                 AgentSubTypes = {
                     dlc06_grn_night_goblin_warboss = {
                         MinimumAmount = 0,
-                        MaximumAmount = 4,
+                        MaximumAmount = 1,
                     },
                 },
                 SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 4,
+                SubPoolMaxSize = 1,
             },
             GreenskinShamans = {
                 AgentSubTypes = {
@@ -314,11 +295,12 @@ GreenskinRecruitmentPoolData =  {
                 AgentSubTypes = {
                     dlc06_grn_night_goblin_warboss = {
                         MinimumAmount = 0,
-                        MaximumAmount = 4,
+                        MaximumAmount = 1,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 4,
+                SubPoolMaxSize = 1,
             },
             GreenskinShamans = {
                 AgentSubTypes = {

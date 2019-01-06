@@ -22,6 +22,7 @@ require 'script/_lib/dbexports/AgentDataResources'
 require 'script/_lib/dbexports/CustomAgentDataResources'
 require 'script/_lib/dbexports/RebelLeadersDataResource'
 require 'script/_lib/dbexports/NameGroupResources'
+require 'script/_lib/dbexports/SubCultureNameGroupResources'
 require 'script/_lib/dbexports/NameResources'
 
 Custom_Log("Loading Core Data");
@@ -30,6 +31,7 @@ _G.CRPResources = {
     DBResources = {
         campaign_character_data = AgentDataResources,
         faction_to_name_groups = NameGroupResources,
+        subculture_to_name_groups = SubCultureNameGroupResources,
         name_groups_to_names = NameResources,
     },
     CulturePoolResources = {
@@ -101,7 +103,7 @@ _G.CRPResources = {
                             if additionalSubPoolData.SubPoolInitialMinSize ~= nil then
                                 existingData.SubPoolInitialMinSize = additionalSubPoolData.SubPoolInitialMinSize;
                             end
-    
+
                             if additionalSubPoolData.SubPoolMaxSize ~= nil then
                                 existingData.SubPoolMaxSize = additionalSubPoolData.SubPoolMaxSize;
                             end

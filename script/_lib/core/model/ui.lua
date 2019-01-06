@@ -19,7 +19,6 @@ end
 function CRPUI:InitialiseListeners(humanFaction, lordsInPool)
     Custom_Log("CRPUI Listeners initialising");
     local humanFactionName = humanFaction:name();
-    Custom_Log("Got human faction name");
     if humanFactionName == "wh_main_grn_skull-takerz" then
         humanFactionName = "wh_main_grn_skull_takerz";
     end
@@ -94,7 +93,6 @@ function CRPUI:BuildTraitLocString(traitKey, traitName)
                     effectLoc = "[[img:".."ui/campaign ui/effect_bundles/"..effectData.IconNegative.."]][[/img]]   "..effectLoc;
                 end
                 --Custom_Log("Set colour "..effectLoc);
-                
                 --Custom_Log("Set image");
                 traitDescription = traitDescription.."\n"..effectLoc;
                 --Custom_Log("Completed loc "..effectLoc);

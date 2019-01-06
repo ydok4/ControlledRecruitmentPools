@@ -1,7 +1,7 @@
 CustomAgentDataResources = {
     vmp_lord = {
 		ArtSetIds = {
- 			"wh_main_art_set_vmp_lord_01_replacement", "wh_main_art_set_vmp_lord_02_replacement", "wh_main_art_set_vmp_lord_03_replacement", "wh_main_art_set_vmp_lord_04_replacement", "wh_main_art_set_vmp_lord_05_replacement",
+			"wh_main_art_set_vmp_lord_01_replacement", "wh_main_art_set_vmp_lord_02_replacement", "wh_main_art_set_vmp_lord_03_replacement", "wh_main_art_set_vmp_lord_04_replacement", "wh_main_art_set_vmp_lord_05_replacement",
 		},
 		IsFemale = "false",
 		NameGroup = "",

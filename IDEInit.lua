@@ -1,10 +1,10 @@
 -- Mock Data
 testFaction = {
     name = function()
-        return "wh_main_grn_crooked_moon";
+        return "wh2_dlc11_cst_noctilus";
     end,
     subculture = function()
-        return "wh_main_sc_grn_greenskins";
+        return "wh2_dlc11_sc_cst_vampire_coast";
     end,
     character_list = function()
         return {
@@ -84,16 +84,18 @@ local sourceTable = {};
 if destinationTable == {} then
     local test = ""; 
 end
+local factionPoolResources = crp:GetFactionPoolResources(testFaction);
 local currentFactionPools = crp:GetCurrentPoolForFaction(testFaction);
-local agentSubTypeKey = "wh_grn_forest_goblin_warboss";
-crp:ReplaceExistingLords(testFaction, currentFactionPools);
+local agentSubTypeKey = "wh2_dlc11_cst_admiral_death";
+crp:ReplaceExistingLords(testFaction, factionPoolResources);
 crp:RecalculatePoolLimits();
+local subculture = GetSubCultureFromUnitList(agentSubTypeKey);
 local name = crp:GetCharacterNameForSubculture(testFaction, agentSubTypeKey);
 local artSetId = crp:GetArtSetForSubType(agentSubTypeKey);
 local factionPoolResources = crp:GetFactionPoolResources(testFaction);
 local trait = crp:GetRandomCharacterTrait(testFaction, agentSubTypeKey);
 local traitPath = crp.UIController:GetImagePathForTrait(trait);
-crp:SetupInitialMinimumValues(testFaction, currentFactionPools);
+crp:SetupInitialMinimumValues(testFaction, currentFactionPools, factionPoolResources);
 local traitEffects = crp.UIController:GetTraitEffects("wh2_main_skill_innate_all_aggressive");
 local traitDescription = crp.UIController:BuildTraitLocString("wh2_main_skill_innate_all_aggressive", "Knowledgeable");
 --crp.UIController:GetImagePathForTrait("wh_main_sc_vmp_vampire_counts", "");
@@ -101,7 +103,13 @@ local traitDescription = crp.UIController:BuildTraitLocString("wh2_main_skill_in
 --local supported = crp:IsSupportedSubCulture(testFaction:subculture()) or crp:IsRogueArmy(testFaction:name());
 --local currentPoolCounts = crp:GetCurrentPoolForFaction(testFaction);
 local imagePath = crp.UIController:GetImagePathForTrait(testFaction:subculture(), "wh2_main_skill_innate_all_aggressive");
---local test = crp:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, "EmpireGenerals");
+local replacementLords = crp:GetReplacementLordsForFaction(testFaction);
+
+if replacementLords ~= nil then
+    for replacementSubType, replacementData in pairs(replacementLords) do
+        local test = replacementSubType;
+    end
+end
 
 crp:UpdateRecruitmentPool(testFaction, 1, true);
 crp:IsThereACharacterInPool(testFaction);

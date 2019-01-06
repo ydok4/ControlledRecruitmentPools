@@ -2,16 +2,6 @@ DwarfRecruitmentPoolData =  {
     -- Default pool distribution
     wh_main_sc_dwf_dwarfs = {
         FactionPools = {
-            DwarfLords = {
-                AgentSubTypes = {
-                    dwf_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 4,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 4,
-            },
             RuneLord = {
                 AgentSubTypes = {
                     dlc06_dwf_runelord = {
@@ -48,11 +38,11 @@ DwarfRecruitmentPoolData =  {
                 AgentSubTypes = {
                     dwf_lord = {
                         MinimumAmount = 0,
-                        MaximumAmount = 5,
+                        MaximumAmount = 2,
                     },
                 },
                 SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
+                SubPoolMaxSize = 2,
             },
             RuneLord = {
                 AgentSubTypes = {
@@ -65,7 +55,13 @@ DwarfRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 5,
+        LegendaryLordNameKeys = {
+            pro01_dwf_grombrindal = {
+                clan_name = "names_name_2147358917",
+                forename = "",
+            },
+        },
+        PoolMaxSize = 6,
     },
 
     -- Karak Kadrin
@@ -75,11 +71,11 @@ DwarfRecruitmentPoolData =  {
                 AgentSubTypes = {
                     dwf_lord = {
                         MinimumAmount = 0,
-                        MaximumAmount = 5,
+                        MaximumAmount = 2,
                     },
                 },
                 SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
+                SubPoolMaxSize = 2,
             },
             RuneLord = {
                 AgentSubTypes = {
@@ -98,16 +94,6 @@ DwarfRecruitmentPoolData =  {
     -- Clan Angrund
     wh_main_dwf_karak_izor = {
         FactionPools = {
-            DwarfLords = {
-                AgentSubTypes = {
-                    dwf_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
-                    },
-                },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 1,
-            },
             RuneLord = {
                 AgentSubTypes = {
                     dlc06_dwf_runelord = {

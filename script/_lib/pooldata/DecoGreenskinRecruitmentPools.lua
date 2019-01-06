@@ -50,6 +50,7 @@ GreenskinRecruitmentPoolData =  {
                     wh_grn_forest_goblin_warboss = {
                         MinimumAmount = 0,
                         MaximumAmount = 4,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 1,
@@ -86,6 +87,7 @@ GreenskinRecruitmentPoolData =  {
                     wh_grn_forest_goblin_warboss = {
                         MinimumAmount = 0,
                         MaximumAmount = 4,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 1,
