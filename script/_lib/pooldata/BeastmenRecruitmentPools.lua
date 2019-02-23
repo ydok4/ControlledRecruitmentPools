@@ -1,7 +1,19 @@
 BeastmentRecruitmentPoolData = {
     -- Default pool distribution
     wh_dlc03_sc_bst_beastmen = {
+        DefaultLords = {"dlc03_bst_beastlord"},
         FactionPools = {
+            BeastLords = {
+                AgentSubTypes = {
+                    dlc03_bst_beastlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 4,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 4,
+            },
         },
         Traits = {
             wh2_main_skill_innate_bst_booze_cravings = {
@@ -37,20 +49,11 @@ BeastmentRecruitmentPoolData = {
                     dlc03_bst_beastlord = {
                         MinimumAmount = 0,
                         MaximumAmount = 5,
+                        HumanPlayerOnly = true,
                     },
                 },
-                SubPoolInitialMinSize = 1,
+                SubPoolInitialMinSize = 2,
                 SubPoolMaxSize = 5,
-            },
-        },
-        LegendaryLordNameKeys = {
-            dlc03_bst_malagor = {
-                clan_name = "names_name_2147357619",
-                forename = "",
-            },
-            dlc05_bst_morghur = {
-                clan_name = "names_name_2147352897",
-                forename = "",
             },
         },
         PoolMaxSize = 8,

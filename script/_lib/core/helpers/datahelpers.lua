@@ -1,4 +1,4 @@
---out("CRP: Loading DataHelpers");
+out("CRP: Loading DataHelpers");
 function ConcatTableWithKeys(destinationTable, sourceTable)
     for key, value in pairs(sourceTable) do
         destinationTable[key] = value;
@@ -87,6 +87,23 @@ function GetStringifiedUnitList(character)
     end
     Custom_Log("Built Unit string: "..unitString);
     return unitString;
+end
+
+function GetKeysFromTable(tableWithKeys)
+    local tableKeys = {};
+    for key, value in pairs(tableWithKeys) do
+        tableKeys[#tableKeys + 1] = key;
+    end
+    return tableKeys;
+end
+
+function GetMatchingKeyMatchingLocalisedString(keys, stringToMatch, keyPrefix)
+    for index, key in pairs(keys) do
+        if stringToMatch == effect.get_localised_string(keyPrefix..key) then
+            return key;
+        end
+    end
+    return nil;
 end
 
 function Custom_Log_Start()

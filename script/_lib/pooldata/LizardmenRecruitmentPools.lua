@@ -1,8 +1,19 @@
 LizardmenRecruitmentPoolData = {
     -- Default pool distribution
     wh2_main_sc_lzd_lizardmen = {
+        DefaultLords = {"wh2_main_lzd_saurus_old_blood"},
         FactionPools = {
-
+            SaurusOldBloods = {
+                AgentSubTypes = {
+                    wh2_main_lzd_saurus_old_blood = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 4,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 4,
+            },
         },
         Traits = {
             wh2_main_skill_innate_lzd_arrogant = {

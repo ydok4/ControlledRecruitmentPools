@@ -1,7 +1,19 @@
 SkavenRecruitmentPoolData = {
     -- Default pool distribution
     wh2_main_sc_skv_skaven = {
+        DefaultLords = {"wh2_main_skv_warlord"},
         FactionPools = {
+            SkavenWarlord = {
+                AgentSubTypes = {
+                    wh2_main_skv_warlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 6,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 3,
+                SubPoolMaxSize = 6,
+            },
             GreySeer = {
                 AgentSubTypes = {
                     wh2_main_skv_grey_seer_plague = {

@@ -1,8 +1,19 @@
 NorscaRecruitmentPoolData = {
     -- Default pool distribution
     wh_main_sc_nor_norsca = {
+        DefaultLords = {"nor_marauder_chieftain"},
         FactionPools = {
-
+            EmpireGenerals = {
+                AgentSubTypes = {
+                    nor_marauder_chieftain = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 4,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 4,
+            },
         },
         ExcludedTraits = {
             "wh_main_skill_innate_all_charismatic",

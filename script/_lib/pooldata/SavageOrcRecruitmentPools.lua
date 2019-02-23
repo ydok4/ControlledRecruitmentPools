@@ -1,7 +1,19 @@
 SavageOrcRecruitmentPoolData =  {
     -- Default pool distribution
     wh_main_sc_grn_savage_orcs = {
+        DefaultLords = {"grn_orc_warboss"},
         FactionPools = {
+            SavageOrcWarbosses = {
+                AgentSubTypes = {
+                    grn_orc_warboss = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 5,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 5,
+            },
             SavageOrcShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {

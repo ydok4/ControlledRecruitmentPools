@@ -46,7 +46,7 @@ function GetValidNonActiveFactionForSubCulture(crp, subcultureKey)
 	for i = 0, faction_list:num_items() - 1 do
 		local faction = faction_list:item_at(i);
 		if faction:subculture() == subcultureKey and faction:is_quest_battle_faction() == false then
-            if (crp:IsSupportedSubCulture(faction:subculture()) or crp:IsRogueArmy(faction:name())) and crp:IsExcludedFaction(faction) == false
+            if (IsSupportedSubCulture(faction:subculture()) or IsRogueArmy(faction:name())) and IsExcludedFaction(faction) == false
             and cm:faction_is_alive(faction) == false then
 				validFactionList[#validFactionList + 1] = faction:name();
 			end;

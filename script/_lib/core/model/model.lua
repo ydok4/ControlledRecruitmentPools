@@ -1,6 +1,5 @@
 ControlledRecruitmentPools = {
     HumanFaction = {},
-    CRPResources = {},
     -- Default spawn coordinates before the char is moved
     -- These need to be on a spawn area, ie not mountains or
     -- dense forest.
@@ -8,6 +7,8 @@ ControlledRecruitmentPools = {
     DefaultYCoordinate = 0,
     -- Separate object which controls UI scraping and display
     UIController = {},
+    -- Separate object which handles character generator functionality
+    CRPCharacterGenerator = {},
     CRPLordsInPools = {},
     PreBattleData = {};
 }
@@ -27,61 +28,24 @@ function ControlledRecruitmentPools:Initialise()
     -- the Southlands in ME
     self.DefaultXCoordinate = 231;
     self.DefaultYCoordinate = 94;
-    self.CRPResources = _G.CRPResources;
+
     if self.CRPLordsInPools == nil then
         Custom_Log("Lord pool is blank");
         self.CRPLordsInPools = {};
     end
-    self:RecalculatePoolLimits();
-    -- Clear the loaded data
-    _G.CRPResources = nil;
+    -- Setup character generator
+    self.CRPCharacterGenerator = CRPCharacterGenerator:new({
+
+    });
+    self.CRPCharacterGenerator:Initialise();
+
     -- Setup UI
     self.UIController = CRPUI:new({
 
     });
+
     Custom_Log("Finished default values");
     out("CRP: Finished default values");
-end
-
--- The pool limit should be greater than or equal to the highest Agent Sub Type
--- maximum limit in that pool
-function ControlledRecruitmentPools:RecalculatePoolLimits()
-    Custom_Log("Recalculating pool limits");
-    for subcultureKey, subcultureLimits in pairs(self.CRPResources.CulturePoolResources) do
-        for factionKey, factionLimits in pairs(subcultureLimits) do
-            for factionPoolKey, factionPool in pairs(factionLimits.FactionPools) do
-                local subPoolMax = factionPool.SubPoolMaxSize;
-                if subPoolMax == nil then
-                    subPoolMax = 0;
-                end
-                local subPoolMin = factionPool.SubPoolInitialMinSize;
-                if subPoolMin == nil then
-                    subPoolMin = 0;
-                end
-                local highestMinimum = 0;
-                local highestMaximum = 0;
-                local calculatedMinimum = 0;
-
-                for agentSubTypeKey, agentSubType in pairs(factionPool.AgentSubTypes) do
-                    if agentSubType.MinimumAmount > highestMinimum then
-                        highestMinimum = agentSubType.MinimumAmount;
-                    end
-
-                    if agentSubType.MaximumAmount > highestMaximum then
-                        highestMaximum = agentSubType.MaximumAmount;
-                    end
-
-                    calculatedMinimum = calculatedMinimum + agentSubType.MinimumAmount;
-                end
-                if subPoolMin < calculatedMinimum then
-                    factionPool.SubPoolInitialMinSize = calculatedMinimum;
-                end
-                if subPoolMax < calculatedMinimum + highestMaximum then
-                    factionPool.SubPoolMaxSize = calculatedMinimum + highestMaximum;
-                end
-            end
-        end
-    end
 end
 
 -- There are several factions which are excluded from the system but have a valid subculture
@@ -108,23 +72,6 @@ function ControlledRecruitmentPools:IsExcludedFaction(faction)
     return false;
 end
 
-function ControlledRecruitmentPools:IsSupportedSubCulture(subculture)
-    if subculture == "rebels" or self.CRPResources.CulturePoolResources[subculture] then
-        return true;
-    else
-        return false;
-    end
-end
-
-function ControlledRecruitmentPools:IsRogueArmy(factionName)
-    --Custom_Log("In rogue army check: "..factionName);
-    if self.CRPResources.CulturePoolResources["wh_rogue_armies"][factionName] then
-        return true;
-    else
-        return false;
-    end
-end
-
 function ControlledRecruitmentPools:NewGameStartUp()
     Custom_Log("New game startup");
 	local faction_list = cm:model():world():faction_list();
@@ -135,8 +82,8 @@ function ControlledRecruitmentPools:NewGameStartUp()
         if faction:is_quest_battle_faction() == false then
             Custom_Log(faction:name().." STARTUP");
             -- After replacing calculate the current pools for the faction
-            local factionPoolResources = self:GetFactionPoolResources(faction);
-            if (self:IsSupportedSubCulture(faction:subculture()) or self:IsRogueArmy(faction:name())) and self:IsExcludedFaction(faction) == false then
+            local factionPoolResources = GetFactionPoolResources(faction);
+            if (IsSupportedSubCulture(faction:subculture()) or IsRogueArmy(faction:name())) and self:IsExcludedFaction(faction) == false then
                 Custom_Log("Faction is supported, performing startup procedure");
                 -- Replace existing lords with specified values (if any)
                 -- The current faction pools will be updated with these values
@@ -152,16 +99,16 @@ function ControlledRecruitmentPools:NewGameStartUp()
             -- This will replace any vmp_lord_replacements present at the start of the game
             -- This will usually be from armies spawned by scripted. Eg the Artois army for Kemmler start.
             local currentFactionPools = self:GetCurrentPoolForFaction(faction);
-           self:RemoveAnyVampireLordReplacementsInFaction(faction, currentFactionPools, factionPoolResources);
+           self:RemoveAliveCharacterInPoolAtGameStart(faction, currentFactionPools, factionPoolResources);
            self:ApplyArmyLimits(faction, factionPoolResources);
-           self:TrackInitialLords(faction, factionPoolResources);
+           self:TrackInitialLords(faction);
            Custom_Log_Finished();
         end
     end
     cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
 end
 
-function ControlledRecruitmentPools:TrackInitialLords(faction, factionPoolResources)
+function ControlledRecruitmentPools:TrackInitialLords(faction)
     local factionName = faction:name();
     local character_list = faction:character_list();
     Custom_Log("Tracking initial lords for faction "..factionName);
@@ -175,7 +122,8 @@ function ControlledRecruitmentPools:TrackInitialLords(faction, factionPoolResour
                     forename = character:get_surname(),
                 };
                 Custom_Log("Tracking subtype "..charSubType);
-                self:TrackCharacterInPoolData(factionName, generatedName, "", charSubType, "");
+                local homeRegion = self.CRPCharacterGenerator:GetRegionForFaction(faction);
+                self:TrackCharacterInPoolData(factionName, generatedName, "", charSubType, "", homeRegion);
             end
         end
     end
@@ -188,7 +136,8 @@ function ControlledRecruitmentPools:TrackInitialLords(faction, factionPoolResour
                 clan_name = nameObject.clan_name,
                 forename = nameObject.forename,
             };
-            self:TrackCharacterInPoolData(factionName, generatedName, "", agentSubType, "");
+            local homeRegion = self.CRPCharacterGenerator:GetRegionForFaction(faction);
+            self:TrackCharacterInPoolData(factionName, generatedName, "", agentSubType, "", homeRegion);
         end
     end--]]
 end
@@ -204,7 +153,6 @@ function ControlledRecruitmentPools:ApplyArmyLimits(faction, factionPoolResource
 end
 
 function ControlledRecruitmentPools:ReplaceExistingLords(faction, factionPoolResources)
-    --Custom_Log("ReplaceExistingLords");
     -- Grab faction resources and check if any lords need to be replaced for this faction
     if factionPoolResources.LordsToReplace == nil then
         Custom_Log("No lords to replace");
@@ -245,7 +193,7 @@ function ControlledRecruitmentPools:ReplaceCharacter(faction, character, replace
 
     local selectedTrait = traitOverride;
     if selectedTrait == nil then
-        selectedTrait = self:GetRandomTraitForLord(factionPoolResources, character:character_subtype_key());
+        selectedTrait = self.CRPCharacterGenerator:GetRandomTraitForLord(factionPoolResources, character:character_subtype_key());
     end
     if traitKey ~= "" then
         --Custom_Log("Got trait "..selectedTrait);
@@ -309,22 +257,6 @@ function ControlledRecruitmentPools:ReplaceCharacter(faction, character, replace
     cm:callback(function() self:CreateForceWithGeneral(characterData); end, 0);
     Custom_Log("Finished replacing general");
     return characterData;
-end
-
-function ControlledRecruitmentPools:GetRandomTraitForLord(factionPoolResources, originalSubType)
-    --Custom_Log("Getting random trait for originalSubType "..originalSubType);
-    if factionPoolResources.LordsToReplace == nil then
-        --Custom_Log("No lords to replace");
-        return "";
-    end
-    local traitPool = factionPoolResources.LordsToReplace[originalSubType].traitKeyPool;
-    if traitPool == nil then
-        --Custom_Log("Trait pool is null");
-        return "";
-    end
-    local selectedTrait = GetRandomObjectFromList(traitPool);
-    --Custom_Log("Trait selected: "..selectedTrait)
-    return selectedTrait;
 end
 
 function ControlledRecruitmentPools:CreateForceWithGeneral(character, isRebel)
@@ -465,7 +397,7 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
     end
 
     local currentPoolCounts = self:GetCurrentPoolForFaction(faction);
-    local factionPoolResources = self:GetFactionPoolResources(faction);
+    local factionPoolResources = GetFactionPoolResources(faction);
     if self.CRPLordsInPools[factionName] == nil then
         Custom_Log("INITIALISING "..factionName);
         -- Set the initial pools for the faction
@@ -487,7 +419,7 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
     return addedGenerals;
 end
 
-function ControlledRecruitmentPools:RemoveAnyVampireLordReplacementsInFaction(faction, currentPoolCounts, factionPoolResources)
+function ControlledRecruitmentPools:RemoveAliveCharacterInPoolAtGameStart(faction, currentPoolCounts, factionPoolResources)
     -- Grab all characters in the faction. This includes recruited and
     -- characters in the pool
     local character_list = faction:character_list();
@@ -549,6 +481,7 @@ function ControlledRecruitmentPools:GetCurrentPoolForFaction(faction)
             end
         end
     end
+    Custom_Log("Got pool counts. Total is "..currentPoolCounts["total"]);
     return currentPoolCounts;
 end
 
@@ -594,7 +527,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
             local isHumanPlayerFaction = factionName == self.HumanFaction:name();
             local agentSubTypeKey = self:SelectGeneralToGenerateFromPool(factionPoolResources, currentPoolCounts, poolKey, isHumanPlayerFaction);
             --Custom_Log("Selected "..agentSubTypeKey);
-            local artSetId = self:GetArtSetForSubType(agentSubTypeKey);
+            local artSetId = self.CRPCharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
             --Custom_Log("Art set Id: "..artSetId);
             -- If this is the players faction this should happen straight away - Not right now. 
             -- so the recruitment event message can be supressed
@@ -615,7 +548,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
 end
 
 function ControlledRecruitmentPools:EnforceMinimumValues(faction, currentPoolCounts)
-    local factionResources = self:GetFactionPoolResources(faction);
+    local factionResources = GetFactionPoolResources(faction);
     local factionName = faction:name();
     local IsHumanPlayerFaction = factionName == self.HumanFaction:name();
     for poolKey, pool in pairs(factionResources.FactionPools) do
@@ -633,7 +566,7 @@ function ControlledRecruitmentPools:EnforceMinimumValues(faction, currentPoolCou
                     -- If this is the players faction this should happen straight away
                     -- so the recruitment event message can be supressed
                     --Custom_Log("Enforcing minimum for subtype "..agentSubTypeKey);
-                    local artSetId = self:GetArtSetForSubType(agentSubTypeKey);
+                    local artSetId = self.CRPCharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
                     --Custom_Log("Selected art set: "..artSetId);
                     --if faction:name() == self.HumanFaction:name() then
                         self:GenerateGeneral(agentSubTypeKey, faction, artSetId);
@@ -660,7 +593,7 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
         Custom_Log("forceGenerate is specified. General(s) will be created");
     end
     local newGenerals = {};
-    local factionResources = self:GetFactionPoolResources(faction);
+    local factionResources = GetFactionPoolResources(faction);
     for i = 1, maximumAmount do
         Custom_Log("Generating general "..i);
         if currentPoolCounts["total"] < factionResources.PoolMaxSize or forceGenerate == true then
@@ -675,7 +608,7 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
             -- Generate the general
             -- If this is the players faction this should happen straight away
             -- so the recruitment event message can be supressed
-            local artSetId = self:GetArtSetForSubType(agentSubTypeKey);
+            local artSetId = self.CRPCharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
             --if faction:name() == self.HumanFaction:name() then
                 local trackedCharacter = self:GenerateGeneral(agentSubTypeKey, faction, artSetId);
             --else
@@ -701,25 +634,6 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
     end
 
     return newGenerals;
-end
-
-function ControlledRecruitmentPools:GetFactionPoolResources(faction)
-    local subCulturePoolResources = self.CRPResources.CulturePoolResources[faction:subculture()];
-    local factionName = faction:name();
-    -- I couldn't store skull-takerz as a key in the lua table because of the -
-    -- So this takes care of that edge case
-    if faction:name() == "wh_main_grn_skull-takerz" then
-        factionName = "wh_main_grn_skull_takerz";
-    end
-
-    if subCulturePoolResources == nil then
-        return self.CRPResources.CulturePoolResources["wh_rogue_armies"][factionName];
-    elseif subCulturePoolResources[factionName] then
-        --Custom_Log("Found resources for faction");
-        return subCulturePoolResources[factionName];
-    else
-        return subCulturePoolResources[faction:subculture()];
-    end
 end
 
 function ControlledRecruitmentPools:SelectGeneralToGenerate(factionResources, currentPoolCounts, isHumanPlayerFaction, forceGenerationIfNoValues, overrideLimit)
@@ -822,229 +736,23 @@ function ControlledRecruitmentPools:GenerateGeneral(generalSubType, faction, art
     -- Grab the name from the generated character
     local generatedName = self:GetCharacterNameFromNewGeneral(faction);--]]
     --Custom_Log("Before name generation");
-    local generatedName = self:GetCharacterNameForSubculture(faction, generalSubType);
+    local generatedName = self.CRPCharacterGenerator:GetCharacterNameForSubculture(self.CRPLordsInPools, faction, generalSubType);
     --Custom_Log("After name generation");
     -- Generate a trait from the trait pool (WIP)
-    local innateTrait = self:GetRandomCharacterTrait(faction, generalSubType);
+    local innateTrait = self.CRPCharacterGenerator:GetRandomCharacterTrait(faction, generalSubType);
     Custom_Log("Giving character innate trait "..innateTrait);
     -- Then spawn the character so that they appear normally
     --Custom_Log("Forename/clan_name "..generatedName.clan_name.." surename/forename "..generatedName.forename);
     cm:spawn_character_to_pool(faction:name(), generatedName.clan_name, generatedName.forename, "", "", 20, true, "general", generalSubType, false, artSetId);
     --Custom_Log("Spawned character into pool");
     -- Add the character to the pool table so we can track them
-    local trackedData = self:TrackCharacterInPoolData(factionName, generatedName, innateTrait, generalSubType, artSetId);
+    local homeRegion = self.CRPCharacterGenerator:GetRegionForFaction(faction);
+    local trackedData = self:TrackCharacterInPoolData(factionName, generatedName, innateTrait, generalSubType, artSetId, homeRegion);
     Custom_Log("Finished generating general");
     return trackedData;
 end
 
-function ControlledRecruitmentPools:GetCharacterNameForSubculture(faction, agentSubType)
-    local factionName = faction:name();
-    if factionName == "wh_main_grn_skull-takerz" then
-        factionName = "wh_main_grn_skull_takerz";
-    end
-    --Custom_Log("Getting name for faction "..factionName);
-    local factionSubculture = faction:subculture();
-    --Custom_Log("In subculture "..factionSubculture);
-    local subcultureResources = self.CRPResources.CulturePoolResources[factionSubculture];
-    if subcultureResources == nil then
-        subcultureResources = self.CRPResources.CulturePoolResources["wh_rogue_armies"];
-    end
-    local factionResources = subcultureResources[factionName];
-
-    local nameGroup = -1;
-    if factionResources ~= nil and factionResources.NameGroup ~= nil then
-        nameGroup = factionResources.NameGroup;
-    else
-        local dbFactionNameGroup = self.CRPResources.DBResources.faction_to_name_groups[factionName];
-        if dbFactionNameGroup ~= nil then
-            nameGroup = dbFactionNameGroup.NameGroup;
-        else
-            local factionSubCulture = faction:subculture();
-            local dbSubcultureNameGroup = self.CRPResources.DBResources.subculture_to_name_groups[factionSubCulture];
-            if dbSubcultureNameGroup ~= nil then
-                nameGroup = dbSubcultureNameGroup.NameGroup;
-            end
-        end
-    end
-    nameGroup = "name_group_"..nameGroup;
-    local namePool = self.CRPResources.DBResources.name_groups_to_names[nameGroup];
-    local canUseFemaleNames = self:GetGenderForAgentSubType(agentSubType);
-
-    local doOnce = false;
-    local nameKey = "";
-    local clan_name_object = "";
-    local forename_object = "";
-    local forename_chance = self:GetForeNameChance(factionSubculture);
-
-    local factionLords = self.CRPLordsInPools[factionName];
-
-    local failSafe = 0;
-    while doOnce == false or factionLords == nil or factionLords[nameKey] ~= nil or nameKey == "" do
-        clan_name_object = self:GetValidNameForType(namePool, canUseFemaleNames, "clan_name");
-        if Roll100(forename_chance) then
-            forename_object = self:GetValidNameForType(namePool, canUseFemaleNames, "forename");
-        else
-            forename_object = {};
-            forename_object.Text = "";
-            forename_object.Id = "";
-        end
-
-        nameKey = clan_name_object.Text..forename_object.Text;
-        nameKey = CreateValidLuaTableKey(nameKey);
-        Custom_Log("Generated name key is "..nameKey);
-        doOnce = true;
-        if factionLords == nil and nameKey ~= "" then
-            Custom_Log("Faction has no tracked lords. Using first generated name.");
-            break;
-        elseif failSafe == 5 then
-            Custom_Log("ERROR: Not able to generate name");
-            return nil;
-        else
-            failSafe = failSafe + 1;
-        end
-    end
-
-    local generatedName = {
-        clan_name = clan_name_object.Id,
-        forename = forename_object.Id,
-    };
-    --Custom_Log("Got generated name");
-    return generatedName;
-end
-
-function ControlledRecruitmentPools:GetForeNameChance(factionSubculture)
-    if factionSubculture == "wh_main_sc_chs_chaos" then
-        return 100 - 60;
-    elseif factionSubculture == "wh2_main_sc_skv_skaven" then
-        return 100 - 75;
-    elseif factionSubculture == "wh_main_sc_nor_norsca" then
-        return 100 - 30;
-    elseif factionSubculture == "wh_dlc03_sc_bst_beastmen" then
-        return 100 - 75;
-    elseif factionSubculture == "wh_main_sc_grn_greenskins" or factionSubculture == "wh_main_sc_grn_savage_orcs" then
-        return 100 - 40;
-    end
-    return 100;
-end
-
-function ControlledRecruitmentPools:GetValidNameForType(namePool, canUseFemaleNames, nameType)
-    local nameTypes = nil;
-    if canUseFemaleNames and nameType == "clan_name" then
-        nameTypes = namePool.Gender["Female"][nameType];
-    else
-        if namePool.Gender["Male"] ~= nil and namePool.Gender["Special"]  ~= nil then
-            if namePool.Gender["Male"][nameType] ~= nil then
-                nameTypes = {};
-                ConcatTableWithKeys(nameTypes, namePool.Gender["Male"][nameType]);
-            end
-            if namePool.Gender["Special"][nameType] ~= nil then
-                if nameTypes == nil then
-                    nameTypes = {};
-                end
-                ConcatTableWithKeys(nameTypes, namePool.Gender["Special"][nameType]);
-            end
-        elseif namePool.Gender["Male"] ~= nil then
-            nameTypes = namePool.Gender["Male"][nameType];
-        elseif namePool.Gender["Special"]  ~= nil then
-            nameTypes = namePool.Gender["Special"][nameType];
-        end
-    end
-
-    if nameTypes ~= nil then
-        local randomName = GetRandomObjectKeyFromList(nameTypes);
-        --Custom_Log("Generating name "..randomName);
-        local nameId = nameTypes[randomName];
-        --Custom_Log("Name id "..nameId);
-        local nameObject = {
-            Id = "names_name_"..tostring(nameId),
-            Text = randomName,
-        };
-        return nameObject;
-    end
-    local nameObject = {
-        Id = "",
-        Text = "",
-    };
-    return nameObject;
-end
-
-function ControlledRecruitmentPools:GetGenderForAgentSubType(agentSubType)
-    local agentResources = self.CRPResources.DBResources.campaign_character_data[agentSubType];
-    if agentResources ~= nil then
-        return agentResources.IsFemale == "true";
-    end
-    Custom_Log("Error: Could not find agent resources");
-end
-
-function ControlledRecruitmentPools:GetRandomCharacterTrait(faction, generalSubType)
-    local subculture = faction:subculture();
-    local factionName = faction:name();
-    if factionName == "wh_main_grn_skull-takerz" then
-        factionName = "wh_main_grn_skull_takerz";
-    end
-    local isRogueArmy = false;
-    local cultureData = self.CRPResources.CulturePoolResources[subculture];
-    if cultureData == nil then
-        cultureData = self.CRPResources.CulturePoolResources["wh_rogue_armies"];
-        isRogueArmy = true;
-    end
-
-    local defaultSubCultureData = cultureData[subculture];
-
-    local cultureTraits = {};
-    local foundCultureTraits = false;
-    -- Get traits for the subculture
-    if defaultSubCultureData ~= nil and defaultSubCultureData.Traits ~= nil then
-        ConcatTableWithKeys(cultureTraits, defaultSubCultureData.Traits);
-        foundCultureTraits = true;
-    end
-
-    local defaultFactionData = cultureData[factionName];
-    -- Then get the traits for the factions
-    if defaultFactionData ~= nil and defaultFactionData.Traits ~= nil then
-        ConcatTableWithKeys(cultureTraits, defaultFactionData.Traits);
-        foundCultureTraits = true;
-    end
-
-    if defaultFactionData ~= nil and defaultFactionData.ExcludedTraits ~= nil then
-        -- Then remove any excluded traits
-        for index, traitKey in pairs(defaultFactionData.ExcludedTraits) do
-            if cultureTraits[traitKey] ~= nil then
-                cultureTraits[traitKey] = nil;
-            end
-        end
-    end
-
-    -- There is a flat 50% chance to get a culture / faction trait
-    if foundCultureTraits == true and Roll100(50) then
-        return GetRandomObjectKeyFromList(cultureTraits);
-    end
-
-    -- Otherwise get a random trait from the shared traits
-    local sharedTraits = self.CRPResources.CulturePoolResources["shared"]["shared"].Traits;
-
-    if defaultFactionData ~= nil and defaultFactionData.ExcludedTraits ~= nil then
-        -- Then remove any excluded traits
-        for index, traitKey in pairs(defaultFactionData.ExcludedTraits) do
-            if sharedTraits[traitKey] ~= nil then
-                sharedTraits[traitKey] = nil;
-            end
-        end
-    end
-
-    if defaultSubCultureData ~= nil and defaultSubCultureData.ExcludedTraits ~= nil then
-        -- Then remove any excluded traits
-        for index, traitKey in pairs(defaultSubCultureData.ExcludedTraits) do
-            if sharedTraits[traitKey] ~= nil then
-                sharedTraits[traitKey] = nil;
-            end
-        end
-    end
-
-    return GetRandomObjectKeyFromList(sharedTraits)
-end
-
-function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, generatedName, innateTrait, subType, artSetId)
+function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, generatedName, innateTrait, subType, artSetId, homeRegion)
     if self.CRPLordsInPools[factionName] == nil then
         self.CRPLordsInPools[factionName] = {};
     end
@@ -1062,13 +770,16 @@ function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, genera
     local keyName = localisedForeName..localisedSurname;
     keyName = CreateValidLuaTableKey(keyName);
     local general = {
+        Name = localisedForeName.." "..localisedSurname,
+        SocialClass = "Gold",
         InnateTrait = innateTrait,
         SubType = subType,
         ArtSetId = artSetId,
+        HomeRegion = homeRegion,
     };
 
     self.CRPLordsInPools[factionName][keyName] = general;
-    Custom_Log("Tracking "..keyName);
+    Custom_Log("Tracking "..keyName.." for faction "..factionName);
     return general;
 end
 --[[function ControlledRecruitmentPools:GenerateAgent(agentSubType)
@@ -1124,44 +835,6 @@ function ControlledRecruitmentPools:GetHumanFaction()
     end
 end
 
-function ControlledRecruitmentPools:GetArtSetForSubType(subType)
-    --Custom_Log("Getting art set for sub type: "..subType);
-    local subTypeData = self.CRPResources.DBResources.campaign_character_data[subType];
-    if subTypeData == nil then
-        Custom_Log("ERROR: Missing SubTypeData");
-        return nil;
-    end
-    if subTypeData.ArtSetIds == nil then
-        Custom_Log("ERROR: Missing subtype ArtSetIds");
-        return nil;
-    end
-    local artSetId = GetRandomObjectFromList(subTypeData.ArtSetIds);
-    return artSetId;
-end
-
-function ControlledRecruitmentPools:GetValidAgentArtSetForFaction(faction)
-    local currentFactionPools = self:GetCurrentPoolForFaction(faction);
-    currentFactionPools["total"] = nil;
-    local agentSubType = GetRandomObjectKeyFromList(currentFactionPools);
-    Custom_Log("Selected random agent sub type "..agentSubType);
-
-    if agentSubType == "vmp_lord_replacement" then
-        Custom_Log("Current faction pools is null, try and get an art set from the faction pool resources");
-        local factionPoolResources = self:GetFactionPoolResources(faction);
-        --Custom_Log("Got faction pools resources for faction");
-        local poolData = GetRandomObjectFromList(factionPoolResources.FactionPools);
-        --Custom_Log("Got poolkey");
-        local agentSubTypeKey = GetRandomObjectKeyFromList(poolData.AgentSubTypes);
-        --Custom_Log("Selected "..agentSubTypeKey);
-        local artSetId = self:GetArtSetForSubType(agentSubTypeKey);
-        --Custom_Log("Got artset "..artSetId);
-        return artSetId;
-    end
-
-    local artSetId = self:GetArtSetForSubType(agentSubType);
-    --Custom_Log("Selected random art set for sub type: "..artSetId);
-    return artSetId;
-end
 
 function ControlledRecruitmentPools:IsFactionInitialised(factionName)
     if self.CRPLordsInPools[factionName] ~= nil and self.CRPLordsInPools[factionName]["initialised"] then
@@ -1274,7 +947,7 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
                 Custom_Log("Rebel faction "..replacementRebelFactionKey);
                 local replacementFaction = cm:get_faction(replacementRebelFactionKey);
                 Custom_Log("Got faction object");
-                local factionResources = self:GetFactionPoolResources(replacementFaction);
+                local factionResources = GetFactionPoolResources(replacementFaction);
                 Custom_Log("Got factionr resources");
                 local currentPoolCounts = self:GetCurrentPoolForFaction(replacementFaction);
                 Custom_Log("Got pool counts");
@@ -1317,7 +990,7 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
     elseif cm:char_is_mobile_general_with_army(char) then
         Custom_Log("Checking replacement data for faction "..factionName);
         -- If the character isn't tracked, that means CRP didn't spawn it. It could be an auto generated lord or it could be spawned in another way.
-        local replacementLords = crp:GetReplacementLordsForFaction(faction);
+        local replacementLords = GetReplacementLordsForFaction(faction);
         local isReplacement = false;
         local replaceSubType = "";
         local replacementTrait = "";
@@ -1334,7 +1007,7 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
         -- Replacement lords, should be replaced. This is mostly for the AI
         if not cm:is_new_game() and isReplacement == true then
             Custom_Log("Starting replacement");
-            local factionPoolResources = self:GetFactionPoolResources(faction);
+            local factionPoolResources = GetFactionPoolResources(faction);
             local artSetId = self:GetArtSetForSubType(replaceSubType);
             Custom_Log("Replacement is using art set id "..artSetId);
             self:ReplaceCharacter(faction, char, replaceSubType, factionPoolResources, artSetId, replacementTrait);
@@ -1345,18 +1018,18 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
                 forename = char:get_surname(),
             };
             Custom_Log("Character "..char:character_subtype_key().." is not in pool. Tracking them for faction "..factionName);
-            self:TrackCharacterInPoolData(factionName, name, "", char:character_subtype_key(), "");
+            local homeRegion = self.CRPCharacterGenerator:GetRegionForFaction(faction);
+            self:TrackCharacterInPoolData(factionName, name, "", char:character_subtype_key(), "", homeRegion);
         end
     else
         Custom_Log("Character is not a general with a force");
     end
 
-    --[[local factionResources = self:GetFactionPoolResources(char:faction());
+    --[[local factionResources = GetFactionPoolResources(char:faction());
     local charSubType = char:character_subtype_key();
     Custom_Log("Character Details "..factionName.." sub type "..char:character_subtype_key().." cqi "..char:cqi());
     if not char:is_null_interface() and (char:has_military_force() == true and char:military_force():is_armed_citizenry() == false) and
-    factionResources.LordsToReplace ~= nil and factionResources.LordsToReplace[charSubType] ~= nil and
-    cm:model():turn_number() > 1 then
+    factionResources.LordsToReplace ~= nil and factionResources.LordsToReplace[charSubType] ~= nil then
         Custom_Log("New character must be replaced!");
         local replacementData = factionResources.LordsToReplace[charSubType];
         local trait = GetRandomObjectKeyFromList(replacementData.traitKeyPool);
@@ -1396,9 +1069,4 @@ function ControlledRecruitmentPools:ProcessKilledCharacter(char)
         Custom_Log("Character in "..factionName.." is only wounded");
     end
     Custom_Log_Finished();
-end
-
-function ControlledRecruitmentPools:GetReplacementLordsForFaction(faction)
-    local factionResources = self:GetFactionPoolResources(faction);
-    return factionResources.LordsToReplace;
 end

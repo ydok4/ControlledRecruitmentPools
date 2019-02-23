@@ -1,7 +1,24 @@
 DarkElfRecruitmentPoolData =  {
     -- Default pool distribution
     wh2_main_sc_def_dark_elves = {
+        DefaultLords = {"wh2_main_def_dreadlord", "wh2_main_def_dreadlord_fem"},
         FactionPools = {
+            DreadLords = {
+                AgentSubTypes = {
+                    wh2_main_def_dreadlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 3,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_main_def_dreadlord_fem  = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 3,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 4,
+            },
             SorceressSupremePool = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
@@ -49,13 +66,29 @@ DarkElfRecruitmentPoolData =  {
         ExcludedTraits = {
             "wh_main_skill_innate_all_magnanimous",
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 5,
     },
     -- Major Faction specific distributions
 
     -- Malekith
     wh2_main_def_naggarond = {
         FactionPools = {
+            DreadLords = {
+                AgentSubTypes = {
+                    wh2_main_def_dreadlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 4,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_main_def_dreadlord_fem  = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 4,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 5,
+            },
             SorceressSupremePool = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
@@ -80,14 +113,30 @@ DarkElfRecruitmentPoolData =  {
                     },
                 },
                 SubPoolInitialMinSize = 2,
-                SubPoolMaxSize = 4,
+                SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 11,
+        PoolMaxSize = 8,
     },
     -- Morathi
     wh2_main_def_cult_of_pleasure = {
         FactionPools = {
+            DreadLords = {
+                AgentSubTypes = {
+                    wh2_main_def_dreadlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_main_def_dreadlord_fem  = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 3,
+            },
             SorceressSupremePool = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
@@ -111,16 +160,32 @@ DarkElfRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                 },
-                SubPoolInitialMinSize = 5,
+                SubPoolInitialMinSize = 3,
                 SubPoolMaxSize = 6,
             },
         },
-        PoolMaxSize = 10,
+        PoolMaxSize = 6,
     },
 
     -- Hellebron
     wh2_main_def_har_ganeth = {
         FactionPools = {
+            DreadLords = {
+                AgentSubTypes = {
+                    wh2_main_def_dreadlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 3,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_main_def_dreadlord_fem  = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 3,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 4,
+            },
             SorceressSupremePool = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
@@ -148,12 +213,77 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 10,
+        PoolMaxSize = 6,
     },
+
+        -- Lokhir
+        wh2_dlc11_def_the_blessed_dread = {
+            FactionPools = {
+                DreadLords = {
+                    AgentSubTypes = {
+                        wh2_main_def_dreadlord = {
+                            MinimumAmount = 0,
+                            MaximumAmount = 3,
+                            HumanPlayerOnly = true,
+                        },
+                        wh2_main_def_dreadlord_fem  = {
+                            MinimumAmount = 0,
+                            MaximumAmount = 3,
+                            HumanPlayerOnly = true,
+                        },
+                    },
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 4,
+                },
+                SorceressSupremePool = {
+                    AgentSubTypes = {
+                        wh2_dlc10_def_supreme_sorceress_beasts = {
+                            MinimumAmount = 0,
+                            MaximumAmount = 2,
+                        },
+                        wh2_dlc10_def_supreme_sorceress_dark = {
+                            MinimumAmount = 0,
+                            MaximumAmount = 2,
+                        },
+                        wh2_dlc10_def_supreme_sorceress_death = {
+                            MinimumAmount = 0,
+                            MaximumAmount = 2,
+                        },
+                        wh2_dlc10_def_supreme_sorceress_fire = {
+                            MinimumAmount = 0,
+                            MaximumAmount = 2,
+                        },
+                        wh2_dlc10_def_supreme_sorceress_shadow = {
+                            MinimumAmount = 0,
+                            MaximumAmount = 2,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+            },
+            PoolMaxSize = 6,
+        },
 
     -- Minor Faction specific distributions
     wh2_main_def_ghrond = {
         FactionPools = {
+            DreadLords = {
+                AgentSubTypes = {
+                    wh2_main_def_dreadlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_main_def_dreadlord_fem  = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 2,
+            },
             SorceressSupremePool = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
@@ -181,11 +311,27 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 8,
             },
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 6,
     },
 
     wh2_main_def_hag_graef = {
         FactionPools = {
+            DreadLords = {
+                AgentSubTypes = {
+                    wh2_main_def_dreadlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 3,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_main_def_dreadlord_fem  = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 3,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 4,
+            },
             SorceressSupremePool = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
@@ -213,11 +359,27 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 6,
     },
 
     wh2_main_def_drackla_coven = {
         FactionPools = {
+            DreadLords = {
+                AgentSubTypes = {
+                    wh2_main_def_dreadlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_main_def_dreadlord_fem  = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
             SorceressSupremePool = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
@@ -245,11 +407,27 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 5,
     },
 
     wh2_main_def_blood_hall_coven = {
         FactionPools = {
+            DreadLords = {
+                AgentSubTypes = {
+                    wh2_main_def_dreadlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_main_def_dreadlord_fem  = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
             SorceressSupremePool = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
@@ -277,6 +455,6 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 5,
     },
 }

@@ -160,4 +160,11 @@ MixuDataResources = {
 		IsFemale = "false",
 		NameGroup = "",
 	},
+	def_high_beastmaster = {
+		ArtSetIds = {
+			 "wh2_main_art_set_def_high_beastmaster_1", "wh2_main_art_set_def_high_beastmaster_2", "wh2_main_art_set_def_high_beastmaster_3",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
 }

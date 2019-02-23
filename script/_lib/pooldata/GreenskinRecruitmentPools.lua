@@ -1,7 +1,19 @@
 GreenskinRecruitmentPoolData =  {
     -- Default pool distribution
     wh_main_sc_grn_greenskins = {
+        DefaultLords = {"grn_orc_warboss"},
         FactionPools = {
+            GreenskinWarbosses = {
+                AgentSubTypes = {
+                    grn_orc_warboss = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 5,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 5,
+            },
             GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
@@ -55,7 +67,8 @@ GreenskinRecruitmentPoolData =  {
                 AgentSubTypes = {
                     grn_orc_warboss = {
                         MinimumAmount = 0,
-                        MaximumAmount = 6,
+                        MaximumAmount = 9,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 1,
@@ -72,12 +85,6 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 3,
             },
         },
-        LegendaryLordNameKeys = {
-            grn_azhag_the_slaughterer = {
-                clan_name = "names_name_2147345906",
-                forename = "names_name_2147357356",
-            },
-        },
         PoolMaxSize = 10,
     },
     -- Wurrzag
@@ -87,7 +94,8 @@ GreenskinRecruitmentPoolData =  {
                 AgentSubTypes = {
                     grn_orc_warboss = {
                         MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumAmount = 5,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 1,

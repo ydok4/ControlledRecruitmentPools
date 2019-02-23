@@ -1,6 +1,7 @@
 VampireCoastRecruitmentPoolData =  {
     -- Default pool distribution
     wh2_dlc11_sc_cst_vampire_coast = {
+        DefaultLords = {"wh2_dlc11_cst_admiral", "wh2_dlc11_cst_admiral_fem"},
         FactionPools = {
             Admirals = {
                 AgentSubTypes = {
@@ -19,6 +20,16 @@ VampireCoastRecruitmentPoolData =  {
                     wh2_dlc11_cst_admiral_fem_deep = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_dlc11_cst_admiral_fem = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 1,
@@ -45,6 +56,45 @@ VampireCoastRecruitmentPoolData =  {
         PoolMaxSize = 3,
     },
     -- Major Faction specific distributions
+    -- Luthor Harkon
+    wh2_dlc11_cst_vampire_coast = {
+        FactionPools = {
+            Admirals = {
+                AgentSubTypes = {
+                    wh2_dlc11_cst_admiral_death = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_deep = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_fem_death = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral_fem_deep = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_dlc11_cst_admiral_fem = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 3,
+            },
+        },
+        PoolMaxSize = 5,
+    },
+
     --Aranessa
     wh2_dlc11_cst_pirates_of_sartosa = {
         FactionPools = {
@@ -65,6 +115,16 @@ VampireCoastRecruitmentPoolData =  {
                     wh2_dlc11_cst_admiral_fem_deep = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
+                    },
+                    wh2_dlc11_cst_admiral = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_dlc11_cst_admiral_fem = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 1,
@@ -95,9 +155,19 @@ VampireCoastRecruitmentPoolData =  {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
+                    wh2_dlc11_cst_admiral = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_dlc11_cst_admiral_fem = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
                 },
                 SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 3,
+                SubPoolMaxSize = 5,
             },
         },
         PoolMaxSize = 5,
@@ -128,12 +198,22 @@ VampireCoastRecruitmentPoolData =  {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
+                    wh2_dlc11_cst_admiral = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                    wh2_dlc11_cst_admiral_fem = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
                 },
                 SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 3,
     },
     -- Minor faction specific distributions
 }

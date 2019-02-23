@@ -1,7 +1,19 @@
 ChaosRecruitmentPoolData = {
     -- Default pool distribution
     wh_main_sc_chs_chaos = {
+        DefaultLords = {"chs_lord"},
         FactionPools = {
+            ChaosLord = {
+                AgentSubTypes = {
+                    chs_lord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 5,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 5,
+            },
             SorcerorLords = {
                 AgentSubTypes = {
                     chs_sorcerer_lord_death = {
@@ -48,11 +60,12 @@ ChaosRecruitmentPoolData = {
                 AgentSubTypes = {
                     chs_lord = {
                         MinimumAmount = 0,
-                        MaximumAmount = 5,
+                        MaximumAmount = 8,
+                        HumanPlayerOnly = true,
                     },
                 },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 8,
             },
             SorcerorLords = {
                 AgentSubTypes = {

@@ -5,11 +5,13 @@ require 'script/_lib/pooldata/DarkElfRecruitmentPools'
 require 'script/_lib/pooldata/DwarfRecruitmentPools'
 require 'script/_lib/pooldata/EmpireRecruitmentPools'
 require 'script/_lib/pooldata/GreenskinRecruitmentPools'
+require 'script/_lib/pooldata/KislevRecruitmentPools'
 require 'script/_lib/pooldata/SavageOrcRecruitmentPools'
 require 'script/_lib/pooldata/HighElfRecruitmentPools'
 require 'script/_lib/pooldata/LizardmenRecruitmentPools'
 require 'script/_lib/pooldata/NorscaRecruitmentPools'
 require 'script/_lib/pooldata/SkavenRecruitmentPools'
+require 'script/_lib/pooldata/TEBRecruitmentPools'
 require 'script/_lib/pooldata/VampireCoastRecruitmentPools'
 require 'script/_lib/pooldata/VampireCountsRecruitmentPools'
 require 'script/_lib/pooldata/WoodElfRecruitmentPools'
@@ -26,6 +28,7 @@ require 'script/_lib/dbexports/SubCultureNameGroupResources'
 require 'script/_lib/dbexports/NameResources'
 
 Custom_Log("Loading Core Data");
+out("CRP: Loading Core Data");
 
 _G.CRPResources = {
     DBResources = {
@@ -50,6 +53,8 @@ _G.CRPResources = {
         -- Greenskins
         wh_main_sc_grn_greenskins = GreenskinRecruitmentPoolData,
         wh_main_sc_grn_savage_orcs = SavageOrcRecruitmentPoolData,
+        -- Kislev
+        wh_main_sc_ksl_kislev = KislevRecruitmentPools,
         -- High Elf
         wh2_main_sc_hef_high_elves = HighElfRecruitmentPoolData,
         -- Lizardmen
@@ -58,6 +63,8 @@ _G.CRPResources = {
         wh_main_sc_nor_norsca = NorscaRecruitmentPoolData,
         -- Skaven
         wh2_main_sc_skv_skaven = SkavenRecruitmentPoolData,
+        -- TEB
+        wh_main_sc_teb_teb = TEBRecruitmentPools,
         -- Vampire Coast
         wh2_dlc11_sc_cst_vampire_coast = VampireCoastRecruitmentPoolData,
         -- Vampire Counts
@@ -137,6 +144,14 @@ _G.CRPResources = {
                     coreResources[key1].ExcludedTraits = {};
                 end
                 ConcatTableWithKeys(coreResources[key1].ExcludedTraits, additionalFactionData.ExcludedTraits);
+            end
+
+            -- Merge Reward Data
+            if additionalFactionData.Rewards ~= nil then
+                if coreResources[key1].Rewards == nil then
+                    coreResources[key1].Rewards = {};
+                end
+                ConcatTableWithKeys(coreResources[key1].Rewards, additionalFactionData.Rewards);
             end
         end
     end,

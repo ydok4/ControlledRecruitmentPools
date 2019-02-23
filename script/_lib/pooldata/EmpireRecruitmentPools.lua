@@ -1,7 +1,19 @@
 EmpireRecruitmentPoolData =  {
     -- Default pool distribution
     wh_main_sc_emp_empire = {
+        DefaultLords = {"emp_lord"},
         FactionPools = {
+            EmpireGenerals = {
+                AgentSubTypes = {
+                    emp_lord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 4,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 4,
+            },
         },
         PoolMaxSize = 5,
         Traits = {
@@ -27,6 +39,17 @@ EmpireRecruitmentPoolData =  {
     -- Reikland
     wh_main_emp_empire = {
         FactionPools = {
+            EmpireGenerals = {
+                AgentSubTypes = {
+                    emp_lord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 5,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 5,
+            },
             ArchLectors = {
                 AgentSubTypes = {
                     dlc04_emp_arch_lector = {
@@ -34,18 +57,8 @@ EmpireRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                 },
-                SubPoolInitialMinSize = 0,
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 2,
-            },
-        },
-        LegendaryLordNameKeys = {
-            emp_balthasar_gelt = {
-                clan_name = "names_name_2147343922",
-                forename = "names_name_2147343928",
-            },
-            dlc04_emp_volkmar = {
-                clan_name = "names_name_2147358013",
-                forename = "names_name_2147350175",
             },
         },
         PoolMaxSize = 10,

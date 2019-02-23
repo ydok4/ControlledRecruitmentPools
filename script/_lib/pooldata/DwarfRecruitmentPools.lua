@@ -1,7 +1,19 @@
 DwarfRecruitmentPoolData =  {
     -- Default pool distribution
     wh_main_sc_dwf_dwarfs = {
+        DefaultLords = {"dwf_lord"},
         FactionPools = {
+            DwarfLords = {
+                AgentSubTypes = {
+                    dwf_lord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 4,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 4,
+            },
             RuneLord = {
                 AgentSubTypes = {
                     dlc06_dwf_runelord = {
@@ -38,11 +50,12 @@ DwarfRecruitmentPoolData =  {
                 AgentSubTypes = {
                     dwf_lord = {
                         MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumAmount = 6,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 2,
+                SubPoolMaxSize = 6,
             },
             RuneLord = {
                 AgentSubTypes = {
@@ -55,12 +68,6 @@ DwarfRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        LegendaryLordNameKeys = {
-            pro01_dwf_grombrindal = {
-                clan_name = "names_name_2147358917",
-                forename = "",
-            },
-        },
         PoolMaxSize = 6,
     },
 
@@ -71,11 +78,12 @@ DwarfRecruitmentPoolData =  {
                 AgentSubTypes = {
                     dwf_lord = {
                         MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumAmount = 6,
+                        HumanPlayerOnly = true,
                     },
                 },
                 SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 2,
+                SubPoolMaxSize = 6,
             },
             RuneLord = {
                 AgentSubTypes = {
@@ -94,6 +102,17 @@ DwarfRecruitmentPoolData =  {
     -- Clan Angrund
     wh_main_dwf_karak_izor = {
         FactionPools = {
+            DwarfLords = {
+                AgentSubTypes = {
+                    dwf_lord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 2,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 2,
+            },
             RuneLord = {
                 AgentSubTypes = {
                     dlc06_dwf_runelord = {
@@ -105,7 +124,36 @@ DwarfRecruitmentPoolData =  {
                 SubPoolMaxSize = 0,
             },
         },
-        PoolMaxSize = 1,
+        Rewards = {
+            scripted = {
+                Pools = {
+                    DwarfLords = {
+                        AgentSubTypes = {
+                            dwf_lord = {
+                                MinimumAmount = 0,
+                                MaximumAmount = 2,
+                                HumanPlayerOnly = true,
+                            },
+                        },
+                        SubPoolInitialMinSize = 0,
+                        SubPoolMaxSize = 2,
+                    },
+                    RuneLord = {
+                        AgentSubTypes = {
+                            dlc06_dwf_runelord = {
+                                MinimumAmount = 0,
+                                MaximumAmount = 1,
+                            },
+                        },
+                        SubPoolInitialMinSize = 0,
+                        SubPoolMaxSize = 1,
+                    },
+                },
+                IncreasePoolSize = 3,
+                Type = "increase",
+            },
+        },
+        PoolMaxSize = 2,
     },
 
     -- Minor Faction specific distributions
