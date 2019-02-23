@@ -122,6 +122,14 @@ _G.CRPResources = {
                     coreResources[key1].FactionPools[key2] = nil;
                 end
             end
+            -- Merge Default Lords data
+            if additionalFactionData.DefaultLords ~= nil then
+                if coreResources[key1].DefaultLords == nil then
+                    coreResources[key1].DefaultLords = {};
+                end
+                coreResources[key1].DefaultLords = additionalFactionData.DefaultLords;
+            end
+
             -- Merge replacement data
             if additionalFactionData.LordsToReplace ~= nil then
                 if coreResources[key1].LordsToReplace == nil then

@@ -91,14 +91,14 @@ function CRPUI:InitialiseListeners(humanFaction, lordsInPool)
 end
 
 function CRPUI:SetupCharacterDetailsButton(generalPanel, nameComponent, characterDetails)
-    if characterDetails == nil then
+    --[[if characterDetails == nil then
         Custom_Log("Character does not have any data");
         return;
     end
     local characterNameKey = CreateValidLuaTableKey(characterDetails.Name);
     local cdpButton = Button.new("circularButton"..characterNameKey, generalPanel, "CIRCULAR", "ui/skins/default/icon_end_turn.png");
     cdpButton:PositionRelativeTo(nameComponent, generalPanel:Width() / 1.5, 0);
-    cdpButton:RegisterForClick(function(context) self:SetupCharacterDetailsPanel(characterDetails); end);
+    cdpButton:RegisterForClick(function(context) self:SetupCharacterDetailsPanel(characterDetails); end);--]]
     --cdpButton:Resize(50, 50);
 end
 

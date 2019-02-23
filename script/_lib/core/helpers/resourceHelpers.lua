@@ -16,8 +16,7 @@ function IsRogueArmy(factionName)
 end
 
 function GetSubCulturePoolResources(cultureKey)
-    Custom_Log("GetSubCulturePoolResources");
-    Custom_Log("Getting culture pool resources "..cultureKey);
+    --Custom_Log("Getting culture pool resources "..cultureKey);
     local subCulturePoolResources = _G.CRPResources.CulturePoolResources[cultureKey][cultureKey];
     if subCulturePoolResources ~= nil then
         return subCulturePoolResources;

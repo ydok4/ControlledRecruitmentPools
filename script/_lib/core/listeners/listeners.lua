@@ -311,7 +311,6 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
         Custom_Log("There are "..generalsList:ChildCount().." in the list");
         -- Get the localised strings of the defaults lords so we know who to hide if they aren't tracked
         local defaultLordKeysForFaction = GetDefaultLordForFaction(humanFaction);
-        Custom_Log("Got default lord keys for faction");
         local localisedDefaultLordsForFaction = {};
         if defaultLordKeysForFaction ~= nil then
             for index, defaultLordKey in pairs(defaultLordKeysForFaction) do
@@ -319,6 +318,8 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
                 Custom_Log("Default lord is "..localisedDefaultLord);
                 localisedDefaultLordsForFaction[localisedDefaultLord] = true;
             end
+        else
+            Custom_Log("Missing default lord keys");
         end
         -- This keeps track of what character types should be hidden because they are replaceable. There could be overlap with the default lords.
         local arePresentSubTypesReplaceable = {};
@@ -349,8 +350,8 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
                     HideGeneralPanel(generalPanel, hideDefault);
                 else
                     local replacementLords = GetReplacementLordsForFaction(humanFaction);
-                    Custom_Log("Got replacement lords");
                     if replacementLords ~= nil then
+                        Custom_Log("Got replacement lords");
                         if arePresentSubTypesReplaceable[subType] == nil then
                             local replacementSubTypeKeys = GetKeysFromTable(replacementLords);
                             local subTypeKey = GetMatchingKeyMatchingLocalisedString(replacementSubTypeKeys, subType, "agent_subtypes_onscreen_name_override_");

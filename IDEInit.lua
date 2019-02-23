@@ -1,10 +1,10 @@
 -- Mock Data
 testFaction = {
     name = function()
-        return "wh_main_dwf_karak_izor";
+        return "wh2_main_hef_fortress_of_dawn";
     end,
     subculture = function()
-        return "wh_main_sc_dwf_dwarfs";
+        return "wh2_main_sc_hef_high_elves";
     end,
     character_list = function()
         return {
@@ -119,7 +119,7 @@ local sourceTable = {};
 if destinationTable == {} then
     local test = ""; 
 end
-
+local defaultLordsForFaction = GetDefaultLordForFaction(testFaction);
 CheckAndReceiveRewards(testFaction, testFaction, "scripted");
 CheckAndReceiveRewards(testFaction2, testFaction, "alliance");
 
