@@ -133,9 +133,9 @@ RecalculatePoolLimits();
 
 
 --local subculture = GetSubCultureFromUnitList(agentSubTypeKey);
-local name = crp.CRPCharacterGenerator:GetCharacterNameForSubculture(crp.CRPLordsInPools, testFaction, agentSubTypeKey);
-local artSetId = crp.CRPCharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
-local trait = crp.CRPCharacterGenerator:GetRandomCharacterTrait(testFaction, agentSubTypeKey);
+local name = crp.CharacterGenerator:GetCharacterNameForSubculture(testFaction, agentSubTypeKey);
+local artSetId = crp.CharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
+local trait = crp.CharacterGenerator:GetRandomCharacterTrait(testFaction, agentSubTypeKey);
 local traitPath = crp.UIController:GetImagePathForTrait(trait);
 crp:SetupInitialMinimumValues(testFaction, currentFactionPools, factionPoolResources);
 local traitEffects = crp.UIController:GetTraitEffects("wh2_main_skill_innate_all_aggressive");

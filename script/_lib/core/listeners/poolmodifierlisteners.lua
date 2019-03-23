@@ -33,7 +33,7 @@ function PoolModifierListeners(core, crp)
 		true
 	);
 
-	-- These listeners is specifically for Belegar
+	-- These listeners are specifically for Belegar
 	local region = cm:get_region("wh_main_eastern_badlands_karak_eight_peaks");
 	local receivedBelegarReward = cm:get_saved_value("CRP_Belegar_received_reward");
 	if not receivedBelegarReward and region and not region:is_abandoned() and region:owning_faction():name() ~= "wh_main_dwf_karak_izor" then

@@ -8,7 +8,7 @@ ControlledRecruitmentPools = {
     -- Separate object which controls UI scraping and display
     UIController = {},
     -- Separate object which handles character generator functionality
-    CRPCharacterGenerator = {},
+    CharacterGenerator = {},
     CRPLordsInPools = {},
     PreBattleData = {};
 }
@@ -34,10 +34,10 @@ function ControlledRecruitmentPools:Initialise()
         self.CRPLordsInPools = {};
     end
     -- Setup character generator
-    self.CRPCharacterGenerator = CRPCharacterGenerator:new({
+    self.CharacterGenerator = CharacterGenerator:new({
 
     });
-    self.CRPCharacterGenerator:Initialise();
+    self.CharacterGenerator:Initialise(self.CRPLordsInPools);
 
     -- Setup UI
     self.UIController = CRPUI:new({
@@ -122,7 +122,7 @@ function ControlledRecruitmentPools:TrackInitialLords(faction)
                     forename = character:get_surname(),
                 };
                 Custom_Log("Tracking subtype "..charSubType);
-                local homeRegion = self.CRPCharacterGenerator:GetRegionForFaction(faction);
+                local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
                 self:TrackCharacterInPoolData(factionName, generatedName, "", charSubType, "", homeRegion);
             end
         end
@@ -136,7 +136,7 @@ function ControlledRecruitmentPools:TrackInitialLords(faction)
                 clan_name = nameObject.clan_name,
                 forename = nameObject.forename,
             };
-            local homeRegion = self.CRPCharacterGenerator:GetRegionForFaction(faction);
+            local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
             self:TrackCharacterInPoolData(factionName, generatedName, "", agentSubType, "", homeRegion);
         end
     end--]]
@@ -193,7 +193,7 @@ function ControlledRecruitmentPools:ReplaceCharacter(faction, character, replace
 
     local selectedTrait = traitOverride;
     if selectedTrait == nil then
-        selectedTrait = self.CRPCharacterGenerator:GetRandomTraitForLord(factionPoolResources, character:character_subtype_key());
+        selectedTrait = self.CharacterGenerator:GetRandomTraitForLord(factionPoolResources, character:character_subtype_key());
     end
     if traitKey ~= "" then
         --Custom_Log("Got trait "..selectedTrait);
@@ -527,7 +527,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
             local isHumanPlayerFaction = factionName == self.HumanFaction:name();
             local agentSubTypeKey = self:SelectGeneralToGenerateFromPool(factionPoolResources, currentPoolCounts, poolKey, isHumanPlayerFaction);
             --Custom_Log("Selected "..agentSubTypeKey);
-            local artSetId = self.CRPCharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
+            local artSetId = self.CharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
             --Custom_Log("Art set Id: "..artSetId);
             -- If this is the players faction this should happen straight away - Not right now. 
             -- so the recruitment event message can be supressed
@@ -566,7 +566,7 @@ function ControlledRecruitmentPools:EnforceMinimumValues(faction, currentPoolCou
                     -- If this is the players faction this should happen straight away
                     -- so the recruitment event message can be supressed
                     --Custom_Log("Enforcing minimum for subtype "..agentSubTypeKey);
-                    local artSetId = self.CRPCharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
+                    local artSetId = self.CharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
                     --Custom_Log("Selected art set: "..artSetId);
                     --if faction:name() == self.HumanFaction:name() then
                         self:GenerateGeneral(agentSubTypeKey, faction, artSetId);
@@ -608,7 +608,7 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
             -- Generate the general
             -- If this is the players faction this should happen straight away
             -- so the recruitment event message can be supressed
-            local artSetId = self.CRPCharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
+            local artSetId = self.CharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
             --if faction:name() == self.HumanFaction:name() then
                 local trackedCharacter = self:GenerateGeneral(agentSubTypeKey, faction, artSetId);
             --else
@@ -736,17 +736,17 @@ function ControlledRecruitmentPools:GenerateGeneral(generalSubType, faction, art
     -- Grab the name from the generated character
     local generatedName = self:GetCharacterNameFromNewGeneral(faction);--]]
     --Custom_Log("Before name generation");
-    local generatedName = self.CRPCharacterGenerator:GetCharacterNameForSubculture(self.CRPLordsInPools, faction, generalSubType);
+    local generatedName = self.CharacterGenerator:GetCharacterNameForSubculture(faction, generalSubType);
     --Custom_Log("After name generation");
     -- Generate a trait from the trait pool (WIP)
-    local innateTrait = self.CRPCharacterGenerator:GetRandomCharacterTrait(faction, generalSubType);
+    local innateTrait = self.CharacterGenerator:GetRandomCharacterTrait(faction, generalSubType);
     Custom_Log("Giving character innate trait "..innateTrait);
     -- Then spawn the character so that they appear normally
     --Custom_Log("Forename/clan_name "..generatedName.clan_name.." surename/forename "..generatedName.forename);
     cm:spawn_character_to_pool(faction:name(), generatedName.clan_name, generatedName.forename, "", "", 20, true, "general", generalSubType, false, artSetId);
     --Custom_Log("Spawned character into pool");
     -- Add the character to the pool table so we can track them
-    local homeRegion = self.CRPCharacterGenerator:GetRegionForFaction(faction);
+    local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
     local trackedData = self:TrackCharacterInPoolData(factionName, generatedName, innateTrait, generalSubType, artSetId, homeRegion);
     Custom_Log("Finished generating general");
     return trackedData;
@@ -1018,7 +1018,7 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
                 forename = char:get_surname(),
             };
             Custom_Log("Character "..char:character_subtype_key().." is not in pool. Tracking them for faction "..factionName);
-            local homeRegion = self.CRPCharacterGenerator:GetRegionForFaction(faction);
+            local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
             self:TrackCharacterInPoolData(factionName, name, "", char:character_subtype_key(), "", homeRegion);
         end
     else

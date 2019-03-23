@@ -22,8 +22,11 @@ function TableHasAnyValue(table)
     return false;
 end
 
-function Random(limit)
-    return math.random(limit) ;
+function Random(limit, start)
+    if not start then
+        start = 1;
+    end
+    return math.random(start, limit) ;
 end
 
 function GetRandomObjectFromList(objectList)

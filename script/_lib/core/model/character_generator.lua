@@ -1,19 +1,24 @@
-CRPCharacterGenerator = {
-
+CharacterGenerator = {
+    CrpLordsInPools = {};
 }
 
-function CRPCharacterGenerator:new (o)
+function CharacterGenerator:new (o)
     o = o or {};
     setmetatable(o, self);
     self.__index = self;
     return o;
 end
 
-function CRPCharacterGenerator:Initialise()
+function CharacterGenerator:Initialise(crpLords)
     RecalculatePoolLimits();
+    -- If crplords is nil it wipes the key
+    self.CrpLordsInPools = crpLords;
 end
 
-function CRPCharacterGenerator:GetArtSetForSubType(subType)
+function CharacterGenerator:GetArtSetForSubType(subType)
+    if not _G.CRPResources then
+        return;
+    end
     Custom_Log("Getting art set for sub type: "..subType);
     local subTypeData = _G.CRPResources.DBResources.campaign_character_data[subType];
     if subTypeData == nil then
@@ -28,7 +33,7 @@ function CRPCharacterGenerator:GetArtSetForSubType(subType)
     return artSetId;
 end
 
-function CRPCharacterGenerator:GetValidAgentArtSetForFaction(faction)
+function CharacterGenerator:GetValidAgentArtSetForFaction(faction)
     local currentFactionPools = self:GetCurrentPoolForFaction(faction);
     currentFactionPools["total"] = nil;
     local agentSubType = GetRandomObjectKeyFromList(currentFactionPools);
@@ -52,7 +57,7 @@ function CRPCharacterGenerator:GetValidAgentArtSetForFaction(faction)
     return artSetId;
 end
 
-function CRPCharacterGenerator:GetRegionForFaction(faction)
+function CharacterGenerator:GetRegionForFaction(faction)
     if faction:home_region() and faction:home_region():is_null_interface() == false then
         return faction:home_region():name();
     else
@@ -60,37 +65,27 @@ function CRPCharacterGenerator:GetRegionForFaction(faction)
     end
 end
 
-function CRPCharacterGenerator:GetCharacterNameForSubculture(crpLordsInPools, faction, agentSubType)
+function CharacterGenerator:GetCharacterNameForSubculture(faction, agentSubType)
     local factionName = faction:name();
     if factionName == "wh_main_grn_skull-takerz" then
         factionName = "wh_main_grn_skull_takerz";
     end
-    --Custom_Log("Getting name for faction "..factionName);
     local factionSubculture = faction:subculture();
-    --Custom_Log("In subculture "..factionSubculture);
-    local subcultureResources = _G.CRPResources.CulturePoolResources[factionSubculture];
-    if subcultureResources == nil then
-        subcultureResources = _G.CRPResources.CulturePoolResources["wh_rogue_armies"];
-    end
-    local factionResources = subcultureResources[factionName];
 
     local nameGroup = -1;
-    if factionResources ~= nil and factionResources.NameGroup ~= nil then
-        nameGroup = factionResources.NameGroup;
+    local dbFactionNameGroup = _G.CG_NameResources.faction_to_name_groups[factionName];
+    if dbFactionNameGroup ~= nil then
+        nameGroup = dbFactionNameGroup.NameGroup;
     else
-        local dbFactionNameGroup = _G.CRPResources.DBResources.faction_to_name_groups[factionName];
-        if dbFactionNameGroup ~= nil then
-            nameGroup = dbFactionNameGroup.NameGroup;
-        else
-            local factionSubCulture = faction:subculture();
-            local dbSubcultureNameGroup = _G.CRPResources.DBResources.subculture_to_name_groups[factionSubCulture];
-            if dbSubcultureNameGroup ~= nil then
-                nameGroup = dbSubcultureNameGroup.NameGroup;
-            end
+        local factionSubCulture = faction:subculture();
+        local dbSubcultureNameGroup = _G.CG_NameResources.subculture_to_name_groups[factionSubCulture];
+        if dbSubcultureNameGroup ~= nil then
+            nameGroup = dbSubcultureNameGroup.NameGroup;
         end
     end
+
     nameGroup = "name_group_"..nameGroup;
-    local namePool = _G.CRPResources.DBResources.name_groups_to_names[nameGroup];
+    local namePool = _G.CG_NameResources.name_groups_to_names[nameGroup];
     local canUseFemaleNames = self:GetGenderForAgentSubType(agentSubType);
 
     local doOnce = false;
@@ -99,7 +94,10 @@ function CRPCharacterGenerator:GetCharacterNameForSubculture(crpLordsInPools, fa
     local forename_object = "";
     local forename_chance = self:GetForeNameChance(factionSubculture);
 
-    local factionLords = crpLordsInPools[factionName];
+    local factionLords = {};
+    if self.CrpLordsInPools ~= nil then
+        factionLords = self.CrpLordsInPools[factionName];
+    end
 
     local failSafe = 0;
     while doOnce == false or factionLords == nil or factionLords[nameKey] ~= nil or nameKey == "" do
@@ -117,7 +115,7 @@ function CRPCharacterGenerator:GetCharacterNameForSubculture(crpLordsInPools, fa
         Custom_Log("Generated name key is "..nameKey);
         doOnce = true;
         if factionLords == nil and nameKey ~= "" then
-            Custom_Log("Faction has no tracked lords. Using first generated name.");
+            Custom_Log("No tracked lords. Using first generated name.");
             break;
         elseif failSafe == 5 then
             Custom_Log("ERROR: Not able to generate name");
@@ -135,7 +133,7 @@ function CRPCharacterGenerator:GetCharacterNameForSubculture(crpLordsInPools, fa
     return generatedName;
 end
 
-function CRPCharacterGenerator:GetForeNameChance(factionSubculture)
+function CharacterGenerator:GetForeNameChance(factionSubculture)
     if factionSubculture == "wh_main_sc_chs_chaos" then
         return 100 - 60;
     elseif factionSubculture == "wh2_main_sc_skv_skaven" then
@@ -150,7 +148,7 @@ function CRPCharacterGenerator:GetForeNameChance(factionSubculture)
     return 100;
 end
 
-function CRPCharacterGenerator:GetValidNameForType(namePool, canUseFemaleNames, nameType)
+function CharacterGenerator:GetValidNameForType(namePool, canUseFemaleNames, nameType)
     local nameTypes = nil;
     if canUseFemaleNames and nameType == "clan_name" then
         nameTypes = namePool.Gender["Female"][nameType];
@@ -191,7 +189,7 @@ function CRPCharacterGenerator:GetValidNameForType(namePool, canUseFemaleNames, 
     return nameObject;
 end
 
-function CRPCharacterGenerator:GetGenderForAgentSubType(agentSubType)
+function CharacterGenerator:GetGenderForAgentSubType(agentSubType)
     local agentResources = _G.CRPResources.DBResources.campaign_character_data[agentSubType];
     if agentResources ~= nil then
         return agentResources.IsFemale == "true";
@@ -199,7 +197,7 @@ function CRPCharacterGenerator:GetGenderForAgentSubType(agentSubType)
     Custom_Log("Error: Could not find agent resources");
 end
 
-function CRPCharacterGenerator:GetRandomCharacterTrait(faction, generalSubType)
+function CharacterGenerator:GetRandomCharacterTrait(faction, generalSubType)
     local subculture = faction:subculture();
     local factionName = faction:name();
     if factionName == "wh_main_grn_skull-takerz" then
@@ -266,7 +264,7 @@ function CRPCharacterGenerator:GetRandomCharacterTrait(faction, generalSubType)
     return GetRandomObjectKeyFromList(sharedTraits)
 end
 
-function CRPCharacterGenerator:GetRandomTraitForLord(factionPoolResources, originalSubType)
+function CharacterGenerator:GetRandomTraitForLord(factionPoolResources, originalSubType)
     --Custom_Log("Getting random trait for originalSubType "..originalSubType);
     if factionPoolResources.LordsToReplace == nil then
         --Custom_Log("No lords to replace");

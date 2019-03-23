@@ -100,7 +100,7 @@ function SetupPostUIListeners(crpObject)
         end,
         true
     );
-    Custom_Log("GeneralRecruitmentOpened");
+    --[[Custom_Log("GeneralRecruitmentOpened");
     core:add_listener(
         "GeneralRecruitmentOpened",
         "PanelOpenedCampaign",
@@ -112,6 +112,26 @@ function SetupPostUIListeners(crpObject)
             local uiContext = context.string;
             cm:callback(function()
                 Custom_Log("character_panel callback");
+                local generalsList = find_uicomponent(core:get_ui_root(), "character_panel", "general_selection_panel", "character_list_parent", "character_list", "listview", "list_clip", "list_box");
+                GetGeneralCandidates(crp.HumanFaction, generalsList, crp.CRPLordsInPools);
+                Custom_Log_Finished();
+            end,
+            0);
+        end,
+        true
+    );--]]
+    Custom_Log("ClickedButtonCreateArmy");
+    core:add_listener(
+        "ClickedCreateArmyButton",
+        "ComponentLClickUp",
+        function(context)
+            return context.string == "button_create_army";
+        end,
+        function(context)
+            Custom_Log("\n"..context.string.." clicked");
+            local uiContext = context.string;
+            cm:callback(function()
+                Custom_Log("button_create_army callback");
                 local generalsList = find_uicomponent(core:get_ui_root(), "character_panel", "general_selection_panel", "character_list_parent", "character_list", "listview", "list_clip", "list_box");
                 GetGeneralCandidates(crp.HumanFaction, generalsList, crp.CRPLordsInPools);
                 Custom_Log_Finished();
@@ -342,7 +362,7 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
             -- If the character isn't tracked, see if it is a replacement type
             -- If it is, hide these characters from the player
             if poolData == nil then
-                Custom_Log("Found pool data");
+                Custom_Log("No pool data found");
                 local subType = find_uicomponent(generalPanel, "dy_subtype"):GetStateText();
                 Custom_Log("Subtype text is "..subType);
 
@@ -605,7 +625,7 @@ function ProcessBattleCacheData(cachedBattleData, type, isPreBattle)
                             end
                         end
                         -- Then find an art set for the faction and set the temporary lord as that
-                        local artSetId = crp.CRPCharacterGenerator:GetValidAgentArtSetForFaction(generalFaction);
+                        local artSetId = crp.CharacterGenerator:GetValidAgentArtSetForFaction(generalFaction);
                         Custom_Log("Setting character with art set id "..artSetId);
                         cm:add_unit_model_overrides(cm:char_lookup_str(generalCQI), artSetId);
                     end
@@ -622,7 +642,7 @@ function ProcessBattleCacheData(cachedBattleData, type, isPreBattle)
                 Custom_Log("Got character faction");
                 if string.match(factionName, "qb") then
                     Custom_Log("Quest battle faction has vampire lord");
-                    local artSetId = crp.CRPCharacterGenerator:GetValidAgentArtSetForFaction(character:faction());
+                    local artSetId = crp.CharacterGenerator:GetValidAgentArtSetForFaction(character:faction());
                     Custom_Log("Setting character with art set id "..artSetId);
                     cm:add_unit_model_overrides(cm:char_lookup_str(character:cqi()), artSetId);
                 else
@@ -662,7 +682,7 @@ end
 function AssignNewCharacterAsInvasionGeneral(faction, invasionKey, agentSubType)
     local factionName = faction:name();
     Custom_Log("Got faction");
-    local generatedName = crp.CRPCharacterGenerator:GetCharacterNameForSubculture(faction, agentSubType);
+    local generatedName = crp.CharacterGenerator:GetCharacterNameForSubculture(faction, agentSubType);
     Custom_Log("Got name for invasion general");
     local invasion_object = invasion_manager:get_invasion(invasionKey);
     Custom_Log("Got invasion object maybe");
