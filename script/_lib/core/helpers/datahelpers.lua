@@ -1,4 +1,5 @@
 out("CRP: Loading DataHelpers");
+local ENABLE_LOGGING = false;
 function ConcatTableWithKeys(destinationTable, sourceTable)
     for key, value in pairs(sourceTable) do
         destinationTable[key] = value;
@@ -111,23 +112,29 @@ end
 
 function Custom_Log_Start()
     -- Clears the log file
-    io.open("Controlled_Recruitment_Pools.txt","w"):close();
+    if ENABLE_LOGGING == true then
+        io.open("Controlled_Recruitment_Pools.txt","w"):close();
+    end
 end
 
 function Custom_Log(text)
-    local logText = tostring(text);
-    local logTimeStamp = os.date("%d, %m %Y %X");
-    local popLog = io.open("Controlled_Recruitment_Pools.txt","a");
+    if ENABLE_LOGGING == true then
+        local logText = tostring(text);
+        local logTimeStamp = os.date("%d, %m %Y %X");
+        local popLog = io.open("Controlled_Recruitment_Pools.txt","a");
 
-    popLog :write("CRP:  "..logText .. "   : [".. logTimeStamp .. "]\n");
-    popLog :flush();
-    popLog :close();
+        popLog :write("CRP:  "..logText .. "   : [".. logTimeStamp .. "]\n");
+        popLog :flush();
+        popLog :close();
+    end
 end
 
 function Custom_Log_Finished()
-    local popLog = io.open("Controlled_Recruitment_Pools.txt","a");
+    if ENABLE_LOGGING == true then
+        local popLog = io.open("Controlled_Recruitment_Pools.txt","a");
 
-    popLog :write("CRP:  FINISHED\n\n");
-    popLog :flush();
-    popLog :close();
+        popLog :write("CRP:  FINISHED\n\n");
+        popLog :flush();
+        popLog :close();
+    end
 end

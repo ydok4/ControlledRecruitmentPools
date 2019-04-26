@@ -122,7 +122,7 @@ function SetupPostUIListeners(crpObject)
     );--]]
     Custom_Log("ClickedButtonCreateArmy");
     core:add_listener(
-        "ClickedCreateArmyButton",
+        "CRP_ClickedCreateArmyButton",
         "ComponentLClickUp",
         function(context)
             return context.string == "button_create_army";
@@ -351,20 +351,42 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
             local keyName = "";
             keyName = CreateValidLuaTableKey(nameText);
             Custom_Log("Key is "..keyName);
-            --Custom_Log("Human faction name is "..humanFactionName);
+            local subType = find_uicomponent(generalPanel, "dy_subtype"):GetStateText();
+            Custom_Log("Subtype text is "..subType);
+
             local poolData = nil;
             if lordsInPool[humanFactionName] == nil then
                 Custom_Log("No lords for human faction");
-            else
+            elseif lordsInPool[humanFactionName][keyName] ~= nil then
                 poolData = lordsInPool[humanFactionName][keyName];
+            elseif subType ~= "Legendary Lord" then
+                for characterKey, characterData in pairs(lordsInPool[humanFactionName]) do
+                    --Custom_Log("Checking nameText "..nameText.." and character data name "..characterData.Name);
+                    if (string.match(nameText, characterData.Name) or string.match(characterData.Name, nameText)) and characterData.Name ~= nameText then
+                        --Custom_Log("Found partial match with nameText "..nameText.." and character data name "..characterData.Name);
+                        -- We need to update the key and the name
+                        local remappedLord = {
+                            ArtSetId = characterData.ArtSetId,
+                            HomeRegion = characterData.HomeRegion,
+                            InnateTrait = characterData.InnateTrait,
+                            Name = nameText,
+                            SocialClass = characterData.SocialClass,
+                            SubType = characterData.SubType,
+                            RemoveImmortality = characterData.RemoveImmortality,
+                        };
+                        crp.CRPLordsInPools[humanFactionName][characterKey] = nil;
+                        crp.CRPLordsInPools[humanFactionName][keyName] = remappedLord;
+                        poolData = remappedLord;
+                        break;
+                    end
+                end
             end
+            Custom_Log("Finished trying to find data");
 
             -- If the character isn't tracked, see if it is a replacement type
             -- If it is, hide these characters from the player
             if poolData == nil then
                 Custom_Log("No pool data found");
-                local subType = find_uicomponent(generalPanel, "dy_subtype"):GetStateText();
-                Custom_Log("Subtype text is "..subType);
 
                 if localisedDefaultLordsForFaction[subType] == true then
                     HideGeneralPanel(generalPanel, hideDefault);

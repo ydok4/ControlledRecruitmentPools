@@ -502,6 +502,7 @@ AgentDataResources = {
 		},
 		IsFemale = "false",
 		NameGroup = "wh_main_sc_emp_empire",
+		NameGroup = "",
 	},
 	emp_celestial_wizard = {
 		ArtSetIds = {
@@ -1085,6 +1086,76 @@ AgentDataResources = {
 		IsFemale = "false",
 		NameGroup = "",
 	},
+	wh2_dlc12_lzd_lord_kroak = {
+		ArtSetIds = {
+			 "wh2_dlc12_art_set_lzd_lord_kroak_01",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
+	wh2_dlc12_lzd_lord_kroak_boss = {
+		ArtSetIds = {
+			 "wh2_dlc12_art_set_lzd_lord_kroak_01_boss",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
+	wh2_dlc12_lzd_red_crested_skink_chief = {
+		ArtSetIds = {
+			 "wh2_dlc12_art_set_lzd_red_crested_skink_chief_01", "wh2_dlc12_art_set_lzd_red_crested_skink_chief_02", "wh2_dlc12_art_set_lzd_red_crested_skink_chief_03",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
+	wh2_dlc12_lzd_red_crested_skink_chief_legendary = {
+		ArtSetIds = {
+			 "wh2_dlc12_art_set_lzd_red_crested_skink_chief_legendary",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
+	wh2_dlc12_lzd_tehenhauin = {
+		ArtSetIds = {
+			 "wh2_dlc12_lzd_tehenhauin_01",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
+	wh2_dlc12_lzd_tiktaqto = {
+		ArtSetIds = {
+			 "wh2_dlc12_lzd_tiktaqto",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
+	wh2_dlc12_lzd_tlaqua_skink_priest_beasts = {
+		ArtSetIds = {
+			 "wh2_main_art_set_lzd_skink_priest_01_tlaqua_beasts", "wh2_main_art_set_lzd_skink_priest_02_tlaqua_beasts", "wh2_main_art_set_lzd_skink_priest_03_tlaqua_beasts",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
+	wh2_dlc12_lzd_tlaqua_skink_priest_heavens = {
+		ArtSetIds = {
+			 "wh2_main_art_set_lzd_skink_priest_01_tlaqua_heavens", "wh2_main_art_set_lzd_skink_priest_02_tlaqua_heavens", "wh2_main_art_set_lzd_skink_priest_03_tlaqua_heavens",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
+	wh2_dlc12_skv_ikit_claw = {
+		ArtSetIds = {
+			 "wh2_dlc12_art_set_skv_ikit_claw",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
+	wh2_dlc12_skv_warlock_master = {
+		ArtSetIds = {
+			 "wh2_dlc12_art_set_skv_warlock_master_01", "wh2_dlc12_art_set_skv_warlock_master_02", "wh2_dlc12_art_set_skv_warlock_master_03", "wh2_dlc12_art_set_skv_warlock_master_04", "wh2_dlc12_art_set_skv_warlock_master_05",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
 	wh2_main_def_black_ark = {
 		ArtSetIds = {
 			 "wh2_main_art_set_def_black_ark", "wh2_main_art_set_def_black_ark_lokhir_1", "wh2_main_art_set_def_black_ark_lokhir_2", "wh2_main_art_set_def_black_ark_lokhir_3",
@@ -1262,7 +1333,14 @@ AgentDataResources = {
 	},
 	wh2_main_lzd_skink_priest_beasts = {
 		ArtSetIds = {
-			 "wh2_main_art_set_lzd_skink_priest_01", "wh2_main_art_set_lzd_skink_priest_02", "wh2_main_art_set_lzd_skink_priest_03",
+			 "wh2_main_art_set_lzd_skink_priest_01_beasts", "wh2_main_art_set_lzd_skink_priest_01_heavens", "wh2_main_art_set_lzd_skink_priest_01_tlaqua_beasts", "wh2_main_art_set_lzd_skink_priest_01_tlaqua_heavens", "wh2_main_art_set_lzd_skink_priest_02_beasts", "wh2_main_art_set_lzd_skink_priest_02_heavens", "wh2_main_art_set_lzd_skink_priest_02_tlaqua_beasts", "wh2_main_art_set_lzd_skink_priest_02_tlaqua_heavens", "wh2_main_art_set_lzd_skink_priest_03_beasts", "wh2_main_art_set_lzd_skink_priest_03_heavens", "wh2_main_art_set_lzd_skink_priest_03_tlaqua_beasts", "wh2_main_art_set_lzd_skink_priest_03_tlaqua_heavens",
+		},
+		IsFemale = "false",
+		NameGroup = "",
+	},
+	wh2_main_lzd_skink_priest_heavens = {
+		ArtSetIds = {
+			 "wh2_main_art_set_lzd_skink_priest_01_heavens", "wh2_main_art_set_lzd_skink_priest_02_heavens", "wh2_main_art_set_lzd_skink_priest_03_heavens",
 		},
 		IsFemale = "false",
 		NameGroup = "",

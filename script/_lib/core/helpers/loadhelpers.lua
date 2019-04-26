@@ -88,6 +88,7 @@ function LoadCharacterData(crp)
                         HomeRegion = characterData[4],
                         Name = characterData[5],
                         SocialClass = characterData[6],
+                        RemoveImmortality = characterData[7],
                     };
                     crp.CRPLordsInPools[factionKey][characterKey] = mappedCharacter;
                 end

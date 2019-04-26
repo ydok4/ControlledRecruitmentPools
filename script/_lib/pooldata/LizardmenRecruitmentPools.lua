@@ -41,4 +41,51 @@ LizardmenRecruitmentPoolData = {
         },
         PoolMaxSize = 5,
     },
+
+    -- Major Lizardmen Factions
+    -- Cult of Sotek
+    wh2_dlc12_lzd_cult_of_sotek = {
+        FactionPools = {
+            SaurusOldBloods = {
+                AgentSubTypes = {
+                    wh2_main_lzd_saurus_old_blood = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 1,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 1,
+            },
+            RedCrestedSkinkChiefs = {
+                AgentSubTypes = {
+                    wh2_dlc12_lzd_red_crested_skink_chief = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 3,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 3,
+            },
+        },
+        Rewards = {
+            alliance = {
+                Pools = {
+                    RedCrestedSkinkChiefs = {
+                        AgentSubTypes = {
+                            wh2_dlc12_lzd_red_crested_skink_chief = {
+                                MinimumAmount = 0,
+                                MaximumAmount = 1,
+                            },
+                        },
+                        SubPoolInitialMinSize = 0,
+                        SubPoolMaxSize = 1,
+                    },
+                },
+                IncreasePoolSize = 1,
+                Type = "increase",
+            },
+        },
+        PoolMaxSize = 5,
+    },
 }

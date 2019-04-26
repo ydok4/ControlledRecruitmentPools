@@ -63,7 +63,7 @@ function PoolModifierListeners(core, crp)
 			"CRP_karak_eight_peaks_occupied",
 			"GarrisonOccupiedEvent",
 			function(context)
-				Custom_Log("Checking for Beleggar occupied garrison event");
+				Custom_Log("Checking for Belegar occupied garrison event");
 				return context:garrison_residence():region():name() == "wh_main_eastern_badlands_karak_eight_peaks" and context:character():faction():name() == "wh_main_dwf_karak_izor";
 			end,
 			function(context)

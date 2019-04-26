@@ -60,7 +60,7 @@ function SaveCharacterData(crp)
             if characterKey == "initialised" then
                 nthTable[factionKey..characterKey] = "initialised";
             else
-                nthTable[factionKey..characterKey] = {innateTrait, characterData.SubType, characterData.ArtSetId, characterData.HomeRegion, characterData.Name, characterData.SocialClass};
+                nthTable[factionKey..characterKey] = {innateTrait, characterData.SubType, characterData.ArtSetId, characterData.HomeRegion, characterData.Name, characterData.SocialClass, characterData.RemoveImmortality,};
             end
 
             if characterCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then

@@ -16,11 +16,11 @@ function CharacterGenerator:Initialise(crpLords)
 end
 
 function CharacterGenerator:GetArtSetForSubType(subType)
-    if not _G.CRPResources then
+    if not _G.CG_NameResources then
         return;
     end
     Custom_Log("Getting art set for sub type: "..subType);
-    local subTypeData = _G.CRPResources.DBResources.campaign_character_data[subType];
+    local subTypeData = _G.CG_NameResources.campaign_character_data[subType];
     if subTypeData == nil then
         Custom_Log("ERROR: Missing SubTypeData");
         return nil;
@@ -190,7 +190,7 @@ function CharacterGenerator:GetValidNameForType(namePool, canUseFemaleNames, nam
 end
 
 function CharacterGenerator:GetGenderForAgentSubType(agentSubType)
-    local agentResources = _G.CRPResources.DBResources.campaign_character_data[agentSubType];
+    local agentResources = _G.CG_NameResources.campaign_character_data[agentSubType];
     if agentResources ~= nil then
         return agentResources.IsFemale == "true";
     end

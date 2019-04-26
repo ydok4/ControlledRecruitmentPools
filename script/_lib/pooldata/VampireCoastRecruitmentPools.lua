@@ -88,7 +88,7 @@ VampireCoastRecruitmentPoolData =  {
                         HumanPlayerOnly = true,
                     },
                 },
-                SubPoolInitialMinSize = 1,
+                SubPoolInitialMinSize = 3,
                 SubPoolMaxSize = 3,
             },
         },

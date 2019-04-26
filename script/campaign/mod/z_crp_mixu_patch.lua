@@ -15,7 +15,14 @@ _G.CRPResources.AddAdditionalResources("wh_main_sc_nor_norsca", NorscaRecruitmen
 _G.CRPResources.AddAdditionalResources("wh_main_sc_grn_savage_orcs", SavageOrcRecruitmentPoolData);
 _G.CRPResources.AddAdditionalResources("wh_dlc05_sc_wef_wood_elves", WoodElfRecruitmentPoolData);
 
-_G.CRPResources.AddAdditionalDBResources("campaign_character_data", MixuDataResources);
+--_G.CRPResources.AddAdditionalDBResources("campaign_character_data", MixuDataResources);
+
+-- Load the name resources
+-- This is separate so I can use this in other mods
+if _G.CG_NameResources then
+    ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, MixuDataResources);
+end
+
 
 require 'script/_lib/dbexports/MixuEffectResources'
 require 'script/_lib/dbexports/MixuTraitsToEffects'

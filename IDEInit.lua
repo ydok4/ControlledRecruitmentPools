@@ -1,12 +1,33 @@
 -- Mock Data
-testFaction = {
+testCharacter = {
+    cqi = function() return 123 end,
+    get_forename = function() return "Direfan"; end,
+    get_surname = function() return "Cylostra"; end,
+    character_subtype_key = function() return "wh2_dlc11_cst_cylostra"; end,
+    command_queue_index = function() end,
+    has_military_force = function() return false end,
+    faction = function() return humanFaction; end,
+    region = function() return get_cm():get_region(); end,
+    logical_position_x = function() return 100; end,
+    logical_position_y = function() return 110; end,
+    command_queue_index = function() return 10; end,
+}
+
+humanFaction = {
     name = function()
-        return "wh2_main_hef_fortress_of_dawn";
+        return "wh2_main_def_naggarond";
     end,
     subculture = function()
-        return "wh2_main_sc_hef_high_elves";
+        return "wh2_main_sc_def_dark_elves";
     end,
     character_list = function()
+        return {
+            num_items = function()
+                return 0;
+            end
+        };
+    end,
+    region_list = function()
         return {
             num_items = function()
                 return 0;
@@ -22,17 +43,63 @@ testFaction = {
                 return false;
             end,
         }
-    end
+    end,
+    faction_leader = function() return testCharacter; end,
+    is_quest_battle_faction = function() return false; end,
+    is_null_interface = function() return false; end,
+}
+
+testFaction = {
+    name = function()
+        return "wh2_dlc11_cst_the_drowned";
+    end,
+    subculture = function()
+        return "wh_main_sc_grn_greenskins";
+    end,
+    character_list = function()
+        return {
+            num_items = function()
+                return 0;
+            end
+        };
+    end,
+    region_list = function()
+        return {
+            num_items = function()
+                return 0;
+            end
+        };
+    end,
+    home_region = function ()
+        return {
+            name = function()
+                return "";
+            end,
+            is_null_interface = function()
+                return false;
+            end,
+        }
+    end,
+    faction_leader = function() return testCharacter; end,
+    is_quest_battle_faction = function() return false; end,
+    is_null_interface = function() return false; end,
 }
 
 testFaction2 = {
     name = function()
-        return "wh_main_teb_border_princes";
+        return "wh2_dlc11_cst_rogue_grey_point_scuttlers";
     end,
     subculture = function()
-        return "wh_main_sc_teb_teb";
+        return "wh_main_sc_nor_norsca";
     end,
     character_list = function()
+        return {
+            num_items = function()
+                return 0;
+            end
+        };
+    end,
+    region_list = function()
         return {
             num_items = function()
                 return 0;
@@ -48,36 +115,59 @@ testFaction2 = {
                 return false;
             end,
         }
-    end
+    end,
+    faction_leader = function() return testCharacter; end,
+    is_quest_battle_faction = function() return false; end,
+    is_null_interface = function() return false; end,
 }
 
 effect = {
     get_localised_string = function()
-        return "[test]";
+        return "Murdredesa";
     end,
 }
 
-function out()
-    return;
-end
-
+-- This can be modified in the testing driver
+-- so we can simulate turns changing easily
+local turn_number = 1;
 -- Mock functions
 function get_cm()
     return   {
-        is_new_game = function() return false; end,
+        is_new_game = function() return true; end,
         create_agent = function()
             return;
         end,
         get_human_factions = function()
-            return {testFaction};
+            return {humanFaction};
         end,
         disable_event_feed_events = function() end,
         model = function ()
             return {
+                turn_number = function() return turn_number; end,
                 world = function()
                     return {
                         faction_by_key = function ()
-                            return testFaction;
+                            return humanFaction;
+                        end,
+                        faction_list = function ()
+                            return {
+                                item_at = function(self, i)
+                                    if i == 0 then
+                                        return testFaction;
+                                    elseif i == 1 then
+                                        return humanFaction;
+                                    elseif i == 2 then
+                                        return testFaction2;
+                                    elseif i == 3 then
+                                        return testFaction2
+                                    else
+                                        return nil;
+                                    end
+                                end,
+                                num_items = function()
+                                    return 3;
+                                end,
+                            }
                         end
                     }
                 end
@@ -89,6 +179,50 @@ function get_cm()
         add_loading_game_callback = function() end,
         spawn_character_to_pool = function() end,
         callback = function() end,
+        transfer_region_to_faction = function() end,
+        get_faction = function() return testFaction2; end,
+        lift_all_shroud = function() end,
+        kill_all_armies_for_faction = function() end,
+        get_region = function()
+            return {
+                owning_faction = function() return testFaction; end,
+                name = function() return "region_name"; end,
+                is_province_capital = function() return false; end,
+                adjacent_region_list = function()
+                    return {
+                        item_at = function(self, i)
+                            if i == 0 then
+                                return get_cm():get_region();
+                            elseif i == 1 then
+                                return get_cm():get_region();
+                            elseif i == 2 then
+                                return get_cm():get_region();
+                            elseif i == 3 then
+                                return get_cm():get_region();
+                            else
+                                return nil;
+                            end
+                        end,
+                        num_items = function()
+                            return 3;
+                        end,
+                    }
+                end,
+                is_null_interface = function() return false; end,
+            }
+        end,
+        set_character_immortality = function() end,
+        get_campaign_name = function() return "main_warhammer"; end,
+        apply_effect_bundle_to_characters_force = function() end,
+        kill_character = function() end,
+        trigger_incident = function() end,
+        trigger_dilemma = function() end,
+        trigger_mission = function() end,
+        create_force_with_general = function() end,
+        force_add_trait = function() end,
+        force_remove_trait = function() end,
+        get_character_by_cqi = function() end,
+        char_is_mobile_general_with_army = function() return false; end,
     };
 end
 
@@ -97,6 +231,32 @@ cm = get_cm();
 core = {
     add_listener = function() end,
 }
+
+random_army_manager = {
+    new_force = function() end,
+    add_mandatory_unit = function() end,
+    add_unit = function() end,
+    generate_force = function() return ""; end,
+}
+
+invasion_manager = {
+    new_invasion = function()
+        return {
+            set_target = function() end,
+            apply_effect = function() end,
+            add_character_experience = function() end,
+            start_invasion = function() end,
+            assign_general = function() end,
+            create_general = function() end,
+        }
+    end,
+    get_invasion = function() return {
+        release = function() return end,
+    }; end,
+}
+out = function(text)
+  print(text)
+end
 
 require 'script/campaign/mod/controlled_recruitment_pools'
 require 'script/campaign/mod/z_crp_cataph_patch'
@@ -168,7 +328,8 @@ empirePool["GrandMasterPool"] = {
 crp:UpdateRecruitmentPool(testFaction, 1, true);
 crp:IsThereACharacterInPool(testFaction);
 GetDefaultLordForFaction(testFaction);
-
+crp:UpdateRecruitmentPool(humanFaction, 1);
+crp:ProcessNewCharacter(testCharacter);
 local test = "";
 
  --[[       -- This contains the max poolsize of the faction

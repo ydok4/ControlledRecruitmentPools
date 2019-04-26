@@ -123,23 +123,10 @@ function ControlledRecruitmentPools:TrackInitialLords(faction)
                 };
                 Custom_Log("Tracking subtype "..charSubType);
                 local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
-                self:TrackCharacterInPoolData(factionName, generatedName, "", charSubType, "", homeRegion);
+                self:TrackCharacterInPoolData(factionName, generatedName, "", charSubType, "", homeRegion, false);
             end
         end
     end
-
-    --[[if factionPoolResources.LegendaryLordNameKeys ~= nil then
-        Custom_Log("Checking legendary lord name keys");
-        for agentSubType, nameObject in pairs(factionPoolResources.LegendaryLordNameKeys) do
-            Custom_Log("Tracking locked LL "..nameObject.clan_name);
-            local generatedName = {
-                clan_name = nameObject.clan_name,
-                forename = nameObject.forename,
-            };
-            local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
-            self:TrackCharacterInPoolData(factionName, generatedName, "", agentSubType, "", homeRegion);
-        end
-    end--]]
 end
 
 function ControlledRecruitmentPools:ApplyArmyLimits(faction, factionPoolResources)
@@ -192,7 +179,7 @@ function ControlledRecruitmentPools:ReplaceCharacter(faction, character, replace
     --Custom_Log("In replace got pool resources");
 
     local selectedTrait = traitOverride;
-    if selectedTrait == nil then
+    if selectedTrait == nil and factionPoolResources ~= nil then
         selectedTrait = self.CharacterGenerator:GetRandomTraitForLord(factionPoolResources, character:character_subtype_key());
     end
     if traitKey ~= "" then
@@ -650,14 +637,14 @@ function ControlledRecruitmentPools:SelectGeneralToGenerate(factionResources, cu
     for poolKey, pool in pairs(factionResources.FactionPools) do
         local agentSubTypesBelowMax = {};
         local currentSubPoolCount = 0;
-        --Custom_Log("Checking agent pool "..tostring(poolKey));
+        Custom_Log("Checking agent pool "..tostring(poolKey));
         for agentKey, agentSubType in pairs(pool.AgentSubTypes) do
-            --Custom_Log("Checking agent key "..agentKey);
+            Custom_Log("Checking agent key "..agentKey);
             local count = currentPoolCounts[agentKey];
             if count == nil then
                 count = 0;
             end
-            --Custom_Log("Current count "..count);
+            Custom_Log("Current count "..count);
             -- If the number of agents currently in the pool is less than their maximum value
             -- they might be generated
             if count < agentSubType.MaximumAmount and ((isHumanPlayerFaction == false and not agentSubType.HumanPlayerOnly) or (isHumanPlayerFaction == true)) then
@@ -665,12 +652,12 @@ function ControlledRecruitmentPools:SelectGeneralToGenerate(factionResources, cu
             elseif overrideLimit then
                 agentSubTypesBelowMax[agentKey] = agentKey;
             else
-                --Custom_Log("Sub type is not below max");
+                Custom_Log("Sub type is not below max");
             end
 
             currentSubPoolCount = currentSubPoolCount + count;
         end
-        --Custom_Log("Finished checking pool "..poolKey);
+        Custom_Log("Finished checking pool "..poolKey);
         if currentSubPoolCount < pool.SubPoolMaxSize or overrideLimit == true then
             ConcatTableWithKeys(validAgentSubTypes, agentSubTypesBelowMax);
         end
@@ -743,16 +730,17 @@ function ControlledRecruitmentPools:GenerateGeneral(generalSubType, faction, art
     Custom_Log("Giving character innate trait "..innateTrait);
     -- Then spawn the character so that they appear normally
     --Custom_Log("Forename/clan_name "..generatedName.clan_name.." surename/forename "..generatedName.forename);
-    cm:spawn_character_to_pool(faction:name(), generatedName.clan_name, generatedName.forename, "", "", 20, true, "general", generalSubType, false, artSetId);
+    -- Note: The character is spawned as immortal because otherwise the game will despawn them after certain events
+    cm:spawn_character_to_pool(faction:name(), generatedName.clan_name, generatedName.forename, "", "", 20, true, "general", generalSubType, true, artSetId);
     --Custom_Log("Spawned character into pool");
     -- Add the character to the pool table so we can track them
     local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
-    local trackedData = self:TrackCharacterInPoolData(factionName, generatedName, innateTrait, generalSubType, artSetId, homeRegion);
+    local trackedData = self:TrackCharacterInPoolData(factionName, generatedName, innateTrait, generalSubType, artSetId, homeRegion, true);
     Custom_Log("Finished generating general");
     return trackedData;
 end
 
-function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, generatedName, innateTrait, subType, artSetId, homeRegion)
+function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, generatedName, innateTrait, subType, artSetId, homeRegion, removeImmortality)
     if self.CRPLordsInPools[factionName] == nil then
         self.CRPLordsInPools[factionName] = {};
     end
@@ -776,6 +764,7 @@ function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, genera
         SubType = subType,
         ArtSetId = artSetId,
         HomeRegion = homeRegion,
+        RemoveImmortality = removeImmortality,
     };
 
     self.CRPLordsInPools[factionName][keyName] = general;
@@ -879,10 +868,10 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
     Custom_Log("ProcessNewCharacter");
     local faction = char:faction();
     local factionName = faction:name();
+    local humanFaction = self:GetHumanFaction();
     local factionLords = self.CRPLordsInPools[factionName];
     local localisedForeName = effect.get_localised_string(char:get_forename());
     local localisedSurname = "";
-    local humanFaction = self:GetHumanFaction();
     local surnameKey = char:get_surname();
     if surnameKey ~= nil and surnameKey ~= "" then
         localisedSurname = effect.get_localised_string(surnameKey);
@@ -907,7 +896,11 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
             --factionLords[keyName] = nil;
             --cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_traits_ancillaries", "", "") end, 1);
             -- Note: Removal is necessary since we now track the character from the faction's character_list
-
+            if poolData.RemoveImmortality == true then
+                Custom_Log("Removing immortality");
+                -- Remove immortality that we gave them when we spawned them
+                cm:set_character_immortality("character_cqi:"..char:cqi(), false);
+            end
             if subCulture == "wh2_main_sc_hef_high_elves" and factionName == self.HumanFaction:name() then
                 Custom_Log("High elf character recruited listener");
                 if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
@@ -1019,10 +1012,31 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
             };
             Custom_Log("Character "..char:character_subtype_key().." is not in pool. Tracking them for faction "..factionName);
             local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
-            self:TrackCharacterInPoolData(factionName, name, "", char:character_subtype_key(), "", homeRegion);
+            self:TrackCharacterInPoolData(factionName, name, "", char:character_subtype_key(), "", homeRegion, false);
         end
     else
+        -- Typically this case if for garrison leaders but it also happens when a Dark Elf character gains a word of power
         Custom_Log("Character is not a general with a force");
+        -- Now we check if this character is already existing but had their name changed
+        if factionLords ~= nil then
+            for key, data in pairs(factionLords) do
+                if string.match(keyName, key) and keyName ~= key then
+                    Custom_Log("Found partial match of "..key.." new key is "..keyName);
+                    -- We need to update the key and the name
+                    local remappedLord = {
+                        ArtSetId = data.ArtSetId,
+                        HomeRegion = data.HomeRegion,
+                        InnateTrait = data.InnateTrait,
+                        Name = localisedForeName.." "..localisedSurname,
+                        SocialClass = data.SocialClass,
+                        SubType = data.SubType,
+                        RemoveImmortality = data.RemoveImmortality,
+                    };
+                    self.CRPLordsInPools[factionName][key] = nil;
+                    self.CRPLordsInPools[factionName][keyName] = remappedLord;
+                end
+            end
+        end
     end
 
     --[[local factionResources = GetFactionPoolResources(char:faction());

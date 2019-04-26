@@ -32,7 +32,7 @@ out("CRP: Loading Core Data");
 
 _G.CRPResources = {
     DBResources = {
-        campaign_character_data = AgentDataResources,
+        
     },
     CulturePoolResources = {
         -- Beastmen 
@@ -165,8 +165,7 @@ _G.CRPResources = {
     end,
 }
 
-_G.CRPResources.AddAdditionalDBResources("campaign_character_data", CustomAgentDataResources);
-_G.CRPResources.AddAdditionalDBResources("campaign_character_data", RebelLeadersDataResource);
+
 
 -- Load the name resources
 -- This is separate so I can use this in other mods
@@ -175,5 +174,9 @@ if not _G.CG_NameResources then
         subculture_to_name_groups = SubCultureNameGroupResources,
         faction_to_name_groups = NameGroupResources,
         name_groups_to_names = NameResources,
+        campaign_character_data = AgentDataResources,
     }
+
+    ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, CustomAgentDataResources);
+    ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, RebelLeadersDataResource);
 end
