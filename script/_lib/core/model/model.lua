@@ -1001,7 +1001,7 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
         if not cm:is_new_game() and isReplacement == true then
             Custom_Log("Starting replacement");
             local factionPoolResources = GetFactionPoolResources(faction);
-            local artSetId = self:GetArtSetForSubType(replaceSubType);
+            local artSetId = self.CharacterGenerator:GetArtSetForSubType(replaceSubType);
             Custom_Log("Replacement is using art set id "..artSetId);
             self:ReplaceCharacter(faction, char, replaceSubType, factionPoolResources, artSetId, replacementTrait);
         else

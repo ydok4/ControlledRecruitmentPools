@@ -229,7 +229,10 @@ function SetupPostUIListeners(crpObject)
         true,
         function(context)
             local character = context:character();
-            if character:character_type("colonel") and  (character:has_military_force() == false or character:military_force():is_armed_citizenry() == false) then
+            if character:faction():is_quest_battle_faction() == true then
+                Custom_Log("Character is in quest battle faction, ignoring");
+                Custom_Log_Finished();
+            elseif character:character_type("colonel") and (character:has_military_force() == false or character:military_force():is_armed_citizenry() == false) then
                 Custom_Log("Killing colonel for faction "..character:faction():name().." "..character:character_subtype_key());
                 cm:kill_character(character:cqi(), true, true);
             else

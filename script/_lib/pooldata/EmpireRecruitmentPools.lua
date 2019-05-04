@@ -64,5 +64,22 @@ EmpireRecruitmentPoolData =  {
         PoolMaxSize = 10,
     },
     -- Minor Faction specific distributions
-    -- TBD
+    -- Wissenland
+    wh_main_emp_wissenland = {
+        DefaultLords = {"emp_lord"},
+        FactionPools = {
+            EmpireGenerals = {
+                AgentSubTypes = {
+                    emp_lord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 4,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 4,
+            },
+        },
+        PoolMaxSize = 5,
+    },
 }

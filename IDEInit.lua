@@ -3,7 +3,7 @@ testCharacter = {
     cqi = function() return 123 end,
     get_forename = function() return "Direfan"; end,
     get_surname = function() return "Cylostra"; end,
-    character_subtype_key = function() return "wh2_dlc11_cst_cylostra"; end,
+    character_subtype_key = function() return "grn_orc_warboss"; end,
     command_queue_index = function() end,
     has_military_force = function() return false end,
     faction = function() return humanFaction; end,
@@ -15,10 +15,10 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh2_main_def_naggarond";
+        return "wh_main_emp_wissenland";
     end,
     subculture = function()
-        return "wh2_main_sc_def_dark_elves";
+        return "wh_main_sc_emp_empire";
     end,
     character_list = function()
         return {
@@ -133,7 +133,7 @@ local turn_number = 1;
 -- Mock functions
 function get_cm()
     return   {
-        is_new_game = function() return true; end,
+        is_new_game = function() return false; end,
         create_agent = function()
             return;
         end,
@@ -222,7 +222,7 @@ function get_cm()
         force_add_trait = function() end,
         force_remove_trait = function() end,
         get_character_by_cqi = function() end,
-        char_is_mobile_general_with_army = function() return false; end,
+        char_is_mobile_general_with_army = function() return true; end,
     };
 end
 
@@ -263,6 +263,7 @@ require 'script/campaign/mod/z_crp_cataph_patch'
 require 'script/campaign/mod/z_crp_deco_goblin_patch'
 require 'script/campaign/mod/z_crp_mixu_patch'
 require 'script/campaign/mod/z_crp_wez_speshul_patch'
+require 'script/campaign/mod/z_crp_zf_engineer_patch'
 
 math.randomseed(os.time())
 
