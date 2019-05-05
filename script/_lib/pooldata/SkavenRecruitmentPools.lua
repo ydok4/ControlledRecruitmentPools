@@ -107,6 +107,10 @@ SkavenRecruitmentPoolData = {
                         SubPoolMaxSize = 1,
                     },
                 },
+                Events = {
+                    Incident = "wh_main_skv_warlock_master",
+                    Dilemma = nil,
+                },
                 IncreasePoolSize = 1,
                 Type = "increase",
             },

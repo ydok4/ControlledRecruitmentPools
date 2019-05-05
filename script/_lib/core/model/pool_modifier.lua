@@ -24,6 +24,9 @@ function PoolModifier:GiveReward(faction, factionPools, rewardData)
         factionPools.PoolMaxSize = factionPools.PoolMaxSize + rewardData.IncreasePoolSize;
         self:UpdateArmyLimits(faction, factionPools, oldSize);
     end
+    if rewardData.Events ~= nil and rewardData.Events.Incident ~= nil then
+        cm:trigger_incident_with_targets(faction:command_queue_index(), rewardData.Events.Incident, faction:command_queue_index(), 0, 0, 0, 0, 0);
+    end
 end
 
 function PoolModifier:ChangePoolViaValue(factionPools, rewardData, isPositive)

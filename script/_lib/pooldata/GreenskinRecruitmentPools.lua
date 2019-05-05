@@ -151,6 +151,28 @@ GreenskinRecruitmentPoolData =  {
                 },
             },
         },
+        --[[Rewards = {
+            scripted = {
+                Pools = {
+                    GreenskinWarbosses = {
+                        AgentSubTypes = {
+                            grn_orc_warboss = {
+                                MinimumAmount = 0,
+                                MaximumAmount = 3,
+                                HumanPlayerOnly = true,
+                            },
+                        },
+                        SubPoolMaxSize = 5,
+                    },
+                },
+                Events = {
+                    Incident = "wh_main_crp_grn_skarsnik_scripted",
+                    Dilemma = nil,
+                },
+                IncreasePoolSize = 3,
+                Type = "increase",
+            },
+        },--]]
         PoolMaxSize = 8,
     },
 

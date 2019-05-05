@@ -27,6 +27,10 @@ HighElfRecruitmentPoolData = {
                         SubPoolMaxSize = 1,
                     },
                 },
+                Events = {
+                    Incident = "wh_main_crp_hef_seahelm",
+                    Dilemma = nil,
+                },
                 IncreasePoolSize = 1,
                 Type = "increase",
             },

@@ -82,6 +82,10 @@ LizardmenRecruitmentPoolData = {
                         SubPoolMaxSize = 1,
                     },
                 },
+                Events = {
+                    Incident = "wh_main_lzd_red_crested_skink",
+                    Dilemma = nil,
+                },
                 IncreasePoolSize = 1,
                 Type = "increase",
             },

@@ -149,6 +149,10 @@ DwarfRecruitmentPoolData =  {
                         SubPoolMaxSize = 1,
                     },
                 },
+                Events = {
+                    Incident = "wh_main_crp_dwf_belegar_scripted",
+                    Dilemma = nil,
+                },
                 IncreasePoolSize = 3,
                 Type = "increase",
             },

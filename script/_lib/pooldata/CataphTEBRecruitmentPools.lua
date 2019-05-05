@@ -32,6 +32,10 @@ TEBRecruitmentPools = {
                         SubPoolMaxSize = 1,
                     },
                 },
+                Events = {
+                    Incident = "wh_main_crp_bor_ranger",
+                    Dilemma = nil,
+                },
                 Type = "increase",
             },
         },
@@ -70,6 +74,10 @@ TEBRecruitmentPools = {
                         SubPoolMaxSize = 1,
                     },
                 },
+                Events = {
+                    Incident = "wh_main_crp_est_inquisitor",
+                    Dilemma = nil,
+                },
                 Type = "increase",
             },
         },
@@ -107,6 +115,10 @@ TEBRecruitmentPools = {
                         SubPoolInitialMinSize = 0,
                         SubPoolMaxSize = 1,
                     },
+                },
+                Events = {
+                    Incident = "wh_main_crp_til_merchant",
+                    Dilemma = nil,
                 },
                 Type = "increase",
             },
