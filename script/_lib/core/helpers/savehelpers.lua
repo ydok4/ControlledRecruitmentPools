@@ -45,7 +45,6 @@ function SaveCharacterData(crp)
     local characterCount = 0;
     local tableCount = 1;
     local nthTable = {};
-    nthTable[tableCount] = {};
 
     for factionKey, factionLords in pairs(crp.CRPLordsInPools) do
         local characterKeysForFaction = {};

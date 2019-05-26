@@ -1316,7 +1316,6 @@ NameResources = {
 					Movar = "1662609258",
 					Pokol_Daka = "1676702302",
 					Koren_Bahnir = "1714437588",
-					Lokhir = "1748721115",
 					Argyle = "1767592018",
 					Rautha = "1772325140",
 					Elreth = "182386008",

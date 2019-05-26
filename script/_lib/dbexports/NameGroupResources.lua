@@ -188,6 +188,21 @@ NameGroupResources = {
 	wh2_dlc11_vmp_the_barrow_legion = {
 		NameGroup = "172",
 	},
+	wh2_dlc12_grn_leaf_cutterz_tribe = {
+		NameGroup = "88",
+	},
+	wh2_dlc12_grn_leaf_cutterz_tribe_waaagh = {
+		NameGroup = "88",
+	},
+	wh2_dlc12_lzd_cult_of_sotek = {
+		NameGroup = "117",
+	},
+	wh2_dlc12_skv_clan_fester = {
+		NameGroup = "124",
+	},
+	wh2_dlc12_skv_clan_mange = {
+		NameGroup = "124",
+	},
 	wh2_main_brt_knights_of_origo = {
 		NameGroup = "162",
 	},
@@ -606,6 +621,9 @@ NameGroupResources = {
 		NameGroup = "124",
 	},
 	wh2_main_skv_clan_septik = {
+		NameGroup = "124",
+	},
+	wh2_main_skv_clan_skryre_separatists = {
 		NameGroup = "124",
 	},
 	wh2_main_skv_clan_skyre = {
@@ -1110,7 +1128,7 @@ NameGroupResources = {
 		NameGroup = "214",
 	},
 	wh_main_vmp_mousillon = {
-		NameGroup = "162",
+		NameGroup = "172",
 	},
 	wh_main_vmp_rival_sylvanian_vamps = {
 		NameGroup = "172",

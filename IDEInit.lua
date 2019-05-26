@@ -255,7 +255,7 @@ invasion_manager = {
     }; end,
 }
 out = function(text)
-  print(text)
+  print(text);
 end
 
 require 'script/campaign/mod/controlled_recruitment_pools'
@@ -267,10 +267,10 @@ require 'script/campaign/mod/z_crp_zf_engineer_patch'
 
 math.randomseed(os.time())
 
--- This is used in game by Warhammer but we have it hear so it won't throw errors when running
+-- This is used in game by Warhammer but we have it here so it won't throw errors when running
 -- in ZeroBrane IDE
-function --Custom_Log(text)
-  print(text)
+function Custom_Log(text)
+  print(text);
 end
 
 controlled_recruitment_pools();
