@@ -52,6 +52,9 @@ function controlled_recruitment_pools()
 
     crp.UIController:InitialiseUI(crp);
     SetupPostUIListeners(crp);
+    -- Remove the listeners which give AI factions bloodline chars cause we already do that
+    core:remove_listener("vampire_bloodline_ai_characters");
+
     Custom_Log("CRP: Finished");
     out("CRP: Finished startup");
     Custom_Log_Finished();
