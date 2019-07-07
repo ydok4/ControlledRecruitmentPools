@@ -4,6 +4,8 @@ require 'script/_lib/pooldata/CataphTEBRecruitmentPools'
 require 'script/_lib/pooldata/CataphVampireCountsRecruitmentPools'
 
 require 'script/_lib/dbexports/CataphDataResources'
+require 'script/_lib/dbexports/CataphTEBNameGroupResources'
+require 'script/_lib/dbexports/CataphTEBNameResources'
 
 out("CRP: Loading Cataph Patch");
 _G.CRPResources.AddAdditionalResources("wh_main_sc_dwf_dwarfs", DwarfRecruitmentPoolData);
@@ -15,5 +17,7 @@ _G.CRPResources.AddAdditionalResources("wh_main_sc_vmp_vampire_counts", VampireC
 -- This is separate so I can use this in other mods
 if _G.CG_NameResources then
     ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, CataphDataResources);
+    ConcatTableWithKeys(_G.CG_NameResources.faction_to_name_groups, CataphTEBNameGroupResources);
+    ConcatTableWithKeys(_G.CG_NameResources.name_groups_to_names, CataphTEBNameResources);
 end
 out("CRP: Finished loading Cataph Patch");

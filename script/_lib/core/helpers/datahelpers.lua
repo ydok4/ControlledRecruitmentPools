@@ -1,5 +1,6 @@
 out("CRP: Loading DataHelpers");
 local ENABLE_LOGGING = false;
+
 function ConcatTableWithKeys(destinationTable, sourceTable)
     for key, value in pairs(sourceTable) do
         destinationTable[key] = value;
@@ -27,7 +28,7 @@ function Random(limit, start)
     if not start then
         start = 1;
     end
-    return math.random(start, limit) ;
+    return math.random(start, limit);
 end
 
 function GetRandomObjectFromList(objectList)
@@ -63,7 +64,11 @@ function CreateValidLuaTableKey(value)
     -- This replaces any apostrophes in names with _
     value = value:gsub("'", "_");
     value = value:gsub("-", "_");
+    value = value:gsub("á", "a");
+    value = value:gsub("à", "a");
     value = value:gsub("é", "e");
+    value = value:gsub("í", "i");
+    value = value:gsub("ó", "o");
     value = value:gsub("‘", "_");
     value = value:gsub(",", "_");
     return value;

@@ -86,7 +86,7 @@ SkavenRecruitmentPoolData = {
                 AgentSubTypes = {
                     wh2_dlc12_skv_warlock_master = {
                         MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumAmount = 3,
                     },
                 },
                 SubPoolInitialMinSize = 2,

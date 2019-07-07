@@ -100,26 +100,7 @@ function SetupPostUIListeners(crpObject)
         end,
         true
     );
-    --[[Custom_Log("GeneralRecruitmentOpened");
-    core:add_listener(
-        "GeneralRecruitmentOpened",
-        "PanelOpenedCampaign",
-        function(context)
-            return context.string == "character_panel";
-        end,
-        function(context)
-            Custom_Log("\n"..context.string.." opened");
-            local uiContext = context.string;
-            cm:callback(function()
-                Custom_Log("character_panel callback");
-                local generalsList = find_uicomponent(core:get_ui_root(), "character_panel", "general_selection_panel", "character_list_parent", "character_list", "listview", "list_clip", "list_box");
-                GetGeneralCandidates(crp.HumanFaction, generalsList, crp.CRPLordsInPools);
-                Custom_Log_Finished();
-            end,
-            0);
-        end,
-        true
-    );--]]
+
     Custom_Log("ClickedButtonCreateArmy");
     core:add_listener(
         "CRP_ClickedCreateArmyButton",
@@ -223,27 +204,54 @@ function SetupPostUIListeners(crpObject)
     Custom_Log("CRP_CharacterCreated");
     -- Performs post character created/recruited functionality
     -- like adding traits
-    core:add_listener(
-        "CRP_CharacterCreated",
-        "CharacterCreated",
-        true,
-        function(context)
-            local character = context:character();
-            if character:faction():is_quest_battle_faction() == true then
-                Custom_Log("Character is in quest battle faction, ignoring");
-                Custom_Log_Finished();
-            elseif character:character_type("colonel") and (character:has_military_force() == false or character:military_force():is_armed_citizenry() == false) then
-                Custom_Log("Killing colonel for faction "..character:faction():name().." "..character:character_subtype_key());
-                cm:kill_character(character:cqi(), true, true);
-            else
-                crp:ProcessNewCharacter(character);
-            end
-            --cm:apply_effect_bundle_to_characters_force("increase_recruitment_cost", character:cqi(), 0, true);
-            --Custom_Log("Finished char created listener");
-        end,
-        true
-    );
+    -- We have 2 different versions of the listener for game start and regular gameplay
+    -- because we can skip some of the checks for colonels. This is both for speed
+    -- and stability (it crashes).
+    if cm:turn_number() == 1 then
+        core:add_listener(
+            "CRP_CharacterCreated",
+            "CharacterCreated",
+            true,
+            function(context)
+                local character = context:character();
+                if character:faction():is_quest_battle_faction() == true then
+                    Custom_Log("Character is in quest battle faction, ignoring");
+                    Custom_Log_Finished();
+                elseif character:character_type("colonel") and (character:military_force():is_armed_citizenry() == false or character:is_politician() == true) then
+                    Custom_Log("Found colonel");
+                    if character:has_military_force() == true then
+                        Custom_Log("Killing colonel for faction "..character:faction():name().." "..character:character_subtype_key());
+                        cm:kill_character(character:cqi(), true, true);
+                    end
+                    Custom_Log_Finished();
+                else
+                    crp:ProcessNewCharacter(character);
+                end
+                --cm:apply_effect_bundle_to_characters_force("increase_recruitment_cost", character:cqi(), 0, true);
+                --Custom_Log("Finished char created listener");
+            end,
+            true
+        );
 
+        -- This listener exists to remove the previous listener
+        -- It should only fire once
+        core:add_listener(
+            "CRP_CharacterCreated",
+            "FactionTurnStart",
+            function(context)
+                return cm:turn_number() == 2;
+            end,
+            function(context)
+                Custom_Log("Removing CRP_CharacterCreated listener");
+                core:remove_listener("CRP_CharacterCreated");
+                SetupCharacterCreatedListenerPostTurn1();
+                Custom_Log_Finished();
+            end,
+            false
+        );
+    else
+        SetupCharacterCreatedListenerPostTurn1();
+    end
     -- Performs post character created/recruited functionality
     -- like adding traits
     --[[core:add_listener(
@@ -312,6 +320,43 @@ function SetupPostUIListeners(crpObject)
     );
 
     PoolModifierListeners(core, crpObject);
+end
+
+function SetupCharacterCreatedListenerPostTurn1()
+    Custom_Log("Setting up CRP_CharacterCreated listener");
+    core:add_listener(
+        "CRP_CharacterCreated",
+        "CharacterCreated",
+        true,
+        function(context)
+            local character = context:character();
+            if character:faction():is_quest_battle_faction() == true then
+                Custom_Log("Character is in quest battle faction, ignoring");
+                Custom_Log_Finished();
+            elseif character:character_type("colonel") and (character:military_force():is_armed_citizenry() == false or character:is_politician() == true) then
+                Custom_Log("Found colonel");
+                -- We need to wrap this in a callback because the pending battle cache isn't populated
+                -- when the character is created and we can't just blanket kill the colonels because
+                -- it breaks some quest battles
+                cm:callback(function()
+                    Custom_Log("In colonel callback");
+                    if character:has_military_force() == true and (cm:pending_battle_cache_char_is_attacker(character) == true or cm:pending_battle_cache_char_is_defender(character) == true) then
+                        Custom_Log("Ignoring character because they are taking part in a battle");
+                    else
+                        Custom_Log("Killing colonel for faction "..character:faction():name().." "..character:character_subtype_key());
+                        cm:kill_character(character:cqi(), true, true);
+                    end
+                    Custom_Log_Finished();
+                end, 0);
+                Custom_Log_Finished();
+            else
+                crp:ProcessNewCharacter(character);
+            end
+            --cm:apply_effect_bundle_to_characters_force("increase_recruitment_cost", character:cqi(), 0, true);
+            --Custom_Log("Finished char created listener");
+        end,
+        true
+    );
 end
 
 function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefault)

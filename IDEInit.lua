@@ -15,10 +15,10 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh_main_emp_wissenland";
+        return "wh_main_teb_tilea";
     end,
     subculture = function()
-        return "wh_main_sc_emp_empire";
+        return "wh_main_sc_teb_teb";
     end,
     character_list = function()
         return {
@@ -230,6 +230,7 @@ cm = get_cm();
 
 core = {
     add_listener = function() end,
+    remove_listener = function() end,
 }
 
 random_army_manager = {

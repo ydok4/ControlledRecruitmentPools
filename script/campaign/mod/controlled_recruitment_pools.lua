@@ -53,7 +53,7 @@ function controlled_recruitment_pools()
     crp.UIController:InitialiseUI(crp);
     SetupPostUIListeners(crp);
     -- Remove the listeners which give AI factions bloodline chars cause we already do that
-    core:remove_listener("vampire_bloodline_ai_characters");
+    --core:remove_listener("vampire_bloodline_ai_characters");
 
     Custom_Log("CRP: Finished");
     out("CRP: Finished startup");
@@ -71,7 +71,7 @@ cm:add_saving_game_callback(
         Custom_Log("Saving callback");
         out("CRP: Saving callback");
         InitialiseSaveHelper(cm, context);
-        SavePreBattleData(crp);
+        --SavePreBattleData(crp);
         SaveCharacterData(crp);
         SaveFactionCharacterPoolData();
         Custom_Log_Finished();
@@ -82,7 +82,7 @@ cm:add_loading_game_callback(
     function(context)
         out("CRP: Loading callback");
         InitialiseLoadHelper(cm, context);
-        LoadPreBattleData(crp);
+        --LoadPreBattleData(crp);
         LoadCharacterData(crp);
         LoadFactionCharacterPoolData(crp);
         out("CRP: Finished loading");
