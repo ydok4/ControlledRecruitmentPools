@@ -1,17 +1,11 @@
-core = nil;
-find_uicomponent = nil
-UIComponent = nil;
 local crp = nil;
 
 require 'script/_lib/core/listeners/poolmodifierlisteners';
 
 Custom_Log("Loading Listeners");
-function InitialiseListenerData(coreObject, find_uicomponent_object, UIComponentObject)
+function InitialiseListenerData()
     out("CRP: SetupListeners");
     Custom_Log("InitialiseListenerData");
-    core = coreObject;
-    find_uicomponent = find_uicomponent_object;
-    UIComponent = UIComponentObject;
     SetupPreUIListeners();
     InitialisePoolModifier();
     Custom_Log_Finished();
@@ -84,7 +78,7 @@ function SetupPostUIListeners(crpObject)
     crp = crpObject;
     Custom_Log("AppointGeneralOpened");
     core:add_listener(
-        "AppointGeneralOpened",
+        "CRP_AppointGeneralOpened",
         "PanelOpenedCampaign",
         function(context)
             return context.string == "appoint_new_general";
@@ -209,7 +203,7 @@ function SetupPostUIListeners(crpObject)
     -- and stability (it crashes).
     if cm:turn_number() == 1 then
         core:add_listener(
-            "CRP_CharacterCreated",
+            "CRP_CharacterCreatedTurn1",
             "CharacterCreated",
             true,
             function(context)
@@ -236,14 +230,14 @@ function SetupPostUIListeners(crpObject)
         -- This listener exists to remove the previous listener
         -- It should only fire once
         core:add_listener(
-            "CRP_CharacterCreated",
+            "CRP_CharacterCreated_Removal",
             "FactionTurnStart",
             function(context)
                 return cm:turn_number() == 2;
             end,
             function(context)
-                Custom_Log("Removing CRP_CharacterCreated listener");
-                core:remove_listener("CRP_CharacterCreated");
+                Custom_Log("Removing CRP_CharacterCreatedTurn1 listener");
+                core:remove_listener("CRP_CharacterCreatedTurn1");
                 SetupCharacterCreatedListenerPostTurn1();
                 Custom_Log_Finished();
             end,
@@ -327,7 +321,7 @@ function SetupCharacterCreatedListenerPostTurn1()
     core:add_listener(
         "CRP_CharacterCreated",
         "CharacterCreated",
-        true,
+        function(context) return true; end,
         function(context)
             local character = context:character();
             if character:faction():is_quest_battle_faction() == true then
@@ -391,7 +385,8 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
         end
         -- This keeps track of what character types should be hidden because they are replaceable. There could be overlap with the default lords.
         local arePresentSubTypesReplaceable = {};
-        for i = 0, generalsList:ChildCount() - 1  do
+        local numGenerals = generalsList:ChildCount() - 1 ;
+        for i = 0, numGenerals  do
             local generalPanel = UIComponent(generalsList:Find(i));
 
             local nameComponent = find_uicomponent(generalPanel, "dy_name");
@@ -421,6 +416,7 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
                             SocialClass = characterData.SocialClass,
                             SubType = characterData.SubType,
                             RemoveImmortality = characterData.RemoveImmortality,
+                            IsRecruited = characterData.IsRecruited,
                         };
                         crp.CRPLordsInPools[humanFactionName][characterKey] = nil;
                         crp.CRPLordsInPools[humanFactionName][keyName] = remappedLord;
@@ -488,7 +484,8 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
                     if intrigueCost ~= nil then
                         Custom_Log("Checking "..keyName);
                         if poolData then
-                            if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
+                            if (poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid")
+                            and poolData.IsRecruited == false then
                                 Custom_Log("Lord is mid prince or princess");
                                 intrigueCost:SetStateText("15");
                                 intrigueCostContainer:SetVisible(true);
@@ -497,7 +494,8 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
                                 else
                                     charIsSelected = true;
                                 end
-                            elseif poolData.SubType == "wh2_main_hef_prince_high"or poolData.SubType == "wh2_main_hef_princess_high" then
+                            elseif (poolData.SubType == "wh2_main_hef_prince_high" or poolData.SubType == "wh2_main_hef_princess_high")
+                            and poolData.IsRecruited == false then
                                 Custom_Log("Lord is high prince or princess");
                                 intrigueCost:SetStateText("60");
                                 intrigueCostContainer:SetVisible(true);
@@ -508,7 +506,8 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
                                 end
                             elseif charIsSelected == false then
                                 Custom_Log("Setting lord as selected "..keyName);
-                                generalPanel:SetState("selected");
+                                intrigueCostContainer:SetVisible(false);
+                                generalPanel:SimulateLClick();
                                 charIsSelected = true;
                             end
                         end
@@ -521,12 +520,11 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
             -- High Elves require manually tracking of whether or not a character is selected
             -- because we need to disable lords if the player does not meet the influence cost
             -- for everyone else this isn't a problem (yet).
-            -- If this is the 4th character, that means the first 3 were hidden. So set the 4th (which appears as the first)
+            -- Eg: If this is the 4th character, that means the first 3 were hidden. So set the 4th (which appears as the first)
             -- as selected
             else
                 charIsSelected = true;
             end
-
             --[[for j = 0, generalPanel:ChildCount() - 1  do
                 local child = UIComponent(generalPanel:Find(j));
                 Custom_Log("generalPanel ID "..child:Id());
@@ -567,6 +565,8 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
             Custom_Log("No character can be recruited");
             local raiseForcesButton = find_uicomponent(core:get_ui_root(), "character_panel", "raise_forces_options", "button_raise");
             raiseForcesButton:SetState("inactive");
+            local unitInfoPopup = find_uicomponent(core:get_ui_root(), "UnitInfoPopup");
+            unitInfoPopup:SetVisible(false);
         end
     else
         Custom_Log("There are no generals in the list");

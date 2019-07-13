@@ -89,6 +89,7 @@ function LoadCharacterData(crp)
                         Name = characterData[5],
                         SocialClass = characterData[6],
                         RemoveImmortality = characterData[7],
+                        IsRecruited = characterData[8],
                     };
                     crp.CRPLordsInPools[factionKey][characterKey] = mappedCharacter;
                 end

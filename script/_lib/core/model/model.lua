@@ -123,7 +123,7 @@ function ControlledRecruitmentPools:TrackInitialLords(faction)
                 };
                 Custom_Log("Tracking subtype "..charSubType);
                 local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
-                self:TrackCharacterInPoolData(factionName, generatedName, "", charSubType, "", homeRegion, false);
+                self:TrackCharacterInPoolData(factionName, generatedName, "", charSubType, "", homeRegion, false, true);
             end
         end
     end
@@ -735,12 +735,12 @@ function ControlledRecruitmentPools:GenerateGeneral(generalSubType, faction, art
     --Custom_Log("Spawned character into pool");
     -- Add the character to the pool table so we can track them
     local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
-    local trackedData = self:TrackCharacterInPoolData(factionName, generatedName, innateTrait, generalSubType, artSetId, homeRegion, true);
+    local trackedData = self:TrackCharacterInPoolData(factionName, generatedName, innateTrait, generalSubType, artSetId, homeRegion, true, false);
     Custom_Log("Finished generating general");
     return trackedData;
 end
 
-function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, generatedName, innateTrait, subType, artSetId, homeRegion, removeImmortality)
+function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, generatedName, innateTrait, subType, artSetId, homeRegion, removeImmortality, isRecruited)
     if self.CRPLordsInPools[factionName] == nil then
         self.CRPLordsInPools[factionName] = {};
     end
@@ -765,6 +765,7 @@ function ControlledRecruitmentPools:TrackCharacterInPoolData(factionName, genera
         ArtSetId = artSetId,
         HomeRegion = homeRegion,
         RemoveImmortality = removeImmortality,
+        IsRecruited = isRecruited,
     };
 
     self.CRPLordsInPools[factionName][keyName] = general;
@@ -901,7 +902,7 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
                 -- Remove immortality that we gave them when we spawned them
                 cm:set_character_immortality("character_cqi:"..char:cqi(), false);
             end
-            if subCulture == "wh2_main_sc_hef_high_elves" and factionName == self.HumanFaction:name() then
+            if subCulture == "wh2_main_sc_hef_high_elves" and factionName == self.HumanFaction:name() and poolData.IsRecruited == false then
                 Custom_Log("High elf character recruited listener");
                 if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
                     cm:suppress_all_event_feed_messages(true);
@@ -914,6 +915,13 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
                     cm:suppress_all_event_feed_messages(false);
                     Custom_Log("Lord is high prince or princess");
                 end
+            end
+            if poolData.IsRecruited == false then
+                -- Since we have a valid, tracked character we set IsRecruited as true so we know we don't need to pay recruitment costs if they get wounded
+                -- and re-recruited
+                poolData.IsRecruited = true;
+            else
+                Custom_Log("Character has been recruited previously");
             end
         end
     -- This check is to specifically check the "Extra" spawned characters from the system. This occurs when using kill_character() and create_force_with_general().
@@ -1012,7 +1020,7 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
             };
             Custom_Log("Character "..char:character_subtype_key().." is not in pool. Tracking them for faction "..factionName);
             local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
-            self:TrackCharacterInPoolData(factionName, name, "", char:character_subtype_key(), "", homeRegion, false);
+            self:TrackCharacterInPoolData(factionName, name, "", char:character_subtype_key(), "", homeRegion, false, true);
         end
     else
         -- Typically this case if for garrison leaders but it also happens when a Dark Elf character gains a word of power
@@ -1031,6 +1039,7 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
                         SocialClass = data.SocialClass,
                         SubType = data.SubType,
                         RemoveImmortality = data.RemoveImmortality,
+                        IsRecruited = true,
                     };
                     self.CRPLordsInPools[factionName][key] = nil;
                     self.CRPLordsInPools[factionName][keyName] = remappedLord;

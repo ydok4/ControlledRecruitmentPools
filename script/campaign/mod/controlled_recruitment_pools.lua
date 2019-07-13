@@ -60,7 +60,7 @@ function controlled_recruitment_pools()
     Custom_Log_Finished();
 end
 
-InitialiseListenerData(core, find_uicomponent, UIComponent);
+InitialiseListenerData();
 
 -- Saving/Loading Callbacks
 -- These need to be outside of the Constructor function

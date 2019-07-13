@@ -3,35 +3,58 @@ testCharacter = {
     cqi = function() return 123 end,
     get_forename = function() return "Direfan"; end,
     get_surname = function() return "Cylostra"; end,
-    character_subtype_key = function() return "grn_orc_warboss"; end,
+    character_subtype_key = function() return "AK_hef_seahelm"; end,
     command_queue_index = function() end,
-    has_military_force = function() return false end,
+    has_military_force = function() return true end,
+    military_force = function() return {
+        is_armed_citizenry = function () return false; end,
+        unit_list = function() return {
+            num_items = function() return 2; end,
+            item_at = function(self, index)
+                return test_unit;
+            end,
+        }
+        end,
+    }
+    end,
     faction = function() return humanFaction; end,
     region = function() return get_cm():get_region(); end,
     logical_position_x = function() return 100; end,
     logical_position_y = function() return 110; end,
     command_queue_index = function() return 10; end,
+    character_type = function() return false; end,
+    is_null_interface = function() return false; end,
+    is_wounded = function() return false; end,
 }
 
 humanFaction = {
     name = function()
-        return "wh_main_teb_tilea";
+        return "wh2_main_hef_order_of_loremasters";
+    end,
+    culture = function()
+        return "wh2_main_hef_high_elves";
     end,
     subculture = function()
-        return "wh_main_sc_teb_teb";
+        return "wh2_main_sc_hef_high_elves";
     end,
     character_list = function()
         return {
             num_items = function()
-                return 0;
-            end
+                return 1;
+            end,
+            item_at = function(self, index)
+                return testCharacter;
+            end,
         };
     end,
     region_list = function()
         return {
             num_items = function()
-                return 0;
-            end
+                return 1;
+            end,
+            item_at = function(self, index)
+                return cm:get_region(index);
+            end,
         };
     end,
     home_region = function ()
@@ -47,19 +70,27 @@ humanFaction = {
     faction_leader = function() return testCharacter; end,
     is_quest_battle_faction = function() return false; end,
     is_null_interface = function() return false; end,
+    is_human = function() return true; end,
+    has_effect_bundle = function() return true; end,
 }
 
 testFaction = {
     name = function()
-        return "wh2_dlc11_cst_the_drowned";
+        return "wh2_dlc11_vmp_the_barrow_legion";
+    end,    
+    culture = function()
+        return "wh_main_vmp_vampire_counts";
     end,
     subculture = function()
-        return "wh_main_sc_grn_greenskins";
+        return "wh_main_sc_vmp_vampire_counts";
     end,
     character_list = function()
         return {
             num_items = function()
-                return 0;
+                return 1;
+            end,
+            item_at = function()
+                return testCharacter;
             end
         };
     end,
@@ -83,6 +114,8 @@ testFaction = {
     faction_leader = function() return testCharacter; end,
     is_quest_battle_faction = function() return false; end,
     is_null_interface = function() return false; end,
+    is_human = function() return false; end,
+    has_effect_bundle = function() return true; end,
 }
 
 testFaction2 = {
@@ -119,6 +152,15 @@ testFaction2 = {
     faction_leader = function() return testCharacter; end,
     is_quest_battle_faction = function() return false; end,
     is_null_interface = function() return false; end,
+    is_human = function() return false; end,
+    has_effect_bundle = function() return true; end,
+}
+
+test_unit = {
+    unit_key = function() return "wh2_dlc09_tmb_inf_nehekhara_warriors_0"; end,
+    force_commander = function() return testCharacter; end,
+    faction = function() return testFaction; end,
+    percentage_proportion_of_full_strength = function() return 80; end,
 }
 
 effect = {
@@ -129,11 +171,44 @@ effect = {
 
 -- This can be modified in the testing driver
 -- so we can simulate turns changing easily
-local turn_number = 1;
+local turn_number = 2;
+
 -- Mock functions
+mock_listeners = {
+    listeners = {},
+    trigger_listener = function(self, mockListenerObject)
+        local listener = self.listeners[mockListenerObject.Key];
+        if listener and listener.Condition(mockListenerObject.Context) then
+            listener.Callback(mockListenerObject.Context);
+        end
+    end,
+}
+
+-- Mock save structures
+mockSaveData = {
+
+}
+
+-- slot (building) data
+slot_1 = {
+    has_building = function() return true; end,
+    building = function() return {
+        name = function() return "AK_hobo_anim_3"; end,
+    }
+    end,
+}
+
+slot_2 = {
+    has_building = function() return true; end,
+    building = function() return {
+        name = function() return "AK_hobo_anim_3"; end,
+    }
+    end,
+}
+
 function get_cm()
     return   {
-        is_new_game = function() return false; end,
+        is_new_game = function() return true; end,
         create_agent = function()
             return;
         end,
@@ -141,6 +216,7 @@ function get_cm()
             return {humanFaction};
         end,
         disable_event_feed_events = function() end,
+        turn_number = function() return turn_number; end,
         model = function ()
             return {
                 turn_number = function() return turn_number; end,
@@ -174,11 +250,10 @@ function get_cm()
             }
         end,
         first_tick_callbacks = {},
-        add_listener = function () end,
         add_saving_game_callback = function() end,
         add_loading_game_callback = function() end,
         spawn_character_to_pool = function() end,
-        callback = function() end,
+        callback = function(self, callbackFunction, delay) callbackFunction() end,
         transfer_region_to_faction = function() end,
         get_faction = function() return testFaction2; end,
         lift_all_shroud = function() end,
@@ -192,7 +267,7 @@ function get_cm()
                     return {
                         item_at = function(self, i)
                             if i == 0 then
-                                return get_cm():get_region();
+                                return get_cm():f();
                             elseif i == 1 then
                                 return get_cm():get_region();
                             elseif i == 2 then
@@ -209,6 +284,21 @@ function get_cm()
                     }
                 end,
                 is_null_interface = function() return false; end,
+                settlement = function() return {
+                    slot_list = function() return {
+                        num_items = function () return 2; end,
+                        item_at = function(index)
+                            if index == 1 then
+                                return slot_1;
+                            else
+                                return slot_2;
+                            end
+                        end
+                    }
+                    end,
+                }
+                end,
+                is_abandoned = function() return true; end,
             }
         end,
         set_character_immortality = function() end,
@@ -223,14 +313,105 @@ function get_cm()
         force_remove_trait = function() end,
         get_character_by_cqi = function() end,
         char_is_mobile_general_with_army = function() return true; end,
+        restrict_units_for_faction = function() end,
+        save_named_value = function(self, saveKey, data, context)
+            mockSaveData[saveKey] = data;
+        end,
+        load_named_value = function(self, saveKey, datastructure, context)
+            if mockSaveData[saveKey] == nil then
+                return nil;
+            end
+            return mockSaveData[saveKey];
+        end,
+        remove_effect_bundle = function() end,
+        apply_effect_bundle = function() end,
+        char_is_agent = function() return false end,
+        steal_user_input = function() end,
+        get_saved_value = function() end,
     };
 end
 
 cm = get_cm();
+mock_max_unit_ui_component = {
+    Id = function() return "max_units" end,
+    ChildCount = function() return 1; end,
+    Find = function() return mock_unit_ui_component; end,
+    SetVisible = function() end,
+    MoveTo = function() end,
+    SetStateText = function() end,
+    SetInteractive = function() end,
+    Visible = function() return true; end,
+    Position = function() return 0, 1 end,
+    Bounds = function() return 0, 1 end,
+    Width = function() return 1; end,
+    Resize = function() return; end,
+    SetCanResizeWidth = function() return; end,
+    SimulateMouseOn = function() return; end,
+    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
+    --GetStateText = function() return "Unlocks recruitment of:"; end,
+    SetCanResizeHeight = function() end,
+    SetCanResizeWidth = function() end,
+    SetState = function() end,
+}
+
+mock_unit_ui_component = {
+    Id = function() return "wh_main_emp_cav_reiksguard_mercenary" end,
+    --Id = function() return "building_info_recruitment_effects" end,
+    ChildCount = function() return 1; end,
+    Find = function() return mock_max_unit_ui_component; end,
+    SetVisible = function() end,
+    MoveTo = function() end,
+    SetStateText = function() end,
+    SetInteractive = function() end,
+    Visible = function() return true; end,
+    Position = function() return 0, 1 end,
+    Bounds = function() return 0, 1 end,
+    Width = function() return 1; end,
+    Resize = function() return; end,
+    SetCanResizeWidth = function() return; end,
+    SimulateMouseOn = function() return; end,
+    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
+    SetCanResizeHeight = function() end,
+    SetCanResizeWidth = function() end,
+    SetState = function() end,
+}
+
+mock_unit_ui_list_component = {
+    Id = function() return "mock_list" end,
+    ChildCount = function() return 1; end,
+    Find = function() return mock_unit_ui_component; end,
+    SetVisible = function() end,
+    MoveTo = function() end,
+    SetStateText = function() end,
+    SetInteractive = function() end,
+    Visible = function() return true; end,
+    Position = function() return 0, 1 end,
+    Bounds = function() return 0, 1 end,
+    Width = function() return 1; end,
+    Resize = function() return; end,
+    SetCanResizeWidth = function() return; end,
+    SimulateMouseOn = function() return; end,
+    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
+    --GetStateText = function() return "Unlocks recruitment of:"; end,
+    SetCanResizeHeight = function() end,
+    SetCanResizeWidth = function() end,
+    SetState = function() end,
+}
+
+find_uicomponent = function()
+    return mock_unit_ui_list_component;
+end
+
+UIComponent = function(mock_ui_find) return mock_ui_find; end
 
 core = {
-    add_listener = function() end,
-    remove_listener = function() end,
+    add_listener = function (self, key, eventKey, condition, callback)
+        mock_listeners.listeners[key] = {
+            Condition = condition,
+            Callback = callback,
+        }
+    end,
+    get_ui_root = function() end,
 }
 
 random_army_manager = {
@@ -276,141 +457,29 @@ end
 
 controlled_recruitment_pools();
 crp = _G.crp;
-local destinationTable = {};
-local sourceTable = {};
-if destinationTable == {} then
-    local test = ""; 
-end
-local defaultLordsForFaction = GetDefaultLordForFaction(testFaction);
-CheckAndReceiveRewards(testFaction, testFaction, "scripted");
-CheckAndReceiveRewards(testFaction2, testFaction, "alliance");
-
-local factionPoolResources = GetFactionPoolResources(testFaction);
-local currentFactionPools = crp:GetCurrentPoolForFaction(testFaction);
-crp:EnforceMinimumValues(testFaction, currentFactionPools);
-local agentSubTypeKey = "til_merchant";
-crp:ReplaceExistingLords(testFaction, factionPoolResources);
-RecalculatePoolLimits();
 
 
-
---local subculture = GetSubCultureFromUnitList(agentSubTypeKey);
-local name = crp.CharacterGenerator:GetCharacterNameForSubculture(testFaction, agentSubTypeKey);
-local artSetId = crp.CharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
-local trait = crp.CharacterGenerator:GetRandomCharacterTrait(testFaction, agentSubTypeKey);
-local traitPath = crp.UIController:GetImagePathForTrait(trait);
-crp:SetupInitialMinimumValues(testFaction, currentFactionPools, factionPoolResources);
-local traitEffects = crp.UIController:GetTraitEffects("wh2_main_skill_innate_all_aggressive");
-local traitDescription = crp.UIController:BuildTraitLocString("wh2_main_skill_innate_all_aggressive", "Knowledgeable");
---crp.UIController:GetImagePathForTrait("wh_main_sc_vmp_vampire_counts", "");
---local factionResources = GetFactionPoolResources(testFaction);
---local supported = IsSupportedSubCulture(testFaction:subculture()) or IsRogueArmy(testFaction:name());
---local currentPoolCounts = crp:GetCurrentPoolForFaction(testFaction);
-local imagePath = crp.UIController:GetImagePathForTrait(testFaction:subculture(), "wh2_main_skill_innate_all_aggressive");
-local replacementLords = GetReplacementLordsForFaction(testFaction);
-
-if replacementLords ~= nil then
-    for replacementSubType, replacementData in pairs(replacementLords) do
-        local test = replacementSubType;
-    end
-end
-
-local empirePool = _G.CRPResources.CulturePoolResources["wh_main_sc_emp_empire"]["wh_main_emp_empire"].FactionPools;
-empirePool["GrandMasterPool"] = {
-    AgentSubTypes = {
-        dlc420_emp_grand_master = {
-            MinimumAmount = 10,
-            MaximumAmount = 20,
-        },
+local MockContext_CRP_CharacterCreated_Removal = {
+    Key = "MockContext_CRP_CharacterCreated_Removal",
+    Context = {
     },
-    SubPoolInitialMinSize = 12,
-    SubPoolMaxSize = 20,
-};
+}
+mock_listeners:trigger_listener(MockContext_CRP_CharacterCreated_Removal);
 
-crp:UpdateRecruitmentPool(testFaction, 1, true);
-crp:IsThereACharacterInPool(testFaction);
-GetDefaultLordForFaction(testFaction);
-crp:UpdateRecruitmentPool(humanFaction, 1);
-crp:ProcessNewCharacter(testCharacter);
-local test = "";
+local MockContext_CRP_CharacterCreated = {
+    Key = "CRP_CharacterCreated",
+    Context = {
+        character = function() return testCharacter; end,
+    },
+}
+mock_listeners:trigger_listener(MockContext_CRP_CharacterCreated);
 
- --[[       -- This contains the max poolsize of the faction
-        local serialised_faction_resources = {};
 
-        -- Contains the the pool keys for specific factions
-        local serialised_faction_pool_keys = {};
-        -- Contains the pool data for each faction
-        local serialised_faction_pool_resources = {};
-
-        -- Contains the keys for the faction pool agent subtypes
-        local serialised_faction_pool_agent_keys = {};
-        -- Contiains the number of each agent subtype with a key that correspond to the subtype, pool and faction
-        local serialised_faction_pool_agent_resources = {};
-
-        for cultureResourceKey, cultureResourceData in pairs(_G.CRPResources.CulturePoolResources) do
-            Custom_Log("Saving culture factions for "..cultureResourceKey);
-            for factionResourceKey, factionResourceData in pairs(cultureResourceData) do
-                Custom_Log("Saving faction resources for "..factionResourceKey);
-                if cultureResourceKey ~= factionResourceKey then
-                    local factionPoolKeys = {};
-                    serialised_faction_resources[factionResourceKey] = { cultureResourceKey, factionResourceData.PoolMaxSize};
-                    for factionPoolKey, factionPoolData in pairs(factionResourceData.FactionPools) do
-                        serialised_faction_pool_resources[factionResourceKey..factionPoolKey] = { factionPoolKey, factionPoolData.SubPoolInitialMinSize, factionPoolData.SubPoolMaxSize};
-                        local factionPoolAgentKeys = {};
-                        for agentSubTypeKey, agentSubTypeData in pairs(factionPoolData.AgentSubTypes) do
-                            serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, agentSubTypeData.MinimumAmount, agentSubTypeData.MaximumAmount};
-                            factionPoolAgentKeys[#factionPoolAgentKeys + 1] = agentSubTypeKey;
-                        end
-                        serialised_faction_pool_agent_keys[factionResourceKey..factionPoolKey] = factionPoolAgentKeys;
-                        factionPoolKeys[#factionPoolKeys + 1] = factionPoolKey;
-                    end
-                    serialised_faction_pool_keys[factionResourceKey] = factionPoolKeys;
-                end
-            end
-        end
-
-    local test = "";
-
-    local faction_resources = serialised_faction_resources;
-
-    local faction_pool_keys = serialised_faction_pool_keys;
-    local faction_pool_resources = serialised_faction_pool_resources;
-
-    local faction_pool_agent_keys = serialised_faction_pool_agent_keys;
-    local faction_pool_agent_resources = serialised_faction_pool_agent_resources;
-
-    for factionResourceKey, factionResourceData in pairs(faction_resources) do
-        local factionCulture = factionResourceData[1];
-        local mappedFactionPools = {};
-        for factionPoolIndex, factionPoolKey in pairs(faction_pool_keys[factionResourceKey]) do
-            local factionPoolResources = faction_pool_resources[factionResourceKey..factionPoolKey];
-            local factionAgentSubTypes = {};
-            for agentSubTypeIndex, agentSubTypeKey in pairs(faction_pool_agent_keys[factionResourceKey..factionPoolKey]) do
-                local agentResources = faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey];
-                local mappedAgentSubType = {
-                    MinimumAmount = agentResources[2],
-                    MaximumAmount = agentResources[3],
-                };
-                factionAgentSubTypes[agentSubTypeKey] = mappedAgentSubType;
-            end
-            mappedFactionPools[factionPoolKey] = {
-                AgentSubTypes = factionAgentSubTypes,
-                SubPoolInitialMinSize = factionPoolResources[2],
-                SubPoolMaxSize = factionPoolResources[3],
-            };
-        end
-
-        local mappedFactionData = {
-            FactionPools = mappedFactionPools,
-            PoolMaxSize = factionResourceData[2],
-        };
-        _G.CRPResources.CulturePoolResources[factionCulture][factionResourceKey].FactionPools = mappedFactionData.FactionPools;
-        _G.CRPResources.CulturePoolResources[factionCulture][factionResourceKey].PoolMaxSize = mappedFactionData.PoolMaxSize;
-    end
-
-    local test2 = "";--]]
-
-    local preBattleDataAttackers = {};
-    for attacker_force_cqi, preBattleData in pairs(preBattleDataAttackers) do
-        local test3 = "";
-    end
+-- This is a mockContext to simulate a click on a unit
+local MockContext_CRP_AppointGeneralOpened = {
+    Key = "CRP_AppointGeneralOpened",
+    Context = {
+        string = "appoint_new_general"
+    },
+}
+mock_listeners:trigger_listener(MockContext_CRP_AppointGeneralOpened);
