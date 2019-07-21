@@ -6,7 +6,7 @@ function InitialisePoolModifier()
     });
 end
 
-function PoolModifierListeners(core, crp)
+function PoolModifierListeners(crp)
 	Custom_Log("Setting up pool modifier listeners");
 	-- This handles generic diplomacy rewards
     core:add_listener(

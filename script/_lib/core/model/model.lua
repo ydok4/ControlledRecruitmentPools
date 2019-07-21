@@ -98,8 +98,7 @@ function ControlledRecruitmentPools:NewGameStartUp()
             end
             -- This will replace any vmp_lord_replacements present at the start of the game
             -- This will usually be from armies spawned by scripted. Eg the Artois army for Kemmler start.
-            local currentFactionPools = self:GetCurrentPoolForFaction(faction);
-           self:RemoveAliveCharacterInPoolAtGameStart(faction, currentFactionPools, factionPoolResources);
+           self:RemoveAliveCharacterInPoolAtGameStart(faction);
            self:ApplyArmyLimits(faction, factionPoolResources);
            self:TrackInitialLords(faction);
            Custom_Log_Finished();
@@ -385,6 +384,9 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
 
     local currentPoolCounts = self:GetCurrentPoolForFaction(faction);
     local factionPoolResources = GetFactionPoolResources(faction);
+    if factionPoolResources == nil then
+        Custom_Log("MISSING FACTION RESOURCES ");
+    end
     if self.CRPLordsInPools[factionName] == nil then
         Custom_Log("INITIALISING "..factionName);
         -- Set the initial pools for the faction
@@ -406,7 +408,7 @@ function ControlledRecruitmentPools:UpdateRecruitmentPool(faction, amountToGener
     return addedGenerals;
 end
 
-function ControlledRecruitmentPools:RemoveAliveCharacterInPoolAtGameStart(faction, currentPoolCounts, factionPoolResources)
+function ControlledRecruitmentPools:RemoveAliveCharacterInPoolAtGameStart(faction)
     -- Grab all characters in the faction. This includes recruited and
     -- characters in the pool
     local character_list = faction:character_list();
@@ -503,19 +505,19 @@ end
 function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPoolCounts, factionPoolResources)
     self:EnforceMinimumValues(faction, currentPoolCounts);
     local factionName = faction:name();
-    --Custom_Log("Enforced minimum values");
+    Custom_Log("Enforced minimum values");
     for poolKey, pool in pairs(factionPoolResources.FactionPools) do
         local currentPoolMinimum = 0;
         for agentKey, agentSubType in pairs(pool.AgentSubTypes) do
             currentPoolMinimum = currentPoolMinimum + agentSubType.MinimumAmount;
         end
-        --Custom_Log(poolKey.." Current pool minimum "..tostring(currentPoolMinimum).." Initial minimum size"..tostring(pool.SubPoolInitialMinSize));
+        Custom_Log(poolKey.." Current pool minimum "..tostring(currentPoolMinimum).." Initial minimum size"..tostring(pool.SubPoolInitialMinSize));
         while currentPoolMinimum < pool.SubPoolInitialMinSize do
-            local isHumanPlayerFaction = factionName == self.HumanFaction:name();
+            local isHumanPlayerFaction = (factionName == self.HumanFaction:name());
             local agentSubTypeKey = self:SelectGeneralToGenerateFromPool(factionPoolResources, currentPoolCounts, poolKey, isHumanPlayerFaction);
-            --Custom_Log("Selected "..agentSubTypeKey);
+            Custom_Log("Selected "..agentSubTypeKey);
             local artSetId = self.CharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
-            --Custom_Log("Art set Id: "..artSetId);
+            Custom_Log("Art set Id: "..artSetId);
             -- If this is the players faction this should happen straight away - Not right now. 
             -- so the recruitment event message can be supressed
             --if faction:name() == self.HumanFaction:name() then
@@ -531,7 +533,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
             currentPoolMinimum = currentPoolMinimum + 1;
         end
     end
-    --Custom_Log("Finished initial values");
+    Custom_Log("Finished initial values");
 end
 
 function ControlledRecruitmentPools:EnforceMinimumValues(faction, currentPoolCounts)
@@ -678,8 +680,9 @@ end
 function ControlledRecruitmentPools:SelectGeneralToGenerateFromPool(factionResources, currentPoolCounts, poolKey, isHumanPlayerFaction)
     local agentSubTypesBelowMax = {};
     local currentSubPoolCount = 0;
-    --Custom_Log("SelectGeneralToGenerateFromPool "..tostring(poolKey));
+    Custom_Log("SelectGeneralToGenerateFromPool "..tostring(poolKey));
     for agentKey, agentSubType in pairs(factionResources.FactionPools[poolKey].AgentSubTypes) do
+        Custom_Log("currentSubPoolCount: "..currentSubPoolCount);
         local count = currentPoolCounts[agentKey];
         if count == nil then
             count = 0;
@@ -889,19 +892,6 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
         local poolData = factionLords[keyName];
         local subCulture = faction:subculture();
         if poolData then
-            --Custom_Log("Adding trait: "..poolData.InnateTrait.." for character: "..keyName);
-            --cm:disable_event_feed_events(true, "wh_event_category_traits_ancillaries", "", "");
-            -- Add their trait
-            --cm:force_add_trait("character_cqi:"..char:cqi(), poolData.InnateTrait, true);
-            -- Then remove from the pool
-            --factionLords[keyName] = nil;
-            --cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_traits_ancillaries", "", "") end, 1);
-            -- Note: Removal is necessary since we now track the character from the faction's character_list
-            if poolData.RemoveImmortality == true then
-                Custom_Log("Removing immortality");
-                -- Remove immortality that we gave them when we spawned them
-                cm:set_character_immortality("character_cqi:"..char:cqi(), false);
-            end
             if subCulture == "wh2_main_sc_hef_high_elves" and factionName == self.HumanFaction:name() and poolData.IsRecruited == false then
                 Custom_Log("High elf character recruited listener");
                 if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
@@ -920,74 +910,16 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
                 -- Since we have a valid, tracked character we set IsRecruited as true so we know we don't need to pay recruitment costs if they get wounded
                 -- and re-recruited
                 poolData.IsRecruited = true;
+                -- Note: Removal is necessary since we now track the character from the faction's character_list
+                if poolData.RemoveImmortality == true then
+                    Custom_Log("Removing immortality");
+                    -- Remove immortality that we gave them when we spawned them
+                    cm:set_character_immortality("character_cqi:"..char:cqi(), false);
+                end
             else
                 Custom_Log("Character has been recruited previously");
             end
         end
-    -- This check is to specifically check the "Extra" spawned characters from the system. This occurs when using kill_character() and create_force_with_general().
-    -- Weirdly enough this won't use vmp_lord_replacement but vmp_lord (even though it does in every other case).
-    -- We also don't want to do this with characters without military forces and definitely not on garrison commands.
-    -- Also since this character is not tracked, it means we can safely delete vmp_lords for the Vampire Counts factions.
-    --[[elseif char:character_subtype_key() == "vmp_lord" and (char:has_military_force() == false or char:military_force():is_armed_citizenry() == false) then
-        Custom_Log("Character is a vampire lord");
-        Custom_Log("Character Details "..factionName.." sub type "..char:character_subtype_key().." cqi "..char:cqi());
-        local faction = char:faction();
-        if faction:subculture() ~= "wh_main_sc_vmp_vampire_counts" then
-            if factionName == self.HumanFaction:name() then
-                Custom_Log("Player has vmp_lord");
-                cm:callback(function() cm:kill_character(char:cqi(), true, true); end, 1);
-                Custom_Log("Killed character "..char:cqi());
-            elseif factionName == "rebels" then
-                Custom_Log("Rebels have vampire lord. This must be a revived faction.");
-
-                local unitList = GetStringifiedUnitList(char);
-                Custom_Log("Got unit list "..unitList);
-                local appropriateSubCulture = GetSubCultureFromUnitList(unitList);
-                Custom_Log("Sub culture "..appropriateSubCulture);
-                local replacementRebelFactionKey = GetValidNonActiveFactionForSubCulture(self, appropriateSubCulture);
-                Custom_Log("Rebel faction "..replacementRebelFactionKey);
-                local replacementFaction = cm:get_faction(replacementRebelFactionKey);
-                Custom_Log("Got faction object");
-                local factionResources = GetFactionPoolResources(replacementFaction);
-                Custom_Log("Got factionr resources");
-                local currentPoolCounts = self:GetCurrentPoolForFaction(replacementFaction);
-                Custom_Log("Got pool counts");
-                local replacementSubType = self:SelectGeneralToGenerate(factionResources, currentPoolCounts, true, false);
-                Custom_Log("Picked sub type "..replacementSubType);
-                local artSetId = crp:GetArtSetForSubType(replacementSubType);
-                Custom_Log("Picked art set "..artSetId);
-
-                -- Copied into local var so data can be accessed later
-                local characterData = {
-                    oldCharCqi = char:command_queue_index(),
-                    factionName = replacementRebelFactionKey,
-                    unitList = unitList,
-                    regionName = char:region():name(),
-                    xPos = char:logical_position_x(),
-                    yPos = char:logical_position_y(),
-                    subType = replacementSubType,
-                    foreName = char:get_forename(),
-                    surname = char:get_surname(),
-                    isFactionLeader = false;
-                    traitKey = "",
-                    artSetId = artSetId,
-                }
-                local owningRegionFaction = char:region():owning_faction();
-                local replacementRebelFaction = cm:get_faction(replacementRebelFactionKey);
-                self:CreateForceWithGeneral(characterData, true);
-                Custom_Log("ReplacementRebel faction "..replacementRebelFaction:name().." owning region faction "..owningRegionFaction:name());
-                cm:force_declare_war(replacementRebelFaction:name(), owningRegionFaction:name(), false, false);
-            end
-        end
-        Custom_Log("Finished Character created listener");
-        Custom_Log_Finished();
-    -- This condition checks for armies created with create_force
-    -- This army will be replaced
-    elseif char:character_subtype_key() == "vmp_lord_replacement" and (char:has_military_force() == true and char:military_force():is_armed_citizenry() == false) then
-        Custom_Log("Found spawned vmp_lord_replacement");
-        Custom_Log("Character Details "..factionName.." sub type "..char:character_subtype_key().." cqi "..char:cqi());
-        Custom_Log("Finished Character created listener");
-        Custom_Log_Finished();--]]
     elseif cm:char_is_mobile_general_with_army(char) then
         Custom_Log("Checking replacement data for faction "..factionName);
         -- If the character isn't tracked, that means CRP didn't spawn it. It could be an auto generated lord or it could be spawned in another way.
@@ -1047,19 +979,6 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
             end
         end
     end
-
-    --[[local factionResources = GetFactionPoolResources(char:faction());
-    local charSubType = char:character_subtype_key();
-    Custom_Log("Character Details "..factionName.." sub type "..char:character_subtype_key().." cqi "..char:cqi());
-    if not char:is_null_interface() and (char:has_military_force() == true and char:military_force():is_armed_citizenry() == false) and
-    factionResources.LordsToReplace ~= nil and factionResources.LordsToReplace[charSubType] ~= nil then
-        Custom_Log("New character must be replaced!");
-        local replacementData = factionResources.LordsToReplace[charSubType];
-        local trait = GetRandomObjectKeyFromList(replacementData.traitKeyPool);
-        Custom_Log("Replacing new character with "..replacementData.replacementKey);
-        cm:callback(function() self:ReplaceCharacter(char:faction(), char, replacementData.replacementKey, factionResources, nil, trait); end, 0);
-    end--]]
-
     Custom_Log("Finished processing new character");
     Custom_Log_Finished();
 end

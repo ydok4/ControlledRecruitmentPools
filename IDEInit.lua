@@ -29,13 +29,13 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh2_main_hef_order_of_loremasters";
+        return "wh2_main_emp_sudenburg";
     end,
     culture = function()
-        return "wh2_main_hef_high_elves";
+        return "wh_main_teb_teb";
     end,
     subculture = function()
-        return "wh2_main_sc_hef_high_elves";
+        return "wh_main_sc_teb_teb";
     end,
     character_list = function()
         return {
@@ -459,8 +459,16 @@ controlled_recruitment_pools();
 crp = _G.crp;
 
 
+local MockContext_UpdateRecruitmentPool = {
+    Key = "UpdateRecruitmentPool",
+    Context = {
+        faction = function() return humanFaction; end,
+    },
+}
+mock_listeners:trigger_listener(MockContext_UpdateRecruitmentPool);
+
 local MockContext_CRP_CharacterCreated_Removal = {
-    Key = "MockContext_CRP_CharacterCreated_Removal",
+    Key = "CRP_CharacterCreated_Removal",
     Context = {
     },
 }
