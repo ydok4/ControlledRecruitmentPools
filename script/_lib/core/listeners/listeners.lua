@@ -330,7 +330,7 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
                                 HideGeneralPanel(generalPanel, hideDefault);
                             else
                                 arePresentSubTypesReplaceable[subType] = false;
-                                if charIsSelected == false then
+                                if charIsSelected == false and humanFactionSubculture ~= "wh2_main_sc_hef_high_elves" then
                                     generalPanel:SimulateLClick();
                                     charIsSelected = true;
                                 end
@@ -340,7 +340,7 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
                         else
                             Custom_Log("Untracked but valid character, adding details button");
                             crp.UIController:SetupCharacterDetailsButton(generalPanel, nameComponent, poolData);
-                            if charIsSelected == false then
+                            if charIsSelected == false and humanFactionSubculture ~= "wh2_main_sc_hef_high_elves" then
                                 generalPanel:SimulateLClick();
                                 charIsSelected = true;
                             end
@@ -361,7 +361,7 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
                     else
                         Custom_Log("Untracked but valid character, adding details button");
                         crp.UIController:SetupCharacterDetailsButton(generalPanel, nameComponent, poolData);
-                        if charIsSelected == false then
+                        if charIsSelected == false and humanFactionSubculture ~= "wh2_main_sc_hef_high_elves" then
                             generalPanel:SimulateLClick();
                             charIsSelected = true;
                         end
@@ -370,7 +370,7 @@ function GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefau
             else
                 Custom_Log("Tracked character, adding details button");
                 crp.UIController:SetupCharacterDetailsButton(generalPanel, nameComponent, poolData);
-                if charIsSelected == false then
+                if charIsSelected == false and humanFactionSubculture ~= "wh2_main_sc_hef_high_elves" then
                     generalPanel:SimulateLClick();
                     charIsSelected = true;
                 end
