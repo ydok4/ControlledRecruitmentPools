@@ -16,7 +16,7 @@ TEBRecruitmentPools = {
                 SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 3,
+        PoolMaxSize = 6,
     },
 
     -- Major TEB factions
@@ -34,7 +34,7 @@ TEBRecruitmentPools = {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 
     wh_main_teb_estalia = {
@@ -51,7 +51,7 @@ TEBRecruitmentPools = {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 
     wh_main_teb_tilea = {
@@ -68,7 +68,7 @@ TEBRecruitmentPools = {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
     -- Minor TEB factions - Unlocker only
 }

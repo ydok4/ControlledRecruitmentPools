@@ -34,6 +34,6 @@ KislevRecruitmentPools = {
                 SubPoolMaxSize = 4,
             },
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 7,
     },
 }

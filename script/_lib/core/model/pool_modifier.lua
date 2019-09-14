@@ -34,11 +34,32 @@ function PoolModifier:ChangePoolViaValue(factionPools, rewardData, isPositive)
     Custom_Log("Changing pool");
     for poolKey, agentPoolData in pairs(rewardList) do
         if factionPools.FactionPools[poolKey] == nil then
-            factionPools.FactionPools[poolKey] = agentPoolData;
+            factionPools.FactionPools[poolKey] = {
+                AgentSubTypes = {};
+                SubPoolInitialMinSize = agentPoolData.SubPoolInitialMinSize,
+                SubPoolMaxSize = agentPoolData.SubPoolMaxSize,
+            };
+            local factionPoolDataAgents = factionPools.FactionPools[poolKey].AgentSubTypes;
+            for rewardedAgentKey, agentData in pairs(agentPoolData.AgentSubTypes) do
+                local agentKey = rewardedAgentKey;
+                if factionPools.RemapAgentKeys ~= nil
+                and factionPools.RemapAgentKeys[agentKey] ~= nil then
+                    agentKey = factionPools.RemapAgentKeys[agentKey];
+                end
+                factionPoolDataAgents[agentKey] = {
+                    MinimumAmount = agentData.MinimumAmount,
+                    MaximumAmount = agentData.MaximumAmount,
+                };
+            end
         else
             local existingRewardPool = factionPools.FactionPools[poolKey];
             local subTypesForPool =  existingRewardPool.AgentSubTypes;
-            for agentKey, agentData in pairs(agentPoolData.AgentSubTypes) do
+            for rewardedAgentKey, agentData in pairs(agentPoolData.AgentSubTypes) do
+                local agentKey = rewardedAgentKey;
+                if factionPools.RemapAgentKeys ~= nil
+                and factionPools.RemapAgentKeys[agentKey] ~= nil then
+                    agentKey = factionPools.RemapAgentKeys[agentKey];
+                end
                 if subTypesForPool[agentKey] == nil then
                     subTypesForPool[agentKey] = {
                         MinimumAmount = 0,

@@ -50,7 +50,7 @@ SkavenRecruitmentPoolData = {
             "wh_main_skill_innate_all_magnanimous",
             "wh_main_skill_innate_all_melancholic",
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 10,
     },
 
     -- Major Clans
@@ -115,6 +115,6 @@ SkavenRecruitmentPoolData = {
                 Type = "increase",
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 8,
     },
 }

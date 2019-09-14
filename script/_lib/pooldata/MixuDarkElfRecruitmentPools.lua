@@ -135,7 +135,7 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
 
     wh2_main_def_karond_kar = {
@@ -193,6 +193,6 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
 }

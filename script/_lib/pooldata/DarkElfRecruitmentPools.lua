@@ -66,7 +66,7 @@ DarkElfRecruitmentPoolData =  {
         ExcludedTraits = {
             "wh_main_skill_innate_all_magnanimous",
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
     -- Major Faction specific distributions
 
@@ -164,7 +164,7 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 6,
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
 
     -- Hellebron
@@ -213,7 +213,7 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 8,
     },
 
         -- Lokhir
@@ -262,7 +262,7 @@ DarkElfRecruitmentPoolData =  {
                     SubPoolMaxSize = 2,
                 },
             },
-            PoolMaxSize = 6,
+            PoolMaxSize = 7,
         },
 
     -- Minor Faction specific distributions
@@ -311,7 +311,7 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 8,
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
 
     wh2_main_def_hag_graef = {
@@ -359,7 +359,7 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
 
     wh2_main_def_drackla_coven = {
@@ -407,7 +407,7 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 
     wh2_main_def_blood_hall_coven = {
@@ -455,6 +455,6 @@ DarkElfRecruitmentPoolData =  {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 }

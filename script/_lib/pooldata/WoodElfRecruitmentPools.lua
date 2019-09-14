@@ -30,7 +30,7 @@ WoodElfRecruitmentPoolData = {
                 SubPoolMaxSize = 1,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 
     -- Major Factions
@@ -63,7 +63,7 @@ WoodElfRecruitmentPoolData = {
                 SubPoolMaxSize = 1,
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
     wh_dlc05_wef_argwylon = {
         FactionPools = {
@@ -94,7 +94,7 @@ WoodElfRecruitmentPoolData = {
                 SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 
     -- Minor Factions
@@ -117,6 +117,6 @@ WoodElfRecruitmentPoolData = {
                 SubPoolMaxSize = 4,
             },
         },
-        PoolMaxSize = 4,
+        PoolMaxSize = 6,
     },
 }

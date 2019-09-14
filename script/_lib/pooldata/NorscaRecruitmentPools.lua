@@ -22,7 +22,7 @@ NorscaRecruitmentPoolData = {
             "wh_main_skill_innate_all_magnanimous",
             "wh_main_skill_innate_all_melancholic",
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
         --[[LordsToReplace = {
             wh_dlc08_nor_wulfrik = {
                 replacementKey = "wh_dlc08_nor_wulfrik",

@@ -13,7 +13,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Dwellers of Zardok
     wh2_dlc09_rogue_dwellers_of_zardok = {
@@ -29,7 +29,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Eyes of the Jungle
     wh2_dlc09_rogue_eyes_of_the_jungle = {
@@ -45,7 +45,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Pilgrims of Myrmidia
     wh2_dlc09_rogue_pilgrims_of_myrmidia = {
@@ -61,7 +61,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Abominations
     wh2_main_rogue_abominations = {
@@ -109,7 +109,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Bernhoff's Brigands
     wh2_main_rogue_bernhoffs_brigands = {
@@ -125,7 +125,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Black Spider Tribe
     wh2_main_rogue_black_spider_tribe = {
@@ -141,7 +141,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Boneclubbers Tribe
     wh2_main_rogue_boneclubbers_tribe = {
@@ -157,7 +157,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Celestial Storm
     wh2_main_rogue_celestial_storm = {
@@ -173,7 +173,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- College of Pyrotechnics
     wh2_main_rogue_college_of_pyrotechnics = {
@@ -193,7 +193,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Vashnaar's Conquest
     wh2_main_rogue_def_chs_vashnaar = {
@@ -361,7 +361,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Gerhardt's Mercenaries
     wh2_main_rogue_gerhardts_mercenaries = {
@@ -377,7 +377,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Tor Elithis Refugees
     wh2_main_rogue_hef_tor_elithis = {
@@ -393,7 +393,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Hung Warband
     wh2_main_rogue_hung_warband = {
@@ -409,7 +409,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Jerrod's Errantry Army
     wh2_main_rogue_jerrods_errantry = {
@@ -463,7 +463,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Morrslieb's Howlers
     wh2_main_rogue_morrsliebs_howlers = {
@@ -483,7 +483,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Pirates of the Far Sea
     wh2_main_rogue_pirates_of_the_far_sea = {
@@ -499,7 +499,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Pirates of the Southern Ocean
     wh2_main_rogue_pirates_of_the_southern_ocean = {
@@ -515,7 +515,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Pirates of Trantio
     wh2_main_rogue_pirates_of_trantio = {
@@ -531,7 +531,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Scions of Tesseninck
     wh2_main_rogue_scions_of_tesseninck = {
@@ -547,7 +547,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- The Scourge of Aquitaine
     wh2_main_rogue_scourge_of_aquitaine = {
@@ -563,7 +563,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Stuff-Snatchers
     wh2_main_rogue_stuff_snatchers = {
@@ -583,7 +583,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Teef Snatchaz
     wh2_main_rogue_teef_snatchaz = {
@@ -603,7 +603,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- The Wandering Dead
     wh2_main_rogue_the_wandering_dead = {
@@ -619,7 +619,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Troll-Skullz
     wh2_main_rogue_troll_skullz = {
@@ -635,7 +635,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Vaul's Expedition
     wh2_main_rogue_vauls_expedition = {
@@ -655,7 +655,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Heirs of Mourkain
     wh2_main_rogue_vmp_heirs_of_mourkain = {
@@ -671,7 +671,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Hunters of Kurnous
     wh2_main_rogue_wef_hunters_of_kurnous = {
@@ -691,7 +691,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Worldroot Rangers
     wh2_main_rogue_worldroot_rangers = {
@@ -715,7 +715,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
     -- Wrath of Nature
     wh2_main_rogue_wrath_of_nature = {
@@ -731,7 +731,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
 
     -- Vampire Coast Update
@@ -749,7 +749,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
 
     -- Boys of the forbidden coast
@@ -766,7 +766,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
 
     wh2_dlc11_cst_rogue_freebooters_of_port_royale = {
@@ -782,7 +782,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
 
     wh2_dlc11_cst_rogue_grey_point_scuttlers = {
@@ -798,7 +798,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
 
     wh2_dlc11_cst_rogue_terrors_of_the_dark_straights = {
@@ -834,7 +834,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
 
     wh2_dlc11_cst_rogue_the_churning_gulf_raiders = {
@@ -850,7 +850,7 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
 
     wh2_dlc11_cst_rogue_tyrants_of_the_black_ocean = {
@@ -870,6 +870,6 @@ RogueArmyRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
 }

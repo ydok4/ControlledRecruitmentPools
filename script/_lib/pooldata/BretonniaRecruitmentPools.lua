@@ -101,7 +101,7 @@ BretonniaRecruitmentPoolData =  {
             "wh_main_skill_innate_all_sanguine",
             "wh_main_skill_innate_all_uncompromising",
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
     -- Major Faction specific distributions
 
@@ -138,7 +138,7 @@ BretonniaRecruitmentPoolData =  {
                 SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 10,
+        PoolMaxSize = 7,
     },
     -- Alberic
     wh_main_brt_bordeleaux = {
@@ -173,7 +173,7 @@ BretonniaRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 10,
+        PoolMaxSize = 7,
     },
 
     -- Morgiana (Fay Enchantress)
@@ -209,7 +209,7 @@ BretonniaRecruitmentPoolData =  {
                 SubPoolMaxSize = 6,
             },
         },
-        PoolMaxSize = 10,
+        PoolMaxSize = 7,
     },
 
     -- Minor Faction specific distributions

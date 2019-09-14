@@ -53,7 +53,7 @@ VampireCoastRecruitmentPoolData =  {
 
             },
         },
-        PoolMaxSize = 3,
+        PoolMaxSize = 5,
     },
     -- Major Faction specific distributions
     -- Luthor Harkon
@@ -167,7 +167,7 @@ VampireCoastRecruitmentPoolData =  {
                     },
                 },
                 SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
+                SubPoolMaxSize = 3,
             },
         },
         PoolMaxSize = 5,
@@ -183,10 +183,6 @@ VampireCoastRecruitmentPoolData =  {
                         MaximumAmount = 2,
                     },
                     wh2_dlc11_cst_admiral_deep = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
-                    },
-                    wh2_dlc11_cst_admiral_fem = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                     },
@@ -213,7 +209,7 @@ VampireCoastRecruitmentPoolData =  {
                 SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 3,
+        PoolMaxSize = 5,
     },
     -- Minor faction specific distributions
 }

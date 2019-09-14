@@ -25,7 +25,7 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
         Traits = {
             wh2_main_skill_innate_grn_big_bully = {
 
@@ -85,7 +85,7 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 10,
+        PoolMaxSize = 9,
     },
     -- Wurrzag
     wh_main_grn_orcs_of_the_bloody_hand = {
@@ -173,7 +173,7 @@ GreenskinRecruitmentPoolData =  {
                 Type = "increase",
             },
         },--]]
-        PoolMaxSize = 8,
+        PoolMaxSize = 7,
     },
 
     -- Minor Faction specific distributions
@@ -225,7 +225,7 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
         LordsToReplace = {
             grn_orc_warboss = {
                 replacementKey = "grn_goblin_great_shaman",
@@ -252,7 +252,7 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
         LordsToReplace = {
             grn_orc_warboss = {
                 replacementKey = "grn_goblin_great_shaman",
@@ -279,7 +279,7 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
         LordsToReplace = {
             grn_orc_warboss = {
                 replacementKey = "grn_goblin_great_shaman",
@@ -317,7 +317,7 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
     wh_main_grn_red_eye = {
         FactionPools = {
@@ -343,7 +343,7 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
         LordsToReplace = {
             grn_orc_warboss = {
                 replacementKey = "dlc06_grn_night_goblin_warboss",
@@ -383,7 +383,7 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
     -- Orc Tribes
     --[[wh_main_grn_skullsmasherz = {

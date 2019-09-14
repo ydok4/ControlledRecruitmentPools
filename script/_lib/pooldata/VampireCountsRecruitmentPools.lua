@@ -19,7 +19,7 @@ VampireCountsRecruitmentPoolData =  {
             "wh_main_skill_innate_all_boring",
             "wh_main_skill_innate_all_magnanimous",
         },
-        PoolMaxSize = 7,
+        PoolMaxSize = 6,
     },
     -- Major Faction specific distributions
 
@@ -52,11 +52,11 @@ VampireCountsRecruitmentPoolData =  {
                         MaximumAmount = 1,
                     },
                 },
-                SubPoolInitialMinSize = 3,
-                SubPoolMaxSize = 7,
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 10,
+        PoolMaxSize = 7,
     },
 
     -- Von Carstein (Vlad/Isabella)
@@ -71,7 +71,7 @@ VampireCountsRecruitmentPoolData =  {
                             HumanPlayerOnly = true,
                         },
                     },
-                    SubPoolInitialMinSize = 2,
+                    SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 3,
                 },
                 AgentSubTypes = {
@@ -85,14 +85,14 @@ VampireCountsRecruitmentPoolData =  {
                     },
                     wh2_dlc11_vmp_bloodline_von_carstein = {
                         MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumAmount = 1,
                     },
                 },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 10,
+        PoolMaxSize = 7,
     },
 
     -- The Barrow Legion (Kemmler)
@@ -109,7 +109,7 @@ VampireCountsRecruitmentPoolData =  {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 10,
+        PoolMaxSize = 7,
     },
 
     -- Minor Faction specific distributions
@@ -132,7 +132,7 @@ VampireCountsRecruitmentPoolData =  {
                 AgentSubTypes = {
                     vmp_lord = {
                         MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumAmount = 3,
                     },
                     wh2_dlc11_vmp_bloodline_blood_dragon = {
                         MinimumAmount = 0,
@@ -140,10 +140,10 @@ VampireCountsRecruitmentPoolData =  {
                     },
                 },
                 SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 5,
+                SubPoolMaxSize = 3,
             },
         },
-        PoolMaxSize = 10,
+        PoolMaxSize = 7,
     },
 
     -- The Silver Host
@@ -212,7 +212,7 @@ VampireCountsRecruitmentPoolData =  {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 
     -- The Necrarch Brotherhood
@@ -240,7 +240,7 @@ VampireCountsRecruitmentPoolData =  {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
         LordsToReplace = {
             vmp_lord = {
                 replacementKey = "wh2_dlc11_vmp_bloodline_necrarch",

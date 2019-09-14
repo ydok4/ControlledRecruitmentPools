@@ -50,7 +50,7 @@ ChaosRecruitmentPoolData = {
             "wh_main_skill_innate_all_magnanimous",
             "wh_main_skill_innate_all_melancholic",
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
 
     -- Main Chaos Faction
@@ -90,6 +90,6 @@ ChaosRecruitmentPoolData = {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 15,
+        PoolMaxSize = 10,
     },
 }

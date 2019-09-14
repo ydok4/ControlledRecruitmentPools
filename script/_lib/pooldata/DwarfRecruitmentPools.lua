@@ -39,7 +39,7 @@ DwarfRecruitmentPoolData =  {
 
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
     -- Major Faction specific distributions
 
@@ -68,7 +68,7 @@ DwarfRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 8,
     },
 
     -- Karak Kadrin
@@ -96,7 +96,7 @@ DwarfRecruitmentPoolData =  {
                 SubPoolMaxSize = 1,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 
     -- Clan Angrund
@@ -157,7 +157,7 @@ DwarfRecruitmentPoolData =  {
                 Type = "increase",
             },
         },
-        PoolMaxSize = 2,
+        PoolMaxSize = 4,
     },
 
     -- Minor Faction specific distributions

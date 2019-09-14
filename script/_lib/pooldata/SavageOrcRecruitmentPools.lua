@@ -56,7 +56,7 @@ SavageOrcRecruitmentPoolData =  {
             "wh_main_skill_innate_all_melancholic",
             "wh_main_skill_innate_all_sanguine",
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
     -- Major Faction specific distributions
 

@@ -15,7 +15,7 @@ require 'script/_lib/core/model/ui';
 require 'script/_lib/core/loaders/core_resource_loader';
 require 'script/_lib/core/loaders/ui_resource_loader';
 
-require 'script/_lib/core/listeners/listeners';
+require 'script/_lib/core/listeners/crp_listeners';
 
 Custom_Log_Start();
 
@@ -50,17 +50,25 @@ function controlled_recruitment_pools()
         end
     end
 
-    crp.UIController:InitialiseUI(crp);
-    SetupPostUIListeners(crp);
+    --crp.UIController:InitialiseUI(crp);
+    CRP_SetupPostUIListeners(crp, core, find_uicomponent);
     -- Remove the listeners which give AI factions bloodline chars cause we already do that
-    --core:remove_listener("vampire_bloodline_ai_characters");
+    core:remove_listener("vampire_bloodline_ai_characters");
 
+    -- We need to remove this listener because the appoint_character_to_most_expensive_force command can
+    -- cause crashes in some cases. I suspect this is because CRP is running too many commands to run it's own system.
+    -- We lose the guarantee of having Mixu's characters being appointed to armies for AI but they can and will still replace
+    -- on their own sometimes.
+    --[[if cm:get_saved_value("Mixu_Legendary_Lords_II") == true then
+        Custom_Log("Removing Mixu_Faction_Leader_Check");
+        core:remove_listener("Mixu_Faction_Leader_Check");
+    end--]]
     Custom_Log("CRP: Finished");
     out("CRP: Finished startup");
     Custom_Log_Finished();
 end
 
-InitialiseListenerData();
+CRP_InitialiseListenerData();
 
 -- Saving/Loading Callbacks
 -- These need to be outside of the Constructor function

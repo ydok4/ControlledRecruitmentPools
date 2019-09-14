@@ -29,18 +29,18 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh2_main_emp_sudenburg";
+        return "wh_main_vmp_vampire_counts";
     end,
     culture = function()
-        return "wh_main_teb_teb";
+        return "wh2_main_skv_skaven";
     end,
     subculture = function()
-        return "wh_main_sc_teb_teb";
+        return "wh2_main_sc_skv_skaven";
     end,
     character_list = function()
         return {
             num_items = function()
-                return 1;
+                return 0;
             end,
             item_at = function(self, index)
                 return testCharacter;
@@ -75,14 +75,15 @@ humanFaction = {
 }
 
 testFaction = {
+    command_queue_index = function() return 123; end,
     name = function()
-        return "wh2_dlc11_vmp_the_barrow_legion";
-    end,    
+        return "wh2_dlc12_lzd_cult_of_sotek";
+    end,
     culture = function()
-        return "wh_main_vmp_vampire_counts";
+        return "wh2_main_lzd_lizardmen";
     end,
     subculture = function()
-        return "wh_main_sc_vmp_vampire_counts";
+        return "wh2_main_sc_lzd_lizardmen";
     end,
     character_list = function()
         return {
@@ -119,11 +120,15 @@ testFaction = {
 }
 
 testFaction2 = {
+    command_queue_index = function() return 123; end,
     name = function()
-        return "wh2_dlc11_cst_rogue_grey_point_scuttlers";
+        return "wh2_dlc13_lzd_spirits_of_the_jungle";
+    end,
+    culture = function()
+        return "wh2_main_lzd_lizardmen";
     end,
     subculture = function()
-        return "wh_main_sc_nor_norsca";
+        return "wh2_main_sc_lzd_lizardmen";
     end,
     character_list = function()
         return {
@@ -165,7 +170,7 @@ test_unit = {
 
 effect = {
     get_localised_string = function()
-        return "Murdredesa";
+        return "Murdredesa"..Random(10000);
     end,
 }
 
@@ -178,7 +183,7 @@ mock_listeners = {
     listeners = {},
     trigger_listener = function(self, mockListenerObject)
         local listener = self.listeners[mockListenerObject.Key];
-        if listener and listener.Condition(mockListenerObject.Context) then
+        if listener and (listener.Condition == true or listener.Condition(mockListenerObject.Context)) then
             listener.Callback(mockListenerObject.Context);
         end
     end,
@@ -219,6 +224,7 @@ function get_cm()
         turn_number = function() return turn_number; end,
         model = function ()
             return {
+                military_force_for_command_queue_index = function() return testMilitaryForce; end,
                 turn_number = function() return turn_number; end,
                 world = function()
                     return {
@@ -255,19 +261,25 @@ function get_cm()
         spawn_character_to_pool = function() end,
         callback = function(self, callbackFunction, delay) callbackFunction() end,
         transfer_region_to_faction = function() end,
-        get_faction = function() return testFaction2; end,
+        get_faction = function() return testFaction; end,
         lift_all_shroud = function() end,
         kill_all_armies_for_faction = function() end,
         get_region = function()
             return {
+                cqi = function() return 123; end,
+                province_name = function() return "wh2_main_vor_isthmus_of_lustria"; end,
+                religion_proportion = function() return 0; end,
+                public_order = function() return -100; end,
                 owning_faction = function() return testFaction; end,
-                name = function() return "region_name"; end,
+                name = function() return "wh2_main_vor_isthmus_of_lustria_ziggurat_of_dawn"; end,
                 is_province_capital = function() return false; end,
+                is_abandoned = function() return false; end,
+                command_queue_index = function() return 10; end,
                 adjacent_region_list = function()
                     return {
                         item_at = function(self, i)
                             if i == 0 then
-                                return get_cm():f();
+                                return get_cm():get_region();
                             elseif i == 1 then
                                 return get_cm():get_region();
                             elseif i == 2 then
@@ -284,6 +296,11 @@ function get_cm()
                     }
                 end,
                 is_null_interface = function() return false; end,
+                garrison_residence = function() return {
+                    army = function() return {
+                        strength = function() return 50; end,
+                    } end ,
+                } end,
                 settlement = function() return {
                     slot_list = function() return {
                         num_items = function () return 2; end,
@@ -297,8 +314,7 @@ function get_cm()
                     }
                     end,
                 }
-                end,
-                is_abandoned = function() return true; end,
+                end
             }
         end,
         set_character_immortality = function() end,
@@ -308,10 +324,12 @@ function get_cm()
         trigger_incident = function() end,
         trigger_dilemma = function() end,
         trigger_mission = function() end,
-        create_force_with_general = function() end,
+        create_force_with_general = function(self, factionKey, forceString, regionKey, spawnX, spawnY, generalType, agentSubTypeKey, clanNameKey, dummyName1, foreNameKey, dummayName2, umm, callbackFunction)
+            callbackFunction(123);
+        end,
         force_add_trait = function() end,
         force_remove_trait = function() end,
-        get_character_by_cqi = function() end,
+        get_character_by_cqi = function() return testCharacter; end,
         char_is_mobile_general_with_army = function() return true; end,
         restrict_units_for_faction = function() end,
         save_named_value = function(self, saveKey, data, context)
@@ -327,13 +345,33 @@ function get_cm()
         apply_effect_bundle = function() end,
         char_is_agent = function() return false end,
         steal_user_input = function() end,
-        get_saved_value = function() end,
+        disable_rebellions_worldwide = function() end,
+        find_valid_spawn_location_for_character_from_settlement = function() return 1, 1; end,
+        force_diplomacy = function() end,
+        apply_effect_bundle_to_force = function() end,
+        force_declare_war = function() end,
+        cai_enable_movement_for_character = function() end,
+        cai_disable_movement_for_character = function() end,
+        add_unit_model_overrides = function() end,
+        force_character_force_into_stance = function() end,
+        attack_region = function() end,
+        char_lookup_str = function() end,
+        suppress_all_event_feed_messages = function() end,
+        grant_unit_to_character = function() end,
+        show_message_event = function() end,
+        show_message_event_located = function() end,
+        trigger_incident_with_targets = function() end,
+        force_add_and_equip_ancillary = function() end,
+        add_agent_experience = function() end,
+        apply_effect_bundle_to_region = function() end,
+        remove_effect_bundle_from_region = function() end,
+        get_saved_value = function() return nil; end,
     };
 end
 
 cm = get_cm();
 mock_max_unit_ui_component = {
-    Id = function() return "max_units" end,
+    Id = function() return "wh2_dlc10_hef_inf_shadow_walkers_0_recruitable" end,
     ChildCount = function() return 1; end,
     Find = function() return mock_unit_ui_component; end,
     SetVisible = function() end,
@@ -347,15 +385,15 @@ mock_max_unit_ui_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
+    GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
     --GetStateText = function() return "Unlocks recruitment of:"; end,
-    SetCanResizeHeight = function() end,
-    SetCanResizeWidth = function() end,
-    SetState = function() end,
+    SetCanResizeHeight = function() end;
+    SetCanResizeWidth = function() end;
+    SimulateLClick = function() end;
 }
 
 mock_unit_ui_component = {
-    Id = function() return "wh_main_emp_cav_reiksguard_mercenary" end,
+    Id = function() return "wh_main_vmp_inf_zombie_mercenary" end,
     --Id = function() return "building_info_recruitment_effects" end,
     ChildCount = function() return 1; end,
     Find = function() return mock_max_unit_ui_component; end,
@@ -370,10 +408,10 @@ mock_unit_ui_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
-    SetCanResizeHeight = function() end,
-    SetCanResizeWidth = function() end,
-    SetState = function() end,
+    GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
+    SetCanResizeHeight = function() end;
+    SetCanResizeWidth = function() end;
+    SimulateLClick = function() end;
 }
 
 mock_unit_ui_list_component = {
@@ -391,11 +429,11 @@ mock_unit_ui_list_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
+    GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
     --GetStateText = function() return "Unlocks recruitment of:"; end,
-    SetCanResizeHeight = function() end,
-    SetCanResizeWidth = function() end,
-    SetState = function() end,
+    SetCanResizeHeight = function() end;
+    SetCanResizeWidth = function() end;
+    SimulateLClick = function() end;
 }
 
 find_uicomponent = function()
@@ -405,6 +443,8 @@ end
 UIComponent = function(mock_ui_find) return mock_ui_find; end
 
 core = {
+    trigger_event = function() end,
+    remove_listener = function() end,
     add_listener = function (self, key, eventKey, condition, callback)
         mock_listeners.listeners[key] = {
             Condition = condition,
@@ -412,6 +452,7 @@ core = {
         }
     end,
     get_ui_root = function() end,
+    get_screen_resolution = function() return 0, 1 end;
 }
 
 random_army_manager = {
@@ -466,13 +507,21 @@ local MockContext_UpdateRecruitmentPool = {
     },
 }
 mock_listeners:trigger_listener(MockContext_UpdateRecruitmentPool);
+mock_listeners:trigger_listener(MockContext_UpdateRecruitmentPool);
+mock_listeners:trigger_listener(MockContext_UpdateRecruitmentPool);
+mock_listeners:trigger_listener(MockContext_UpdateRecruitmentPool);
+mock_listeners:trigger_listener(MockContext_UpdateRecruitmentPool);
+mock_listeners:trigger_listener(MockContext_UpdateRecruitmentPool);
+mock_listeners:trigger_listener(MockContext_UpdateRecruitmentPool);
+mock_listeners:trigger_listener(MockContext_UpdateRecruitmentPool);
+mock_listeners:trigger_listener(MockContext_UpdateRecruitmentPool);
 
-local MockContext_CRP_CharacterCreated_Removal = {
+--[[local MockContext_CRP_CharacterCreated_Removal = {
     Key = "CRP_CharacterCreated_Removal",
     Context = {
     },
 }
-mock_listeners:trigger_listener(MockContext_CRP_CharacterCreated_Removal);
+mock_listeners:trigger_listener(MockContext_CRP_CharacterCreated_Removal);--]]
 
 local MockContext_CRP_CharacterCreated = {
     Key = "CRP_CharacterCreated",
@@ -491,3 +540,13 @@ local MockContext_CRP_AppointGeneralOpened = {
     },
 }
 mock_listeners:trigger_listener(MockContext_CRP_AppointGeneralOpened);
+
+local MockContext_CRP_DiplomacyLordImpacts = {
+    Key = "CRP_DiplomacyLordImpacts",
+    Context = {
+        proposer = function() return testFaction; end,
+        recipient = function() return testFaction2; end,
+        is_alliance = function() return true; end,
+    },
+}
+mock_listeners:trigger_listener(MockContext_CRP_DiplomacyLordImpacts);

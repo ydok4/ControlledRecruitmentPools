@@ -104,7 +104,7 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
         LordsToReplace = {
             grn_orc_warboss = {
                 replacementKey = "wh_grn_forest_goblin_warboss",

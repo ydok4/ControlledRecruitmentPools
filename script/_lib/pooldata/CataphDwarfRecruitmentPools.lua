@@ -30,6 +30,6 @@ DwarfRecruitmentPoolData =  {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
 }

@@ -1,16 +1,16 @@
 HighElfRecruitmentPoolData = {
     -- Default pool distribution
     wh2_main_sc_hef_high_elves = {
-        DefaultLords = {"wh2_main_hef_prince_low", "wh2_main_hef_princess_low"},
+        DefaultLords = {"wh2_main_hef_prince", "wh2_main_hef_princess"},
         FactionPools = {
             LowPrinces = {
                 AgentSubTypes = {
-                    wh2_main_hef_prince_low = {
+                    wh2_main_hef_prince = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                         HumanPlayerOnly = true,
                     },
-                    wh2_main_hef_princess_low  = {
+                    wh2_main_hef_princess  = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                         HumanPlayerOnly = true,
@@ -43,7 +43,7 @@ HighElfRecruitmentPoolData = {
             },
         },
 
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 
     -- Major High Elf Factions
@@ -53,12 +53,12 @@ HighElfRecruitmentPoolData = {
         FactionPools = {
             LowPrinces = {
                 AgentSubTypes = {
-                    wh2_main_hef_prince_low = {
+                    wh2_main_hef_prince = {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                         HumanPlayerOnly = true,
                     },
-                    wh2_main_hef_princess_low  = {
+                    wh2_main_hef_princess  = {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                         HumanPlayerOnly = true,
@@ -97,7 +97,7 @@ HighElfRecruitmentPoolData = {
             },
         },
 
-        PoolMaxSize = 6,
+        PoolMaxSize = 8,
     },
 
     -- Order of Loremasters
@@ -105,12 +105,12 @@ HighElfRecruitmentPoolData = {
         FactionPools = {
             LowPrinces = {
                 AgentSubTypes = {
-                    wh2_main_hef_prince_low = {
+                    wh2_main_hef_prince = {
                         MinimumAmount = 0,
                         MaximumAmount = 3,
                         HumanPlayerOnly = true,
                     },
-                    wh2_main_hef_princess_low  = {
+                    wh2_main_hef_princess  = {
                         MinimumAmount = 0,
                         MaximumAmount = 3,
                         HumanPlayerOnly = true,
@@ -149,7 +149,7 @@ HighElfRecruitmentPoolData = {
             },
         },
 
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 
     -- Averlorn
@@ -185,7 +185,7 @@ HighElfRecruitmentPoolData = {
             },
         },
 
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
 
     -- Nagarythe
@@ -193,18 +193,18 @@ HighElfRecruitmentPoolData = {
         FactionPools = {
             LowPrinces = {
                 AgentSubTypes = {
-                    wh2_main_hef_prince_low = {
+                    wh2_main_hef_prince = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                         HumanPlayerOnly = true,
                     },
-                    wh2_main_hef_princess_low  = {
+                    wh2_main_hef_princess  = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                         HumanPlayerOnly = true,
                     },
                 },
-                SubPoolInitialMinSize = 0,
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 3,
             },
             MidPrinces = {
@@ -221,9 +221,23 @@ HighElfRecruitmentPoolData = {
                 SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 3,
             },
+            HighPrinces = {
+                AgentSubTypes = {
+                    wh2_main_hef_prince_high = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 1,
+                    },
+                    wh2_main_hef_princess_high  = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 1,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 1,
+            },
         },
 
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
 
     -- Minor High Elf Factions
@@ -232,12 +246,12 @@ HighElfRecruitmentPoolData = {
         FactionPools = {
             LowPrinces = {
                 AgentSubTypes = {
-                    wh2_main_hef_prince_low = {
+                    wh2_main_hef_prince= {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                         HumanPlayerOnly = true,
                     },
-                    wh2_main_hef_princess_low  = {
+                    wh2_main_hef_princess  = {
                         MinimumAmount = 0,
                         MaximumAmount = 1,
                         HumanPlayerOnly = true,
@@ -276,6 +290,6 @@ HighElfRecruitmentPoolData = {
             },
         },
 
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
 }

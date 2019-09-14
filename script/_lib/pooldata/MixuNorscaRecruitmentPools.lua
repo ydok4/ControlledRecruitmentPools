@@ -31,6 +31,6 @@ NorscaRecruitmentPoolData = {
                 SubPoolMaxSize = 1,
             },
         },
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
 }

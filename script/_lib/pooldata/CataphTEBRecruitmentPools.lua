@@ -39,7 +39,7 @@ TEBRecruitmentPools = {
                 Type = "increase",
             },
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 7,
     },
 
     wh_main_teb_estalia = {
@@ -81,7 +81,7 @@ TEBRecruitmentPools = {
                 Type = "increase",
             },
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 7,
     },
 
     wh_main_teb_tilea = {
@@ -123,7 +123,7 @@ TEBRecruitmentPools = {
                 Type = "increase",
             },
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 7,
     },
     -- Minor TEB factions - Unlocker only
 
@@ -146,7 +146,7 @@ TEBRecruitmentPools = {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
     -- Tilean Minor Factions
     wh_main_teb_bilbali = {
@@ -167,7 +167,7 @@ TEBRecruitmentPools = {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
     wh_main_teb_luccini = {
         FactionPools = {
@@ -221,7 +221,7 @@ TEBRecruitmentPools = {
                 },
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 
     -- New world colonies
@@ -243,6 +243,6 @@ TEBRecruitmentPools = {
                 SubPoolMaxSize = 5,
             },
         },
-        PoolMaxSize = 5,
+        PoolMaxSize = 7,
     },
 }

@@ -171,12 +171,16 @@ _G.CRPResources = {
 -- This is separate so I can use this in other mods
 if not _G.CG_NameResources then
     _G.CG_NameResources = {
-        subculture_to_name_groups = SubCultureNameGroupResources,
-        faction_to_name_groups = NameGroupResources,
-        name_groups_to_names = NameResources,
-        campaign_character_data = AgentDataResources,
+        ConcatTableWithKeys = function(self, destinationTable, sourceTable)
+            for key, value in pairs(sourceTable) do
+                destinationTable[key] = value;
+            end
+        end,
+        subculture_to_name_groups = GetSubCultureNameGroupResources(),
+        faction_to_name_groups = GetNameGroupResources(),
+        name_groups_to_names = GetNameResources(),
+        campaign_character_data = GetAgentDataResources(),
     }
-
-    ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, CustomAgentDataResources);
-    ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, RebelLeadersDataResource);
 end
+_G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, CustomAgentDataResources);
+--_G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, RebelLeadersDataResource);

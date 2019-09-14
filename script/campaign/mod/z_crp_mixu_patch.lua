@@ -21,10 +21,9 @@ _G.CRPResources.AddAdditionalResources("wh_dlc05_sc_wef_wood_elves", WoodElfRecr
 -- Load the name resources
 -- This is separate so I can use this in other mods
 if _G.CG_NameResources then
-    ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, MixuDataResources);
-    ConcatTableWithKeys(_G.CG_NameResources.faction_to_name_groups, MixuMousillonNameGroupResources);
+    _G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, GetMixuDataResources());
+    _G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.faction_to_name_groups, MixuMousillonNameGroupResources);
 end
-
 
 --[[require 'script/_lib/dbexports/MixuEffectResources'
 require 'script/_lib/dbexports/MixuTraitsToEffects'

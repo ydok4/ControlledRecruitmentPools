@@ -21,7 +21,6 @@ WoodElfRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 6,
     },
 
     -- Major Factions
@@ -46,7 +45,6 @@ WoodElfRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 6,
     },
 
     wh_dlc05_wef_wood_elves = {
@@ -70,7 +68,6 @@ WoodElfRecruitmentPoolData = {
                 SubPoolMaxSize = 2,
             },
         },
-        PoolMaxSize = 6,
     },
 
     -- Minor Factions
@@ -87,6 +84,5 @@ WoodElfRecruitmentPoolData = {
                 SubPoolMaxSize = 1,
             },
         },
-        PoolMaxSize = 5,
     },
 }

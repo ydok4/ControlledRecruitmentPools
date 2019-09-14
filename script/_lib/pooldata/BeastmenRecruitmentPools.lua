@@ -12,7 +12,7 @@ BeastmentRecruitmentPoolData = {
                     },
                 },
                 SubPoolInitialMinSize = 2,
-                SubPoolMaxSize = 4,
+                SubPoolMaxSize = 5,
             },
         },
         Traits = {
@@ -39,7 +39,7 @@ BeastmentRecruitmentPoolData = {
             "wh_main_skill_innate_all_magnanimous",
             "wh_main_skill_innate_all_melancholic",
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 5,
     },
 
     wh_dlc03_bst_beastmen = {
@@ -53,10 +53,10 @@ BeastmentRecruitmentPoolData = {
                     },
                 },
                 SubPoolInitialMinSize = 2,
-                SubPoolMaxSize = 5,
+                SubPoolMaxSize = 6,
             },
         },
-        PoolMaxSize = 8,
+        PoolMaxSize = 6,
     },
 
 }

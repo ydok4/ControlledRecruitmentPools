@@ -81,27 +81,28 @@ function ControlledRecruitmentPools:NewGameStartUp()
         local faction = faction_list:item_at(i);
         if faction:is_quest_battle_faction() == false then
             Custom_Log(faction:name().." STARTUP");
-            -- After replacing calculate the current pools for the faction
-            local factionPoolResources = GetFactionPoolResources(faction);
             if (IsSupportedSubCulture(faction:subculture()) or IsRogueArmy(faction:name())) and self:IsExcludedFaction(faction) == false then
                 Custom_Log("Faction is supported, performing startup procedure");
+                local factionPoolResources = GetFactionPoolResources(faction);
                 -- Replace existing lords with specified values (if any)
                 -- The current faction pools will be updated with these values
                 self:ReplaceExistingLords(faction, factionPoolResources);
                 if faction:name() == self.HumanFaction:name() then
-                    Custom_Log("Setting minimum for player faction "..faction:name());
-                    -- Then set the initial pools for human faction
-                    local currentFactionPools = self:GetCurrentPoolForFaction(faction);
-                    self:SetupInitialMinimumValues(faction, currentFactionPools, factionPoolResources);
-                    Custom_Log("Finished setting up minimum values");
+                    cm:callback(function()
+                        Custom_Log("Setting minimum for player faction "..faction:name());
+                        -- Then set the initial pools for human faction
+                        local currentFactionPools = self:GetCurrentPoolForFaction(faction);
+                        self:SetupInitialMinimumValues(faction, currentFactionPools, factionPoolResources);
+                        Custom_Log("Finished setting up minimum values");
+                    end, 0);
                 end
+                -- This will replace any vmp_lord_replacements present at the start of the game
+                -- This will usually be from armies spawned by scripted. Eg the Artois army for Kemmler start.
+                self:RemoveAliveCharacterInPoolAtGameStart(faction);
+                self:ApplyArmyLimits(faction, factionPoolResources);
+                self:TrackInitialLords(faction);
+                Custom_Log_Finished();
             end
-            -- This will replace any vmp_lord_replacements present at the start of the game
-            -- This will usually be from armies spawned by scripted. Eg the Artois army for Kemmler start.
-           self:RemoveAliveCharacterInPoolAtGameStart(faction);
-           self:ApplyArmyLimits(faction, factionPoolResources);
-           self:TrackInitialLords(faction);
-           Custom_Log_Finished();
         end
     end
     cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
@@ -132,7 +133,7 @@ function ControlledRecruitmentPools:ApplyArmyLimits(faction, factionPoolResource
     Custom_Log("Applying army limits");
     local factionName = faction:name();
     if factionPoolResources ~= nil then
-        for i = 1, factionPoolResources.PoolMaxSize do
+        for i = 1, factionPoolResources.PoolMaxSize - 2 do
             cm:apply_effect_bundle("wh2_dlc09_ritual_crafting_tmb_army_capacity_"..i, factionName, 0);
         end
     end
@@ -182,9 +183,9 @@ function ControlledRecruitmentPools:ReplaceCharacter(faction, character, replace
         selectedTrait = self.CharacterGenerator:GetRandomTraitForLord(factionPoolResources, character:character_subtype_key());
     end
     if traitKey ~= "" then
-        --Custom_Log("Got trait "..selectedTrait);
+        Custom_Log("Got trait "..selectedTrait);
     else
-        --Custom_Log("No traits available");
+        Custom_Log("No traits available");
     end
     local characterRegion = "";
     if character:has_region() == true then
@@ -202,8 +203,8 @@ function ControlledRecruitmentPools:ReplaceCharacter(faction, character, replace
         charUnitList = "wh_main_grn_inf_savage_orcs";
         invalidUnitList = true;
     end
-
-    local xPosition, yPosition = cm:find_valid_spawn_location_for_character_from_position(factionName, character:logical_position_x(), character:logical_position_y(), false);
+    Custom_Log("Before find valid spawn location");
+    local xPosition, yPosition = cm:find_valid_spawn_location_for_character_from_position(factionName, character:logical_position_x(), character:logical_position_y(), true);
     local teleportCharacter = false;
 
     Custom_Log("Got replacement spawn position");
@@ -895,14 +896,14 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
             if subCulture == "wh2_main_sc_hef_high_elves" and factionName == self.HumanFaction:name() and poolData.IsRecruited == false then
                 Custom_Log("High elf character recruited listener");
                 if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
-                    cm:suppress_all_event_feed_messages(true);
+                    cm:disable_event_feed_events(true, "all", "", "");
                     cm:trigger_incident(factionName, "wh2_main_hef_mid_lord_influence_cost", true);
-                    cm:suppress_all_event_feed_messages(false);
+                    cm:callback(function() cm:disable_event_feed_events(false, "all", "", ""); end, 1);
                     Custom_Log("Lord is mid prince or princess");
                 elseif poolData.SubType == "wh2_main_hef_prince_high" or poolData.SubType == "wh2_main_hef_princess_high" then
-                    cm:suppress_all_event_feed_messages(true);
+                    cm:disable_event_feed_events(true, "all", "", "");
                     cm:trigger_incident(factionName, "wh2_main_hef_high_lord_influence_cost", true);
-                    cm:suppress_all_event_feed_messages(false);
+                    cm:callback(function() cm:disable_event_feed_events(false, "all", "", ""); end, 1);
                     Custom_Log("Lord is high prince or princess");
                 end
             end
@@ -914,7 +915,7 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
                 if poolData.RemoveImmortality == true then
                     Custom_Log("Removing immortality");
                     -- Remove immortality that we gave them when we spawned them
-                    cm:set_character_immortality("character_cqi:"..char:cqi(), false);
+                    cm:set_character_immortality("character_cqi:"..char:command_queue_index(), false);
                 end
             else
                 Custom_Log("Character has been recruited previously");
@@ -924,35 +925,37 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
         Custom_Log("Checking replacement data for faction "..factionName);
         -- If the character isn't tracked, that means CRP didn't spawn it. It could be an auto generated lord or it could be spawned in another way.
         local replacementLords = GetReplacementLordsForFaction(faction);
-        local isReplacement = false;
-        local replaceSubType = "";
-        local replacementTrait = "";
-        for replacementKey, replacementData in pairs(replacementLords) do
-            if replacementKey == char:character_subtype_key() then
-                Custom_Log("Spawned char is replacement original sub type "..char:character_subtype_key());
-                isReplacement = true;
-                replaceSubType = replacementData.replacementKey;
-                replacementTrait = GetRandomObjectFromList(replacementData.traitKeyPool);
-                Custom_Log("Replacement Type is "..replaceSubType);
-                break;
+        if replacementLords ~= nil then
+            local isReplacement = false;
+            local replaceSubType = "";
+            local replacementTrait = "";
+            for replacementKey, replacementData in pairs(replacementLords) do
+                if replacementKey == char:character_subtype_key() then
+                    Custom_Log("Spawned char is replacement original sub type "..char:character_subtype_key());
+                    isReplacement = true;
+                    replaceSubType = replacementData.replacementKey;
+                    replacementTrait = GetRandomObjectFromList(replacementData.traitKeyPool);
+                    Custom_Log("Replacement Type is "..replaceSubType);
+                    break;
+                end
             end
-        end
-        -- Replacement lords, should be replaced. This is mostly for the AI
-        if not cm:is_new_game() and isReplacement == true then
-            Custom_Log("Starting replacement");
-            local factionPoolResources = GetFactionPoolResources(faction);
-            local artSetId = self.CharacterGenerator:GetArtSetForSubType(replaceSubType);
-            Custom_Log("Replacement is using art set id "..artSetId);
-            self:ReplaceCharacter(faction, char, replaceSubType, factionPoolResources, artSetId, replacementTrait);
-        else
-            -- Otherwise we should track it
-            local name = {
-                clan_name = char:get_forename(),
-                forename = char:get_surname(),
-            };
-            Custom_Log("Character "..char:character_subtype_key().." is not in pool. Tracking them for faction "..factionName);
-            local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
-            self:TrackCharacterInPoolData(factionName, name, "", char:character_subtype_key(), "", homeRegion, false, true);
+            -- Replacement lords, should be replaced. This is mostly for the AI
+            if not cm:is_new_game() and isReplacement == true then
+                Custom_Log("Starting replacement");
+                local factionPoolResources = GetFactionPoolResources(faction);
+                local artSetId = self.CharacterGenerator:GetArtSetForSubType(replaceSubType);
+                Custom_Log("Replacement is using art set id "..artSetId);
+                self:ReplaceCharacter(faction, char, replaceSubType, factionPoolResources, artSetId, replacementTrait);
+            else
+                -- Otherwise we should track it
+                local name = {
+                    clan_name = char:get_forename(),
+                    forename = char:get_surname(),
+                };
+                Custom_Log("Character "..char:character_subtype_key().." is not in pool. Tracking them for faction "..factionName);
+                local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
+                self:TrackCharacterInPoolData(factionName, name, "", char:character_subtype_key(), "", homeRegion, false, true);
+            end
         end
     else
         -- Typically this case if for garrison leaders but it also happens when a Dark Elf character gains a word of power

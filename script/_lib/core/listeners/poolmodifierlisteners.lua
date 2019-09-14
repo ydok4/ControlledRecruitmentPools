@@ -6,11 +6,11 @@ function InitialisePoolModifier()
     });
 end
 
-function PoolModifierListeners(crp)
+function CRP_PoolModifierListeners(crp, core)
 	Custom_Log("Setting up pool modifier listeners");
 	-- This handles generic diplomacy rewards
     core:add_listener(
-		"DiplomacyLordImpacts",
+		"CRP_DiplomacyLordImpacts",
 		"PositiveDiplomaticEvent",
 		true,
 		function(context)
@@ -33,47 +33,50 @@ function PoolModifierListeners(crp)
 		true
 	);
 
-	-- These listeners are specifically for Belegar
-	local region = cm:get_region("wh_main_eastern_badlands_karak_eight_peaks");
-	local receivedBelegarReward = cm:get_saved_value("CRP_Belegar_received_reward");
-	if not receivedBelegarReward and region and not region:is_abandoned() and region:owning_faction():name() ~= "wh_main_dwf_karak_izor" then
-		Custom_Log("Adding karak eight peaks listeners");
-		core:add_listener(
-			"CRP_karak_faction_joins_confederation",
-			"FactionJoinsConfederation",
-			function(context)
-				local faction_name = context:faction():name();
-				local confederation_name = context:confederation():name();
-				return faction_name == "wh_main_dwf_karak_izor" or confederation_name == "wh_main_dwf_karak_izor";
-			end,
-			function(context)
-				if region and not region:is_abandoned() then
-					if region:owning_faction():name() == "wh_main_dwf_karak_izor" then
-						Custom_Log("Giving Belegar scripted reward");
-						CheckAndReceiveRewards(context:faction(), context:faction(), "scripted");
-						cm:set_saved_value("CRP_Belegar_received_reward", true);
-						Custom_Log_Finished();
-					end
-				end;
-			end,
-			true
-		);
+	-- Mortal Empires only listeners
+	if cm:get_campaign_name() == "main_warhammer" then
+		-- These listeners are specifically for Belegar
+		local region = cm:get_region("wh_main_eastern_badlands_karak_eight_peaks");
+		local receivedBelegarReward = cm:get_saved_value("CRP_Belegar_received_reward");
+		if not receivedBelegarReward and region and not region:is_abandoned() and region:owning_faction():name() ~= "wh_main_dwf_karak_izor" then
+			Custom_Log("Adding karak eight peaks listeners");
+			core:add_listener(
+				"CRP_karak_faction_joins_confederation",
+				"FactionJoinsConfederation",
+				function(context)
+					local faction_name = context:faction():name();
+					local confederation_name = context:confederation():name();
+					return faction_name == "wh_main_dwf_karak_izor" or confederation_name == "wh_main_dwf_karak_izor";
+				end,
+				function(context)
+					if region and not region:is_abandoned() then
+						if region:owning_faction():name() == "wh_main_dwf_karak_izor" then
+							Custom_Log("Giving Belegar scripted reward");
+							CheckAndReceiveRewards(context:faction(), context:faction(), "scripted");
+							cm:set_saved_value("CRP_Belegar_received_reward", true);
+							Custom_Log_Finished();
+						end
+					end;
+				end,
+				true
+			);
 
-		core:add_listener(
-			"CRP_karak_eight_peaks_occupied",
-			"GarrisonOccupiedEvent",
-			function(context)
-				Custom_Log("Checking for Belegar occupied garrison event");
-				return context:garrison_residence():region():name() == "wh_main_eastern_badlands_karak_eight_peaks" and context:character():faction():name() == "wh_main_dwf_karak_izor";
-			end,
-			function(context)
-				Custom_Log("Giving Belegar scripted reward");
-				CheckAndReceiveRewards(context:character():faction(), context:character():faction(), "scripted");
-				cm:set_saved_value("CRP_Belegar_received_reward", true);
-				Custom_Log_Finished();
-			end,
-			true
-		);
+			core:add_listener(
+				"CRP_karak_eight_peaks_occupied",
+				"GarrisonOccupiedEvent",
+				function(context)
+					Custom_Log("Checking for Belegar occupied garrison event");
+					return context:garrison_residence():region():name() == "wh_main_eastern_badlands_karak_eight_peaks" and context:character():faction():name() == "wh_main_dwf_karak_izor";
+				end,
+				function(context)
+					Custom_Log("Giving Belegar scripted reward");
+					CheckAndReceiveRewards(context:character():faction(), context:character():faction(), "scripted");
+					cm:set_saved_value("CRP_Belegar_received_reward", true);
+					Custom_Log_Finished();
+				end,
+				true
+			);
+		end
 	end
 
 	Custom_Log("Finished setting up modifier listeners");

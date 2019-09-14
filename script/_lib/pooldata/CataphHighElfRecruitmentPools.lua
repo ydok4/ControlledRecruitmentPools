@@ -51,19 +51,19 @@ HighElfRecruitmentPoolData = {
             },
         },
 
-        PoolMaxSize = 6,
+        PoolMaxSize = 7,
     },
     -- Minor High Elf Factions
     wh2_main_hef_cothique = {
         FactionPools = {
             LowPrinces = {
                 AgentSubTypes = {
-                    wh2_main_hef_prince_low = {
+                    wh2_main_hef_prince = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                         HumanPlayerOnly = true,
                     },
-                    wh2_main_hef_princess_low  = {
+                    wh2_main_hef_princess = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                         HumanPlayerOnly = true,
@@ -106,19 +106,19 @@ HighElfRecruitmentPoolData = {
             },
         },
 
-        PoolMaxSize = 5,
+        PoolMaxSize = 6,
     },
 
     wh2_main_hef_citadel_of_dusk = {
         FactionPools = {
             LowPrinces = {
                 AgentSubTypes = {
-                    wh2_main_hef_prince_low = {
+                    wh2_main_hef_prince = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                         HumanPlayerOnly = true,
                     },
-                    wh2_main_hef_princess_low  = {
+                    wh2_main_hef_princess  = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                         HumanPlayerOnly = true,
@@ -167,12 +167,12 @@ HighElfRecruitmentPoolData = {
         FactionPools = {
             LowPrinces = {
                 AgentSubTypes = {
-                    wh2_main_hef_prince_low = {
+                    wh2_main_hef_prince = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                         HumanPlayerOnly = true,
                     },
-                    wh2_main_hef_princess_low  = {
+                    wh2_main_hef_princess  = {
                         MinimumAmount = 0,
                         MaximumAmount = 2,
                         HumanPlayerOnly = true,
@@ -215,6 +215,6 @@ HighElfRecruitmentPoolData = {
             },
         },
 
-        PoolMaxSize = 4,
+        PoolMaxSize = 6,
     },
 }
