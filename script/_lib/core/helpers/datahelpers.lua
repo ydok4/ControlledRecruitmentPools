@@ -1,5 +1,5 @@
 out("CRP: Loading DataHelpers");
-local ENABLE_LOGGING = false;
+local ENABLE_LOGGING = true;
 
 function ConcatTableWithKeys(destinationTable, sourceTable)
     for key, value in pairs(sourceTable) do
@@ -66,6 +66,7 @@ function CreateValidLuaTableKey(value)
     value = value:gsub("-", "_");
     value = value:gsub("á", "a");
     value = value:gsub("à", "a");
+    value = value:gsub("â", "a");
     value = value:gsub("é", "e");
     value = value:gsub("í", "i");
     value = value:gsub("ó", "o");

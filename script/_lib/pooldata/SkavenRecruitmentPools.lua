@@ -117,4 +117,46 @@ SkavenRecruitmentPoolData = {
         },
         PoolMaxSize = 8,
     },
+
+    -- Clan Eshin
+    wh2_main_skv_clan_eshin = {
+        FactionPools = {
+            SkavenWarlord = {
+                AgentSubTypes = {
+                    wh2_main_skv_warlord = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 3,
+                        HumanPlayerOnly = true,
+                    },
+                },
+                SubPoolInitialMinSize = 1,
+                SubPoolMaxSize = 3,
+            },
+            GreySeer = {
+                AgentSubTypes = {
+                    wh2_main_skv_grey_seer_plague = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 1,
+                    },
+                    wh2_main_skv_grey_seer_ruin = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 1,
+                    },
+                },
+                SubPoolInitialMinSize = 0,
+                SubPoolMaxSize = 1,
+            },
+            MasterAssassin = {
+                AgentSubTypes = {
+                    wh2_dlc14_skv_master_assassin = {
+                        MinimumAmount = 0,
+                        MaximumAmount = 3,
+                    },
+                },
+                SubPoolInitialMinSize = 2,
+                SubPoolMaxSize = 3,
+            },
+        },
+        PoolMaxSize = 8,
+    },
 }

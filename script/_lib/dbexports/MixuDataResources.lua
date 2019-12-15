@@ -169,5 +169,33 @@ function GetMixuDataResources()
 			IsFemale = "false",
 			NameGroup = "",
 		},
+		tmb_liche_high_priest_death = {
+			ArtSetIds = {
+				"mixu_art_set_tmb_liche_high_priest_death_1", "mixu_art_set_tmb_liche_high_priest_death_2", "mixu_art_set_tmb_liche_high_priest_death_3", "mixu_art_set_tmb_liche_high_priest_death_4",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
+		tmb_liche_high_priest_light = {
+			ArtSetIds = {
+				"mixu_art_set_tmb_liche_high_priest_light_1", "mixu_art_set_tmb_liche_high_priest_light_2", "mixu_art_set_tmb_liche_high_priest_light_3", "mixu_art_set_tmb_liche_high_priest_light_4",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
+		tmb_liche_high_priest_nehekhara = {
+			ArtSetIds = {
+				"mixu_art_set_tmb_liche_high_priest_nehekhara_1", "mixu_art_set_tmb_liche_high_priest_nehekhara_2", "mixu_art_set_tmb_liche_high_priest_nehekhara_3", "mixu_art_set_tmb_liche_high_priest_nehekhara_4",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
+		tmb_liche_high_priest_shadow = {
+			ArtSetIds = {
+				"mixu_art_set_tmb_liche_high_priest_shadow_1", "mixu_art_set_tmb_liche_high_priest_shadow_2", "mixu_art_set_tmb_liche_high_priest_shadow_3", "mixu_art_set_tmb_liche_high_priest_shadow_4",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
 	}
 end

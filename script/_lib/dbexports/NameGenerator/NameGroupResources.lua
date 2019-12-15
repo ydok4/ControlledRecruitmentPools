@@ -145,6 +145,9 @@ function GetNameGroupResources()
 		wh2_dlc11_cst_vampire_coast_encounters = {
 			NameGroup = "565429470",
 		},
+		wh2_dlc11_cst_vampire_coast_mp_custom_battles_only = {
+			NameGroup = "565429470",
+		},
 		wh2_dlc11_cst_vampire_coast_qb1 = {
 			NameGroup = "565429470",
 		},
@@ -234,6 +237,21 @@ function GetNameGroupResources()
 		},
 		wh2_dlc13_wef_laurelorn_forest = {
 			NameGroup = "143",
+		},
+		wh2_dlc14_brt_chevaliers_de_lyonesse = {
+			NameGroup = "162",
+		},
+		wh2_dlc14_grn_red_cloud = {
+			NameGroup = "88",
+		},
+		wh2_dlc14_grn_red_cloud_waaagh = {
+			NameGroup = "88",
+		},
+		wh2_dlc14_lzd_itz_itza_tribe = {
+			NameGroup = "117",
+		},
+		wh2_dlc14_skv_rictus_clan_nest = {
+			NameGroup = "124",
 		},
 		wh2_main_brt_knights_of_origo = {
 			NameGroup = "162",
@@ -341,6 +359,9 @@ function GetNameGroupResources()
 			NameGroup = "153",
 		},
 		wh2_main_def_hag_graef = {
+			NameGroup = "153",
+		},
+		wh2_main_def_hag_graef_separatists = {
 			NameGroup = "153",
 		},
 		wh2_main_def_har_ganeth = {
@@ -631,6 +652,9 @@ function GetNameGroupResources()
 		wh2_main_skv_clan_eshin = {
 			NameGroup = "124",
 		},
+		wh2_main_skv_clan_eshin_separatists = {
+			NameGroup = "124",
+		},
 		wh2_main_skv_clan_gnaw = {
 			NameGroup = "124",
 		},
@@ -769,6 +793,9 @@ function GetNameGroupResources()
 		wh_dlc05_wef_wood_elves = {
 			NameGroup = "143",
 		},
+		wh_dlc05_wef_wood_elves_mp_custom_battles_only = {
+			NameGroup = "143",
+		},
 		wh_dlc05_wef_wood_elves_qb1 = {
 			NameGroup = "143",
 		},
@@ -820,6 +847,9 @@ function GetNameGroupResources()
 		wh_dlc08_nor_norsca = {
 			NameGroup = "198",
 		},
+		wh_dlc08_nor_norsca_mp_custom_battles_only = {
+			NameGroup = "198",
+		},
 		wh_dlc08_nor_vanaheimlings = {
 			NameGroup = "198",
 		},
@@ -836,6 +866,9 @@ function GetNameGroupResources()
 			NameGroup = "162",
 		},
 		wh_main_brt_bretonnia = {
+			NameGroup = "162",
+		},
+		wh_main_brt_bretonnia_mp_custom_battles_only = {
 			NameGroup = "162",
 		},
 		wh_main_brt_bretonnia_qb1 = {
@@ -884,6 +917,9 @@ function GetNameGroupResources()
 			NameGroup = "106",
 		},
 		wh_main_dwf_dwarfs = {
+			NameGroup = "106",
+		},
+		wh_main_dwf_dwarfs_mp_custom_battles_only = {
 			NameGroup = "106",
 		},
 		wh_main_dwf_dwarfs_qb1 = {
@@ -938,6 +974,9 @@ function GetNameGroupResources()
 			NameGroup = "89",
 		},
 		wh_main_emp_empire = {
+			NameGroup = "89",
+		},
+		wh_main_emp_empire_mp_custom_battles_only = {
 			NameGroup = "89",
 		},
 		wh_main_emp_empire_qb1 = {
@@ -1019,6 +1058,9 @@ function GetNameGroupResources()
 			NameGroup = "88",
 		},
 		wh_main_grn_greenskins = {
+			NameGroup = "88",
+		},
+		wh_main_grn_greenskins_mp_custom_battles_only = {
 			NameGroup = "88",
 		},
 		wh_main_grn_greenskins_qb1 = {
@@ -1169,6 +1211,9 @@ function GetNameGroupResources()
 			NameGroup = "172",
 		},
 		wh_main_vmp_vampire_counts = {
+			NameGroup = "172",
+		},
+		wh_main_vmp_vampire_counts_mp_custom_battles_only = {
 			NameGroup = "172",
 		},
 		wh_main_vmp_vampire_counts_qb1 = {

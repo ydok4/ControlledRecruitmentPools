@@ -12,6 +12,7 @@ require 'script/_lib/pooldata/LizardmenRecruitmentPools'
 require 'script/_lib/pooldata/NorscaRecruitmentPools'
 require 'script/_lib/pooldata/SkavenRecruitmentPools'
 require 'script/_lib/pooldata/TEBRecruitmentPools'
+require 'script/_lib/pooldata/TombKingsRecruitmentPools'
 require 'script/_lib/pooldata/VampireCoastRecruitmentPools'
 require 'script/_lib/pooldata/VampireCountsRecruitmentPools'
 require 'script/_lib/pooldata/WoodElfRecruitmentPools'
@@ -20,19 +21,12 @@ require 'script/_lib/pooldata/RogueArmyRecruitmentPools'
 
 require 'script/_lib/pooldata/SharedRecruitmentPools'
 
-require 'script/_lib/dbexports/AgentDataResources'
-require 'script/_lib/dbexports/CustomAgentDataResources'
-require 'script/_lib/dbexports/RebelLeadersDataResource'
-require 'script/_lib/dbexports/NameGroupResources'
-require 'script/_lib/dbexports/SubCultureNameGroupResources'
-require 'script/_lib/dbexports/NameResources'
-
 Custom_Log("Loading Core Data");
 out("CRP: Loading Core Data");
 
 _G.CRPResources = {
     DBResources = {
-        
+
     },
     CulturePoolResources = {
         -- Beastmen 
@@ -62,6 +56,8 @@ _G.CRPResources = {
         wh2_main_sc_skv_skaven = SkavenRecruitmentPoolData,
         -- TEB
         wh_main_sc_teb_teb = TEBRecruitmentPools,
+        -- Tomb Kings
+        wh2_dlc09_sc_tmb_tomb_kings = TombKingsRecruitmentPools,
         -- Vampire Coast
         wh2_dlc11_sc_cst_vampire_coast = VampireCoastRecruitmentPoolData,
         -- Vampire Counts
@@ -165,7 +161,11 @@ _G.CRPResources = {
     end,
 }
 
-
+require 'script/_lib/dbexports/AgentDataResources'
+require 'script/_lib/dbexports/CustomAgentDataResources'
+require 'script/_lib/dbexports/NameGenerator/SubCultureNameGroupResources'
+require 'script/_lib/dbexports/NameGenerator/NameGroupResources'
+require 'script/_lib/dbexports/NameGenerator/NameResources'
 
 -- Load the name resources
 -- This is separate so I can use this in other mods
@@ -180,7 +180,6 @@ if not _G.CG_NameResources then
         faction_to_name_groups = GetNameGroupResources(),
         name_groups_to_names = GetNameResources(),
         campaign_character_data = GetAgentDataResources(),
-    }
+    };
 end
 _G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, CustomAgentDataResources);
---_G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, RebelLeadersDataResource);

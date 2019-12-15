@@ -25,6 +25,21 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
 
     crp = crpObject;
     Custom_Log("AppointGeneralOpened");
+    local panelOpened = false;
+    core:add_listener(
+        "CRP_CharacterPanelOpened",
+        "PanelOpenedCampaign",
+        function(context)
+            return context.string == "character_panel";
+        end,
+        function(context)
+            Custom_Log("\nCharacter panel opened");
+            panelOpened = true;
+            Custom_Log_Finished();
+        end,
+        true
+    );
+
     core:add_listener(
         "CRP_AppointGeneralOpened",
         "PanelOpenedCampaign",
@@ -38,7 +53,7 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
                 CRP_GetGeneralCandidates(crp.HumanFaction, generalsList, crp.CRPLordsInPools, false);
                 Custom_Log_Finished();
             end,
-            0);
+            0.2);
         end,
         true
     );
@@ -48,7 +63,9 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
         "CRP_ClickedCreateArmyButton",
         "ComponentLClickUp",
         function(context)
-            return context.string == "button_create_army";
+            return context.string == "button_create_army"
+            or context.string == "button_cycle_left"
+            or context.string == "button_cycle_right";
         end,
         function(context)
             Custom_Log("\n"..context.string.." clicked");
@@ -85,6 +102,27 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
         end,
         true
     );
+
+    core:add_listener(
+        "CRP_SettlementSelected",
+        "SettlementSelected",
+        function(context)
+            return true;
+        end,
+        function(context)
+            Custom_Log("Settlement selected");
+            if panelOpened == true then
+                cm:callback(function(context)
+                    local generalsList = find_uicomponent(core:get_ui_root(), "character_panel", "general_selection_panel", "character_list_parent", "character_list", "listview", "list_clip", "list_box");
+                    CRP_GetGeneralCandidates(crp.HumanFaction, generalsList, crp.CRPLordsInPools);
+                    Custom_Log_Finished();
+                end,
+                0.1);
+            end
+            Custom_Log_Finished();
+        end,
+        true
+    );
     Custom_Log("GeneralRecruitmentClosed");
     core:add_listener(
         "GeneralRecruitmentClosed",
@@ -96,6 +134,7 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
         end,
         function(context)
             Custom_Log("Panel closed\n");
+            panelOpened = false;
             Custom_Log_Finished();
         end,
         true
@@ -129,6 +168,7 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
     -- because we can skip some of the checks for colonels. This is both for speed
     -- and stability (it crashes).
     if cm:turn_number() == 1 then
+        Custom_Log("Adding turn 1 listeners");
         core:add_listener(
             "CRP_CharacterCreatedTurn1",
             "CharacterCreated",
@@ -224,16 +264,19 @@ function SetupCharacterCreatedListenerPostTurn1()
                 -- We need to wrap this in a callback because the pending battle cache isn't populated
                 -- when the character is created and we can't just blanket kill the colonels because
                 -- it breaks some quest battles
-                cm:callback(function()
+                --[[cm:callback(function()
                     Custom_Log("In colonel callback");
-                    if character:has_military_force() == true and (cm:pending_battle_cache_char_is_attacker(character) == true or cm:pending_battle_cache_char_is_defender(character) == true) then
+                    if character:is_null_interface()
+                    --or (character:has_military_force() == true and (cm:pending_battle_cache_char_is_attacker(character) == true or cm:pending_battle_cache_char_is_defender(character) == true)) then
+                    or ((cm:pending_battle_cache_char_is_attacker(character) == true or cm:pending_battle_cache_char_is_defender(character) == true)) then
                         Custom_Log("Ignoring character because they are taking part in a battle");
                     else
-                        Custom_Log("Killing colonel for faction "..character:faction():name().." "..character:character_subtype_key());
+                        Custom_Log("In kill character condition");
+                        --Custom_Log("Killing colonel for faction "..character:faction():name().." "..character:character_subtype_key());
                         cm:kill_character(character:cqi(), true, true);
                     end
                     Custom_Log_Finished();
-                end, 0);
+                end, 0);--]]
                 Custom_Log_Finished();
             else
                 crp:ProcessNewCharacter(character);
@@ -292,25 +335,30 @@ function CRP_GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideD
             elseif lordsInPool[humanFactionName][keyName] ~= nil then
                 poolData = lordsInPool[humanFactionName][keyName];
             elseif subType ~= "Legendary Lord" then
+                Custom_Log("Char is not legendary lords");
                 for characterKey, characterData in pairs(lordsInPool[humanFactionName]) do
-                    --Custom_Log("Checking nameText "..nameText.." and character data name "..characterData.Name);
-                    if (string.match(nameText, characterData.Name) or string.match(characterData.Name, nameText)) and characterData.Name ~= nameText then
-                        --Custom_Log("Found partial match with nameText "..nameText.." and character data name "..characterData.Name);
-                        -- We need to update the key and the name
-                        local remappedLord = {
-                            ArtSetId = characterData.ArtSetId,
-                            HomeRegion = characterData.HomeRegion,
-                            InnateTrait = characterData.InnateTrait,
-                            Name = nameText,
-                            SocialClass = characterData.SocialClass,
-                            SubType = characterData.SubType,
-                            RemoveImmortality = characterData.RemoveImmortality,
-                            IsRecruited = characterData.IsRecruited,
-                        };
-                        crp.CRPLordsInPools[humanFactionName][characterKey] = nil;
-                        crp.CRPLordsInPools[humanFactionName][keyName] = remappedLord;
-                        poolData = remappedLord;
-                        break;
+                    if characterData.Name == nil then
+                        --Custom_Log("Name is nil");
+                    else
+                        --Custom_Log("Checking nameText "..nameText.." and character data name "..characterData.Name);
+                        if (string.match(nameText, characterData.Name) or string.match(characterData.Name, nameText)) and characterData.Name ~= nameText then
+                            Custom_Log("Found partial match with nameText "..nameText.." and character data name "..characterData.Name);
+                            -- We need to update the key and the name
+                            local remappedLord = {
+                                ArtSetId = characterData.ArtSetId,
+                                HomeRegion = characterData.HomeRegion,
+                                InnateTrait = characterData.InnateTrait,
+                                Name = nameText,
+                                SocialClass = characterData.SocialClass,
+                                SubType = characterData.SubType,
+                                RemoveImmortality = characterData.RemoveImmortality,
+                                IsRecruited = characterData.IsRecruited,
+                            };
+                            crp.CRPLordsInPools[humanFactionName][characterKey] = nil;
+                            crp.CRPLordsInPools[humanFactionName][keyName] = remappedLord;
+                            poolData = remappedLord;
+                            break;
+                        end
                     end
                 end
             end

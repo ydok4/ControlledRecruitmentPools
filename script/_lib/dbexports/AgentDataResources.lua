@@ -1291,6 +1291,69 @@ function GetAgentDataResources()
 			IsFemale = "true",
 			NameGroup = "",
 		},
+		wh2_dlc14_brt_henri_le_massif = {
+			ArtSetIds = {
+				 "wh2_dcl14_art_set_brt_henri_le_massif",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
+		wh2_dlc14_brt_repanse = {
+			ArtSetIds = {
+				 "wh2_dlc14_art_set_brt_repanse",
+			},
+			IsFemale = "true",
+			NameGroup = "",
+		},
+		wh2_dlc14_def_high_beastmaster = {
+			ArtSetIds = {
+				 "wh2_dlc14_art_set_def_high_beastmaster_01", "wh2_dlc14_art_set_def_high_beastmaster_02", "wh2_dlc14_art_set_def_high_beastmaster_03",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
+		wh2_dlc14_def_malus_darkblade = {
+			ArtSetIds = {
+				 "wh2_dlc14_art_set_def_malus_darkblade_01",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
+		wh2_dlc14_def_master = {
+			ArtSetIds = {
+				 "wh2_dlc14_art_set_def_master_01", "wh2_dlc14_art_set_def_master_02", "wh2_dlc14_art_set_def_master_03",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
+		wh2_dlc14_dummy_tzarkan = {
+			ArtSetIds = {
+				 "wh2_dlc14_art_set_def_malus_darkblade_tzarkan", "wh2_dlc14_art_set_skv_snikch_tzarkan",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
+		wh2_dlc14_skv_deathmaster_snikch = {
+			ArtSetIds = {
+				 "wh2_dlc14_art_set_skv_snikch",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
+		wh2_dlc14_skv_eshin_sorcerer = {
+			ArtSetIds = {
+				 "wh2_dlc14_art_set_skv_eshin_sorcerer_01", "wh2_dlc14_art_set_skv_eshin_sorcerer_02", "wh2_dlc14_art_set_skv_eshin_sorcerer_03",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
+		wh2_dlc14_skv_master_assassin = {
+			ArtSetIds = {
+				 "wh2_dlc14_art_set_skv_master_assassin_01", "wh2_dlc14_art_set_skv_master_assassin_02", "wh2_dlc14_art_set_skv_master_assassin_03",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
 		wh2_main_def_black_ark = {
 			ArtSetIds = {
 				 "wh2_main_art_set_def_black_ark", "wh2_main_art_set_def_black_ark_lokhir_1", "wh2_main_art_set_def_black_ark_lokhir_2", "wh2_main_art_set_def_black_ark_lokhir_3",
@@ -1529,6 +1592,13 @@ function GetAgentDataResources()
 			IsFemale = "false",
 			NameGroup = "",
 		},
+		wh2_main_skv_plague_priest_ritual = {
+			ArtSetIds = {
+				 "wh2_main_art_set_skv_plague_priest_ritual_01", "wh2_main_art_set_skv_plague_priest_ritual_02", "wh2_main_art_set_skv_plague_priest_ritual_03",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
 		wh2_main_skv_queek_headtaker = {
 			ArtSetIds = {
 				 "wh2_main_art_set_skv_queek_headtaker",
@@ -1539,6 +1609,13 @@ function GetAgentDataResources()
 		wh2_main_skv_warlock_engineer = {
 			ArtSetIds = {
 				 "wh2_main_art_set_skv_warlock_engineer_01", "wh2_main_art_set_skv_warlock_engineer_02", "wh2_main_art_set_skv_warlock_engineer_03",
+			},
+			IsFemale = "false",
+			NameGroup = "",
+		},
+		wh2_main_skv_warlock_engineer_ritual = {
+			ArtSetIds = {
+				 "wh2_main_art_set_skv_warlock_engineer_ritual_01", "wh2_main_art_set_skv_warlock_engineer_ritual_02", "wh2_main_art_set_skv_warlock_engineer_ritual_03",
 			},
 			IsFemale = "false",
 			NameGroup = "",

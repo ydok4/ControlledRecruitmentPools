@@ -86,7 +86,6 @@ function GetNameResources()
 						Harek = "2147354353",
 						Guttri = "2147354355",
 						Gomrund = "2147354363",
-						Gotrek = "2147354371",
 						Grimli = "2147354378",
 						Groth = "2147354380",
 						Glum = "2147354382",
@@ -203,7 +202,7 @@ function GetNameResources()
 						Hogmog = "272887906",
 					},
 				},
-
+	
 			},
 		},
 		name_group_117 = {
@@ -315,6 +314,7 @@ function GetNameResources()
 						Mazda_inzi = "1629353517",
 						Lim_mib = "1630404395",
 						Bas_keen = "1632779532",
+						Alazanczyk = "1638194677",
 						Geef_eten = "1654646859",
 						Hon_Uroq = "1665910548",
 						Kanos_Qir = "1676341093",
@@ -472,6 +472,7 @@ function GetNameResources()
 						Ra_kuur = "682342073",
 						Qipsa_tee = "683220671",
 						K_suran = "706854888",
+						LordXltepofItza = "708079750",
 						Hemoli_tiq = "712653891",
 						Pro_pyleen = "725099876",
 						Ec_chi = "726266838",
@@ -523,7 +524,7 @@ function GetNameResources()
 						Rroksburr = "1833301545",
 					},
 				},
-
+	
 			},
 		},
 		name_group_124 = {
@@ -546,6 +547,7 @@ function GetNameResources()
 						Krahkroniid = "1795692565",
 						Gaarth = "1864128342",
 						Klesh = "1910403358",
+						Garrott = "1990004139",
 						Onno = "260632766",
 						Ekitch = "542397667",
 						Mika = "609076075",
@@ -575,6 +577,7 @@ function GetNameResources()
 						Arcstorm = "1621301403",
 						Blistitt = "1632979410",
 						Shab = "1681752719",
+						ChiefDoomclaw = "1741892638",
 						Snickitch = "1742882893",
 						Mormel = "1762154928",
 						Alchemispark = "1814136524",
@@ -679,7 +682,7 @@ function GetNameResources()
 						Cankered = "981317407",
 					},
 				},
-
+	
 			},
 		},
 		name_group_131 = {
@@ -819,7 +822,7 @@ function GetNameResources()
 						Blackheart = "2147358912",
 					},
 				},
-
+	
 			},
 		},
 		name_group_137 = {
@@ -1093,7 +1096,7 @@ function GetNameResources()
 						Vigilo = "978479741",
 					},
 				},
-
+	
 			},
 		},
 		name_group_143 = {
@@ -1151,7 +1154,7 @@ function GetNameResources()
 						Valnal = "2147360861",
 					},
 				},
-
+	
 			},
 		},
 		name_group_153 = {
@@ -1409,6 +1412,7 @@ function GetNameResources()
 						Kuzu = "794649491",
 						Siamak = "833034999",
 						Malarnur = "847757873",
+						Leech = "856009476",
 						Yurichmur = "924291862",
 						Galathon = "933037566",
 						Pardek = "933807514",
@@ -1420,7 +1424,7 @@ function GetNameResources()
 						Sulphunet = "2147359457",
 					},
 				},
-
+	
 			},
 		},
 		name_group_162 = {
@@ -1542,7 +1546,6 @@ function GetNameResources()
 						Maxime = "1967862676",
 						Edouard = "2040526366",
 						Marius = "2122085685",
-						Repanse = "2147345326",
 						Odo = "2147345332",
 						Roland = "2147345335",
 						Tancred = "2147345338",
@@ -1623,6 +1626,7 @@ function GetNameResources()
 						Alistair = "66547030",
 						Gaethan = "836402559",
 						Leon = "84580907",
+						Rene = "867875663",
 						Aurelien = "905752484",
 						Gauthier = "906987082",
 						Hector = "92401285",
@@ -1630,6 +1634,8 @@ function GetNameResources()
 					},
 					forename = {
 						Stira = "1024438729",
+						deMilleur = "1192385169",
+						Trebuche = "1310121907",
 						Dubon = "2147352780",
 						duChastillon = "2147352783",
 						oftheFlame = "2147352955",
@@ -1688,7 +1694,7 @@ function GetNameResources()
 						Alvon = "656634704",
 					},
 				},
-
+	
 			},
 		},
 		name_group_172 = {
@@ -1952,7 +1958,7 @@ function GetNameResources()
 						Pfaffbach = "943406012",
 					},
 				},
-
+	
 			},
 		},
 		name_group_180 = {
@@ -2062,7 +2068,7 @@ function GetNameResources()
 						Senutamen = "959555953",
 					},
 				},
-
+	
 			},
 		},
 		name_group_198 = {
@@ -2344,7 +2350,7 @@ function GetNameResources()
 						Arrowthane = "2147356431",
 					},
 				},
-
+	
 			},
 		},
 		name_group_211 = {
@@ -2441,7 +2447,7 @@ function GetNameResources()
 						Raskin = "932665488",
 					},
 				},
-
+	
 			},
 		},
 		name_group_214 = {
@@ -2569,7 +2575,7 @@ function GetNameResources()
 						Spada = "2147356919",
 					},
 				},
-
+	
 			},
 		},
 		name_group_565429470 = {
@@ -2781,7 +2787,7 @@ function GetNameResources()
 						Suleman = "812624093",
 					},
 				},
-
+	
 			},
 		},
 		name_group_88 = {
@@ -2911,6 +2917,7 @@ function GetNameResources()
 				},
 				Male = {
 					clan_name = {
+						Elbog = "2101488899",
 						Grimfang = "2147344811",
 						Tzark = "2147346158",
 						Skraga = "2147346165",
@@ -2962,9 +2969,10 @@ function GetNameResources()
 						Gork_sChosen = "2147355529",
 						Mork_sChosen = "2147355530",
 						Bonecrusha = "2147355538",
+						Koor_Lobber = "373055594",
 					},
 				},
-
+	
 			},
 		},
 		name_group_89 = {
@@ -3212,7 +3220,7 @@ function GetNameResources()
 						Orr = "2147357617",
 					},
 				},
-
+	
 			},
 		},
 		name_group_98 = {
@@ -3372,7 +3380,6 @@ function GetNameResources()
 						Pulsator = "2147353658",
 					},
 				},
-
 			},
 		},
 	};

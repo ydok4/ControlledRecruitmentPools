@@ -132,7 +132,7 @@ end
 function ControlledRecruitmentPools:ApplyArmyLimits(faction, factionPoolResources)
     Custom_Log("Applying army limits");
     local factionName = faction:name();
-    if factionPoolResources ~= nil then
+    if factionPoolResources ~= nil and factionPoolResources.PoolMaxSize > 0 then
         for i = 1, factionPoolResources.PoolMaxSize - 2 do
             cm:apply_effect_bundle("wh2_dlc09_ritual_crafting_tmb_army_capacity_"..i, factionName, 0);
         end
@@ -512,7 +512,7 @@ function ControlledRecruitmentPools:SetupInitialMinimumValues(faction, currentPo
         for agentKey, agentSubType in pairs(pool.AgentSubTypes) do
             currentPoolMinimum = currentPoolMinimum + agentSubType.MinimumAmount;
         end
-        Custom_Log(poolKey.." Current pool minimum "..tostring(currentPoolMinimum).." Initial minimum size"..tostring(pool.SubPoolInitialMinSize));
+        Custom_Log(poolKey.." Current pool minimum "..tostring(currentPoolMinimum).." Initial minimum size "..tostring(pool.SubPoolInitialMinSize));
         while currentPoolMinimum < pool.SubPoolInitialMinSize do
             local isHumanPlayerFaction = (factionName == self.HumanFaction:name());
             local agentSubTypeKey = self:SelectGeneralToGenerateFromPool(factionPoolResources, currentPoolCounts, poolKey, isHumanPlayerFaction);
@@ -586,7 +586,7 @@ function ControlledRecruitmentPools:AddGeneralsToPool(faction, currentPoolCounts
     local factionResources = GetFactionPoolResources(faction);
     for i = 1, maximumAmount do
         Custom_Log("Generating general "..i);
-        if currentPoolCounts["total"] < factionResources.PoolMaxSize or forceGenerate == true then
+        if currentPoolCounts["total"] < factionResources.PoolMaxSize or factionResources.PoolMaxSize == 0 or forceGenerate == true then
             -- Select a general to generate
             local isHumanPlayerFaction = factionName == self.HumanFaction:name();
             local agentSubTypeKey = self:SelectGeneralToGenerate(factionResources, currentPoolCounts, isHumanPlayerFaction, forceGenerate, false);
@@ -873,7 +873,6 @@ function ControlledRecruitmentPools:ProcessNewCharacter(char)
     Custom_Log("ProcessNewCharacter");
     local faction = char:faction();
     local factionName = faction:name();
-    local humanFaction = self:GetHumanFaction();
     local factionLords = self.CRPLordsInPools[factionName];
     local localisedForeName = effect.get_localised_string(char:get_forename());
     local localisedSurname = "";

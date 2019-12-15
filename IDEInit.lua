@@ -35,7 +35,7 @@ humanFaction = {
         return "wh2_main_skv_skaven";
     end,
     subculture = function()
-        return "wh2_main_sc_skv_skaven";
+        return "wh2_main_sc_hef_high_elves";
     end,
     character_list = function()
         return {

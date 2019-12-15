@@ -13,10 +13,32 @@ function CharacterGenerator:Initialise(crpLords)
     RecalculatePoolLimits();
     -- If crplords is nil it wipes the key
     self.CrpLordsInPools = crpLords;
+    -- Load add ons
+    -- Load Gunking's elf names
+    local newElfNameKey = effect.get_localised_string("names_name_1550000001");
+    if newElfNameKey ~= nil
+    and newElfNameKey ~= "" then
+        require 'script/_lib/dbexports/NameGenerator/GunkingElfNameGroupResources'
+        require 'script/_lib/dbexports/NameGenerator/GunkingElfNameResources'
+        --Custom_Log("NameGenerator: Loading Gunking Elf Names");
+        _G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.name_groups_to_names, GetGunkingElfNameResources());
+        _G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.faction_to_name_groups, GetGunkingElfNameGroupResources());
+    end
+    -- Load Gunking's skaven/lizardmen names
+    local newSkavenLizardmenNameKey = effect.get_localised_string("names_name_1313000111");
+    if newSkavenLizardmenNameKey ~= nil
+    and newSkavenLizardmenNameKey ~= "" then
+        require 'script/_lib/dbexports/NameGenerator/GunkingSkavenLizardmenNameGroupResources'
+        require 'script/_lib/dbexports/NameGenerator/GunkingSkavenLizardmenNameResources'
+        --Custom_Log("NameGenerator: Loading Gunking Skaven/Lizardmen Names");
+        _G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.name_groups_to_names, GetGunkingSkavenLizardmenNameResources());
+        _G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.faction_to_name_groups, GetGunkingSkavenLizardmenNameGroupResources());
+    end
 end
 
 function CharacterGenerator:GetArtSetForSubType(subType)
     if not _G.CG_NameResources then
+        Custom_Log("ERROR: Missing Name resources");
         return;
     end
     Custom_Log("Getting art set for sub type: "..subType);
@@ -85,6 +107,7 @@ function CharacterGenerator:GetCharacterNameForSubculture(faction, agentSubType)
     end
 
     nameGroup = "name_group_"..nameGroup;
+    Custom_Log("Getting name for "..nameGroup);
     local namePool = _G.CG_NameResources.name_groups_to_names[nameGroup];
     local canUseFemaleNames = self:GetGenderForAgentSubType(agentSubType);
 
@@ -100,6 +123,10 @@ function CharacterGenerator:GetCharacterNameForSubculture(faction, agentSubType)
     end
 
     local failSafe = 0;
+    if namePool == nil then
+        Custom_Log("ERROR: Missing name pool");
+        return nil;
+    end
     while doOnce == false or factionLords == nil or factionLords[nameKey] ~= nil or nameKey == "" do
         clan_name_object = self:GetValidNameForType(namePool, canUseFemaleNames, "clan_name");
         if Roll100(forename_chance) then
