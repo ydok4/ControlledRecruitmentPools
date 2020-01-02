@@ -1,7 +1,7 @@
 local cm = nil;
 local context = nil;
 
-local MAX_NUM_SAVE_TABLE_KEYS = 400;
+local MAX_NUM_SAVE_TABLE_KEYS = 200;
 
 function InitialiseLoadHelper(cmObject, contextObject)
     cm = cmObject;
@@ -70,12 +70,16 @@ function LoadCharacterData(crp)
         ConcatTableWithKeys(serialised_save_table_characters, nthTable);
     end
 
+    for characterKey, characterData in pairs(serialised_save_table_characters) do
+        out("CRP: Saved character key is "..characterKey);
+    end
+
     local serialised_save_table_factions = cm:load_named_value("crp_lord_pools_faction", {}, context);
     out("CRP: Loaded crp_lord_pools_faction");
-    for factionKey, factionData in pairs(serialised_save_table_factions) do
+    for factionKey, factionCharacterKeys in pairs(serialised_save_table_factions) do
         crp.CRPLordsInPools[factionKey] = {};
         --out("CRP: Loading faction "..factionKey);
-        for index, characterKey in pairs(factionData) do
+        for index, characterKey in pairs(factionCharacterKeys) do
             local characterData = serialised_save_table_characters[factionKey..characterKey];
             if characterData ~= nil and characterData ~= {} then
                 if characterKey == "initialised" then
@@ -87,9 +91,10 @@ function LoadCharacterData(crp)
                         ArtSetId = characterData[3],
                         HomeRegion = characterData[4],
                         Name = characterData[5],
-                        SocialClass = characterData[6],
+                        Mounts = characterData[6],
                         RemoveImmortality = characterData[7],
                         IsRecruited = characterData[8],
+                        ExtraCost = characterData[9],
                     };
                     crp.CRPLordsInPools[factionKey][characterKey] = mappedCharacter;
                 end
@@ -120,12 +125,14 @@ function LoadFactionCharacterPoolData(crp)
     -- Now we'll map the saved data and overwrite the default data with the saved data
     for factionResourceKey, factionResourceData in pairs(faction_resources) do
         local factionCulture = factionResourceData[1];
-        local mappedFactionPools = {};
+        local mappedLordFactionPools = {};
+        local mappedHeroFactionPools = {};
         out("CRP: Loading resources for for faction "..factionResourceKey);
         for factionPoolIndex, factionPoolKey in pairs(faction_pool_keys[factionResourceKey]) do
             --out("CRP: Loading faction pool "..factionPoolKey);
             local factionPoolResources = faction_pool_resources[factionResourceKey..factionPoolKey];
             local factionAgentSubTypes = {};
+            local agentType = nil;
             for agentSubTypeIndex, agentSubTypeKey in pairs(faction_pool_agent_keys[factionResourceKey..factionPoolKey]) do
                 --out("CRP: agent subtype data "..agentSubTypeKey);
                 local agentResources = faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey];
@@ -141,42 +148,47 @@ function LoadFactionCharacterPoolData(crp)
                 end
                 --out("CRP: Mapped agent subtype");
                 factionAgentSubTypes[agentSubTypeKey] = mappedAgentSubType;
+                if agentType == nil then
+                    agentType = crp.CharacterGenerator:GetAgentTypeForSubtype(agentSubTypeKey);
+                end
             end
-            --out("CRP: Before mapping pool");
-            mappedFactionPools[factionPoolKey] = {
-                AgentSubTypes = factionAgentSubTypes,
-                SubPoolInitialMinSize = factionPoolResources[2],
-                SubPoolMaxSize = factionPoolResources[3],
-            };
+            if agentType == "general" then
+                --out("CRP: Before mapping pool");
+                mappedLordFactionPools[factionPoolKey] = {
+                    AgentSubTypes = factionAgentSubTypes,
+                    SubPoolInitialMinSize = factionPoolResources[2],
+                    SubPoolMaxSize = factionPoolResources[3],
+                };
+            else
+                mappedHeroFactionPools[factionPoolKey] = {
+                    AgentSubTypes = factionAgentSubTypes,
+                    SubPoolInitialMinSize = factionPoolResources[2],
+                    SubPoolMaxSize = factionPoolResources[3],
+                };
+            end
             --out("CRP: After mapping pool");
         end
         --out("CRP: Before mapping faction");
         local mappedFactionData = {
-            FactionPools = mappedFactionPools,
-            PoolMaxSize = factionResourceData[2],
+            HeroPools = mappedHeroFactionPools,
+            HeroPoolMaxSize = factionResourceData[2],
+            FactionPools = mappedLordFactionPools,
+            LordPoolMaxSize = factionResourceData[3],
         };
         --out("CRP: After mapping faction");
-        if factionCulture == nil or _G.CRPResources.CulturePoolResources[factionCulture] == nil then
-            --[[if factionCulture == nil then
-                out("CRP: Faction culture is nil");
-            end--]]
-            --out("CRP: Faction culture is missing. Setting it as a rogue army");
-            --[[if _G.CRPResources.CulturePoolResources["wh_rogue_armies"] == nil then
-                out("CRP: Rogue army data is missing");
-                for key, value in pairs(_G.CRPResources.CulturePoolResources) do
-                    out("CRP: Culture keys "..key);
-                end
-            end--]]
-            if _G.CRPResources.CulturePoolResources["wh_rogue_armies"][factionResourceKey] == nil then
+        if factionCulture == nil or _G.CRPResources.RecruitmentPoolResources[factionCulture] == nil then
+            if _G.CRPResources.RecruitmentPoolResources["wh_rogue_armies"][factionResourceKey] == nil then
                 out("CRP: Rogue army faction data "..factionResourceKey.." is missing");
             else
-                _G.CRPResources.CulturePoolResources["wh_rogue_armies"][factionResourceKey].FactionPools = mappedFactionData.FactionPools;
-                _G.CRPResources.CulturePoolResources["wh_rogue_armies"][factionResourceKey].PoolMaxSize = mappedFactionData.PoolMaxSize;
+                _G.CRPResources.RecruitmentPoolResources["wh_rogue_armies"][factionResourceKey].HeroPools = mappedFactionData.HeroPools;
+                _G.CRPResources.RecruitmentPoolResources["wh_rogue_armies"][factionResourceKey].FactionPools = mappedFactionData.FactionPools;
+                _G.CRPResources.RecruitmentPoolResources["wh_rogue_armies"][factionResourceKey].LordPoolMaxSize = mappedFactionData.LordPoolMaxSize;
             end
         else
             --out("CRP: Found faction culture");
-            _G.CRPResources.CulturePoolResources[factionCulture][factionResourceKey].FactionPools = mappedFactionData.FactionPools;
-            _G.CRPResources.CulturePoolResources[factionCulture][factionResourceKey].PoolMaxSize = mappedFactionData.PoolMaxSize;
+            _G.CRPResources.RecruitmentPoolResources[factionCulture][factionResourceKey].HeroPools = mappedFactionData.HeroPools;
+            _G.CRPResources.RecruitmentPoolResources[factionCulture][factionResourceKey].FactionPools = mappedFactionData.FactionPools;
+            _G.CRPResources.RecruitmentPoolResources[factionCulture][factionResourceKey].LordPoolMaxSize = mappedFactionData.LordPoolMaxSize;
         end
     end
     out("CRP: Finished loading pool data")

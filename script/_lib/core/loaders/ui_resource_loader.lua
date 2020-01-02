@@ -1,8 +1,6 @@
 require 'script/_lib/dbexports/EffectResources'
 require 'script/_lib/dbexports/TraitsToEffects'
 
-Custom_Log("Loading UI Core Data");
-
 _G.CRPUIResources = {
     DBResources = {
         effects = EffectResources,

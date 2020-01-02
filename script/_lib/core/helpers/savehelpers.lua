@@ -1,7 +1,7 @@
 local cm = nil;
 local context = nil;
 
-local MAX_NUM_SAVE_TABLE_KEYS = 400;
+local MAX_NUM_SAVE_TABLE_KEYS = 200;
 
 function InitialiseSaveHelper(cmObject, contextObject)
     cm = cmObject;
@@ -9,7 +9,7 @@ function InitialiseSaveHelper(cmObject, contextObject)
 end
 
 function SavePreBattleData(crp)
-    Custom_Log("Saving pre battle data");
+    crp.Logger:Log("Saving pre battle data");
     out("CRP: Saving pre-battle data");
     local preBattleAttackers = {};
     if crp.PreBattleData and crp.PreBattleData["attackers"] then
@@ -32,12 +32,12 @@ function SavePreBattleData(crp)
         end
     end
     cm:save_named_value("crp_pre_battle_defenders", preBattleDefenders, context);
-    Custom_Log("Finished saving pre battle data");
+    crp.Logger:Log("Finished saving pre battle data");
     out("CRP: Finished saving pre-battle data");
 end
 
 function SaveCharacterData(crp)
-    Custom_Log("Saving character data");
+    crp.Logger:Log("Saving character data");
     out("CRP: Starting to save character data");
     local crp_lord_pools_header = {};
     local serialised_save_table_factions = {};
@@ -48,22 +48,32 @@ function SaveCharacterData(crp)
 
     for factionKey, factionLords in pairs(crp.CRPLordsInPools) do
         local characterKeysForFaction = {};
-        --Custom_Log("Adding faction key: "..factionKey);
+        out("CRP: Adding faction key: "..factionKey);
         for characterKey, characterData in pairs(factionLords) do
             characterCount = characterCount + 1;
             local innateTrait = characterData.InnateTrait;
             if innateTrait == nil then
                 innateTrait = "";
             end
-            --Custom_Log("Adding character key and character: "..characterKey);
+            out("CRP: Adding character key and character: "..characterKey);
             if characterKey == "initialised" then
                 nthTable[factionKey..characterKey] = "initialised";
             else
-                nthTable[factionKey..characterKey] = {innateTrait, characterData.SubType, characterData.ArtSetId, characterData.HomeRegion, characterData.Name, characterData.SocialClass, characterData.RemoveImmortality, characterData.IsRecruited,};
+                nthTable[factionKey..characterKey] = {
+                    innateTrait,
+                    characterData.SubType,
+                    characterData.ArtSetId,
+                    characterData.HomeRegion,
+                    characterData.Name,
+                    characterData.Mounts,
+                    characterData.RemoveImmortality,
+                    characterData.IsRecruited,
+                    characterData.ExtraCost
+                };
             end
 
             if characterCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then
-                Custom_Log("Saving table "..tostring(tableCount));
+                crp.Logger:Log("Saving table "..tostring(tableCount));
                 out("CRP: Saving table "..tostring(tableCount));
                 cm:save_named_value("crp_lord_pools_characters_"..tableCount, nthTable, context);
                 tableCount = tableCount + 1;
@@ -71,11 +81,11 @@ function SaveCharacterData(crp)
             end
             characterKeysForFaction[#characterKeysForFaction + 1] = characterKey;
         end
-        --Custom_Log("Finished adding characters for faction: "..factionKey);
+        --crp.Logger:Log("Finished adding characters for faction: "..factionKey);
         serialised_save_table_factions[factionKey] = characterKeysForFaction;
     end
 
-    Custom_Log("Saving "..tostring(characterCount).." total characters");
+    crp.Logger:Log("Saving "..tostring(characterCount).." total characters");
     out("CRP: Saving "..tostring(characterCount).." total characters");
     crp_lord_pools_header["TotalCharacters"] = characterCount;
     cm:save_named_value("crp_lord_pools_header", crp_lord_pools_header, context);
@@ -83,11 +93,11 @@ function SaveCharacterData(crp)
     out("CRP: Saving table"..tostring(tableCount));
     cm:save_named_value("crp_lord_pools_characters_"..tableCount, nthTable, context);
 
-    Custom_Log("Finished saving character data");
+    crp.Logger:Log("Finished saving character data");
 end
 
-function SaveFactionCharacterPoolData()
-    Custom_Log("Saving character pool data");
+function SaveFactionCharacterPoolData(crp)
+    crp.Logger:Log("Saving character pool data");
     out("CRP: Building serialised Pool limits");
 
     -- This contains the max poolsize of the faction
@@ -103,13 +113,29 @@ function SaveFactionCharacterPoolData()
     -- Contiains the number of each agent subtype with a key that correspond to the subtype, pool and faction
     local serialised_faction_pool_agent_resources = {};
 
-    for cultureResourceKey, cultureResourceData in pairs(_G.CRPResources.CulturePoolResources) do
-        --Custom_Log("Saving culture factions for "..cultureResourceKey);
+    for cultureResourceKey, cultureResourceData in pairs(_G.CRPResources.RecruitmentPoolResources) do
+        --crp.Logger:Log("Saving culture factions for "..cultureResourceKey);
         for factionResourceKey, factionResourceData in pairs(cultureResourceData) do
-            --Custom_Log("Saving faction resources for "..factionResourceKey);
+            --crp.Logger:Log("Saving faction resources for "..factionResourceKey);
             if cultureResourceKey ~= factionResourceKey then
                 local factionPoolKeys = {};
-                serialised_faction_resources[factionResourceKey] = { cultureResourceKey, factionResourceData.PoolMaxSize};
+                -- Heroes
+                for factionPoolKey, factionPoolData in pairs(factionResourceData.HeroPools) do
+                    serialised_faction_pool_resources[factionResourceKey..factionPoolKey] = { factionPoolKey, factionPoolData.SubPoolInitialMinSize, factionPoolData.SubPoolMaxSize};
+                    local factionPoolAgentKeys = {};
+                    for agentSubTypeKey, agentSubTypeData in pairs(factionPoolData.AgentSubTypes) do
+                        if agentSubTypeData == false then
+                            serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, nil, nil, nil, false};
+                        else
+                            serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, agentSubTypeData.MinimumAmount, agentSubTypeData.MaximumAmount, agentSubTypeData.HumanPlayerOnly, true};
+                        end
+                        factionPoolAgentKeys[#factionPoolAgentKeys + 1] = agentSubTypeKey;
+                    end
+                    serialised_faction_pool_agent_keys[factionResourceKey..factionPoolKey] = factionPoolAgentKeys;
+                    factionPoolKeys[#factionPoolKeys + 1] = factionPoolKey;
+                end
+                -- Lords
+                serialised_faction_resources[factionResourceKey] = { cultureResourceKey, factionResourceData.HeroPoolMaxSize, factionResourceData.LordPoolMaxSize};
                 for factionPoolKey, factionPoolData in pairs(factionResourceData.FactionPools) do
                     serialised_faction_pool_resources[factionResourceKey..factionPoolKey] = { factionPoolKey, factionPoolData.SubPoolInitialMinSize, factionPoolData.SubPoolMaxSize};
                     local factionPoolAgentKeys = {};
@@ -128,7 +154,7 @@ function SaveFactionCharacterPoolData()
             end
         end
     end
-    Custom_Log("Finished serialising data");
+    crp.Logger:Log("Finished serialising data");
     out("CRP: Saving Pool limits");
     cm:save_named_value("crp_faction_resources", serialised_faction_resources, context);
 
@@ -139,5 +165,5 @@ function SaveFactionCharacterPoolData()
     cm:save_named_value("crp_faction_pool_agent_resources", serialised_faction_pool_agent_resources, context);
 
     out("CRP: Finished saving");
-    Custom_Log("CRP: Finished saving character pool data");
+    crp.Logger:Log("CRP: Finished saving character pool data");
 end

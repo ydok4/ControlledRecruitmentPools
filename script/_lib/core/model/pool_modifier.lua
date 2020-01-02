@@ -9,19 +9,18 @@ function PoolModifier:new (o)
     return o;
 end
 
-function PoolModifier:GiveReward(faction, factionPools, rewardData)
-    Custom_Log("Giving rewards");
+function PoolModifier:GiveReward(faction, rewardData, cacheData)
     if rewardData.Type == "increase" then
-        self:ChangePoolViaValue(factionPools, rewardData, true);
+        self:ChangePoolViaValue(faction, rewardData, true);
     elseif rewardData.Type == "set" then
-        self:SetPoolToValue(factionPools, rewardData);
+        self:SetPoolToValue(faction, rewardData, cacheData);
     elseif rewardData.Type == "decrease" then
-        self:ChangePoolViaValue(factionPools, rewardData, false);
+        self:ChangePoolViaValue(faction, rewardData, false);
     end
     if rewardData.IncreasePoolSize ~= nil then
-        Custom_Log("Changing pool size");
-        local oldSize = factionPools.PoolMaxSize;
-        factionPools.PoolMaxSize = factionPools.PoolMaxSize + rewardData.IncreasePoolSize;
+        local factionPools = GetFactionPoolResources(faction);
+        local oldSize = factionPools.LordPoolMaxSize;
+        factionPools.LordPoolMaxSize = factionPools.LordPoolMaxSize + rewardData.IncreasePoolSize;
         self:UpdateArmyLimits(faction, factionPools, oldSize);
     end
     if rewardData.Events ~= nil and rewardData.Events.Incident ~= nil then
@@ -29,9 +28,9 @@ function PoolModifier:GiveReward(faction, factionPools, rewardData)
     end
 end
 
-function PoolModifier:ChangePoolViaValue(factionPools, rewardData, isPositive)
+function PoolModifier:ChangePoolViaValue(faction, rewardData, isPositive)
+    local factionPools = GetFactionPoolResources(faction);
     local rewardList = rewardData.Pools;
-    Custom_Log("Changing pool");
     for poolKey, agentPoolData in pairs(rewardList) do
         if factionPools.FactionPools[poolKey] == nil then
             factionPools.FactionPools[poolKey] = {
@@ -85,10 +84,37 @@ function PoolModifier:ChangePoolViaValue(factionPools, rewardData, isPositive)
     end
 end
 
-function PoolModifier:SetPoolToValue(factionPools, rewardData)
-    local rewardList = rewardData.Pools;
-    for poolKey, agentPoolData in pairs(rewardList) do
-        factionPools.FactionPools[poolKey] = agentPoolData;
+function PoolModifier:SetPoolToValue(faction, rewardData, cacheData)
+    local factionPools = GetFactionPoolResources(faction);
+    local subcultureKey = faction:subculture();
+    local subcultureResources = GetSubCulturePoolResources(subcultureKey);
+    for index, poolKey in pairs(rewardData.Pools) do
+        local amount = 0;
+        if rewardData.UseLevelMultiplier == true then
+            amount = cacheData.AmountWithLevels;
+        else
+            amount = cacheData.Amount;
+        end
+        if factionPools.HeroPools[poolKey] == nil then
+            factionPools.HeroPools[poolKey] = subcultureResources.HeroPools[poolKey];
+        end
+        if factionPools.HeroPools[poolKey] ~= nil then
+            factionPools.HeroPools[poolKey].SubPoolMaxSize = rewardData.IncreasePoolSize * amount;
+            for agentSubtypeKey, agentSubtypeData in pairs(factionPools.HeroPools[poolKey].AgentSubTypes) do
+                agentSubtypeData.MaximumAmount = factionPools.HeroPools[poolKey].SubPoolMaxSize;
+            end
+        end
+
+        if factionPools.FactionPools[poolKey] == nil
+        and subcultureResources.FactionPools[poolKey] ~= nil then
+            factionPools.FactionPools[poolKey] = subcultureResources.FactionPools[poolKey];
+        end
+        if factionPools.FactionPools[poolKey] ~= nil then
+            factionPools.FactionPools[poolKey].SubPoolMaxSize = rewardData.IncreasePoolSize * amount;
+            for agentSubtypeKey, agentSubtypeData in pairs(factionPools.FactionPools[poolKey].AgentSubTypes) do
+                agentSubtypeData.MaximumAmount = factionPools.FactionPools[poolKey].SubPoolMaxSize;
+            end
+        end
     end
 end
 
@@ -97,10 +123,9 @@ function PoolModifier:CreateUniquePool(faction)
 end
 
 function PoolModifier:UpdateArmyLimits(faction, factionPoolResources, oldSize)
-    Custom_Log("Updating army limits");
     local factionName = faction:name();
     if factionPoolResources ~= nil then
-        for i = oldSize + 1, factionPoolResources.PoolMaxSize do
+        for i = oldSize + 1, factionPoolResources.LordPoolMaxSize do
             cm:apply_effect_bundle("wh2_dlc09_ritual_crafting_tmb_army_capacity_"..i, factionName, 0);
         end
     end

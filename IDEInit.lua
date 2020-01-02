@@ -1,3 +1,5 @@
+_G.IsIDE = true;
+
 -- Mock Data
 testCharacter = {
     cqi = function() return 123 end,
@@ -29,13 +31,13 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh_main_vmp_vampire_counts";
+        return "wh_main_emp_empire";
     end,
     culture = function()
-        return "wh2_main_skv_skaven";
+        return "wh_main_emp_empire";
     end,
     subculture = function()
-        return "wh2_main_sc_hef_high_elves";
+        return "wh_main_sc_emp_empire";
     end,
     character_list = function()
         return {
@@ -72,6 +74,43 @@ humanFaction = {
     is_null_interface = function() return false; end,
     is_human = function() return true; end,
     has_effect_bundle = function() return true; end,
+    is_horde = function() return false; end,
+    has_home_region = function() return false; end,
+    can_be_horde = function() return false; end,
+    factions_of_same_culture = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        };
+    end,
+    at_war_with = function() return false; end,
+    factions_non_aggression_pact_with = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        };
+    end,
+    factions_trading_with = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        }
+    end,
+    diplomatic_standing_with = function() return 10; end,
+    diplomatic_attitude_towards = function() return 15; end,
+    military_allies_with = function() return true; end,
+    defensive_allies_with = function() return true; end,
+    get_climate_suitability = function() return "suitability_good"; end,
+    is_allowed_to_capture_territory = function() return true; end,
 }
 
 testFaction = {
@@ -117,6 +156,43 @@ testFaction = {
     is_null_interface = function() return false; end,
     is_human = function() return false; end,
     has_effect_bundle = function() return true; end,
+    is_horde = function() return false; end,
+    has_home_region = function() return false; end,
+    can_be_horde = function() return false; end,
+    factions_of_same_culture = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        };
+    end,
+    at_war_with = function() return false; end,
+    factions_non_aggression_pact_with = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        };
+    end,
+    factions_trading_with = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        }
+    end,
+    diplomatic_standing_with = function() return 10; end,
+    diplomatic_attitude_towards = function() return 15; end,
+    military_allies_with = function() return true; end,
+    defensive_allies_with = function() return true; end,
+    get_climate_suitability = function() return "suitability_good"; end,
+    is_allowed_to_capture_territory = function() return true; end,
 }
 
 testFaction2 = {
@@ -159,6 +235,43 @@ testFaction2 = {
     is_null_interface = function() return false; end,
     is_human = function() return false; end,
     has_effect_bundle = function() return true; end,
+    is_horde = function() return false; end,
+    has_home_region = function() return false; end,
+    can_be_horde = function() return false; end,
+    factions_of_same_culture = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        };
+    end,
+    at_war_with = function() return false; end,
+    factions_non_aggression_pact_with = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        };
+    end,
+    factions_trading_with = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        }
+    end,
+    diplomatic_standing_with = function() return 10; end,
+    diplomatic_attitude_towards = function() return 15; end,
+    military_allies_with = function() return true; end,
+    defensive_allies_with = function() return true; end,
+    get_climate_suitability = function() return "suitability_good"; end,
+    is_allowed_to_capture_territory = function() return true; end,
 }
 
 test_unit = {
@@ -169,8 +282,8 @@ test_unit = {
 }
 
 effect = {
-    get_localised_string = function()
-        return "Murdredesa"..Random(10000);
+    get_localised_string = function(keyName)
+        return keyName;
     end,
 }
 
@@ -198,7 +311,9 @@ mockSaveData = {
 slot_1 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "AK_hobo_anim_3"; end,
+        name = function() return "wh2_main_def_sorcery_1"; end,
+        chain = function() return "wh2_main_def_sorcery"; end,
+        building_level = function() return 1; end,
     }
     end,
 }
@@ -206,7 +321,9 @@ slot_1 = {
 slot_2 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "AK_hobo_anim_3"; end,
+        name = function() return "wh2_main_def_worship_2"; end,
+        chain = function() return "wh2_main_def_worship"; end,
+        building_level = function() return 2; end,
     }
     end,
 }
@@ -261,7 +378,7 @@ function get_cm()
         spawn_character_to_pool = function() end,
         callback = function(self, callbackFunction, delay) callbackFunction() end,
         transfer_region_to_faction = function() end,
-        get_faction = function() return testFaction; end,
+        get_faction = function() return humanFaction; end,
         lift_all_shroud = function() end,
         kill_all_armies_for_faction = function() end,
         get_region = function()
@@ -270,7 +387,7 @@ function get_cm()
                 province_name = function() return "wh2_main_vor_isthmus_of_lustria"; end,
                 religion_proportion = function() return 0; end,
                 public_order = function() return -100; end,
-                owning_faction = function() return testFaction; end,
+                owning_faction = function() return humanFaction; end,
                 name = function() return "wh2_main_vor_isthmus_of_lustria_ziggurat_of_dawn"; end,
                 is_province_capital = function() return false; end,
                 is_abandoned = function() return false; end,
@@ -302,6 +419,46 @@ function get_cm()
                     } end ,
                 } end,
                 settlement = function() return {
+                    get_climate = function() return "suitability_good"; end,
+                    primary_slot = function() return {
+                        is_null_interface = function() return false; end,
+                        has_building = function() return true; end,
+                        building = function() return {
+                            name = function() return
+                                "main_settlement";
+                            end,
+                            chain = function() return "wh2_main_def_murder"; end,
+                            superchain = function()
+                                return "wh2_main_sch_infrastructure1_farm";
+                            end,
+                            building_level = function()
+                                return 2;
+                            end,
+                        };
+                    end
+                    };
+                    end,
+                    port_slot = function() return {
+                        is_null_interface = function() return false; end,
+                        has_building = function() return true; end,
+                        building = function() return {
+                            name = function() return
+                                "port";
+                            end,
+                            chain = function() return "wh2_main_def_sorcery"; end,
+                            superchain = function()
+                                return "wh2_main_sch_infrastructure1_farm";
+                            end,
+                            building_level = function()
+                                return 2;
+                            end,
+                            };
+                        end
+                        };
+                    end,
+                    is_port = function()
+                        return true;
+                    end,
                     slot_list = function() return {
                         num_items = function () return 2; end,
                         item_at = function(index)
@@ -311,10 +468,10 @@ function get_cm()
                                 return slot_2;
                             end
                         end
-                    }
+                    };
                     end,
-                }
-                end
+                };
+                end,
             }
         end,
         set_character_immortality = function() end,
@@ -362,10 +519,24 @@ function get_cm()
         show_message_event_located = function() end,
         trigger_incident_with_targets = function() end,
         force_add_and_equip_ancillary = function() end,
+        force_add_ancillary = function () end,
         add_agent_experience = function() end,
         apply_effect_bundle_to_region = function() end,
         remove_effect_bundle_from_region = function() end,
         get_saved_value = function() return nil; end,
+        treasury_mod = function() return nil; end,
+        create_new_custom_effect_bundle = function()
+            return {
+                set_duration = function() end,
+                add_effect = function() end,
+            };
+        end,
+        apply_custom_effect_bundle_to_region = function() end,
+        get_difficulty = function() return "hard"; end,
+        add_first_tick_callback = function() end,
+        appoint_character_to_most_expensive_force = function() end,
+        change_localised_faction_name = function() end,
+        apply_custom_effect_bundle_to_faction = function() end,
     };
 end
 
@@ -385,11 +556,13 @@ mock_max_unit_ui_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
+    GetStateText = function() return "names_name_9999000117"; end,
     --GetStateText = function() return "Unlocks recruitment of:"; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
     SimulateLClick = function() end;
+    SetState = function() end;
+    SetTooltipText = function() end,
 }
 
 mock_unit_ui_component = {
@@ -408,10 +581,12 @@ mock_unit_ui_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
+    GetStateText = function() return "names_name_9999000117"; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
     SimulateLClick = function() end;
+    SetState = function() end;
+    SetTooltipText = function() end,
 }
 
 mock_unit_ui_list_component = {
@@ -429,11 +604,13 @@ mock_unit_ui_list_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
+    GetStateText = function() return "names_name_9999000117"; end,
     --GetStateText = function() return "Unlocks recruitment of:"; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
     SimulateLClick = function() end;
+    SetState = function() end;
+    SetTooltipText = function() end,
 }
 
 find_uicomponent = function()
@@ -453,6 +630,7 @@ core = {
     end,
     get_ui_root = function() end,
     get_screen_resolution = function() return 0, 1 end;
+    is_mod_loaded = function() return true; end,
 }
 
 random_army_manager = {
@@ -485,17 +663,11 @@ require 'script/campaign/mod/controlled_recruitment_pools'
 require 'script/campaign/mod/z_crp_cataph_patch'
 require 'script/campaign/mod/z_crp_deco_goblin_patch'
 require 'script/campaign/mod/z_crp_mixu_patch'
-require 'script/campaign/mod/z_crp_wez_speshul_patch'
-require 'script/campaign/mod/z_crp_zf_engineer_patch'
 
 math.randomseed(os.time())
 
 -- This is used in game by Warhammer but we have it here so it won't throw errors when running
 -- in ZeroBrane IDE
-function Custom_Log(text)
-  print(text);
-end
-
 controlled_recruitment_pools();
 crp = _G.crp;
 
@@ -550,3 +722,33 @@ local MockContext_CRP_DiplomacyLordImpacts = {
     },
 }
 mock_listeners:trigger_listener(MockContext_CRP_DiplomacyLordImpacts);
+
+
+local CRP_CheckHordeBuildingRewards = {
+    Key = "CRP_CheckHordeBuildingRewards",
+    Context = {
+        character = function() return testCharacter; end,
+        building = function() return "wh2_main_def_worship_1"; end,
+    },
+};
+mock_listeners:trigger_listener(CRP_CheckHordeBuildingRewards);
+
+local CRP_UpdateBuildingFactionPoolLimits = {
+    Key = "CRP_UpdateBuildingFactionPoolLimits",
+    Context = {
+        faction = function() return humanFaction; end,
+    },
+};
+mock_listeners:trigger_listener(CRP_UpdateBuildingFactionPoolLimits);
+
+out("CRP: Saving callback");
+InitialiseSaveHelper(cm, context);
+--SavePreBattleData(crp);
+SaveCharacterData(crp);
+SaveFactionCharacterPoolData(crp);
+
+out("CRP: Loading callback");
+InitialiseLoadHelper(cm, context);
+--LoadPreBattleData(crp);
+LoadCharacterData(crp);
+LoadFactionCharacterPoolData(crp);

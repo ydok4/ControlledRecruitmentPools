@@ -1,6 +1,4 @@
 out("CRP: Loading DataHelpers");
-local ENABLE_LOGGING = true;
-
 function ConcatTableWithKeys(destinationTable, sourceTable)
     for key, value in pairs(sourceTable) do
         destinationTable[key] = value;
@@ -77,7 +75,6 @@ end
 
 function GetStringifiedUnitList(character)
     if character:has_military_force() == false then
-        Custom_Log("Replaced character does not have military force");
         return "";
     end
     local unitList = character:military_force():unit_list();
@@ -95,7 +92,6 @@ function GetStringifiedUnitList(character)
             end
         end
     end
-    Custom_Log("Built Unit string: "..unitString);
     return unitString;
 end
 
@@ -116,31 +112,44 @@ function GetMatchingKeyMatchingLocalisedString(keys, stringToMatch, keyPrefix)
     return nil;
 end
 
-function Custom_Log_Start()
-    -- Clears the log file
-    if ENABLE_LOGGING == true then
-        io.open("Controlled_Recruitment_Pools.txt","w"):close();
+function GetRandomItemFromWeightedList(items, returnKey)
+    local validItems = {};
+    local sumOfWeight = 0;
+    for key, data in pairs(items) do
+        if data["Weighting"] ~= nil and data["Weighting"] > 0 then
+            sumOfWeight = sumOfWeight + data["Weighting"];
+            validItems[key] = data;
+        end
+    end
+
+    local weightingSeed = Random(sumOfWeight, 0);
+    local lastKey = "";
+    local lastData = "";
+    for key, data in pairs(validItems) do
+        if weightingSeed < data["Weighting"]
+         then
+            if returnKey == true then
+                return key;
+            else
+                return data;
+            end
+        end
+        weightingSeed = weightingSeed - data["Weighting"];
+        lastKey = key;
+        lastData = data;
+    end
+    if returnKey == true then
+        return lastKey;
+    else
+        return lastData;
     end
 end
 
-function Custom_Log(text)
-    if ENABLE_LOGGING == true then
-        local logText = tostring(text);
-        local logTimeStamp = os.date("%d, %m %Y %X");
-        local popLog = io.open("Controlled_Recruitment_Pools.txt","a");
-
-        popLog :write("CRP:  "..logText .. "   : [".. logTimeStamp .. "]\n");
-        popLog :flush();
-        popLog :close();
-    end
-end
-
-function Custom_Log_Finished()
-    if ENABLE_LOGGING == true then
-        local popLog = io.open("Controlled_Recruitment_Pools.txt","a");
-
-        popLog :write("CRP:  FINISHED\n\n");
-        popLog :flush();
-        popLog :close();
+function toboolean(string)
+    if string == 'true'
+    or string == 'True' then
+        return true;
+    else
+        return false;
     end
 end

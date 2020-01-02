@@ -1,5 +1,46 @@
+local CRPSubcultureResourcesCache = {
+
+};
+
+local CRPRecruitmentPoolResourcesCache = {
+
+};
+
+function InitialiseResourcesCache()
+    -- Subculture resources
+    CRPSubcultureResourcesCache = _G.CRPResources.SubcultureResources;
+    -- Recruitment pool resources
+    for subcultureKey, subcultureData in pairs(_G.CRPResources.RecruitmentPoolResources) do
+        local subcultureFactionData = subcultureData[subcultureKey];
+        if subcultureFactionData ~= nil then
+            for factionKey, factionData in pairs(subcultureData) do
+                for factionPoolKey, factionPoolData in pairs(factionData.FactionPools) do
+                    for agentSubtypeKey, agentSubTypeData in pairs(factionPoolData.AgentSubTypes) do
+                        if agentSubTypeData.BonusCost == nil
+                        and subcultureFactionData.FactionPools[factionPoolKey] ~= nil
+                        and subcultureFactionData.FactionPools[factionPoolKey].AgentSubTypes[agentSubtypeKey] ~= nil
+                        and subcultureFactionData.FactionPools[factionPoolKey].AgentSubTypes[agentSubtypeKey].BonusCost ~= nil then
+                            agentSubTypeData.BonusCost = subcultureFactionData.FactionPools[factionPoolKey].AgentSubTypes[agentSubtypeKey].BonusCost;
+                        end
+                    end
+                end
+                if factionData.HeroPools == nil then
+                    factionData.HeroPools = subcultureFactionData.HeroPools;
+                end
+                if factionData.HeroPoolMaxSize == nil then
+                    factionData.HeroPoolMaxSize = subcultureFactionData.HeroPoolMaxSize;
+                end
+                if factionData.LordPoolMaxSize == nil then
+                    factionData.LordPoolMaxSize = subcultureFactionData.LordPoolMaxSize;
+                end
+            end
+        end
+    end
+    CRPRecruitmentPoolResourcesCache = _G.CRPResources.RecruitmentPoolResources;
+end
+
 function IsSupportedSubCulture(subculture)
-    if subculture == "rebels" or _G.CRPResources.CulturePoolResources[subculture] then
+    if subculture == "rebels" or CRPRecruitmentPoolResourcesCache[subculture] then
         return true;
     else
         return false;
@@ -7,17 +48,15 @@ function IsSupportedSubCulture(subculture)
 end
 
 function IsRogueArmy(factionName)
-    --Custom_Log("In rogue army check: "..factionName);
-    if _G.CRPResources.CulturePoolResources["wh_rogue_armies"][factionName] then
+    if CRPRecruitmentPoolResourcesCache["wh_rogue_armies"][factionName] then
         return true;
     else
         return false;
     end
 end
 
-function GetSubCulturePoolResources(cultureKey)
-    --Custom_Log("Getting culture pool resources "..cultureKey);
-    local subCulturePoolResources = _G.CRPResources.CulturePoolResources[cultureKey][cultureKey];
+function GetSubCulturePoolResources(subcultureKey)
+    local subCulturePoolResources = CRPRecruitmentPoolResourcesCache[subcultureKey][subcultureKey];
     if subCulturePoolResources ~= nil then
         return subCulturePoolResources;
     end
@@ -25,11 +64,8 @@ function GetSubCulturePoolResources(cultureKey)
 end
 
 function IsUniquePoolResourcesForFaction(faction)
-    --Custom_Log("IsUniquePoolResourcesForFaction");
-    local subCulturePoolResources = _G.CRPResources.CulturePoolResources[faction:subculture()];
-    --Custom_Log("Got faction subculture resources ");
+    local subCulturePoolResources = CRPRecruitmentPoolResourcesCache[faction:subculture()];
     local factionName = faction:name();
-    --Custom_Log("Got faction name");
     -- I couldn't store skull-takerz as a key in the lua table because of the -
     -- So this takes care of that edge case
     if faction:name() == "wh_main_grn_skull-takerz" then
@@ -41,12 +77,11 @@ function IsUniquePoolResourcesForFaction(faction)
     elseif subCulturePoolResources[factionName] then
         return true;
     end
-    Custom_Log("No unique resources found");
     return false;
 end
 
 function GetFactionPoolResources(faction)
-    local subCulturePoolResources = _G.CRPResources.CulturePoolResources[faction:subculture()];
+    local subCulturePoolResources = CRPRecruitmentPoolResourcesCache[faction:subculture()];
     local factionName = faction:name();
     -- I couldn't store skull-takerz as a key in the lua table because of the -
     -- So this takes care of that edge case
@@ -55,9 +90,8 @@ function GetFactionPoolResources(faction)
     end
 
     if subCulturePoolResources == nil then
-        return _G.CRPResources.CulturePoolResources["wh_rogue_armies"][factionName];
+        return CRPRecruitmentPoolResourcesCache["wh_rogue_armies"][factionName];
     elseif subCulturePoolResources[factionName] then
-        --Custom_Log("Found resources for faction");
         return subCulturePoolResources[factionName];
     else
         return subCulturePoolResources[faction:subculture()];
@@ -68,19 +102,48 @@ function GetReplacementLordsForFaction(faction)
     return factionResources.LordsToReplace;
 end
 
-function GetDefaultLordForFaction(faction)
-    Custom_Log("Getting default lord for faction "..faction:name());
-    local factionPoolResources = GetSubCulturePoolResources(faction:subculture());
-    return factionPoolResources.DefaultLords;
+function GetDefaultLordsForFaction(faction)
+    local subcultureResources = CRPSubcultureResourcesCache[faction:subculture()];
+    if subcultureResources == nil then
+        return nil;
+    end
+    return subcultureResources.DefaultLords;
 end
 
 function GetRewardsForFaction(faction)
-    local factionResources = GetFactionPoolResources(faction);
-    return factionResources.Rewards;
+    local subcultureResources = CRPSubcultureResourcesCache[faction:subculture()];
+    if subcultureResources == nil then
+        return nil;
+    end
+    return subcultureResources.Rewards;
 end
 
-function SetSubCultureResourcesForFaction(faction)
-    local subCulturePoolResources = _G.CRPResources.CulturePoolResources[faction:subculture()];
+function GetHeroesForFaction(faction)
+    local subcultureResources = CRPSubcultureResourcesCache[faction:subculture()];
+    if subcultureResources == nil then
+        return nil;
+    end
+    return subcultureResources.Heroes;
+end
+
+function GetAgentSubTypeResources(faction)
+    local subcultureResources = CRPSubcultureResourcesCache[faction:subculture()];
+    if subcultureResources == nil then
+        return nil;
+    end
+    return subcultureResources.AgentSubTypes;
+end
+
+function GetMountResources(faction)
+    local subcultureResources = CRPSubcultureResourcesCache[faction:subculture()];
+    if subcultureResources == nil then
+        return nil;
+    end
+    return subcultureResources.MountData;
+end
+
+function SetSubCultureRecruitmentPoolsForFaction(faction)
+    local subCulturePoolResources = CRPRecruitmentPoolResourcesCache[faction:subculture()];
     local factionName = faction:name();
     -- I couldn't store skull-takerz as a key in the lua table because of the -
     -- So this takes care of that edge case
@@ -88,14 +151,13 @@ function SetSubCultureResourcesForFaction(faction)
         factionName = "wh_main_grn_skull_takerz";
     end
 
-    _G.CRPResources.CulturePoolResources[faction:subculture()][factionName] = subCulturePoolResources[faction:subculture()];
+    CRPRecruitmentPoolResourcesCache[faction:subculture()][factionName] = subCulturePoolResources[faction:subculture()];
 end
 
 -- The pool limit should be greater than or equal to the highest Agent Sub Type
 -- maximum limit in that pool
 function RecalculatePoolLimits()
-    Custom_Log("Recalculating pool limits");
-    for subcultureKey, subcultureLimits in pairs(_G.CRPResources.CulturePoolResources) do
+    for subcultureKey, subcultureLimits in pairs(CRPRecruitmentPoolResourcesCache) do
         for factionKey, factionLimits in pairs(subcultureLimits) do
             for factionPoolKey, factionPool in pairs(factionLimits.FactionPools) do
                 local subPoolMax = factionPool.SubPoolMaxSize;

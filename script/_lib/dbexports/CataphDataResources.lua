@@ -1,114 +1,116 @@
-CataphDataResources = {
-	bor_ranger_lord = {
-		ArtSetIds = {
-			 "bor_ranger_lord_01", "bor_ranger_lord_02", "bor_ranger_lord_03",
+function GetCataphDataResources()
+	return {
+		bor_ranger_lord = {
+			AgentType = "general",
+			ArtSetIds = {
+				"bor_ranger_lord_01", "bor_ranger_lord_02", "bor_ranger_lord_03",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	til_merchant = {
-		ArtSetIds = {
-			 "til_merchant_01", "til_merchant_02", "til_merchant_03",
+		til_merchant = {
+			AgentType = "general",
+			ArtSetIds = {
+				"til_merchant_01", "til_merchant_02", "til_merchant_03",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	est_inquisitor = {
-		ArtSetIds = {
-			 "est_inquisitor_01", "est_inquisitor_02", "est_inquisitor_03",
+		est_inquisitor = {
+			AgentType = "general",
+			ArtSetIds = {
+				"est_inquisitor_01", "est_inquisitor_02", "est_inquisitor_03",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	teb_borgio_the_besieger = {
-		ArtSetIds = {
-			 "teb_borgio",
+		teb_borgio_the_besieger = {
+			AgentType = "general",
+			ArtSetIds = {
+				"teb_borgio",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	teb_gashnag = {
-		ArtSetIds = {
-			 "teb_gashnag",
+		teb_gashnag = {
+			AgentType = "general",
+			ArtSetIds = {
+				"teb_gashnag",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	teb_lucrezzia_belladonna = {
-		ArtSetIds = {
-			 "teb_lucrezzia",
+		teb_lucrezzia_belladonna = {
+			AgentType = "general",
+			ArtSetIds = {
+				"teb_lucrezzia",
+			},
+			IsFemale = "true",
 		},
-		IsFemale = "true",
-		NameGroup = "",
-	},
-	teb_tilea = {
-		ArtSetIds = {
-			 "teb_catrazza",
+		teb_tilea = {
+			AgentType = "general",
+			ArtSetIds = {
+				"teb_catrazza",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	teb_estalia = {
-		ArtSetIds = {
-			 "teb_lupio",
+		teb_estalia = {
+			AgentType = "general",
+			ArtSetIds = {
+				"teb_lupio",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	teb_border_princes = {
-		ArtSetIds = {
-			 "teb_gausser",
+		teb_border_princes = {
+			AgentType = "general",
+			ArtSetIds = {
+				"teb_gausser",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	teb_colombo = {
-		ArtSetIds = {
-			 "teb_colombo",
+		teb_colombo = {
+			AgentType = "general",
+			ArtSetIds = {
+				"teb_colombo",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	teb_new_world_colonies = {
-		ArtSetIds = {
-			 "teb_cadavo",
+		teb_new_world_colonies = {
+			AgentType = "general",
+			ArtSetIds = {
+				"teb_cadavo",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	teb_lord = {
-		ArtSetIds = {
-			 "teb_general_01", "teb_general_02", "teb_general_03", "teb_general_04", "teb_general_05",
+		teb_lord = {
+			AgentType = "general",
+			ArtSetIds = {
+				"teb_general_01", "teb_general_02", "teb_general_03", "teb_general_04", "teb_general_05",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	teb_templar_lord = {
-		ArtSetIds = {
-			 "teb_templar_lord_01", "teb_templar_lord_02",
+		teb_templar_lord = {
+			AgentType = "general",
+			ArtSetIds = {
+				"teb_templar_lord_01", "teb_templar_lord_02",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	kraka_wardlord = {
-		ArtSetIds = {
-			 "kraka_wardlord_01", "kraka_wardlord_02", "kraka_wardlord_03",
+		kraka_wardlord = {
+			AgentType = "general",
+			ArtSetIds = {
+				"kraka_wardlord_01", "kraka_wardlord_02", "kraka_wardlord_03",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	dwf_kraka_drak = {
-		ArtSetIds = {
-			 "kraka_cromson",
+		dwf_kraka_drak = {
+			AgentType = "general",
+			ArtSetIds = {
+				"kraka_cromson",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-	AK_hef_seahelm = {
-		ArtSetIds = {
-			 "AK_hef_seahelm_01", "AK_hef_seahelm_02", "AK_hef_seahelm_03",
+		AK_hef_seahelm = {
+			AgentType = "general",
+			ArtSetIds = {
+				"AK_hef_seahelm_01", "AK_hef_seahelm_02", "AK_hef_seahelm_03",
+			},
+			IsFemale = "false",
 		},
-		IsFemale = "false",
-		NameGroup = "",
-	},
-}
+	};
+end

@@ -1,128 +1,212 @@
-require 'script/_lib/pooldata/BeastmenRecruitmentPools'
-require 'script/_lib/pooldata/BretonniaRecruitmentPools'
-require 'script/_lib/pooldata/ChaosRecruitmentPools'
-require 'script/_lib/pooldata/DarkElfRecruitmentPools'
-require 'script/_lib/pooldata/DwarfRecruitmentPools'
-require 'script/_lib/pooldata/EmpireRecruitmentPools'
-require 'script/_lib/pooldata/GreenskinRecruitmentPools'
-require 'script/_lib/pooldata/KislevRecruitmentPools'
-require 'script/_lib/pooldata/SavageOrcRecruitmentPools'
-require 'script/_lib/pooldata/HighElfRecruitmentPools'
-require 'script/_lib/pooldata/LizardmenRecruitmentPools'
-require 'script/_lib/pooldata/NorscaRecruitmentPools'
-require 'script/_lib/pooldata/SkavenRecruitmentPools'
-require 'script/_lib/pooldata/TEBRecruitmentPools'
-require 'script/_lib/pooldata/TombKingsRecruitmentPools'
-require 'script/_lib/pooldata/VampireCoastRecruitmentPools'
-require 'script/_lib/pooldata/VampireCountsRecruitmentPools'
-require 'script/_lib/pooldata/WoodElfRecruitmentPools'
+require 'script/_lib/pooldata/subcultureresources/BeastmenSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/BretonniaSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/ChaosSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/DarkElfSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/DwarfSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/EmpireSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/GreenskinSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/SavageOrcSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/KislevSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/HighElfSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/LizardmenSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/NorscanSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/SkavenSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/TEBSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/TombKingsSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/VampireCoastSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/VampireCountsSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/WoodElfSubcultureResources'
 
-require 'script/_lib/pooldata/RogueArmyRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/BeastmenRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/BretonniaRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/ChaosRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/DarkElfRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/DwarfRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/EmpireRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/GreenskinRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/KislevRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/SavageOrcRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/HighElfRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/LizardmenRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/NorscaRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/SkavenRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/TEBRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/TombKingsRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/VampireCoastRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/VampireCountsRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/WoodElfRecruitmentPools'
 
-require 'script/_lib/pooldata/SharedRecruitmentPools'
+--require 'script/_lib/pooldata/recruitmentpools/RogueArmyRecruitmentPools'
 
-Custom_Log("Loading Core Data");
+--require 'script/_lib/pooldata/SharedRecruitmentPools'
+
 out("CRP: Loading Core Data");
 
 _G.CRPResources = {
-    DBResources = {
-
-    },
-    CulturePoolResources = {
-        -- Beastmen 
-        wh_dlc03_sc_bst_beastmen = BeastmentRecruitmentPoolData,
+    SubcultureResources = {
+        -- Beastmen
+        wh_dlc03_sc_bst_beastmen = GetBeastmenSubcultureResources(),
         -- Bretonnia
-        wh_main_sc_brt_bretonnia = BretonniaRecruitmentPoolData,
+        wh_main_sc_brt_bretonnia = GetBretonniaSubcultureResources(),
         -- Chaos
-        wh_main_sc_chs_chaos = ChaosRecruitmentPoolData,
+        wh_main_sc_chs_chaos = GetChaosSubcultureResources(),
         -- Dark Elves
-        wh2_main_sc_def_dark_elves = DarkElfRecruitmentPoolData,
+        wh2_main_sc_def_dark_elves = GetDarkElfSubcultureResources(),
         -- Dwarfs
-        wh_main_sc_dwf_dwarfs = DwarfRecruitmentPoolData,
+        wh_main_sc_dwf_dwarfs = GetDwarfSubcultureResources(),
         -- Empire
-        wh_main_sc_emp_empire = EmpireRecruitmentPoolData,
+        wh_main_sc_emp_empire = GetEmpireSubcultureResources(),
         -- Greenskins
-        wh_main_sc_grn_greenskins = GreenskinRecruitmentPoolData,
-        wh_main_sc_grn_savage_orcs = SavageOrcRecruitmentPoolData,
+        wh_main_sc_grn_greenskins = GetGreenskinSubcultureResources(),
+        wh_main_sc_grn_savage_orcs = GetSavageOrcSubcultureResources(),
         -- Kislev
-        wh_main_sc_ksl_kislev = KislevRecruitmentPools,
+        wh_main_sc_ksl_kislev = GetKislevSubcultureResources(),
         -- High Elf
-        wh2_main_sc_hef_high_elves = HighElfRecruitmentPoolData,
+        wh2_main_sc_hef_high_elves = GetHighElfSubcultureResources(),
         -- Lizardmen
-        wh2_main_sc_lzd_lizardmen = LizardmenRecruitmentPoolData,
+        wh2_main_sc_lzd_lizardmen = GetLizardmenSubcultureResources(),
         -- Norsca
-        wh_main_sc_nor_norsca = NorscaRecruitmentPoolData,
+        wh_main_sc_nor_norsca = GetNorscanSubcultureResources(),
         -- Skaven
-        wh2_main_sc_skv_skaven = SkavenRecruitmentPoolData,
+        wh2_main_sc_skv_skaven = GetSkavenSubcultureResources(),
         -- TEB
-        wh_main_sc_teb_teb = TEBRecruitmentPools,
+        wh_main_sc_teb_teb = GetTEBSubcultureResources(),
         -- Tomb Kings
-        wh2_dlc09_sc_tmb_tomb_kings = TombKingsRecruitmentPools,
+        wh2_dlc09_sc_tmb_tomb_kings = GetTombKingsSubcultureResources(),
         -- Vampire Coast
-        wh2_dlc11_sc_cst_vampire_coast = VampireCoastRecruitmentPoolData,
+        wh2_dlc11_sc_cst_vampire_coast = GetVampireCoastSubcultureResources(),
         -- Vampire Counts
-        wh_main_sc_vmp_vampire_counts = VampireCountsRecruitmentPoolData,
+        wh_main_sc_vmp_vampire_counts = GetVampireCountsSubcultureResources(),
         -- Wood Elf
-        wh_dlc05_sc_wef_wood_elves = WoodElfRecruitmentPoolData,
+        wh_dlc05_sc_wef_wood_elves = GetWoodElfSubcultureResources(),
+    },
+    RecruitmentPoolResources = {
+        -- Beastmen
+        wh_dlc03_sc_bst_beastmen = GetBeastmenRecruitmentPoolData(),
+        -- Bretonnia
+        wh_main_sc_brt_bretonnia = GetBretonniaRecruitmentPoolData(),
+        -- Chaos
+        wh_main_sc_chs_chaos = GetChaosRecruitmentPoolData(),
+        -- Dark Elves
+        wh2_main_sc_def_dark_elves = GetDarkElfRecruitmentPoolData(),
+        -- Dwarfs
+        wh_main_sc_dwf_dwarfs = GetDwarfRecruitmentPoolData(),
+        -- Empire
+        wh_main_sc_emp_empire = GetEmpireRecruitmentPoolData(),
+        -- Greenskins
+        wh_main_sc_grn_greenskins = GetGreenskinRecruitmentPoolData(),
+        wh_main_sc_grn_savage_orcs = GetSavageOrcRecruitmentPoolData(),
+        -- Kislev
+        wh_main_sc_ksl_kislev = GetKislevRecruitmentPools(),
+        -- High Elf
+        wh2_main_sc_hef_high_elves = GetHighElfRecruitmentPoolData(),
+        -- Lizardmen
+        wh2_main_sc_lzd_lizardmen = GetLizardmenRecruitmentPoolData(),
+        -- Norsca
+        wh_main_sc_nor_norsca = GetNorscaRecruitmentPoolData(),
+        -- Skaven
+        wh2_main_sc_skv_skaven = GetSkavenRecruitmentPoolData(),
+        -- TEB
+        wh_main_sc_teb_teb = GetTEBRecruitmentPools(),
+        -- Tomb Kings
+        wh2_dlc09_sc_tmb_tomb_kings = GetTombKingsRecruitmentPools(),
+        -- Vampire Coast
+        wh2_dlc11_sc_cst_vampire_coast = GetVampireCoastRecruitmentPoolData(),
+        -- Vampire Counts
+        wh_main_sc_vmp_vampire_counts = GetVampireCountsRecruitmentPoolData(),
+        -- Wood Elf
+        wh_dlc05_sc_wef_wood_elves = GetWoodElfRecruitmentPoolData(),
 
         -- Shared Data (Traits mainly)
-        shared = SharedRecruitmentPoolData,
+        --shared = SharedRecruitmentPoolData,
 
         -- Rogue Armies
-        wh_rogue_armies = RogueArmyRecruitmentPoolData,
+        --wh_rogue_armies = RogueArmyRecruitmentPoolData,
     },
 
     -- Additional loader function
     -- This is intended to be used by other mods to load custom data.
     -- This can be used to change agent sub type distribution or add
     -- new agent sub types into the system.
-    AddAdditionalResources = function (subculture, resources)
-        local coreResources = _G.CRPResources.CulturePoolResources[subculture];
+    AddAdditionalRecruitmentPoolResources = function (subculture, resources)
+        local coreResources = _G.CRPResources.RecruitmentPoolResources[subculture];
 
         for key1, additionalFactionData in pairs(resources) do
-            for key2, additionalSubPoolData in pairs(additionalFactionData.FactionPools) do
-                if type(additionalSubPoolData) == "table" then
-                    if coreResources[key1] == nil then
-                        coreResources[key1] = additionalFactionData;
-                    else
-                        local existingData = coreResources[key1].FactionPools[key2];
-                        if existingData == nil then
-                            coreResources[key1].FactionPools[key2] = additionalSubPoolData;
+            if additionalFactionData.FactionPools ~= nil then
+                for key2, additionalSubPoolData in pairs(additionalFactionData.FactionPools) do
+                    if type(additionalSubPoolData) == "table" then
+                        if coreResources[key1] == nil then
+                            coreResources[key1] = additionalFactionData;
                         else
-                            local additionalAgentSubTypes = {};
-                            for key3, subPool in pairs(additionalSubPoolData.AgentSubTypes) do
-                                -- If an agent has been marked for deletion from a pool
-                                if subPool == false then
-                                    existingData.AgentSubTypes[key3] = nil;
-                                else
-                                    additionalAgentSubTypes[key3] = subPool;
+                            local existingData = coreResources[key1].FactionPools[key2];
+                            if existingData == nil then
+                                coreResources[key1].FactionPools[key2] = additionalSubPoolData;
+                            else
+                                local additionalAgentSubTypes = {};
+                                for key3, subPool in pairs(additionalSubPoolData.AgentSubTypes) do
+                                    -- If an agent has been marked for deletion from a pool
+                                    if subPool == false then
+                                        existingData.AgentSubTypes[key3] = nil;
+                                    else
+                                        additionalAgentSubTypes[key3] = subPool;
+                                    end
+                                end
+                                -- Add all the new agent sub types
+                                ConcatTableWithKeys(existingData.AgentSubTypes, additionalAgentSubTypes);
+                                if additionalSubPoolData.SubPoolInitialMinSize ~= nil then
+                                    existingData.SubPoolInitialMinSize = additionalSubPoolData.SubPoolInitialMinSize;
+                                end
+    
+                                if additionalSubPoolData.SubPoolMaxSize ~= nil then
+                                    existingData.SubPoolMaxSize = additionalSubPoolData.SubPoolMaxSize;
                                 end
                             end
-                            -- Add all the new agent sub types
-                            ConcatTableWithKeys(existingData.AgentSubTypes, additionalAgentSubTypes);
-                            if additionalSubPoolData.SubPoolInitialMinSize ~= nil then
-                                existingData.SubPoolInitialMinSize = additionalSubPoolData.SubPoolInitialMinSize;
-                            end
-
-                            if additionalSubPoolData.SubPoolMaxSize ~= nil then
-                                existingData.SubPoolMaxSize = additionalSubPoolData.SubPoolMaxSize;
+                        end
+                    -- If a pool has been marked for deletion or there are no longer any agent
+                    -- subTypes in it, remove the data
+                    elseif additionalSubPoolData == false or TableHasAnyValue(coreResources[key1].FactionPools[key2]) == false then
+                        coreResources[key1].FactionPools[key2] = nil;
+                    end
+                end
+            end
+            -- Now we do the heroes
+            if additionalFactionData.HeroPools ~= nil then
+                for key2, additionalSubPoolData in pairs(additionalFactionData.HeroPools) do
+                    if type(additionalSubPoolData) == "table" then
+                        if coreResources[key1] == nil then
+                            coreResources[key1] = additionalFactionData;
+                        else
+                            local existingData = coreResources[key1].HeroPools[key2];
+                            if existingData == nil then
+                                coreResources[key1].HeroPools[key2] = additionalSubPoolData;
+                            else
+                                local additionalAgentSubTypes = {};
+                                for key3, subPool in pairs(additionalSubPoolData.AgentSubTypes) do
+                                    -- If an agent has been marked for deletion from a pool
+                                    if subPool == false then
+                                        existingData.AgentSubTypes[key3] = nil;
+                                    else
+                                        additionalAgentSubTypes[key3] = subPool;
+                                    end
+                                end
+                                -- Add all the new agent sub types
+                                ConcatTableWithKeys(existingData.AgentSubTypes, additionalAgentSubTypes);
+                                if additionalSubPoolData.SubPoolInitialMinSize ~= nil then
+                                    existingData.SubPoolInitialMinSize = additionalSubPoolData.SubPoolInitialMinSize;
+                                end
+    
+                                if additionalSubPoolData.SubPoolMaxSize ~= nil then
+                                    existingData.SubPoolMaxSize = additionalSubPoolData.SubPoolMaxSize;
+                                end
                             end
                         end
+                    -- If a pool has been marked for deletion or there are no longer any agent
+                    -- subTypes in it, remove the data
+                    elseif additionalSubPoolData == false or TableHasAnyValue(coreResources[key1].HeroPools[key2]) == false then
+                        coreResources[key1].HeroPools[key2] = nil;
                     end
-                -- If a pool has been marked for deletion or there are no longer any agent
-                -- subTypes in it, remove the data
-                elseif additionalSubPoolData == false or TableHasAnyValue(coreResources[key1].FactionPools[key2]) == false then
-                    coreResources[key1].FactionPools[key2] = nil;
                 end
             end
-            -- Merge Default Lords data
-            if additionalFactionData.DefaultLords ~= nil then
-                if coreResources[key1].DefaultLords == nil then
-                    coreResources[key1].DefaultLords = {};
-                end
-                coreResources[key1].DefaultLords = additionalFactionData.DefaultLords;
-            end
-
             -- Merge replacement data
             if additionalFactionData.LordsToReplace ~= nil then
                 if coreResources[key1].LordsToReplace == nil then
@@ -130,23 +214,41 @@ _G.CRPResources = {
                 end
                 ConcatTableWithKeys(coreResources[key1].LordsToReplace, additionalFactionData.LordsToReplace);
             end
-
-            -- Merge Trait data
-            if additionalFactionData.Traits ~= nil then
-                if coreResources[key1].Traits == nil then
-                    coreResources[key1].Traits = {};
-                end
-                ConcatTableWithKeys(coreResources[key1].Traits, additionalFactionData.Traits);
+        end
+    end,
+    AddAdditionalSubcultureResources = function (subculture, resources)
+        local coreResources = _G.CRPResources.SubcultureResources[subculture];
+        for key1, additionalFactionData in pairs(resources) do
+            coreResources.DefaultLords = resources.DefaultLords;
+            for index, heroKey in pairs(additionalFactionData.Heroes) do
+                coreResources.Heroes[#coreResources.Heroes + 1] = heroKey;
             end
-
-            -- Merge Excluded Trait data
-            if additionalFactionData.ExcludedTraits ~= nil then
-                if coreResources[key1].ExcludedTraits == nil then
-                    coreResources[key1].ExcludedTraits = {};
+            for mountKey, mountData in pairs(additionalFactionData.MountData) do
+                if coreResources.MountData[mountKey] == nil then
+                    coreResources.MountData[mountKey] = mountData;
+                else
+                    if mountData.BonusCost ~= nil then
+                        coreResources.MountData[mountKey].BonusCost = mountData.BonusCost;
+                    end
+                    if mountData.Weighting ~= nil then
+                        coreResources.MountData[mountKey].Weighting = mountData.Weighting;
+                    end
                 end
-                ConcatTableWithKeys(coreResources[key1].ExcludedTraits, additionalFactionData.ExcludedTraits);
             end
-
+            for agentSubtypeKey, agentSubTypeData in pairs(additionalFactionData.AgentSubTypes) do
+                if coreResources.AgentSubTypes[agentSubtypeKey] == nil then
+                    coreResources.AgentSubTypes[agentSubtypeKey] = agentSubTypeData;
+                else
+                    if agentSubTypeData.HumanPlayerOnly ~= nil then
+                        coreResources.AgentSubTypes[agentSubtypeKey].HumanPlayerOnly = agentSubTypeData.HumanPlayerOnly;
+                    end
+                    if agentSubTypeData.Mounts ~= nil then
+                        for mountKey, mountData in pairs(agentSubTypeData.Mounts) do
+                            coreResources.AgentSubTypes[agentSubtypeKey].Mounts[mountKey] = mountData;
+                        end
+                    end
+                end
+            end
             -- Merge Reward Data
             if additionalFactionData.Rewards ~= nil then
                 if coreResources[key1].Rewards == nil then
