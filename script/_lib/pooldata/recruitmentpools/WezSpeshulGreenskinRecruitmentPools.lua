@@ -5,8 +5,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinShamans = {
                 AgentSubTypes = {
                     ws_grn_savage_orc_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 100,
                     },
                 },
             },
@@ -20,8 +19,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinShamans = {
                 AgentSubTypes = {
                     ws_grn_savage_orc_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 100,
                     },
                 },
             },
@@ -33,8 +31,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinShamans = {
                 AgentSubTypes = {
                     ws_grn_savage_orc_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 100,
                     },
                 },
             },

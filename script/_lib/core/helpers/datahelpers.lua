@@ -55,6 +55,14 @@ function FindTableObjectByKeyPartial(objectList, partialValue)
     end
 end
 
+function TableHasSpecifiedValue(table, valueToFind)
+    for key, value in pairs(table) do
+        if value == valueToFind then
+            return value;
+        end
+    end
+end
+
 function CreateValidLuaTableKey(value)
     -- This removes any spaces within names, eg the surname "Von Carstein";
     -- Otherwise the key is invalid and the character won't be tracked

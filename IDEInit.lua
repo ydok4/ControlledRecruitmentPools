@@ -5,7 +5,7 @@ testCharacter = {
     cqi = function() return 123 end,
     get_forename = function() return "Direfan"; end,
     get_surname = function() return "Cylostra"; end,
-    character_subtype_key = function() return "AK_hef_seahelm"; end,
+    character_subtype_key = function() return "wh2_main_lzd_saurus_scar_veteran"; end,
     command_queue_index = function() end,
     has_military_force = function() return true end,
     military_force = function() return {
@@ -31,13 +31,13 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh_main_emp_empire";
+        return "wh_dlc03_bst_beastmen";
     end,
     culture = function()
-        return "wh_main_emp_empire";
+        return "wh_dlc03_bst_beastmen";
     end,
     subculture = function()
-        return "wh_main_sc_emp_empire";
+        return "wh_dlc03_sc_bst_beastmen";
     end,
     character_list = function()
         return {
@@ -311,8 +311,10 @@ mockSaveData = {
 slot_1 = {
     has_building = function() return true; end,
     building = function() return {
+        is_null_interface = function() return false; end,
         name = function() return "wh2_main_def_sorcery_1"; end,
-        chain = function() return "wh2_main_def_sorcery"; end,
+        chain = function() return "wh_dlc05_wef_tree_spirits"; end,
+        superchain = function() return "wh_main_sch_settlement_major"; end,
         building_level = function() return 1; end,
     }
     end,
@@ -321,8 +323,10 @@ slot_1 = {
 slot_2 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "wh2_main_def_worship_2"; end,
-        chain = function() return "wh2_main_def_worship"; end,
+        is_null_interface = function() return false; end,
+        name = function() return "wh2_main_def_murder_1"; end,
+        chain = function() return "wh_dlc05_wef_tree_spirits"; end,
+        superchain = function() return "wh_main_sch_settlement_major"; end,
         building_level = function() return 2; end,
     }
     end,
@@ -347,6 +351,9 @@ function get_cm()
                     return {
                         faction_by_key = function ()
                             return humanFaction;
+                        end,
+                        whose_turn_is_it = function()
+                            return testFaction;
                         end,
                         faction_list = function ()
                             return {
@@ -419,11 +426,13 @@ function get_cm()
                     } end ,
                 } end,
                 settlement = function() return {
+                    is_null_interface = function() return false; end,
                     get_climate = function() return "suitability_good"; end,
                     primary_slot = function() return {
                         is_null_interface = function() return false; end,
                         has_building = function() return true; end,
                         building = function() return {
+                            is_null_interface = function() return false; end,
                             name = function() return
                                 "main_settlement";
                             end,
@@ -442,6 +451,7 @@ function get_cm()
                         is_null_interface = function() return false; end,
                         has_building = function() return true; end,
                         building = function() return {
+                            is_null_interface = function() return false; end,
                             name = function() return
                                 "port";
                             end,
@@ -537,6 +547,7 @@ function get_cm()
         appoint_character_to_most_expensive_force = function() end,
         change_localised_faction_name = function() end,
         apply_custom_effect_bundle_to_faction = function() end,
+        force_add_skill = function() end,
     };
 end
 
@@ -659,15 +670,19 @@ out = function(text)
   print(text);
 end
 
+require 'script/campaign/mod/a_crp_cataph_dragon_mage'
 require 'script/campaign/mod/controlled_recruitment_pools'
 require 'script/campaign/mod/z_crp_cataph_patch'
+require 'script/campaign/main_warhammer/mod/z_crp_cataph_patch_lichemaster'
 require 'script/campaign/mod/z_crp_deco_goblin_patch'
 require 'script/campaign/mod/z_crp_mixu_patch'
+
 
 math.randomseed(os.time())
 
 -- This is used in game by Warhammer but we have it here so it won't throw errors when running
 -- in ZeroBrane IDE
+a_crp_cataph_dragon_mage();
 controlled_recruitment_pools();
 crp = _G.crp;
 
@@ -713,7 +728,7 @@ local MockContext_CRP_AppointGeneralOpened = {
 }
 mock_listeners:trigger_listener(MockContext_CRP_AppointGeneralOpened);
 
-local MockContext_CRP_DiplomacyLordImpacts = {
+--[[local MockContext_CRP_DiplomacyLordImpacts = {
     Key = "CRP_DiplomacyLordImpacts",
     Context = {
         proposer = function() return testFaction; end,
@@ -721,14 +736,14 @@ local MockContext_CRP_DiplomacyLordImpacts = {
         is_alliance = function() return true; end,
     },
 }
-mock_listeners:trigger_listener(MockContext_CRP_DiplomacyLordImpacts);
+mock_listeners:trigger_listener(MockContext_CRP_DiplomacyLordImpacts);--]]
 
 
 local CRP_CheckHordeBuildingRewards = {
     Key = "CRP_CheckHordeBuildingRewards",
     Context = {
         character = function() return testCharacter; end,
-        building = function() return "wh2_main_def_worship_1"; end,
+        building = function() return "wh_dlc03_horde_beastmen_arcane_2"; end,
     },
 };
 mock_listeners:trigger_listener(CRP_CheckHordeBuildingRewards);
@@ -740,6 +755,15 @@ local CRP_UpdateBuildingFactionPoolLimits = {
     },
 };
 mock_listeners:trigger_listener(CRP_UpdateBuildingFactionPoolLimits);
+
+local CRP_UpdateAgentLimits = {
+    Key = "CRP_UpdateAgentLimits",
+    Context = {
+        faction = function() return humanFaction; end,
+    },
+};
+mock_listeners:trigger_listener(CRP_UpdateAgentLimits);
+
 
 out("CRP: Saving callback");
 InitialiseSaveHelper(cm, context);

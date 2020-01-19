@@ -2,11 +2,22 @@ function GetKislevSubcultureResources()
     return {
         DefaultLords = {"ksl_lord"},
         Rewards = {
-
+            wh_main_sch_settlement_major = {
+                Pools = {
+                    "EmpireGenerals",
+                },
+                MinimumRequireBuildingLevel = 3,
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = false,
+                Type = "set",
+            },
         },
         Heroes = {
-            "emp_bright_wizard",
-            "emp_captain",
+            "ksl_bright_wizard",
+            "ksl_captain",
+            "emp_witch_hunter",
         },
         MountData = {
             Unmounted = {

@@ -10,13 +10,14 @@ function CharacterGenerator:new (o)
     return o;
 end
 
-function CharacterGenerator:Initialise(crpLords, enableLogging)
+function CharacterGenerator:Initialise(enableLogging, crpLords)
     self.Logger = Logger:new({});
     self.Logger:Initialise("CharacterGenerator.txt", enableLogging);
     self.Logger:Log_Start();
-    RecalculatePoolLimits();
     -- If crplords is nil it wipes the key
-    self.CrpLordsInPools = crpLords;
+    if crpLords ~= nil then
+        self.CrpLordsInPools = crpLords;
+    end
     -- Load add ons
     -- Load Gunking's elf names
     local newElfNameKey = effect.get_localised_string("names_name_1550000001");
@@ -148,8 +149,10 @@ function CharacterGenerator:GetCharacterNameForSubculture(faction, agentSubType)
     local forename_chance = self:GetForeNameChance(factionSubculture);
 
     local factionLords = {};
-    if self.CrpLordsInPools ~= nil then
-        factionLords = self.CrpLordsInPools[factionName];
+    if self.CrpLordsInPools ~= nil
+    and self.CrpLordsInPools[factionName] ~= nil
+    and self.CrpLordsInPools[factionName][agentSubType] ~= nil then
+        factionLords = self.CrpLordsInPools[factionName][agentSubType];
     end
 
     local failSafe = 0;

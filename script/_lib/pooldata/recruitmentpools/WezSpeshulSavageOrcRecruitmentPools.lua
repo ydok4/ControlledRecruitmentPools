@@ -5,8 +5,7 @@ SavageOrcRecruitmentPoolData =  {
             SavageOrcShamans = {
                 AgentSubTypes = {
                     ws_grn_savage_orc_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 3,
+                        MaximumPercentage = 100,
                     },
                 },
                 SubPoolInitialMinSize = 1,

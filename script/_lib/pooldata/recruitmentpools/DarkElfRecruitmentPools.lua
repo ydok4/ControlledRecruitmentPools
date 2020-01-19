@@ -6,20 +6,25 @@ function GetDarkElfRecruitmentPoolData()
                 Masters = {
                     AgentSubTypes = {
                         wh2_dlc14_def_master = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
+                KhainiteAssassins = {
+                    AgentSubTypes = {
+                        wh2_main_def_khainite_assassin = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
                 DeathHags = {
                     AgentSubTypes = {
                         wh2_main_def_death_hag = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -28,29 +33,19 @@ function GetDarkElfRecruitmentPoolData()
                 Sorceresses = {
                     AgentSubTypes = {
                         wh2_dlc10_def_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -63,14 +58,10 @@ function GetDarkElfRecruitmentPoolData()
                 DreadLords = {
                     AgentSubTypes = {
                         wh2_main_def_dreadlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
-                            BonusCost = 0,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_def_dreadlord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
-                            BonusCost = 0,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -79,40 +70,28 @@ function GetDarkElfRecruitmentPoolData()
                 BeastMasterPool = {
                     AgentSubTypes = {
                         wh2_dlc14_def_high_beastmaster = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
-                        },
+                            MaximumPercentage = 100,
+                         },
                     },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 1,
                 },
-                SorceressSupremePool = {
+                SupremeSorceressPool = {
                     AgentSubTypes = {
                         wh2_dlc10_def_supreme_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 150,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 150,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 150,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 150,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 150,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -129,9 +108,7 @@ function GetDarkElfRecruitmentPoolData()
                 DeathHags = {
                     AgentSubTypes = {
                         wh2_main_def_death_hag = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -140,9 +117,7 @@ function GetDarkElfRecruitmentPoolData()
                 Masters = {
                     AgentSubTypes = {
                         wh2_dlc14_def_master = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -151,9 +126,7 @@ function GetDarkElfRecruitmentPoolData()
                 KhainiteAssassins = {
                     AgentSubTypes = {
                         wh2_main_def_khainite_assassin = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -162,29 +135,19 @@ function GetDarkElfRecruitmentPoolData()
                 Sorceresses = {
                     AgentSubTypes = {
                         wh2_dlc10_def_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -196,12 +159,10 @@ function GetDarkElfRecruitmentPoolData()
                 DreadLords = {
                     AgentSubTypes = {
                         wh2_main_def_dreadlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_def_dreadlord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -210,34 +171,28 @@ function GetDarkElfRecruitmentPoolData()
                 BeastMasterPool = {
                     AgentSubTypes = {
                         wh2_dlc14_def_high_beastmaster = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 1,
                 },
-                SorceressSupremePool = {
+                SupremeSorceressPool = {
                     AgentSubTypes = {
                         wh2_dlc10_def_supreme_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -251,9 +206,7 @@ function GetDarkElfRecruitmentPoolData()
                 DeathHags = {
                     AgentSubTypes = {
                         wh2_main_def_death_hag = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -262,9 +215,7 @@ function GetDarkElfRecruitmentPoolData()
                 Masters = {
                     AgentSubTypes = {
                         wh2_dlc14_def_master = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -273,9 +224,7 @@ function GetDarkElfRecruitmentPoolData()
                 KhainiteAssassin = {
                     AgentSubTypes = {
                         wh2_main_def_khainite_assassin = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -284,29 +233,19 @@ function GetDarkElfRecruitmentPoolData()
                 Sorceresses = {
                     AgentSubTypes = {
                         wh2_dlc10_def_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
-                        },
+                            MaximumPercentage = 20,
+                         },
                         wh2_dlc10_def_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -318,12 +257,10 @@ function GetDarkElfRecruitmentPoolData()
                 DreadLords = {
                     AgentSubTypes = {
                         wh2_main_def_dreadlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_def_dreadlord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -332,39 +269,28 @@ function GetDarkElfRecruitmentPoolData()
                 BeastMasterPool = {
                     AgentSubTypes = {
                         wh2_dlc14_def_high_beastmaster = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
-                SorceressSupremePool = {
+                SupremeSorceressPool = {
                     AgentSubTypes = {
                         wh2_dlc10_def_supreme_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 0,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 3,
@@ -379,9 +305,7 @@ function GetDarkElfRecruitmentPoolData()
                 DeathHags = {
                     AgentSubTypes = {
                         wh2_main_def_death_hag = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -390,9 +314,7 @@ function GetDarkElfRecruitmentPoolData()
                 Masters = {
                     AgentSubTypes = {
                         wh2_dlc14_def_master = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -401,9 +323,7 @@ function GetDarkElfRecruitmentPoolData()
                 KhainiteAssassin = {
                     AgentSubTypes = {
                         wh2_main_def_khainite_assassin = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -412,29 +332,19 @@ function GetDarkElfRecruitmentPoolData()
                 Sorceresses = {
                     AgentSubTypes = {
                         wh2_dlc10_def_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -446,12 +356,10 @@ function GetDarkElfRecruitmentPoolData()
                 DreadLords = {
                     AgentSubTypes = {
                         wh2_main_def_dreadlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_def_dreadlord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -460,34 +368,28 @@ function GetDarkElfRecruitmentPoolData()
                 BeastMasterPool = {
                     AgentSubTypes = {
                         wh2_dlc14_def_high_beastmaster = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 1,
                 },
-                SorceressSupremePool = {
+                SupremeSorceressPool = {
                     AgentSubTypes = {
                         wh2_dlc10_def_supreme_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -502,9 +404,7 @@ function GetDarkElfRecruitmentPoolData()
                 DeathHags = {
                     AgentSubTypes = {
                         wh2_main_def_death_hag = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -513,9 +413,7 @@ function GetDarkElfRecruitmentPoolData()
                 Masters = {
                     AgentSubTypes = {
                         wh2_dlc14_def_master = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -524,9 +422,7 @@ function GetDarkElfRecruitmentPoolData()
                 KhainiteAssassin = {
                     AgentSubTypes = {
                         wh2_main_def_khainite_assassin = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -535,29 +431,19 @@ function GetDarkElfRecruitmentPoolData()
                 Sorceresses = {
                     AgentSubTypes = {
                         wh2_dlc10_def_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_main_def_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -569,12 +455,10 @@ function GetDarkElfRecruitmentPoolData()
                 DreadLords = {
                     AgentSubTypes = {
                         wh2_main_def_dreadlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_def_dreadlord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -583,34 +467,28 @@ function GetDarkElfRecruitmentPoolData()
                 BeastMasterPool = {
                     AgentSubTypes = {
                         wh2_dlc14_def_high_beastmaster = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 1,
                 },
-                SorceressSupremePool = {
+                SupremeSorceressPool = {
                     AgentSubTypes = {
                         wh2_dlc10_def_supreme_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -625,9 +503,7 @@ function GetDarkElfRecruitmentPoolData()
                 DeathHags = {
                     AgentSubTypes = {
                         wh2_main_def_death_hag = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -636,9 +512,7 @@ function GetDarkElfRecruitmentPoolData()
                 Masters = {
                     AgentSubTypes = {
                         wh2_dlc14_def_master = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -647,9 +521,7 @@ function GetDarkElfRecruitmentPoolData()
                 KhainiteAssassin = {
                     AgentSubTypes = {
                         wh2_main_def_khainite_assassin = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -658,29 +530,19 @@ function GetDarkElfRecruitmentPoolData()
                 Sorceresses = {
                     AgentSubTypes = {
                         wh2_dlc10_def_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                         wh2_dlc10_def_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                         wh2_main_def_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                         wh2_main_def_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                         wh2_main_def_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -692,12 +554,10 @@ function GetDarkElfRecruitmentPoolData()
                 DreadLords = {
                     AgentSubTypes = {
                         wh2_main_def_dreadlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_def_dreadlord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -706,34 +566,28 @@ function GetDarkElfRecruitmentPoolData()
                 BeastMasterPool = {
                     AgentSubTypes = {
                         wh2_dlc14_def_high_beastmaster = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
-                SorceressSupremePool = {
+                SupremeSorceressPool = {
                     AgentSubTypes = {
                         wh2_dlc10_def_supreme_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -748,38 +602,31 @@ function GetDarkElfRecruitmentPoolData()
                 DreadLords = {
                     AgentSubTypes = {
                         wh2_main_def_dreadlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_def_dreadlord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 3,
                 },
-                SorceressSupremePool = {
+                SupremeSorceressPool = {
                     AgentSubTypes = {
                         wh2_dlc10_def_supreme_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -788,8 +635,7 @@ function GetDarkElfRecruitmentPoolData()
                 BeastMasterPool = {
                     AgentSubTypes = {
                         wh2_dlc14_def_high_beastmaster = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -803,38 +649,31 @@ function GetDarkElfRecruitmentPoolData()
                 DreadLords = {
                     AgentSubTypes = {
                         wh2_main_def_dreadlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_def_dreadlord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
-                SorceressSupremePool = {
+                SupremeSorceressPool = {
                     AgentSubTypes = {
                         wh2_dlc10_def_supreme_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -843,8 +682,7 @@ function GetDarkElfRecruitmentPoolData()
                 BeastMasterPool = {
                     AgentSubTypes = {
                         wh2_dlc14_def_high_beastmaster = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -858,47 +696,35 @@ function GetDarkElfRecruitmentPoolData()
                 DreadLords = {
                     AgentSubTypes = {
                         wh2_main_def_dreadlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_def_dreadlord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
-                SorceressSupremePool = {
+                SupremeSorceressPool = {
                     AgentSubTypes = {
                         wh2_dlc10_def_supreme_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 0,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                     },
-                    SubPoolInitialMinSize = 5,
-                    SubPoolMaxSize = 8,
+                    SubPoolInitialMinSize = 3,
+                    SubPoolMaxSize = 4,
                 },
             },
         },
@@ -908,47 +734,35 @@ function GetDarkElfRecruitmentPoolData()
                 DreadLords = {
                     AgentSubTypes = {
                         wh2_main_def_dreadlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_def_dreadlord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
-                SorceressSupremePool = {
+                SupremeSorceressPool = {
                     AgentSubTypes = {
                         wh2_dlc10_def_supreme_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 0,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                     },
-                    SubPoolInitialMinSize = 4,
-                    SubPoolMaxSize = 5,
+                    SubPoolInitialMinSize = 3,
+                    SubPoolMaxSize = 4,
                 },
             },
         },
@@ -957,47 +771,35 @@ function GetDarkElfRecruitmentPoolData()
                 DreadLords = {
                     AgentSubTypes = {
                         wh2_main_def_dreadlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_def_dreadlord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
-                SorceressSupremePool = {
+                SupremeSorceressPool = {
                     AgentSubTypes = {
                         wh2_dlc10_def_supreme_sorceress_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_dark = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 0,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc10_def_supreme_sorceress_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 20,
                         },
                     },
-                    SubPoolInitialMinSize = 4,
-                    SubPoolMaxSize = 5,
+                    SubPoolInitialMinSize = 3,
+                    SubPoolMaxSize = 4,
                 },
             },
         },

@@ -48,18 +48,19 @@ function SaveCharacterData(crp)
 
     for factionKey, factionLords in pairs(crp.CRPLordsInPools) do
         local characterKeysForFaction = {};
-        out("CRP: Adding faction key: "..factionKey);
-        for characterKey, characterData in pairs(factionLords) do
-            characterCount = characterCount + 1;
-            local innateTrait = characterData.InnateTrait;
-            if innateTrait == nil then
-                innateTrait = "";
-            end
-            out("CRP: Adding character key and character: "..characterKey);
-            if characterKey == "initialised" then
-                nthTable[factionKey..characterKey] = "initialised";
-            else
-                nthTable[factionKey..characterKey] = {
+        if factionKey == "wh_main_grn_skull-takerz" then
+            factionKey = "wh_main_grn_skull_takerz";
+        end
+        --out("CRP: Adding faction key: "..factionKey);
+        for agentSubTypeKey, characters in pairs(factionLords) do
+            for characterKey, characterData in pairs(characters) do
+                characterCount = characterCount + 1;
+                local innateTrait = characterData.InnateTrait;
+                if innateTrait == nil then
+                    innateTrait = "";
+                end
+                --out("CRP: Adding character key and character: "..characterKey.." subtype: "..characterData.SubType.." faction: "..factionKey);
+                nthTable[factionKey.."/"..characterData.SubType.."/"..characterKey] = {
                     innateTrait,
                     characterData.SubType,
                     characterData.ArtSetId,
@@ -70,16 +71,15 @@ function SaveCharacterData(crp)
                     characterData.IsRecruited,
                     characterData.ExtraCost
                 };
+                if characterCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then
+                    crp.Logger:Log("Saving table "..tostring(tableCount));
+                    out("CRP: Saving table "..tostring(tableCount));
+                    cm:save_named_value("crp_lord_pools_characters_"..tableCount, nthTable, context);
+                    tableCount = tableCount + 1;
+                    nthTable = {};
+                end
+                characterKeysForFaction[#characterKeysForFaction + 1] = factionKey.."/".. characterData.SubType.."/"..characterKey;
             end
-
-            if characterCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then
-                crp.Logger:Log("Saving table "..tostring(tableCount));
-                out("CRP: Saving table "..tostring(tableCount));
-                cm:save_named_value("crp_lord_pools_characters_"..tableCount, nthTable, context);
-                tableCount = tableCount + 1;
-                nthTable = {};
-            end
-            characterKeysForFaction[#characterKeysForFaction + 1] = characterKey;
         end
         --crp.Logger:Log("Finished adding characters for faction: "..factionKey);
         serialised_save_table_factions[factionKey] = characterKeysForFaction;
@@ -119,6 +119,7 @@ function SaveFactionCharacterPoolData(crp)
             --crp.Logger:Log("Saving faction resources for "..factionResourceKey);
             if cultureResourceKey ~= factionResourceKey then
                 local factionPoolKeys = {};
+                serialised_faction_resources[factionResourceKey] = { cultureResourceKey, factionResourceData.HeroPoolMaxSize, factionResourceData.LordPoolMaxSize};
                 -- Heroes
                 for factionPoolKey, factionPoolData in pairs(factionResourceData.HeroPools) do
                     serialised_faction_pool_resources[factionResourceKey..factionPoolKey] = { factionPoolKey, factionPoolData.SubPoolInitialMinSize, factionPoolData.SubPoolMaxSize};
@@ -127,7 +128,7 @@ function SaveFactionCharacterPoolData(crp)
                         if agentSubTypeData == false then
                             serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, nil, nil, nil, false};
                         else
-                            serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, agentSubTypeData.MinimumAmount, agentSubTypeData.MaximumAmount, agentSubTypeData.HumanPlayerOnly, true};
+                            serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, agentSubTypeData.MaximumPercentage, agentSubTypeData.HumanPlayerOnly, true};
                         end
                         factionPoolAgentKeys[#factionPoolAgentKeys + 1] = agentSubTypeKey;
                     end
@@ -135,7 +136,6 @@ function SaveFactionCharacterPoolData(crp)
                     factionPoolKeys[#factionPoolKeys + 1] = factionPoolKey;
                 end
                 -- Lords
-                serialised_faction_resources[factionResourceKey] = { cultureResourceKey, factionResourceData.HeroPoolMaxSize, factionResourceData.LordPoolMaxSize};
                 for factionPoolKey, factionPoolData in pairs(factionResourceData.FactionPools) do
                     serialised_faction_pool_resources[factionResourceKey..factionPoolKey] = { factionPoolKey, factionPoolData.SubPoolInitialMinSize, factionPoolData.SubPoolMaxSize};
                     local factionPoolAgentKeys = {};
@@ -143,7 +143,7 @@ function SaveFactionCharacterPoolData(crp)
                         if agentSubTypeData == false then
                             serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, nil, nil, nil, false};
                         else
-                            serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, agentSubTypeData.MinimumAmount, agentSubTypeData.MaximumAmount, agentSubTypeData.HumanPlayerOnly, true};
+                            serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, agentSubTypeData.MaximumPercentage, agentSubTypeData.HumanPlayerOnly, true};
                         end
                         factionPoolAgentKeys[#factionPoolAgentKeys + 1] = agentSubTypeKey;
                     end

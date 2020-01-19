@@ -71,33 +71,45 @@ function LoadCharacterData(crp)
     end
 
     for characterKey, characterData in pairs(serialised_save_table_characters) do
-        out("CRP: Saved character key is "..characterKey);
+        --out("CRP: Saved character key is "..characterKey);
     end
 
     local serialised_save_table_factions = cm:load_named_value("crp_lord_pools_faction", {}, context);
     out("CRP: Loaded crp_lord_pools_faction");
     for factionKey, factionCharacterKeys in pairs(serialised_save_table_factions) do
+        if factionKey == "wh_main_grn_skull-takerz" then
+            factionKey = "wh_main_grn_skull_takerz";
+        end
         crp.CRPLordsInPools[factionKey] = {};
         --out("CRP: Loading faction "..factionKey);
-        for index, characterKey in pairs(factionCharacterKeys) do
-            local characterData = serialised_save_table_characters[factionKey..characterKey];
-            if characterData ~= nil and characterData ~= {} then
-                if characterKey == "initialised" then
-                    crp.CRPLordsInPools[factionKey][characterKey] = "initialised";
-                else
-                    local mappedCharacter = {
-                        InnateTrait = characterData[1],
-                        SubType = characterData[2],
-                        ArtSetId = characterData[3],
-                        HomeRegion = characterData[4],
-                        Name = characterData[5],
-                        Mounts = characterData[6],
-                        RemoveImmortality = characterData[7],
-                        IsRecruited = characterData[8],
-                        ExtraCost = characterData[9],
-                    };
-                    crp.CRPLordsInPools[factionKey][characterKey] = mappedCharacter;
+        for index, fullCharacterKey in pairs(factionCharacterKeys) do
+            --out("CRP: fullCharacterKey: "..fullCharacterKey);
+            local agentSubTypeKey = string.match(fullCharacterKey, factionKey.."/(.*)/");
+            --out("CRP: agentSubTypeKey: "..agentSubTypeKey);
+            local characterKey = string.match(fullCharacterKey, factionKey.."/"..agentSubTypeKey.."/(.*)");
+            --out("CRP: characterKey: "..agentSubTypeKey);
+            local characterData = serialised_save_table_characters[factionKey.."/"..agentSubTypeKey.."/"..characterKey];
+            --out("CRP: Checking character: "..characterKey);
+            if characterData ~= nil then
+                --out("CRP: Mapping character: "..characterKey);
+                local mappedCharacter = {
+                    InnateTrait = characterData[1],
+                    SubType = characterData[2],
+                    ArtSetId = characterData[3],
+                    HomeRegion = characterData[4],
+                    Name = characterData[5],
+                    Mounts = characterData[6],
+                    RemoveImmortality = characterData[7],
+                    IsRecruited = characterData[8],
+                    ExtraCost = characterData[9],
+                };
+                --out("CRP: Mapped character: "..characterKey);
+                if crp.CRPLordsInPools[factionKey][mappedCharacter.SubType] == nil then
+                    crp.CRPLordsInPools[factionKey][mappedCharacter.SubType] = {};
                 end
+                --out("CRP: Before assign to main object for character: "..characterKey);
+                crp.CRPLordsInPools[factionKey][mappedCharacter.SubType][characterKey] = mappedCharacter;
+                --out("CRP: After assign to main object for character: "..characterKey);
             else
                 out("CRP: Character data not found for "..characterKey.." in faction "..factionKey);
             end
@@ -127,24 +139,23 @@ function LoadFactionCharacterPoolData(crp)
         local factionCulture = factionResourceData[1];
         local mappedLordFactionPools = {};
         local mappedHeroFactionPools = {};
-        out("CRP: Loading resources for for faction "..factionResourceKey);
+        out("CRP: Loading resources for faction "..factionResourceKey);
         for factionPoolIndex, factionPoolKey in pairs(faction_pool_keys[factionResourceKey]) do
-            --out("CRP: Loading faction pool "..factionPoolKey);
+            out("CRP: Loading faction pool "..factionPoolKey);
             local factionPoolResources = faction_pool_resources[factionResourceKey..factionPoolKey];
             local factionAgentSubTypes = {};
             local agentType = nil;
             for agentSubTypeIndex, agentSubTypeKey in pairs(faction_pool_agent_keys[factionResourceKey..factionPoolKey]) do
-                --out("CRP: agent subtype data "..agentSubTypeKey);
+                out("CRP: agent subtype data "..agentSubTypeKey);
                 local agentResources = faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey];
                 local mappedAgentSubType = {};
                 -- 5 is where I store if the character is disabled.
-                if agentResources[5] == false then
+                if agentResources[4] == false then
                     --out("CRP: Agent sub type is disabled");
                     mappedAgentSubType = false;
                 else
-                    mappedAgentSubType["MinimumAmount"] = agentResources[2];
-                    mappedAgentSubType["MaximumAmount"] = agentResources[3];
-                    mappedAgentSubType["HumanPlayerOnly"] = agentResources[4];
+                    mappedAgentSubType["MaximumPercentage"] = agentResources[2];
+                    mappedAgentSubType["HumanPlayerOnly"] = agentResources[3];
                 end
                 --out("CRP: Mapped agent subtype");
                 factionAgentSubTypes[agentSubTypeKey] = mappedAgentSubType;
@@ -153,7 +164,7 @@ function LoadFactionCharacterPoolData(crp)
                 end
             end
             if agentType == "general" then
-                --out("CRP: Before mapping pool");
+                out("CRP: Before mapping pool");
                 mappedLordFactionPools[factionPoolKey] = {
                     AgentSubTypes = factionAgentSubTypes,
                     SubPoolInitialMinSize = factionPoolResources[2],
@@ -166,16 +177,16 @@ function LoadFactionCharacterPoolData(crp)
                     SubPoolMaxSize = factionPoolResources[3],
                 };
             end
-            --out("CRP: After mapping pool");
+            out("CRP: After mapping pool");
         end
-        --out("CRP: Before mapping faction");
+        out("CRP: Before mapping faction");
         local mappedFactionData = {
             HeroPools = mappedHeroFactionPools,
             HeroPoolMaxSize = factionResourceData[2],
             FactionPools = mappedLordFactionPools,
             LordPoolMaxSize = factionResourceData[3],
         };
-        --out("CRP: After mapping faction");
+        out("CRP: After mapping faction");
         if factionCulture == nil or _G.CRPResources.RecruitmentPoolResources[factionCulture] == nil then
             if _G.CRPResources.RecruitmentPoolResources["wh_rogue_armies"][factionResourceKey] == nil then
                 out("CRP: Rogue army faction data "..factionResourceKey.." is missing");
@@ -185,7 +196,7 @@ function LoadFactionCharacterPoolData(crp)
                 _G.CRPResources.RecruitmentPoolResources["wh_rogue_armies"][factionResourceKey].LordPoolMaxSize = mappedFactionData.LordPoolMaxSize;
             end
         else
-            --out("CRP: Found faction culture");
+            out("CRP: Found faction culture");
             _G.CRPResources.RecruitmentPoolResources[factionCulture][factionResourceKey].HeroPools = mappedFactionData.HeroPools;
             _G.CRPResources.RecruitmentPoolResources[factionCulture][factionResourceKey].FactionPools = mappedFactionData.FactionPools;
             _G.CRPResources.RecruitmentPoolResources[factionCulture][factionResourceKey].LordPoolMaxSize = mappedFactionData.LordPoolMaxSize;

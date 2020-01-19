@@ -3,14 +3,43 @@ function GetLizardmenRecruitmentPoolData()
         -- Default pool distribution
         wh2_main_sc_lzd_lizardmen = {
             HeroPools = {
+                ScarVeteran = {
+                    AgentSubTypes = {
+                        wh2_main_lzd_saurus_scar_veteran = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+                SkinkChiefs = {
+                    AgentSubTypes = {
+                        wh2_main_lzd_skink_chief = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+                SkinkPriests = {
+                    AgentSubTypes = {
+                        wh2_main_lzd_skink_priest_beasts = {
+                            MaximumPercentage = 50,
+                        },
+                        wh2_main_lzd_skink_priest_heavens = {
+                            MaximumPercentage = 50,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
             },
             HeroPoolMaxSize = 4,
             FactionPools = {
                 SaurusOldBloods = {
                     AgentSubTypes = {
                         wh2_main_lzd_saurus_old_blood = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                             HumanPlayerOnly = true,
                         },
                     },
@@ -18,7 +47,7 @@ function GetLizardmenRecruitmentPoolData()
                     SubPoolMaxSize = 4,
                 },
             },
-            LordPoolMaxSize = 7,
+            LordPoolMaxSize = 4,
         },
 
         -- Major Lizardmen Factions
@@ -28,8 +57,7 @@ function GetLizardmenRecruitmentPoolData()
                 SaurusOldBloods = {
                     AgentSubTypes = {
                         wh2_main_lzd_saurus_old_blood = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                             HumanPlayerOnly = true,
                         },
                     },
@@ -39,20 +67,16 @@ function GetLizardmenRecruitmentPoolData()
                 --[[Slann = {
                     AgentSubTypes = {
                         wh2_dlc13_lzd_slann_mage_priest_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 2,
                         },
                         wh2_dlc13_lzd_slann_mage_priest_high = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 2,
                         },
                         wh2_dlc13_lzd_slann_mage_priest_life = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 2,
                         },
                         wh2_main_lzd_slann_mage_priest = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 2,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -61,8 +85,7 @@ function GetLizardmenRecruitmentPoolData()
                 KroxigorAncients = {
                     AgentSubTypes = {
                         wh2_dlc13_lzd_kroxigor_ancient = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -71,15 +94,14 @@ function GetLizardmenRecruitmentPoolData()
                 RedCrestedSkinkChiefs = {
                     AgentSubTypes = {
                         wh2_dlc12_lzd_red_crested_skink_chief = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 1,
                 },
             },
-            LordPoolMaxSize = 7,
+            LordPoolMaxSize = 4,
         },
         -- Itza (Gor-Rok)
         wh2_main_lzd_itza = {
@@ -88,8 +110,7 @@ function GetLizardmenRecruitmentPoolData()
                 SaurusOldBloods = {
                     AgentSubTypes = {
                         wh2_main_lzd_saurus_old_blood = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                             HumanPlayerOnly = true,
                         },
                     },
@@ -99,27 +120,23 @@ function GetLizardmenRecruitmentPoolData()
                 --[[Slann = {
                     AgentSubTypes = {
                         wh2_dlc13_lzd_slann_mage_priest_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 2,
                         },
                         wh2_dlc13_lzd_slann_mage_priest_high = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 2,
                         },
                         wh2_dlc13_lzd_slann_mage_priest_life = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 2,
                         },
                         wh2_main_lzd_slann_mage_priest = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 2,
                         },
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 1,
                 },--]]
             },
-            LordPoolMaxSize = 7,
+            LordPoolMaxSize = 4,
         },
 
         -- Cult of Sotek
@@ -128,8 +145,7 @@ function GetLizardmenRecruitmentPoolData()
                 SaurusOldBloods = {
                     AgentSubTypes = {
                         wh2_main_lzd_saurus_old_blood = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 100,
                             HumanPlayerOnly = true,
                         },
                     },
@@ -139,37 +155,14 @@ function GetLizardmenRecruitmentPoolData()
                 RedCrestedSkinkChiefs = {
                     AgentSubTypes = {
                         wh2_dlc12_lzd_red_crested_skink_chief = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
             },
-            Rewards = {
-                alliance = {
-                    Pools = {
-                        RedCrestedSkinkChiefs = {
-                            AgentSubTypes = {
-                                wh2_dlc12_lzd_red_crested_skink_chief = {
-                                    MinimumAmount = 0,
-                                    MaximumAmount = 1,
-                                },
-                            },
-                            SubPoolInitialMinSize = 0,
-                            SubPoolMaxSize = 1,
-                        },
-                    },
-                    Events = {
-                        Incident = "wh_main_lzd_red_crested_skink",
-                        Dilemma = nil,
-                    },
-                    IncreasePoolSize = 1,
-                    Type = "increase",
-                },
-            },
-            LordPoolMaxSize = 7,
+            LordPoolMaxSize = 4,
         },
 
         -- Spirit of the Jungle (Nakai)
@@ -178,8 +171,7 @@ function GetLizardmenRecruitmentPoolData()
                 KroxigorAncients = {
                     AgentSubTypes = {
                         wh2_dlc13_lzd_kroxigor_ancient_horde = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -188,8 +180,7 @@ function GetLizardmenRecruitmentPoolData()
                 SaurusOldBloods = {
                     AgentSubTypes = {
                         wh2_dlc13_lzd_saurus_old_blood_horde = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                             HumanPlayerOnly = true,
                         },
                     },
@@ -197,32 +188,56 @@ function GetLizardmenRecruitmentPoolData()
                     SubPoolMaxSize = 3,
                 },
             },
-            RemapAgentKeys = {
-                wh2_dlc12_lzd_red_crested_skink_chief = "wh2_dlc13_lzd_red_crested_skink_chief_horde",
-            },
-            Rewards = {
-                alliance = {
-                    Pools = {
-                        KroxigorAncients = {
-                            AgentSubTypes = {
-                                wh2_dlc13_lzd_kroxigor_ancient = {
-                                    MinimumAmount = 0,
-                                    MaximumAmount = 1,
-                                },
-                            },
-                            SubPoolInitialMinSize = 0,
-                            SubPoolMaxSize = 1,
+            LordPoolMaxSize = 4,
+        },
+
+        -- Tlaqua (Tiq-tac-to)
+        wh2_main_lzd_tlaqua = {
+            HeroPools = {
+                ScarVeteran = {
+                    AgentSubTypes = {
+                        wh2_main_lzd_saurus_scar_veteran = {
+                            MaximumPercentage = 100,
                         },
                     },
-                    Events = {
-                        Incident = "wh_main_lzd_kroxigor_ancient",
-                        Dilemma = nil,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+                SkinkChiefs = {
+                    AgentSubTypes = {
+                        wh2_dlc12_lzd_tlaqua_skink_chief = {
+                            MaximumPercentage = 100,
+                        },
                     },
-                    IncreasePoolSize = 1,
-                    Type = "increase",
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+                SkinkPriests = {
+                    AgentSubTypes = {
+                        wh2_dlc12_lzd_tlaqua_skink_priest_beasts = {
+                            MaximumPercentage = 50,
+                        },
+                        wh2_dlc12_lzd_tlaqua_skink_priest_heavens = {
+                            MaximumPercentage = 50,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
-            LordPoolMaxSize = 6,
+            FactionPools = {
+                SaurusOldBloods = {
+                    AgentSubTypes = {
+                        wh2_main_lzd_saurus_old_blood = {
+                            MaximumPercentage = 100,
+                            HumanPlayerOnly = true,
+                        },
+                    },
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 4,
+                },
+            },
+            LordPoolMaxSize = 4,
         },
     };
 end

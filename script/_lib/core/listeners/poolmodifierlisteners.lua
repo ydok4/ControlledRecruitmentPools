@@ -35,13 +35,14 @@ function CRP_PoolModifierListeners(crp, core)
                 crp.Logger:Log("Matching culture, checking for pool changes");
 				if context:is_alliance() then
 					crp.Logger:Log("Is Alliance");
-					--crp.Logger:Log("Before getting rewards for proposer "..proposer:name());
-					CheckAndReceiveRewards(proposer, recipient, "alliance");
-					--crp.Logger:Log("Before getting rewards for receiver "..recipient:name());
-					CheckAndReceiveRewards(recipient, proposer, "alliance");
+					crp.Logger:Log("Before getting rewards for proposer "..proposer:name());
+					CheckAndReceiveRewards(crp, proposer, recipient, "alliance_"..recipient:name());
+					crp.Logger:Log("Before getting rewards for receiver "..recipient:name());
+					CheckAndReceiveRewards(crp, recipient, proposer, "alliance_"..proposer:name());
                 end
 			end
 			crp.Logger:Log("Finished positive diplomatic event");
+			crp.Logger:Log_Finished();
 		end,
 		true
 	);
@@ -57,7 +58,7 @@ function CRP_PoolModifierListeners(crp, core)
         end,
         function(context)
             local faction = context:character():faction();
-            CheckAndReceiveRewards(faction, faction, context:building());
+            CheckAndReceiveRewards(crp, faction, faction, context:building());
         end,
         true
 	);
@@ -72,32 +73,75 @@ function CRP_PoolModifierListeners(crp, core)
             or (IsRogueArmy(factionName)) and crp:IsExcludedFaction(faction) == false);
         end,
         function(context)
-            local faction = context:faction();
+			local faction = context:faction();
+			crp.Logger:Log("Check and receive rewards for faction: "..faction:name());
 			local regionList = faction:region_list();
 			local buildingCache = {};
+			local factionRewardData = GetRewardsForFaction(faction);
 			-- For every region the player controls
 			for i = 0, regionList:num_items() - 1 do
 				local region = regionList:item_at(i);
-				local settlementSlotList = region:settlement():slot_list();
-				for j = 0, settlementSlotList:num_items() - 1 do
-					local slot = settlementSlotList:item_at(j);
-					local building = slot:building();
-					local buildingChainKey = building:chain();
-					if buildingCache[buildingChainKey] == nil then
-						buildingCache[buildingChainKey] = {
-							Amount = 0,
-							AmountWithLevels = 0,
-						};
+				--crp.Logger:Log("Checking region: "..region:name());
+				if region:is_null_interface() == false
+				and region:is_abandoned() == false then
+					local settlement = region:settlement();
+					if settlement:is_null_interface() == false then
+						local settlementSlotList = settlement:slot_list();
+						for j = 0, settlementSlotList:num_items() - 1 do
+							local slot = settlementSlotList:item_at(j);
+							local building = slot:building();
+							if building:is_null_interface() == false then
+								--crp.Logger:Log("Checking building: "..building:name());
+								local buildingChainKey = building:chain();
+								--crp.Logger:Log("Checking building chain: "..buildingChainKey);
+								local buildingSuperChainKey = building:superchain();
+								--crp.Logger:Log("Checking building super chain: "..buildingSuperChainKey);
+								--crp.Logger:Log("Building level is: "..building:building_level());
+								if string.match(buildingSuperChainKey, "settlement_major")
+								or string.match(buildingSuperChainKey, "sch_special_settlement") then
+									buildingSuperChainKey = "wh_main_sch_settlement_major";
+								end
+								local foundRewards = {};
+								if factionRewardData[building:name()] ~= nil
+								and (factionRewardData[building:name()].MinimumRequireBuildingLevel == nil
+								or factionRewardData[building:name()].MinimumRequireBuildingLevel >= building:building_level()) then
+									foundRewards[building:name()] = factionRewardData[building:name()];
+								end
+								if factionRewardData[buildingChainKey] ~= nil
+								and (factionRewardData[buildingChainKey].MinimumRequireBuildingLevel == nil
+								or factionRewardData[buildingChainKey].MinimumRequireBuildingLevel >= building:building_level()) then
+									foundRewards[buildingChainKey] = factionRewardData[buildingChainKey];
+								end
+								if factionRewardData[buildingSuperChainKey]
+								and (factionRewardData[buildingSuperChainKey].MinimumRequireBuildingLevel == nil
+								or factionRewardData[buildingSuperChainKey].MinimumRequireBuildingLevel >= building:building_level()) then
+									foundRewards[buildingSuperChainKey] = factionRewardData[buildingSuperChainKey];
+								end
+								if TableHasAnyValue(foundRewards) then
+									for rewardKey, rewardData in pairs(foundRewards) do
+										if buildingCache[rewardKey] == nil then
+											buildingCache[rewardKey] = {
+												Amount = 0,
+												AmountWithLevels = 0,
+											};
+										end
+										buildingCache[rewardKey] = {
+											Amount = buildingCache[rewardKey].Amount + 1,
+											AmountWithLevels = buildingCache[rewardKey].AmountWithLevels + building:building_level(),
+										};
+									end
+								end
+							end
+						end
 					end
-					buildingCache[buildingChainKey] = {
-						Amount = buildingCache[buildingChainKey].Amount + 1,
-						AmountWithLevels = buildingCache[buildingChainKey].AmountWithLevels + building:building_level(),
-					};
 				end
 			end
-			for buildingChainKey, buildingCacheData in pairs(buildingCache) do
-				CheckAndReceiveRewards(faction, faction, buildingChainKey, buildingCacheData);
+			crp.Logger:Log("Completed building cache.");
+			for rewardKey, buildingCacheData in pairs(buildingCache) do
+				crp.Logger:Log("Building has reward: "..rewardKey);
+				CheckAndReceiveRewards(crp, faction, faction, rewardKey, buildingCacheData);
 			end
+			crp.Logger:Log_Finished();
         end,
         true
     );
@@ -121,7 +165,7 @@ function CRP_PoolModifierListeners(crp, core)
 					if region and not region:is_abandoned() then
 						if region:owning_faction():name() == "wh_main_dwf_karak_izor" then
 							crp.Logger:Log("Giving Belegar scripted reward");
-							CheckAndReceiveRewards(context:faction(), context:faction(), "scripted");
+							CheckAndReceiveRewards(crp, context:faction(), context:faction(), "scripted");
 							cm:set_saved_value("CRP_Belegar_received_reward", true);
 							crp.Logger:Log_Finished();
 						end
@@ -139,7 +183,7 @@ function CRP_PoolModifierListeners(crp, core)
 				end,
 				function(context)
 					crp.Logger:Log("Giving Belegar scripted reward");
-					CheckAndReceiveRewards(context:character():faction(), context:character():faction(), "scripted");
+					CheckAndReceiveRewards(crp, context:character():faction(), context:character():faction(), "scripted");
 					cm:set_saved_value("CRP_Belegar_received_reward", true);
 					crp.Logger:Log_Finished();
 				end,
@@ -151,7 +195,7 @@ function CRP_PoolModifierListeners(crp, core)
 	crp.Logger:Log("Finished setting up modifier listeners");
 end
 
-function CheckAndReceiveRewards(receivingFaction, givingFaction, type, cacheData)
+function CheckAndReceiveRewards(crp, receivingFaction, givingFaction, type, cacheData)
 	if cacheData == nil or cacheData.Amount == nil then
 		cacheData = {
 			Amount = 1,
@@ -160,16 +204,16 @@ function CheckAndReceiveRewards(receivingFaction, givingFaction, type, cacheData
 	--crp.Logger:Log("Check and receive rewards");
 	local rewardData = GetRewardsForFaction(givingFaction);
 	if rewardData ~= nil and rewardData[type] ~= nil then
-		--crp.Logger:Log("Got diplomacy rewards");
+		--crp.Logger:Log("Found rewards for matching key");
 		if IsUniquePoolResourcesForFaction(receivingFaction) then
-			--crp.Logger:Log("Is a unique faction pool");
-			pm:GiveReward(receivingFaction, rewardData[type], cacheData);
+			--crp.Logger:Log("Faction already has a unique faction pool");
+			pm:GiveReward(crp, receivingFaction, rewardData[type], cacheData);
 			--crp.Logger:Log("Gave reward");
 		else
-			--crp.Logger:Log("Creating a unique pool for the faction");
+			crp.Logger:Log("Creating a unique pool for the faction");
 			pm:CreateUniquePool(receivingFaction);
 			--crp.Logger:Log("Created unique pool for the faction");
-			CheckAndReceiveRewards(receivingFaction, givingFaction, type, cacheData);
+			CheckAndReceiveRewards(crp, receivingFaction, givingFaction, type, cacheData);
 		end
 	end
 end

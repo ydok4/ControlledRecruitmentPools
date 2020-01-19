@@ -2,7 +2,7 @@ require 'script/_lib/pooldata/subcultureresources/BeastmenSubcultureResources'
 require 'script/_lib/pooldata/subcultureresources/BretonniaSubcultureResources'
 require 'script/_lib/pooldata/subcultureresources/ChaosSubcultureResources'
 require 'script/_lib/pooldata/subcultureresources/DarkElfSubcultureResources'
-require 'script/_lib/pooldata/subcultureresources/DwarfSubcultureResources'
+require 'script/_lib/pooldata/subcultureresources/DwarfsSubcultureResources'
 require 'script/_lib/pooldata/subcultureresources/EmpireSubcultureResources'
 require 'script/_lib/pooldata/subcultureresources/GreenskinSubcultureResources'
 require 'script/_lib/pooldata/subcultureresources/SavageOrcSubcultureResources'
@@ -53,7 +53,7 @@ _G.CRPResources = {
         -- Dark Elves
         wh2_main_sc_def_dark_elves = GetDarkElfSubcultureResources(),
         -- Dwarfs
-        wh_main_sc_dwf_dwarfs = GetDwarfSubcultureResources(),
+        wh_main_sc_dwf_dwarfs = GetDwarfsSubcultureResources(),
         -- Empire
         wh_main_sc_emp_empire = GetEmpireSubcultureResources(),
         -- Greenskins
@@ -156,7 +156,7 @@ _G.CRPResources = {
                                 if additionalSubPoolData.SubPoolInitialMinSize ~= nil then
                                     existingData.SubPoolInitialMinSize = additionalSubPoolData.SubPoolInitialMinSize;
                                 end
-    
+
                                 if additionalSubPoolData.SubPoolMaxSize ~= nil then
                                     existingData.SubPoolMaxSize = additionalSubPoolData.SubPoolMaxSize;
                                 end
@@ -176,6 +176,9 @@ _G.CRPResources = {
                         if coreResources[key1] == nil then
                             coreResources[key1] = additionalFactionData;
                         else
+                            if coreResources[key1].HeroPools == nil then
+                                coreResources[key1].HeroPools = {};
+                            end
                             local existingData = coreResources[key1].HeroPools[key2];
                             if existingData == nil then
                                 coreResources[key1].HeroPools[key2] = additionalSubPoolData;
@@ -194,7 +197,7 @@ _G.CRPResources = {
                                 if additionalSubPoolData.SubPoolInitialMinSize ~= nil then
                                     existingData.SubPoolInitialMinSize = additionalSubPoolData.SubPoolInitialMinSize;
                                 end
-    
+
                                 if additionalSubPoolData.SubPoolMaxSize ~= nil then
                                     existingData.SubPoolMaxSize = additionalSubPoolData.SubPoolMaxSize;
                                 end
@@ -218,12 +221,16 @@ _G.CRPResources = {
     end,
     AddAdditionalSubcultureResources = function (subculture, resources)
         local coreResources = _G.CRPResources.SubcultureResources[subculture];
-        for key1, additionalFactionData in pairs(resources) do
+        if resources.DefaultLords ~= nil then
             coreResources.DefaultLords = resources.DefaultLords;
-            for index, heroKey in pairs(additionalFactionData.Heroes) do
+        end
+        if resources.Heroes ~= nil then
+            for index, heroKey in pairs(resources.Heroes) do
                 coreResources.Heroes[#coreResources.Heroes + 1] = heroKey;
             end
-            for mountKey, mountData in pairs(additionalFactionData.MountData) do
+        end
+        if resources.MountData ~= nil then
+            for mountKey, mountData in pairs(resources.MountData) do
                 if coreResources.MountData[mountKey] == nil then
                     coreResources.MountData[mountKey] = mountData;
                 else
@@ -235,7 +242,9 @@ _G.CRPResources = {
                     end
                 end
             end
-            for agentSubtypeKey, agentSubTypeData in pairs(additionalFactionData.AgentSubTypes) do
+        end
+        if resources.AgentSubTypes ~= nil then
+            for agentSubtypeKey, agentSubTypeData in pairs(resources.AgentSubTypes) do
                 if coreResources.AgentSubTypes[agentSubtypeKey] == nil then
                     coreResources.AgentSubTypes[agentSubtypeKey] = agentSubTypeData;
                 else
@@ -249,13 +258,13 @@ _G.CRPResources = {
                     end
                 end
             end
-            -- Merge Reward Data
-            if additionalFactionData.Rewards ~= nil then
-                if coreResources[key1].Rewards == nil then
-                    coreResources[key1].Rewards = {};
-                end
-                ConcatTableWithKeys(coreResources[key1].Rewards, additionalFactionData.Rewards);
+        end
+        -- Merge Reward Data
+        if resources.Rewards ~= nil then
+            if coreResources.Rewards == nil then
+                coreResources.Rewards = {};
             end
+            ConcatTableWithKeys(coreResources.Rewards, resources.Rewards);
         end
     end,
     AddAdditionalDBResources = function(dbResourceKey, resourceData)

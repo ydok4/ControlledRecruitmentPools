@@ -3,14 +3,37 @@ function GetBretonniaRecruitmentPoolData()
         -- Default pool distribution
         wh_main_sc_brt_bretonnia = {
             HeroPools = {
+                DamselPool = {
+                    AgentSubTypes = {
+                        brt_damsel = {
+                            MaximumPercentage = 33,
+                        },
+                        brt_damsel_beasts = {
+                            MaximumPercentage = 33,
+                        },
+                        brt_damsel_life = {
+                            MaximumPercentage = 33,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+                PaladinPool = {
+                    AgentSubTypes = {
+                        brt_paladin = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
             },
             HeroPoolMaxSize = 4,
             FactionPools = {
                 BretLordPool = {
                     AgentSubTypes = {
                         brt_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -19,16 +42,13 @@ function GetBretonniaRecruitmentPoolData()
                 ProphetessPool = {
                     AgentSubTypes = {
                         dlc07_brt_prophetess_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                         dlc07_brt_prophetess_heavens = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                         dlc07_brt_prophetess_life = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -45,8 +65,7 @@ function GetBretonniaRecruitmentPoolData()
                 BretLordPool = {
                     AgentSubTypes = {
                         brt_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 6,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -55,16 +74,13 @@ function GetBretonniaRecruitmentPoolData()
                 ProphetessPool = {
                     AgentSubTypes = {
                         dlc07_brt_prophetess_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                         dlc07_brt_prophetess_heavens = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                         dlc07_brt_prophetess_life = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -79,8 +95,7 @@ function GetBretonniaRecruitmentPoolData()
                 BretLordPool = {
                     AgentSubTypes = {
                         brt_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -89,16 +104,13 @@ function GetBretonniaRecruitmentPoolData()
                 ProphetessPool = {
                     AgentSubTypes = {
                         dlc07_brt_prophetess_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                         dlc07_brt_prophetess_heavens = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                         dlc07_brt_prophetess_life = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -114,8 +126,7 @@ function GetBretonniaRecruitmentPoolData()
                 BretLordPool = {
                     AgentSubTypes = {
                         brt_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                          },
                     },
                     SubPoolInitialMinSize = 1,
@@ -124,16 +135,13 @@ function GetBretonniaRecruitmentPoolData()
                 ProphetessPool = {
                     AgentSubTypes = {
                         dlc07_brt_prophetess_beasts = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 33,
                         },
                         dlc07_brt_prophetess_heavens = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 33,
                         },
                         dlc07_brt_prophetess_life = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 33,
                         },
                     },
                     SubPoolInitialMinSize = 1,

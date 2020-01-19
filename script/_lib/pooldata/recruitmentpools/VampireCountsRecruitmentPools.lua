@@ -3,14 +3,52 @@ function GetVampireCountsRecruitmentPoolData()
         -- Default pool distribution
         wh_main_sc_vmp_vampire_counts = {
             HeroPools = {
+                Necromancers = {
+                    AgentSubTypes = {
+                        vmp_necromancer = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 3,
+                },
+                Vampires = {
+                    AgentSubTypes = {
+                        vmp_vampire = {
+                            MaximumPercentage = 50,
+                        },
+                        wh_dlc05_vmp_vampire_shadow = {
+                            MaximumPercentage = 50,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 1,
+                },
+                Banshees = {
+                    AgentSubTypes = {
+                        vmp_necromancer = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 1,
+                },
+                WightKings = {
+                    AgentSubTypes = {
+                        vmp_wight_king = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 1,
+                },
             },
             HeroPoolMaxSize = 4,
             FactionPools = {
                 MasterNecromancers = {
                     AgentSubTypes = {
                         vmp_master_necromancer = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -27,8 +65,7 @@ function GetVampireCountsRecruitmentPoolData()
                 MasterNecromancers = {
                     AgentSubTypes = {
                         vmp_master_necromancer = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -37,16 +74,13 @@ function GetVampireCountsRecruitmentPoolData()
                 VampireLords = {
                     AgentSubTypes = {
                         vmp_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         dlc04_vmp_strigoi_ghoul_king = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         wh2_dlc11_vmp_bloodline_von_carstein = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -62,8 +96,7 @@ function GetVampireCountsRecruitmentPoolData()
                     MasterNecromancers = {
                         AgentSubTypes = {
                             vmp_master_necromancer = {
-                                MinimumAmount = 0,
-                                MaximumAmount = 3,
+                                MaximumPercentage = 100,
                             },
                         },
                         SubPoolInitialMinSize = 1,
@@ -71,16 +104,13 @@ function GetVampireCountsRecruitmentPoolData()
                     },
                     AgentSubTypes = {
                         vmp_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 60,
                         },
                         dlc04_vmp_strigoi_ghoul_king = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                         wh2_dlc11_vmp_bloodline_von_carstein = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 20,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -95,8 +125,7 @@ function GetVampireCountsRecruitmentPoolData()
                 MasterNecromancers = {
                     AgentSubTypes = {
                         vmp_master_necromancer = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -113,8 +142,7 @@ function GetVampireCountsRecruitmentPoolData()
                 MasterNecromancers = {
                     AgentSubTypes = {
                         vmp_master_necromancer = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                           },
                     },
                     SubPoolInitialMinSize = 2,
@@ -123,12 +151,10 @@ function GetVampireCountsRecruitmentPoolData()
                 VampireLords = {
                     AgentSubTypes = {
                         vmp_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 60,
                         },
                         wh2_dlc11_vmp_bloodline_blood_dragon = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 40,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -143,8 +169,7 @@ function GetVampireCountsRecruitmentPoolData()
                 MasterNecromancers = {
                     AgentSubTypes = {
                         vmp_master_necromancer = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -153,8 +178,7 @@ function GetVampireCountsRecruitmentPoolData()
                 VampireLords = {
                     AgentSubTypes = {
                         wh2_dlc11_vmp_bloodline_lahmian = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 5,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -178,8 +202,7 @@ function GetVampireCountsRecruitmentPoolData()
                 MasterNecromancers = {
                     AgentSubTypes = {
                         vmp_master_necromancer = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -188,12 +211,10 @@ function GetVampireCountsRecruitmentPoolData()
                 VampireLords = {
                     AgentSubTypes = {
                         dlc04_vmp_strigoi_ghoul_king = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 75,
                         },
                         wh2_dlc11_vmp_bloodline_strigoi = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -208,9 +229,8 @@ function GetVampireCountsRecruitmentPoolData()
                 MasterNecromancers = {
                     AgentSubTypes = {
                         vmp_master_necromancer = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
-                             },
+                            MaximumPercentage = 100,
+                        },
                     },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 4,
@@ -218,8 +238,7 @@ function GetVampireCountsRecruitmentPoolData()
                 VampireLords = {
                     AgentSubTypes = {
                         wh2_dlc11_vmp_bloodline_necrarch = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,

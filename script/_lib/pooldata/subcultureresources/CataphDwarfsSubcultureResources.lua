@@ -1,11 +1,7 @@
-function GetMixuEmpireSubcultureResources()
+function GetCataphDwarfsSubcultureResources()
     return {
-        Heroes = {
-            "emp_wizard_metal",
-        },
         AgentSubTypes = {
-            emp_wizard_metal = {
-                BonusCost = 75,
+            kraka_wardlord = {
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

@@ -40,7 +40,7 @@ function InitialiseResourcesCache()
 end
 
 function IsSupportedSubCulture(subculture)
-    if subculture == "rebels" or CRPRecruitmentPoolResourcesCache[subculture] then
+    if CRPRecruitmentPoolResourcesCache[subculture] then
         return true;
     else
         return false;
@@ -102,8 +102,14 @@ function GetReplacementLordsForFaction(faction)
     return factionResources.LordsToReplace;
 end
 
-function GetDefaultLordsForFaction(faction)
-    local subcultureResources = CRPSubcultureResourcesCache[faction:subculture()];
+function GetDefaultLordsForFaction(faction, subcultureKey)
+    local subculture = '';
+    if subcultureKey ~= nil then
+        subculture = subcultureKey;
+    else
+        subculture = faction:subculture();
+    end
+    local subcultureResources = CRPSubcultureResourcesCache[subculture];
     if subcultureResources == nil then
         return nil;
     end
@@ -126,7 +132,21 @@ function GetHeroesForFaction(faction)
     return subcultureResources.Heroes;
 end
 
-function GetAgentSubTypeResources(faction)
+function GetAgentSubTypeResourcesForCharacter(character)
+    local factionAgentSubTypeResources = GetAgentSubTypeResourcesForFaction(character:faction());
+    return factionAgentSubTypeResources[character:character_subtype_key()];
+end
+
+function IsSupportedSubtype(character)
+    local subcultureResources = CRPSubcultureResourcesCache[character:faction():subculture()];
+    if subcultureResources.AgentSubTypes[character:character_subtype_key()] ~= nil then
+        return true;
+    else
+        return false;
+    end
+end
+
+function GetAgentSubTypeResourcesForFaction(faction)
     local subcultureResources = CRPSubcultureResourcesCache[faction:subculture()];
     if subcultureResources == nil then
         return nil;
@@ -150,45 +170,94 @@ function SetSubCultureRecruitmentPoolsForFaction(faction)
     if faction:name() == "wh_main_grn_skull-takerz" then
         factionName = "wh_main_grn_skull_takerz";
     end
-
-    CRPRecruitmentPoolResourcesCache[faction:subculture()][factionName] = subCulturePoolResources[faction:subculture()];
+    local defaultResources = subCulturePoolResources[faction:subculture()];
+    CRPRecruitmentPoolResourcesCache[faction:subculture()][factionName] = {
+        HeroPools = {},
+        HeroPoolMaxSize = defaultResources.HeroPoolMaxSize,
+        FactionPools = {},
+        LordPoolMaxSize = defaultResources.LordPoolMaxSize,
+    };
+    local factionReference = CRPRecruitmentPoolResourcesCache[faction:subculture()][factionName];
+    for poolKey, poolData in pairs(defaultResources.HeroPools) do
+        factionReference.HeroPools[poolKey] = {
+            AgentSubTypes = {},
+            SubPoolInitialMinSize = poolData.SubPoolInitialMinSize,
+            SubPoolMaxSize = poolData.SubPoolMaxSize + 1,
+        };
+        for agentSubtypeKey, agentSubTypeData in pairs(poolData.AgentSubTypes) do
+            factionReference.HeroPools[poolKey].AgentSubTypes[agentSubtypeKey] = {
+                MaximumPercentage = agentSubTypeData.MaximumPercentage,
+            };
+        end
+    end
+    for poolKey, poolData in pairs(defaultResources.FactionPools) do
+        factionReference.FactionPools[poolKey] = {
+            AgentSubTypes = {},
+            SubPoolInitialMinSize = poolData.SubPoolInitialMinSize,
+            SubPoolMaxSize = poolData.SubPoolMaxSize + 1,
+        };
+        for agentSubtypeKey, agentSubTypeData in pairs(poolData.AgentSubTypes) do
+            factionReference.FactionPools[poolKey].AgentSubTypes[agentSubtypeKey] = {
+                MaximumPercentage = agentSubTypeData.MaximumPercentage,
+            };
+        end
+    end
 end
 
 -- The pool limit should be greater than or equal to the highest Agent Sub Type
 -- maximum limit in that pool
-function RecalculatePoolLimits()
-    for subcultureKey, subcultureLimits in pairs(CRPRecruitmentPoolResourcesCache) do
-        for factionKey, factionLimits in pairs(subcultureLimits) do
-            for factionPoolKey, factionPool in pairs(factionLimits.FactionPools) do
-                local subPoolMax = factionPool.SubPoolMaxSize;
-                if subPoolMax == nil then
-                    subPoolMax = 0;
-                end
-                local subPoolMin = factionPool.SubPoolInitialMinSize;
-                if subPoolMin == nil then
-                    subPoolMin = 0;
-                end
-                local highestMinimum = 0;
-                local highestMaximum = 0;
-                local calculatedMinimum = 0;
-
-                for agentSubTypeKey, agentSubType in pairs(factionPool.AgentSubTypes) do
-                    if agentSubType.MinimumAmount > highestMinimum then
-                        highestMinimum = agentSubType.MinimumAmount;
+function RecalculatePoolLimits(humanFaction, faction)
+    local humanFactionKey = humanFaction:name();
+    local subcultureKey = faction:subculture();
+    local subcultureResources = GetDefaultLordsForFaction(faction);
+    local defaultLords = {};
+    for index, agentSubtypeKey in pairs(subcultureResources) do
+        defaultLords[agentSubtypeKey] = true;
+    end
+    local factionKey = faction:name();
+    if CRPRecruitmentPoolResourcesCache[subcultureKey] ~= nil
+    and CRPRecruitmentPoolResourcesCache[subcultureKey][factionKey] ~= nil then
+        local factionLimits = CRPRecruitmentPoolResourcesCache[subcultureKey][factionKey];
+        -- Heroes
+        local totalMaxSizeOfHeroPools = 0;
+        local totalSizeOfDefaultHeroPools = 0;
+        for heroPoolKey, heroPool in pairs(factionLimits.HeroPools) do
+            totalMaxSizeOfHeroPools = totalMaxSizeOfHeroPools + heroPool.SubPoolMaxSize;
+            if subcultureResources ~= nil
+            and factionKey ~= humanFactionKey then
+                for agentSubtypeKey, agentSubTypeData in pairs(heroPool.AgentSubTypes) do
+                    if defaultLords[agentSubtypeKey] == true then
+                        totalSizeOfDefaultHeroPools = totalSizeOfDefaultHeroPools + heroPool.SubPoolMaxSize;
                     end
-
-                    if agentSubType.MaximumAmount > highestMaximum then
-                        highestMaximum = agentSubType.MaximumAmount;
+                end
+            end
+        end
+        if totalMaxSizeOfHeroPools - totalSizeOfDefaultHeroPools < factionLimits.HeroPoolMaxSize - totalSizeOfDefaultHeroPools then
+            for i = 1, (factionLimits.HeroPoolMaxSize - totalMaxSizeOfHeroPools - totalSizeOfDefaultHeroPools) do
+                if next(factionLimits.HeroPools) then
+                    local selectedPoolKey = GetRandomObjectKeyFromList(factionLimits.HeroPools);
+                    factionLimits.HeroPools[selectedPoolKey].SubPoolMaxSize = factionLimits.HeroPools[selectedPoolKey].SubPoolMaxSize + 1;
+                end
+            end
+        end
+        -- Lords
+        local totalMaxSizeOfLordPools = 0;
+        local totalSizeOfDefaultLordPools = 0;
+        for factionPoolKey, factionPool in pairs(factionLimits.FactionPools) do
+            totalMaxSizeOfLordPools = totalMaxSizeOfLordPools + factionPool.SubPoolMaxSize;
+            if subcultureResources ~= nil
+            and factionKey ~= humanFactionKey then
+                for agentSubtypeKey, agentSubTypeData in pairs(factionPool.AgentSubTypes) do
+                    if defaultLords[agentSubtypeKey] == true then
+                        totalSizeOfDefaultLordPools = totalSizeOfDefaultLordPools + factionPool.SubPoolMaxSize;
                     end
-
-                    calculatedMinimum = calculatedMinimum + agentSubType.MinimumAmount;
                 end
-                if subPoolMin < calculatedMinimum then
-                    factionPool.SubPoolInitialMinSize = calculatedMinimum;
-                end
-                if subPoolMax < calculatedMinimum + highestMaximum then
-                    factionPool.SubPoolMaxSize = calculatedMinimum + highestMaximum;
-                end
+            end
+        end
+        if totalMaxSizeOfLordPools - totalSizeOfDefaultLordPools < factionLimits.LordPoolMaxSize - totalSizeOfDefaultLordPools then
+            for i = 1, (factionLimits.LordPoolMaxSize - totalMaxSizeOfLordPools - totalSizeOfDefaultLordPools) do
+                local selectedPoolKey = GetRandomObjectKeyFromList(factionLimits.FactionPools);
+                factionLimits.FactionPools[selectedPoolKey].SubPoolMaxSize = factionLimits.FactionPools[selectedPoolKey].SubPoolMaxSize + 1;
             end
         end
     end

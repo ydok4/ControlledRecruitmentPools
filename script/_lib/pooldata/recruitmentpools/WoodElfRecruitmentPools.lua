@@ -3,18 +3,49 @@ function GetWoodElfRecruitmentPoolData()
         -- Default pool distribution
         wh_dlc05_sc_wef_wood_elves = {
             HeroPools = {
+                Spellsingers = {
+                    AgentSubTypes = {
+                        dlc05_wef_spellsinger_beasts = {
+                            MaximumPercentage = 33,
+                        },
+                        dlc05_wef_spellsinger_life  = {
+                            MaximumPercentage = 33,
+                        },
+                        dlc05_wef_spellsinger_shadow  = {
+                            MaximumPercentage = 33,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+                Waystalkers = {
+                    AgentSubTypes = {
+                        dlc05_wef_waystalker = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
+                BranchWraiths = {
+                    AgentSubTypes = {
+                        wh_dlc05_wef_branchwraith = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
             },
             HeroPoolMaxSize = 4,
             FactionPools = {
                 GladeLords = {
                     AgentSubTypes = {
                         dlc05_wef_glade_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
-                        dlc05_wef_glade_lord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                        dlc05_wef_glade_lord_fem = {
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -23,15 +54,14 @@ function GetWoodElfRecruitmentPoolData()
                 AncientTreeman = {
                     AgentSubTypes = {
                         dlc05_wef_ancient_treeman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 1,
                 },
             },
-            LordPoolMaxSize = 7,
+            LordPoolMaxSize = 4,
         },
 
         -- Major Factions
@@ -40,12 +70,10 @@ function GetWoodElfRecruitmentPoolData()
                 GladeLords = {
                     AgentSubTypes = {
                         dlc05_wef_glade_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                         dlc05_wef_glade_lord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -54,27 +82,24 @@ function GetWoodElfRecruitmentPoolData()
                 AncientTreeman = {
                     AgentSubTypes = {
                         dlc05_wef_ancient_treeman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 1,
                 },
             },
-            LordPoolMaxSize = 7,
+            LordPoolMaxSize = 4,
         },
         wh_dlc05_wef_argwylon = {
             FactionPools = {
                 GladeLords = {
                     AgentSubTypes = {
                         dlc05_wef_glade_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         dlc05_wef_glade_lord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -83,15 +108,14 @@ function GetWoodElfRecruitmentPoolData()
                 AncientTreeman = {
                     AgentSubTypes = {
                         dlc05_wef_ancient_treeman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
             },
-            LordPoolMaxSize = 7,
+            LordPoolMaxSize = 4,
         },
 
         -- Minor Factions
@@ -100,19 +124,17 @@ function GetWoodElfRecruitmentPoolData()
                 GladeLords = {
                     AgentSubTypes = {
                         dlc05_wef_glade_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         dlc05_wef_glade_lord_fem  = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
             },
-            LordPoolMaxSize = 6,
+            LordPoolMaxSize = 4,
         },
     };
 end

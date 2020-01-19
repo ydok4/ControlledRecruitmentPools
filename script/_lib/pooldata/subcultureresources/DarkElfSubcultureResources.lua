@@ -2,6 +2,17 @@ function GetDarkElfSubcultureResources()
     return {
         DefaultLords = {"wh2_main_def_dreadlord", "wh2_main_def_dreadlord_fem"},
         Rewards = {
+            wh_main_sch_settlement_major = {
+                Pools = {
+                    "DreadLords",
+                },
+                MinimumRequireBuildingLevel = 3,
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = false,
+                Type = "set",
+            },
             wh2_main_def_murder = {
                 Pools = {
                     "KhainiteAssassins",
@@ -9,7 +20,7 @@ function GetDarkElfSubcultureResources()
                 Events = {
                 },
                 IncreasePoolSize = 1,
-                UseLevelMultiplier = false,
+                UseLevelMultiplier = true,
                 Type = "set",
             },
             wh2_main_def_worship = {
@@ -19,7 +30,7 @@ function GetDarkElfSubcultureResources()
                 Events = {
                 },
                 IncreasePoolSize = 1,
-                UseLevelMultiplier = false,
+                UseLevelMultiplier = true,
                 Type = "set",
             },
             wh2_main_def_pleasure_cult = {
@@ -30,6 +41,16 @@ function GetDarkElfSubcultureResources()
                 },
                 IncreasePoolSize = 1,
                 UseLevelMultiplier = false,
+                MinimumLevel = 3,
+                Type = "set",
+            },
+            wh2_main_def_sorcery_2 = {
+                Pools = {
+                    "SupremeSorceressPool",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
                 Type = "set",
             },
             wh2_main_def_sorcery = {
@@ -39,6 +60,27 @@ function GetDarkElfSubcultureResources()
                 Events = {
                 },
                 IncreasePoolSize = 1,
+                UseLevelMultiplier = true,
+                Type = "set",
+            },
+            wh2_main_def_beasts_2 = {
+                Pools = {
+                    "BeastMasterPool",
+                },
+                MinimumRequireBuildingLevel = 1,
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = true,
+                Type = "set",
+            },
+            wh2_main_special_clar_karond_lairs = {
+                Pools = {
+                    "BeastMasterPool",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 2,
                 UseLevelMultiplier = false,
                 Type = "set",
             },
@@ -103,15 +145,19 @@ function GetDarkElfSubcultureResources()
                     },
                     wh2_dlc14_anc_mount_def_master_dark_steed = {
                         MountData = "DarkSteed",
+                        Skill = "wh2_dlc14_skill_def_master_mount_dark_steed",
                     },
                     wh2_dlc14_anc_mount_def_master_cold_one = {
                         MountData = "ColdOne",
+                        Skill = "wh2_dlc14_skill_def_master_mount_cold_one",
                     },
                     wh2_dlc14_anc_mount_def_master_dark_pegasus = {
                         MountData = "DarkPegasus",
+                        Skill = "wh2_dlc14_skill_def_master_mount_dark_pegasus",
                     },
                     wh2_dlc14_anc_mount_def_master_cold_one_chariot = {
                         MountData = "ColdOneChariot",
+                        Skill = "wh2_dlc14_skill_def_master_mount_cold_one_chariot",
                     },
                 },
             },
@@ -121,7 +167,14 @@ function GetDarkElfSubcultureResources()
                         MountData = "Unmounted",
                     },
                     wh2_main_anc_mount_def_death_hag_cauldron_of_blood = {
-                        MountData = "DeathHagCauldronOfBlood",
+                        MountData = "CauldronOfBlood",
+                    },
+                },
+            },
+            wh2_main_def_khainite_assassin = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
                     },
                 },
             },
@@ -181,10 +234,10 @@ function GetDarkElfSubcultureResources()
                     wh2_main_anc_mount_def_sorceress_fire_dark_steed = {
                         MountData = "DarkSteed",
                     },
-                    wh2_main_anc_mount_def_sorceress_fire_dark_pegasus = {
+                    wh2_main_anc_mount_def_sorceress_fire_dark_cold_one = {
                         MountData = "ColdOne",
                     },
-                    wh2_main_anc_mount_def_sorceress_fire_dark_steed = {
+                    wh2_main_anc_mount_def_sorceress_fire_dark_pegasus = {
                         MountData = "DarkPegasus",
                     },
                 },
@@ -252,13 +305,16 @@ function GetDarkElfSubcultureResources()
                     },
                     wh2_dlc14_anc_mount_def_high_beastmaster_scourgerunner_chariot = {
                         MountData = "ScourgeRunnerChariot",
+                        Skill = "wh2_dlc14_skill_def_high_beastmaster_mount_scourgerunner_chariot",
                     },
                     wh2_dlc14_anc_mount_def_high_beastmaster_manticore = {
                         MountData = "BeastMasterManticore",
+                        Skill = "wh2_dlc14_skill_def_high_beastmaster_mount_manticore",
                     },
                 },
             },
             wh2_dlc10_def_supreme_sorceress_beasts = {
+                BonusCost = 150,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
@@ -281,6 +337,7 @@ function GetDarkElfSubcultureResources()
                 },
             },
             wh2_dlc10_def_supreme_sorceress_dark = {
+                BonusCost = 150,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
@@ -303,6 +360,7 @@ function GetDarkElfSubcultureResources()
                 },
             },
             wh2_dlc10_def_supreme_sorceress_death = {
+                BonusCost = 150,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
@@ -325,6 +383,7 @@ function GetDarkElfSubcultureResources()
                 },
             },
             wh2_dlc10_def_supreme_sorceress_fire = {
+                BonusCost = 150,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
@@ -347,6 +406,7 @@ function GetDarkElfSubcultureResources()
                 },
             },
             wh2_dlc10_def_supreme_sorceress_shadow = {
+                BonusCost = 150,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

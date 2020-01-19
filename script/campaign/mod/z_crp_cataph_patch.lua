@@ -2,23 +2,41 @@ out("CRP: Loading Cataph Patch");
 local anyLoaded = false;
 if core:is_mod_loaded("cataph_kraka") then
     out("CRP: Loading kraka drak resources");
-    require 'script/_lib/pooldata/recruitmentpools/CataphDwarfRecruitmentPools'
-    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh_main_sc_dwf_dwarfs", DwarfRecruitmentPoolData);
+    require 'script/_lib/pooldata/subcultureresources/CataphDwarfsSubcultureResources'
+    _G.CRPResources.AddAdditionalSubcultureResources("wh2_main_sc_hef_high_elves", GetCataphDwarfsSubcultureResources());
+
+    require 'script/_lib/pooldata/recruitmentpools/CataphDwarfsRecruitmentPools'
+    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh_main_sc_dwf_dwarfs", GetCataphDwarfsRecruitmentPools());
     anyLoaded = true;
 end
 
+--[[if effect.get_localised_string("agent_subtypes_onscreen_name_override_AK_hef_dragonmage") ~= "" then
+    out("CRP: Loading dragon mage resources");
+    require 'script/_lib/pooldata/subcultureresources/CataphHighElfDragonMageSubcultureResources'
+    _G.CRPResources.AddAdditionalSubcultureResources("wh2_main_sc_hef_high_elves", GetCataphHighElfDragonMageSubcultureResources());
+
+    require 'script/_lib/pooldata/recruitmentpools/CataphHighElfDragonMageRecruitmentPools'
+    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh2_main_sc_hef_high_elves", GetCataphHighElfDragonMageRecruitmentPoolData());
+end--]]
+
 if core:is_mod_loaded("cataph_aislinn") then
     out("CRP: Loading sea helm resources resources");
-    require 'script/_lib/pooldata/recruitmentpools/CataphHighElfRecruitmentPools'
-    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh2_main_sc_hef_high_elves", HighElfRecruitmentPoolData);
+    require 'script/_lib/pooldata/subcultureresources/CataphHighElfSeaLordSubcultureResources'
+    _G.CRPResources.AddAdditionalSubcultureResources("wh2_main_sc_hef_high_elves", GetCataphHighElfSeaLordSubcultureResources());
+
+    require 'script/_lib/pooldata/recruitmentpools/CataphHighElfSeaLordRecruitmentPools'
+    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh2_main_sc_hef_high_elves", GetCataphHighElfSeaLordRecruitmentPoolData());
 end
 
 if core:is_mod_loaded("cataph_teb") then
     out("CRP: Loading teb resources");
+    require 'script/_lib/pooldata/subcultureresources/CataphTEBSubcultureResources'
+    _G.CRPResources.AddAdditionalSubcultureResources("wh_main_sc_teb_teb", GetCataphTEBSubcultureResources());
+
     require 'script/_lib/pooldata/recruitmentpools/CataphTEBRecruitmentPools'
     require 'script/_lib/dbexports/CataphTEBNameGroupResources'
     require 'script/_lib/dbexports/CataphTEBNameResources'
-    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh_main_sc_teb_teb", TEBRecruitmentPools);
+    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh_main_sc_teb_teb", GetTEBRecruitmentPools());
     if _G.CG_NameResources then
         ConcatTableWithKeys(_G.CG_NameResources.faction_to_name_groups, CataphTEBNameGroupResources);
         ConcatTableWithKeys(_G.CG_NameResources.name_groups_to_names, CataphTEBNameResources);
@@ -33,4 +51,4 @@ if anyLoaded == true then
         ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, GetCataphDataResources());
     end
 end
-out("CRP: Finished loading Cataph Patch");
+out("CRP: Finished loading Cataph Patch");--]]

@@ -2,6 +2,7 @@ CRPUIController = {
     CRP = {},
     Logger = {},
     UIData = {},
+    CharacterCostCache = nil,
     CharacterDetailsPanel = {
         Frame = {},
         FrameName = "CharacterDetailsFrame",
@@ -111,7 +112,12 @@ function CRPUIController:SetupCharacterDetailsButton(generalPanel, nameComponent
         end
         local ancillaryKey = string.match(characterDetails.Mounts, "(.*)/");
         if ancillaryKey ~= 'unmounted' then
+            if ancillaryKey == nil then
+                self.Logger:Log("Ancillary key is nil.");
+            end
+            self.Logger:Log("Ancillary key is: "..ancillaryKey);
             local localisedAncillary = effect.get_localised_string("ancillaries_onscreen_name_"..ancillaryKey);
+            self.Logger:Log("Localised ancillary is: "..localisedAncillary);
             mountsText:SetStateText("Mounts: "..localisedAncillary);
             local localisedAncillaryTooltip = effect.get_localised_string("ancillaries_colour_text_"..ancillaryKey);
             mountsText:SetTooltipText(localisedAncillaryTooltip, true);
@@ -127,7 +133,23 @@ function CRPUIController:SetupCharacterDetailsButton(generalPanel, nameComponent
             self.Logger:Log("Found child: "..subComponent:Id());
         end
         self.Logger:Log_Finished();--]]
-        local recruitmentCostComponent = find_uicomponent(generalPanel, "RecruitmentCost", "Cost");
+
+        --[[if characterDetails == nil then
+            self.Logger:Log("Character does not have any data");
+            return;
+        end
+        local characterNameKey = CreateValidLuaTableKey(characterDetails.Name);
+        local cdpButton = Button.new("circularButton"..characterNameKey, generalPanel, "CIRCULAR", "ui/skins/default/icon_end_turn.png");
+        cdpButton:PositionRelativeTo(nameComponent, generalPanel:Width() / 1.5, 0);
+        cdpButton:RegisterForClick(function(context) self:SetupCharacterDetailsPanel(characterDetails); end);--]]
+        --cdpButton:Resize(50, 50);
+    end
+    if self.CharacterCostCache == nil then
+        self.CharacterCostCache = {};
+    end
+    local recruitmentCostComponent = find_uicomponent(generalPanel, "RecruitmentCost", "Cost");
+    local cachedRecruitmentCost = self.CharacterCostCache[nameComponent:GetStateText()];
+    if cachedRecruitmentCost == nil then
         local recruitmentCostText = recruitmentCostComponent:GetStateText();
         self.Logger:Log("Original recruitment cost is: "..recruitmentCostText);
         self.Logger:Log("Bonus cost is: "..characterDetails.ExtraCost);
@@ -139,22 +161,18 @@ function CRPUIController:SetupCharacterDetailsButton(generalPanel, nameComponent
         else
             self.Logger:Log("ERROR: Recruitment cost is not an int");
         end
-        self.Logger:Log_Finished();
-        return newRecruitmentCost;
-        --[[if characterDetails == nil then
-            self.Logger:Log("Character does not have any data");
-            return;
-        end
-        local characterNameKey = CreateValidLuaTableKey(characterDetails.Name);
-        local cdpButton = Button.new("circularButton"..characterNameKey, generalPanel, "CIRCULAR", "ui/skins/default/icon_end_turn.png");
-        cdpButton:PositionRelativeTo(nameComponent, generalPanel:Width() / 1.5, 0);
-        cdpButton:RegisterForClick(function(context) self:SetupCharacterDetailsPanel(characterDetails); end);--]]
-        --cdpButton:Resize(50, 50);
+        self.CharacterCostCache[nameComponent:GetStateText()] = newRecruitmentCost;
+        cachedRecruitmentCost = self.CharacterCostCache[nameComponent:GetStateText()];
     else
-        local recruitmentCostComponent = find_uicomponent(generalPanel, "RecruitmentCost", "Cost");
-        local recruitmentCostText = recruitmentCostComponent:GetStateText();
-        return tonumber(recruitmentCostText);
+        self.Logger:Log("Cached recruitment cost is: "..cachedRecruitmentCost);
+        recruitmentCostComponent:SetStateText(cachedRecruitmentCost);
     end
+    self.Logger:Log_Finished();
+    return cachedRecruitmentCost;
+end
+
+function CRPUIController:ClearCharacterCostCache()
+    self.CharacterCostCache = nil;
 end
 
 function CRPUIController:SetupCharacterDetailsPanel(characterDetails)

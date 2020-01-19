@@ -5,44 +5,57 @@ function GetEmpireRecruitmentPoolData()
             HeroPools = {
                 Wizards = {
                     AgentSubTypes = {
-                        dlc03_emp_amber_wizard = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
-                        },
                         dlc05_emp_grey_wizard = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 15,
+                        },
+                        dlc03_emp_amber_wizard = {
+                            MaximumPercentage = 15,
                         },
                         dlc05_emp_jade_wizard = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 15,
                         },
                         emp_bright_wizard = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 15,
                         },
                         emp_celestial_wizard = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 15,
                         },
                         emp_light_wizard = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 15,
                         },
                         wh2_pro07_emp_amethyst_wizard = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 15,
                         },
                     },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 2,
+                },
+                Captains = {
+                    AgentSubTypes = {
+                        emp_captain = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+                WitchHunters = {
+                    AgentSubTypes = {
+                        emp_witch_hunter = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
+                WarriorPriests = {
+                    AgentSubTypes = {
+                        emp_warrior_priest = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
                 },
             },
             HeroPoolMaxSize = 4,
@@ -50,15 +63,14 @@ function GetEmpireRecruitmentPoolData()
                 EmpireGenerals = {
                     AgentSubTypes = {
                         emp_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 4,
                 },
             },
-            LordPoolMaxSize = 5,
+            LordPoolMaxSize = 4,
         },
         -- Major Faction specific distributions
         -- Reikland
@@ -67,8 +79,7 @@ function GetEmpireRecruitmentPoolData()
                 EmpireGenerals = {
                     AgentSubTypes = {
                         emp_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 5,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -77,18 +88,16 @@ function GetEmpireRecruitmentPoolData()
                 HuntsmarshalGenerals = {
                     AgentSubTypes = {
                         wh2_dlc13_emp_cha_huntsmarshal_0 = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 4,
+                    SubPoolMaxSize = 2,
                 },
                 ArchLectors = {
                     AgentSubTypes = {
                         dlc04_emp_arch_lector = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -104,16 +113,14 @@ function GetEmpireRecruitmentPoolData()
                 EmpireGenerals = {
                     AgentSubTypes = {
                         emp_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 5,
-                            HumanPlayerOnly = true,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 5,
+                    SubPoolMaxSize = 4,
                 },
             },
-            LordPoolMaxSize = 6,
+            LordPoolMaxSize = 4,
         },
         -- Huntsmarshals expedition
         wh2_dlc13_emp_the_huntmarshals_expedition = {
@@ -121,9 +128,7 @@ function GetEmpireRecruitmentPoolData()
                 EmpireGenerals = {
                     AgentSubTypes = {
                         emp_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            HumanPlayerOnly = true,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -132,15 +137,14 @@ function GetEmpireRecruitmentPoolData()
                 HuntsmarshalGenerals = {
                     AgentSubTypes = {
                         wh2_dlc13_emp_cha_huntsmarshal_0 = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 5,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 5,
+                    SubPoolMaxSize = 4,
                 },
             },
-            LordPoolMaxSize = 5,
+            LordPoolMaxSize = 4,
         },
 
         -- Minor Faction specific distributions
@@ -150,9 +154,7 @@ function GetEmpireRecruitmentPoolData()
                 EmpireGenerals = {
                     AgentSubTypes = {
                         emp_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            HumanPlayerOnly = true,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -161,15 +163,14 @@ function GetEmpireRecruitmentPoolData()
                 HuntsmarshalGenerals = {
                     AgentSubTypes = {
                         wh2_dlc13_emp_cha_huntsmarshal_0 = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
             },
-            LordPoolMaxSize = 6,
+            LordPoolMaxSize = 4,
         },
         -- Talabecland
         wh_main_emp_talabecland = {
@@ -177,9 +178,7 @@ function GetEmpireRecruitmentPoolData()
                 EmpireGenerals = {
                     AgentSubTypes = {
                         emp_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            HumanPlayerOnly = true,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -188,15 +187,14 @@ function GetEmpireRecruitmentPoolData()
                 HuntsmarshalGenerals = {
                     AgentSubTypes = {
                         wh2_dlc13_emp_cha_huntsmarshal_0 = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
             },
-            LordPoolMaxSize = 6,
+            LordPoolMaxSize = 4,
         },
         -- Wissenland
         wh_main_emp_wissenland = {
@@ -204,16 +202,29 @@ function GetEmpireRecruitmentPoolData()
                 EmpireGenerals = {
                     AgentSubTypes = {
                         emp_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
-                            HumanPlayerOnly = true,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 4,
                 },
             },
-            LordPoolMaxSize = 6,
+            LordPoolMaxSize = 4,
+        },
+        -- Ostermark
+        wh_main_emp_ostermark = {
+            FactionPools = {
+                EmpireGenerals = {
+                    AgentSubTypes = {
+                        emp_lord = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 4,
+                },
+            },
+            LordPoolMaxSize = 4,
         },
     };
 end

@@ -5,8 +5,7 @@ SavageOrcRecruitmentPoolData =  {
             SavageOrcWarbosses = {
                 AgentSubTypes = {
                     wh_grn_forest_goblin_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 33,
                     },
                 },
             },

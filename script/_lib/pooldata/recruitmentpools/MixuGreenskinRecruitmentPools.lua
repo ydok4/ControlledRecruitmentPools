@@ -6,9 +6,11 @@ function GetMixuGreenskinRecruitmentPoolData()
             FactionPools = {
                 GreenskinWarbosses = {
                     AgentSubTypes = {
+                        grn_orc_warboss = {
+                            MaximumPercentage = 50,
+                        },
                         grn_savage_orc_warboss = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -18,12 +20,10 @@ function GetMixuGreenskinRecruitmentPoolData()
                     AgentSubTypes = {
                         grn_goblin_great_shaman = false,
                         grn_savage_orc_shaman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         grn_orc_great_shaman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         }
                     },
                     SubPoolInitialMinSize = 0,
@@ -38,27 +38,30 @@ function GetMixuGreenskinRecruitmentPoolData()
             FactionPools = {
                 GreenskinWarbosses = {
                     AgentSubTypes = {
+                        grn_orc_warboss = {
+                            MaximumPercentage = 75,
+                        },
                         grn_savage_orc_warboss = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 25,
                         },
                     },
-                    SubPoolInitialMinSize = 0,
-                    SubPoolMaxSize = 2,
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 4,
                 },
                 GreenskinShamans = {
                     AgentSubTypes = {
+                        grn_goblin_great_shaman = {
+                            MaximumPercentage = 25,
+                        },
                         grn_savage_orc_shaman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         grn_orc_great_shaman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 50,
                         }
                     },
-                    SubPoolInitialMinSize = 0,
-                    SubPoolMaxSize = 2,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 3,
                 },
             },
         },
@@ -69,31 +72,27 @@ function GetMixuGreenskinRecruitmentPoolData()
                     AgentSubTypes = {
                         grn_orc_warboss = false,
                         grn_savage_orc_warboss = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                             HumanPlayerOnly = true,
                         },
                     },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 3,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
                 },
                 GreenskinShamans = {
                     AgentSubTypes = {
                         grn_savage_orc_shaman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         grn_goblin_great_shaman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         grn_orc_great_shaman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                     },
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 3,
+                    SubPoolMaxSize = 4,
                 },
             },
             LordsToReplace = {

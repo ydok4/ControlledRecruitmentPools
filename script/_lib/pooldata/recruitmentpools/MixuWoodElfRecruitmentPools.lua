@@ -2,20 +2,28 @@ function GetMixuWoodElfRecruitmentPoolData()
     return {
         -- Default pool distribution
         wh_dlc05_sc_wef_wood_elves = {
+            HeroPools = {
+                Shadowdancer = {
+                    AgentSubTypes = {
+                        wef_shadowdancer = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+            },
             FactionPools = {
                 SpellWeavers = {
                     AgentSubTypes = {
                         wef_spellweaver = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         wef_highweaver = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         wef_darkweaver = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -30,16 +38,13 @@ function GetMixuWoodElfRecruitmentPoolData()
                 SpellWeavers = {
                     AgentSubTypes = {
                         wef_spellweaver = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         wef_highweaver = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         wef_darkweaver = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -53,16 +58,13 @@ function GetMixuWoodElfRecruitmentPoolData()
                 SpellWeavers = {
                     AgentSubTypes = {
                         wef_spellweaver = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 50,
                         },
                         wef_highweaver = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         wef_darkweaver = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -77,8 +79,7 @@ function GetMixuWoodElfRecruitmentPoolData()
                 SpellWeavers = {
                     AgentSubTypes = {
                         wef_spellweaver = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,

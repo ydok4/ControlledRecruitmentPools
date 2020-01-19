@@ -1,11 +1,11 @@
-CRPUIController Setting default values   : [02, 01 2020 15:40:33]
-CRPUIController Listeners initialising   : [02, 01 2020 15:40:33]
-Initialised sub culture values   : [02, 01 2020 15:40:33]
-Finished Initialising UI   : [02, 01 2020 15:40:33]
+CRPUIController Setting default values   : [19, 01 2020 19:15:55]
+CRPUIController Listeners initialising   : [19, 01 2020 19:15:55]
+Initialised sub culture values   : [19, 01 2020 19:15:55]
+Finished Initialising UI   : [19, 01 2020 19:15:55]
 FINISHED
 
-Original recruitment cost is: names_name_9999000117   : [02, 01 2020 15:40:35]
-Bonus cost is: 0   : [02, 01 2020 15:40:35]
-ERROR: Recruitment cost is not an int   : [02, 01 2020 15:40:35]
+Original recruitment cost is: names_name_9999000117   : [19, 01 2020 19:15:58]
+Bonus cost is: 0   : [19, 01 2020 19:15:58]
+ERROR: Recruitment cost is not an int   : [19, 01 2020 19:15:58]
 FINISHED
 

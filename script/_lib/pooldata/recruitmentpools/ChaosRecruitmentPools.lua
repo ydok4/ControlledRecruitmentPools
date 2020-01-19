@@ -3,43 +3,65 @@ function GetChaosRecruitmentPoolData()
         -- Default pool distribution
         wh_main_sc_chs_chaos = {
             HeroPools = {
+                Sorcerers = {
+                    AgentSubTypes = {
+                        dlc07_chs_chaos_sorcerer_shadow = {
+                            MaximumPercentage = 25,
+                        },
+                        chs_chaos_sorcerer_death = {
+                            MaximumPercentage = 25,
+                        },
+                        chs_chaos_sorcerer_fire = {
+                            MaximumPercentage = 25,
+                        },
+                        chs_chaos_sorcerer_metal = {
+                            MaximumPercentage = 25,
+                        },
+                    },
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 4,
+                },
+                ExaltedHeroes = {
+                    AgentSubTypes = {
+                        chs_exalted_hero = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 4,
+                },
             },
             HeroPoolMaxSize = 4,
             FactionPools = {
                 ChaosLord = {
                     AgentSubTypes = {
                         chs_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 5,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 5,
+                    SubPoolMaxSize = 4,
                 },
                 SorcerorLords = {
                     AgentSubTypes = {
                         chs_sorcerer_lord_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         chs_sorcerer_lord_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         chs_sorcerer_lord_metal = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         dlc07_chs_sorcerer_lord_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                     },
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 5,
+                    SubPoolMaxSize = 4,
                 },
             },
-            LordPoolMaxSize = 7,
+            LordPoolMaxSize = 4,
         },
 
         -- Main Chaos Faction
@@ -48,8 +70,7 @@ function GetChaosRecruitmentPoolData()
                 ChaosLords = {
                     AgentSubTypes = {
                         chs_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 8,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -58,27 +79,23 @@ function GetChaosRecruitmentPoolData()
                 SorcerorLords = {
                     AgentSubTypes = {
                         chs_sorcerer_lord_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         chs_sorcerer_lord_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         chs_sorcerer_lord_metal = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         dlc07_chs_sorcerer_lord_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 5,
                 },
             },
-            LordPoolMaxSize = 10,
+            LordPoolMaxSize = 4,
         },
     };
 end

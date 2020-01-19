@@ -6,9 +6,7 @@ function GetMixuSavageOrcRecruitmentPoolData()
                 SavageOrcWarbosses = {
                     AgentSubTypes = {
                         grn_savage_orc_warboss = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            HumanPlayerOnly = true,
+                            MaximumPercentage = 100,
                         },
                         grn_orc_warboss = false,
                     },
@@ -17,9 +15,11 @@ function GetMixuSavageOrcRecruitmentPoolData()
                 },
                 SavageOrcShamans = {
                     AgentSubTypes = {
+                        grn_goblin_great_shaman = {
+                            MaximumPercentage = 25,
+                        },
                         grn_savage_orc_shaman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 75,
                         },
                     },
                     SubPoolInitialMinSize = 1,

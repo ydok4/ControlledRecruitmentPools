@@ -5,8 +5,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     wh2_main_def_dreadlord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -21,8 +20,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dlc03_bst_beastlord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -37,8 +35,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dlc05_wef_glade_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -53,8 +50,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     brt_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -69,27 +65,23 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dlc03_bst_beastlord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     dlc04_vmp_strigoi_ghoul_king = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     wh2_main_skv_grey_seer_ruin = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     chs_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
                 SubPoolMaxSize = 2,
             },
         },
-        LordPoolMaxSize = 5,
+        LordPoolMaxSize = 4,
     },
     -- Beastcatchas
     wh2_main_rogue_beastcatchas = {
@@ -97,12 +89,10 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dlc06_grn_night_goblin_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -117,8 +107,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     brt_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -133,8 +122,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -149,8 +137,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dlc03_bst_beastlord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -165,8 +152,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     wh2_main_lzd_slann_mage_priest = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -181,12 +167,10 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     emp_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     dwf_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -201,12 +185,10 @@ RogueArmyRecruitmentPoolData = {
             DarkElfLords = {
                 AgentSubTypes = {
                     wh2_main_def_dreadlord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     wh2_main_def_dreadlord_fem = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 1,
@@ -215,24 +197,19 @@ RogueArmyRecruitmentPoolData = {
             DarkElfSorceresses = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     wh2_dlc10_def_supreme_sorceress_dark = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     wh2_dlc10_def_supreme_sorceress_death = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     wh2_dlc10_def_supreme_sorceress_fire = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     wh2_dlc10_def_supreme_sorceress_shadow = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -241,8 +218,7 @@ RogueArmyRecruitmentPoolData = {
             ChaosLords = {
                 AgentSubTypes = {
                     chs_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 1,
@@ -251,20 +227,16 @@ RogueArmyRecruitmentPoolData = {
             ChaosSorcerorLords = {
                 AgentSubTypes = {
                     chs_sorcerer_lord_death = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     chs_sorcerer_lord_fire = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     chs_sorcerer_lord_metal = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     dlc07_chs_sorcerer_lord_shadow = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -299,7 +271,7 @@ RogueArmyRecruitmentPoolData = {
             "wh_main_skill_innate_all_magnanimous",
             "wh_main_skill_innate_all_melancholic",
         },
-        LordPoolMaxSize = 6,
+        LordPoolMaxSize = 4,
     },
     -- Mengil's Manflayers
     wh2_main_rogue_def_mengils_manflayers = {
@@ -307,12 +279,10 @@ RogueArmyRecruitmentPoolData = {
             DarkElfLords = {
                 AgentSubTypes = {
                     wh2_main_def_dreadlord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     wh2_main_def_dreadlord_fem = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 1,
@@ -321,31 +291,26 @@ RogueArmyRecruitmentPoolData = {
             DarkElfSorceresses = {
                 AgentSubTypes = {
                     wh2_dlc10_def_supreme_sorceress_beasts = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     wh2_dlc10_def_supreme_sorceress_dark = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     wh2_dlc10_def_supreme_sorceress_death = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     wh2_dlc10_def_supreme_sorceress_fire = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     wh2_dlc10_def_supreme_sorceress_shadow = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                 },
                 SubPoolInitialMinSize = 0,
                 SubPoolMaxSize = 1,
             },
         },
-        LordPoolMaxSize = 3,
+        LordPoolMaxSize = 4,
     },
     -- Doomseekers
     wh2_main_rogue_doomseekers = {
@@ -353,8 +318,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dwf_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -369,8 +333,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     emp_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -385,8 +348,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     wh2_main_hef_princess = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -401,8 +363,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     nor_marauder_chieftain = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -417,12 +378,10 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     brt_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     dlc04_emp_arch_lector = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -431,16 +390,13 @@ RogueArmyRecruitmentPoolData = {
             Propehtesses = {
                 AgentSubTypes = {
                     dlc07_brt_prophetess_beasts = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     dlc07_brt_prophetess_heavens = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     dlc07_brt_prophetess_life = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -455,8 +411,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -471,12 +426,10 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     wh2_main_skv_grey_seer_ruin = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     wh2_main_skv_warlord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -491,8 +444,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     emp_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -507,8 +459,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     emp_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -523,8 +474,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     emp_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -539,8 +489,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dlc04_emp_arch_lector = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -555,8 +504,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     vmp_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -571,12 +519,10 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                     wh2_main_skv_warlord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -591,12 +537,10 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dlc06_grn_night_goblin_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -611,8 +555,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     vmp_master_necromancer = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -627,8 +570,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -643,12 +585,10 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     wh2_main_hef_prince = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     wh2_main_hef_princess = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -663,8 +603,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dlc04_vmp_strigoi_ghoul_king = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -679,12 +618,10 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dlc05_wef_glade_lord_fem = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     dlc05_wef_glade_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -699,16 +636,13 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dlc05_wef_glade_lord_fem = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     dlc05_wef_glade_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     dlc05_wef_ancient_treeman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 1,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -723,8 +657,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dlc05_wef_ancient_treeman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -741,8 +674,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     dwf_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -758,8 +690,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -774,8 +705,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     emp_lord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -790,8 +720,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     skv_warlord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -806,28 +735,22 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     wh2_dlc11_cst_admiral = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     wh2_dlc11_cst_admiral_death = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     wh2_dlc11_cst_admiral_deep = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     wh2_dlc11_cst_admiral_fem = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     wh2_dlc11_cst_admiral_fem_death = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     wh2_dlc11_cst_admiral_fem_deep = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -842,8 +765,7 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     nor_marauder_chieftain = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,
@@ -858,12 +780,10 @@ RogueArmyRecruitmentPoolData = {
             Lords = {
                 AgentSubTypes = {
                     wh2_main_def_dreadlord_fem = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                     wh2_main_def_dreadlord = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolInitialMinSize = 0,

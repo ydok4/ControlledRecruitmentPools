@@ -7,20 +7,16 @@ function GetMixuTombKingsRecruitmentPools()
                 HighLichePriests = {
                     AgentSubTypes = {
                         tmb_liche_high_priest_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         tmb_liche_high_priest_light = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         tmb_liche_high_priest_nehekhara = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         tmb_liche_high_priest_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -36,8 +32,7 @@ function GetMixuTombKingsRecruitmentPools()
                 TombKings = {
                     AgentSubTypes = {
                         wh2_dlc09_tmb_tomb_king = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                             HumanPlayerOnly = true,
                         },
                     },
@@ -47,20 +42,16 @@ function GetMixuTombKingsRecruitmentPools()
                 HighLichePriests = {
                     AgentSubTypes = {
                         tmb_liche_high_priest_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         tmb_liche_high_priest_light = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         tmb_liche_high_priest_nehekhara = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                         tmb_liche_high_priest_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 25,
                         },
                     },
                     SubPoolInitialMinSize = 1,

@@ -48,7 +48,6 @@ function controlled_recruitment_pools()
     CRP_SetupPostUIListeners(crp, core, find_uicomponent);
     -- Remove the listeners which give AI factions bloodline chars cause we already do that
     core:remove_listener("vampire_bloodline_ai_characters");
-
     out("CRP: Finished startup");
     --cm:spawn_character_to_pool(crp.HumanFaction:name(), "", "", "", "", 20, true, "champion", "wh2_dlc14_def_master", true, "wh2_dlc14_art_set_def_master_01");
     --[[local naggarondRegion = cm:get_region("wh2_main_vor_naggarond_naggarond");

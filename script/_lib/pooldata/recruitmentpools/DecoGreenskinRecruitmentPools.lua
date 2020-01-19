@@ -6,8 +6,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinWarbosses = {
                 AgentSubTypes = {
                     wh_grn_forest_goblin_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 33,
                     },
                 },
             },
@@ -20,8 +19,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinWarbosses = {
                 AgentSubTypes = {
                     wh_grn_forest_goblin_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 1,
+                        MaximumPercentage = 33,
                     },
                 },
             },
@@ -34,8 +32,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinWarbosses = {
                 AgentSubTypes = {
                     wh_grn_forest_goblin_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 33,
                     },
                 },
             },
@@ -48,8 +45,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinWarbosses = {
                 AgentSubTypes = {
                     wh_grn_forest_goblin_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 4,
+                        MaximumPercentage = 100,
                         HumanPlayerOnly = true,
                     },
                 },
@@ -59,15 +55,14 @@ GreenskinRecruitmentPoolData =  {
             GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 100,
                     },
                 },
-                SubPoolInitialMinSize = 0,
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 2,
             },
         },
-        LordPoolMaxSize = 5,
+        LordPoolMaxSize = 4,
         LordsToReplace = {
             grn_orc_warboss = {
                 replacementKey = "wh_grn_forest_goblin_warboss",
@@ -85,8 +80,7 @@ GreenskinRecruitmentPoolData =  {
             GreenskinWarbosses = {
                 AgentSubTypes = {
                     wh_grn_forest_goblin_warboss = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 4,
+                        MaximumPercentage = 100,
                         HumanPlayerOnly = true,
                     },
                 },
@@ -96,15 +90,14 @@ GreenskinRecruitmentPoolData =  {
             GreenskinShamans = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 100,
                     },
                 },
-                SubPoolInitialMinSize = 0,
+                SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 2,
             },
         },
-        LordPoolMaxSize = 7,
+        LordPoolMaxSize = 4,
         LordsToReplace = {
             grn_orc_warboss = {
                 replacementKey = "wh_grn_forest_goblin_warboss",

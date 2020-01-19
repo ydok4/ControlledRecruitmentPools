@@ -1,4 +1,4 @@
-function GetDwarfSubcultureResources()
+function GetDwarfsSubcultureResources()
     return {
         DefaultLords = {"dwf_lord"},
         Rewards = {
@@ -8,8 +8,7 @@ function GetDwarfSubcultureResources()
                         DwarfLords = {
                             AgentSubTypes = {
                                 dwf_lord = {
-                                    MinimumAmount = 0,
-                                    MaximumAmount = 2,
+                                    MaximumPercentage = 100,
                                     HumanPlayerOnly = true,
                                 },
                             },
@@ -19,8 +18,7 @@ function GetDwarfSubcultureResources()
                         RuneLord = {
                             AgentSubTypes = {
                                 dlc06_dwf_runelord = {
-                                    MinimumAmount = 0,
-                                    MaximumAmount = 1,
+                                    MaximumPercentage = 100,
                                 },
                             },
                             SubPoolInitialMinSize = 0,
@@ -35,6 +33,54 @@ function GetDwarfSubcultureResources()
                     Type = "increase",
                 },
             },
+            wh_main_sch_settlement_major = {
+                Pools = {
+                    "DwarfLords",
+                },
+                MinimumRequireBuildingLevel = 3,
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = false,
+                Type = "set",
+            },
+            wh_main_DWARFS_engineer = {
+                Pools = {
+                    "MasterEngineers",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = true,
+                Type = "set",
+            },
+            wh_main_dwf_barracks_3 = {
+                Pools = {
+                    "Thanes",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "set",
+            },
+            wh_main_dwf_smith_3 = {
+                Pools = {
+                    "RuneLord",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "set",
+            },
+            wh_main_DWARFS_smiths = {
+                Pools = {
+                    "Runesmiths",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "set",
+            },
         },
         Heroes = {
             "dwf_master_engineer",
@@ -45,6 +91,10 @@ function GetDwarfSubcultureResources()
             Unmounted = {
                 BonusCost = 0,
                 Weighting = 6,
+            },
+            AnvilOfDoom = {
+                BonusCost = 850,
+                Weighting = 12,
             },
         },
         AgentSubTypes = {
@@ -60,6 +110,9 @@ function GetDwarfSubcultureResources()
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
+                    },
+                    wh_dlc06_anc_mount_dwf_runelord_anvil_of_doom = {
+                        MountData = "AnvilOfDoom",
                     },
                 },
             },

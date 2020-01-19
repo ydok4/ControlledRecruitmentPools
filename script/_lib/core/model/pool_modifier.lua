@@ -9,77 +9,87 @@ function PoolModifier:new (o)
     return o;
 end
 
-function PoolModifier:GiveReward(faction, rewardData, cacheData)
+function PoolModifier:GiveReward(crp, faction, rewardData, cacheData)
+    crp.Logger:Log("Giving reward: "..rewardData.Type);
     if rewardData.Type == "increase" then
         self:ChangePoolViaValue(faction, rewardData, true);
+        local factionPools = GetFactionPoolResources(faction);
+        for index, poolKey in pairs(rewardData.Pools) do
+            crp.Logger:Log("Changing pool size: "..poolKey);
+            if factionPools.HeroPools[poolKey] ~= nil then
+                if rewardData.IncreasePoolSize ~= nil then
+                    factionPools.HeroPoolMaxSize = cacheData.Amount * rewardData.IncreasePoolSize;
+                end
+            end
+            if factionPools.FactionPools[poolKey] ~= nil then
+                if rewardData.IncreasePoolSize ~= nil then
+                    factionPools.LordPoolMaxSize = cacheData.Amount * rewardData.IncreasePoolSize;
+                end
+            end
+        end
     elseif rewardData.Type == "set" then
         self:SetPoolToValue(faction, rewardData, cacheData);
     elseif rewardData.Type == "decrease" then
         self:ChangePoolViaValue(faction, rewardData, false);
     end
-    if rewardData.IncreasePoolSize ~= nil then
-        local factionPools = GetFactionPoolResources(faction);
-        local oldSize = factionPools.LordPoolMaxSize;
-        factionPools.LordPoolMaxSize = factionPools.LordPoolMaxSize + rewardData.IncreasePoolSize;
-        self:UpdateArmyLimits(faction, factionPools, oldSize);
-    end
+    crp.Logger:Log("Finished increasing pool size");
     if rewardData.Events ~= nil and rewardData.Events.Incident ~= nil then
+        crp.Logger:Log("Triggering incident: "..rewardData.Events.Incident);
         cm:trigger_incident_with_targets(faction:command_queue_index(), rewardData.Events.Incident, faction:command_queue_index(), 0, 0, 0, 0, 0);
     end
 end
 
 function PoolModifier:ChangePoolViaValue(faction, rewardData, isPositive)
+    local multiplier = -1;
+    if isPositive == true then
+        multiplier = 1;
+    end
+
     local factionPools = GetFactionPoolResources(faction);
     local rewardList = rewardData.Pools;
-    for poolKey, agentPoolData in pairs(rewardList) do
-        if factionPools.FactionPools[poolKey] == nil then
-            factionPools.FactionPools[poolKey] = {
-                AgentSubTypes = {};
-                SubPoolInitialMinSize = agentPoolData.SubPoolInitialMinSize,
-                SubPoolMaxSize = agentPoolData.SubPoolMaxSize,
-            };
-            local factionPoolDataAgents = factionPools.FactionPools[poolKey].AgentSubTypes;
-            for rewardedAgentKey, agentData in pairs(agentPoolData.AgentSubTypes) do
-                local agentKey = rewardedAgentKey;
-                if factionPools.RemapAgentKeys ~= nil
-                and factionPools.RemapAgentKeys[agentKey] ~= nil then
-                    agentKey = factionPools.RemapAgentKeys[agentKey];
-                end
-                factionPoolDataAgents[agentKey] = {
-                    MinimumAmount = agentData.MinimumAmount,
-                    MaximumAmount = agentData.MaximumAmount,
+    for index, poolKey in pairs(rewardList) do
+        local defaultSubcultureResources = GetSubCulturePoolResources(faction:subculture());
+        local subcultureResourcesForLordPool = defaultSubcultureResources.FactionPools[poolKey];
+        if subcultureResourcesForLordPool ~= nil then
+            if factionPools.FactionPools[poolKey] == nil then
+                factionPools.FactionPools[poolKey] = {
+                    AgentSubTypes = {};
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
                 };
-            end
-        else
-            local existingRewardPool = factionPools.FactionPools[poolKey];
-            local subTypesForPool =  existingRewardPool.AgentSubTypes;
-            for rewardedAgentKey, agentData in pairs(agentPoolData.AgentSubTypes) do
-                local agentKey = rewardedAgentKey;
-                if factionPools.RemapAgentKeys ~= nil
-                and factionPools.RemapAgentKeys[agentKey] ~= nil then
-                    agentKey = factionPools.RemapAgentKeys[agentKey];
-                end
-                if subTypesForPool[agentKey] == nil then
-                    subTypesForPool[agentKey] = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 0,
+                for agentSubTypeKey, agentSubTypeData in pairs(subcultureResourcesForLordPool) do
+                    local correctAgentSubtypeKey = agentSubTypeKey;
+                    if rewardData.RemapAgentKeys[agentSubTypeKey] then
+                        correctAgentSubtypeKey = rewardData.RemapAgentKeys[agentSubTypeKey];
+                    end
+                    factionPools.FactionPools[poolKey].AgentSubTypes[correctAgentSubtypeKey] = {
+                        MaximumPercentage = agentSubTypeData.MaximumPercentage,
                     };
                 end
-                if isPositive == true then
-                    subTypesForPool[agentKey].MinimumAmount = subTypesForPool[agentKey].MinimumAmount + agentData.MinimumAmount;
-                    subTypesForPool[agentKey].MaximumAmount = subTypesForPool[agentKey].MaximumAmount + agentData.MaximumAmount;
-                else
-                    subTypesForPool[agentKey].MinimumAmount = subTypesForPool[agentKey].MinimumAmount - agentData.MinimumAmount;
-                    subTypesForPool[agentKey].MaximumAmount = subTypesForPool[agentKey].MaximumAmount - agentData.MaximumAmount;
+            end
+            factionPools.FactionPools[poolKey].SubPoolMaxSize = factionPools.FactionPools[poolKey].SubPoolMaxSize + (rewardData.IncreasePoolSize * multiplier);
+            --factionPools.LordPoolMaxSize = factionPools.LordPoolMaxSize + (1 * multiplier);
+        end
+        local subcultureResourcesForHeroPool = defaultSubcultureResources.HeroPools[poolKey];
+        if subcultureResourcesForHeroPool ~= nil then
+            if factionPools.HeroPools[poolKey] == nil then
+                factionPools.HeroPools[poolKey] = {
+                    AgentSubTypes = {};
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                };
+                for agentSubTypeKey, agentSubTypeData in pairs(subcultureResourcesForHeroPool) do
+                    local correctAgentSubtypeKey = agentSubTypeKey;
+                    if rewardData.RemapAgentKeys[agentSubTypeKey] then
+                        correctAgentSubtypeKey = rewardData.RemapAgentKeys[agentSubTypeKey];
+                    end
+                    factionPools.HeroPools[poolKey].AgentSubTypes[correctAgentSubtypeKey] = {
+                        MaximumPercentage = agentSubTypeData.MaximumPercentage,
+                    };
                 end
             end
-            if isPositive then
-                existingRewardPool.SubPoolInitialMinSize = existingRewardPool.SubPoolInitialMinSize + agentPoolData.SubPoolInitialMinSize;
-                existingRewardPool.SubPoolMaxSize = existingRewardPool.SubPoolMaxSize + agentPoolData.SubPoolMaxSize;
-            else
-                existingRewardPool.SubPoolInitialMinSize = existingRewardPool.SubPoolInitialMinSize - agentPoolData.SubPoolInitialMinSize;
-                existingRewardPool.SubPoolMaxSize = existingRewardPool.SubPoolMaxSize - agentPoolData.SubPoolMaxSize;
-            end
+            factionPools.HeroPools[poolKey].SubPoolMaxSize = factionPools.HeroPools[poolKey].SubPoolMaxSize + (rewardData.IncreasePoolSize * multiplier);
+            --factionPools.HeroPoolMaxSize = factionPools.HeroPoolMaxSize + (1 * multiplier);
         end
     end
 end
@@ -95,13 +105,14 @@ function PoolModifier:SetPoolToValue(faction, rewardData, cacheData)
         else
             amount = cacheData.Amount;
         end
-        if factionPools.HeroPools[poolKey] == nil then
+        if factionPools.HeroPools[poolKey] == nil
+        and subcultureResources.HeroPools[poolKey] ~= nil then
             factionPools.HeroPools[poolKey] = subcultureResources.HeroPools[poolKey];
         end
         if factionPools.HeroPools[poolKey] ~= nil then
             factionPools.HeroPools[poolKey].SubPoolMaxSize = rewardData.IncreasePoolSize * amount;
             for agentSubtypeKey, agentSubtypeData in pairs(factionPools.HeroPools[poolKey].AgentSubTypes) do
-                agentSubtypeData.MaximumAmount = factionPools.HeroPools[poolKey].SubPoolMaxSize;
+                agentSubtypeData.MaximumPercentage = subcultureResources.HeroPools[poolKey].AgentSubTypes[agentSubtypeKey].MaximumPercentage;
             end
         end
 
@@ -112,21 +123,12 @@ function PoolModifier:SetPoolToValue(faction, rewardData, cacheData)
         if factionPools.FactionPools[poolKey] ~= nil then
             factionPools.FactionPools[poolKey].SubPoolMaxSize = rewardData.IncreasePoolSize * amount;
             for agentSubtypeKey, agentSubtypeData in pairs(factionPools.FactionPools[poolKey].AgentSubTypes) do
-                agentSubtypeData.MaximumAmount = factionPools.FactionPools[poolKey].SubPoolMaxSize;
+                agentSubtypeData.MaximumPercentage = subcultureResources.FactionPools[poolKey].AgentSubTypes[agentSubtypeKey].MaximumPercentage;
             end
         end
     end
 end
 
 function PoolModifier:CreateUniquePool(faction)
-    SetSubCultureResourcesForFaction(faction);
-end
-
-function PoolModifier:UpdateArmyLimits(faction, factionPoolResources, oldSize)
-    local factionName = faction:name();
-    if factionPoolResources ~= nil then
-        for i = oldSize + 1, factionPoolResources.LordPoolMaxSize do
-            cm:apply_effect_bundle("wh2_dlc09_ritual_crafting_tmb_army_capacity_"..i, factionName, 0);
-        end
-    end
+    SetSubCultureRecruitmentPoolsForFaction(faction);
 end

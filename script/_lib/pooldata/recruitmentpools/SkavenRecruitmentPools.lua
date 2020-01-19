@@ -3,14 +3,49 @@ function GetSkavenRecruitmentPoolData()
         -- Default pool distribution
         wh2_main_sc_skv_skaven = {
             HeroPools = {
+                Assassins = {
+                    AgentSubTypes = {
+                        wh2_main_skv_assassin = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
+                PlaguePriest = {
+                    AgentSubTypes = {
+                        wh2_main_skv_plague_priest = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
+                WarlockEngineer = {
+                    AgentSubTypes = {
+                        wh2_main_skv_warlock_engineer = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
+                EshinSorcerer = {
+                    AgentSubTypes = {
+                        wh2_dlc14_skv_eshin_sorcerer = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
             },
             HeroPoolMaxSize = 4,
             FactionPools = {
                 SkavenWarlord = {
                     AgentSubTypes = {
                         wh2_main_skv_warlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 6,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 3,
@@ -19,12 +54,10 @@ function GetSkavenRecruitmentPoolData()
                 GreySeer = {
                     AgentSubTypes = {
                         wh2_main_skv_grey_seer_plague = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_skv_grey_seer_ruin = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -37,12 +70,22 @@ function GetSkavenRecruitmentPoolData()
         -- Major Clans
         -- Clan Skyre
         wh2_main_skv_clan_skyre = {
+            HeroPools = {
+                WarlockEngineer = {
+                    AgentSubTypes = {
+                        wh2_main_skv_warlock_engineer = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+            },
             FactionPools = {
                 SkavenWarlord = {
                     AgentSubTypes = {
                         wh2_main_skv_warlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -51,12 +94,10 @@ function GetSkavenRecruitmentPoolData()
                 GreySeer = {
                     AgentSubTypes = {
                         wh2_main_skv_grey_seer_plague = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_skv_grey_seer_ruin = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -65,34 +106,11 @@ function GetSkavenRecruitmentPoolData()
                 WarlockMaster = {
                     AgentSubTypes = {
                         wh2_dlc12_skv_warlock_master = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
-                },
-            },
-            Rewards = {
-                alliance = {
-                    Pools = {
-                        WarlockMaster = {
-                            AgentSubTypes = {
-                                wh2_dlc12_skv_warlock_master = {
-                                    MinimumAmount = 0,
-                                    MaximumAmount = 1,
-                                },
-                            },
-                            SubPoolInitialMinSize = 0,
-                            SubPoolMaxSize = 1,
-                        },
-                    },
-                    Events = {
-                        Incident = "wh_main_skv_warlock_master",
-                        Dilemma = nil,
-                    },
-                    IncreasePoolSize = 1,
-                    Type = "increase",
                 },
             },
             LordPoolMaxSize = 4,
@@ -100,12 +118,31 @@ function GetSkavenRecruitmentPoolData()
 
         -- Clan Eshin
         wh2_main_skv_clan_eshin = {
+            HeroPools = {
+                Assassins = {
+                    AgentSubTypes = {
+                        wh2_main_skv_assassin = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+                EshinSorcerer = {
+                    AgentSubTypes = {
+                        wh2_dlc14_skv_eshin_sorcerer = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+            },
             FactionPools = {
                 SkavenWarlord = {
                     AgentSubTypes = {
                         wh2_main_skv_warlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -114,12 +151,10 @@ function GetSkavenRecruitmentPoolData()
                 GreySeer = {
                     AgentSubTypes = {
                         wh2_main_skv_grey_seer_plague = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 50,
                         },
                         wh2_main_skv_grey_seer_ruin = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 50,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -128,8 +163,7 @@ function GetSkavenRecruitmentPoolData()
                 MasterAssassin = {
                     AgentSubTypes = {
                         wh2_dlc14_skv_master_assassin = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,

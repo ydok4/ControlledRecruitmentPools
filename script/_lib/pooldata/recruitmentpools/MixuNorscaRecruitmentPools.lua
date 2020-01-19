@@ -6,16 +6,13 @@ function GetMixuNorscaRecruitmentPoolData()
                 Shamans = {
                     AgentSubTypes = {
                         nor_shaman_sorcerer_lord_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                         nor_shaman_sorcerer_lord_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                         nor_shaman_sorcerer_lord_metal = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 33,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -24,15 +21,14 @@ function GetMixuNorscaRecruitmentPoolData()
                 FimirLords = {
                     AgentSubTypes = {
                         nor_fimir_warlord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
-                    SubPoolMaxSize = 1,
+                    SubPoolMaxSize = 0,
                 },
             },
-            LordPoolMaxSize = 7,
+            LordPoolMaxSize = 4,
         },
     };
 end

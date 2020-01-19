@@ -112,5 +112,12 @@ function GetCataphDataResources()
 			},
 			IsFemale = "false",
 		},
+		AK_hef_dragonmage = {
+			AgentType = "champion",
+			ArtSetIds = {
+				"AK_hef_dragonmage_01", "AK_hef_dragonmage_02", "AK_hef_dragonmage_03",
+			},
+			IsFemale = "false",
+		},
 	};
 end

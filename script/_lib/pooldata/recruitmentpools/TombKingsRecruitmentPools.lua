@@ -6,30 +6,22 @@ function GetTombKingsRecruitmentPools()
                 LichePriests = {
                     AgentSubTypes = {
                         wh2_dlc09_tmb_liche_priest_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 33,
                         },
                         wh2_dlc09_tmb_liche_priest_light = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 33,
                         },
                         wh2_dlc09_tmb_liche_priest_nehekhara = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 33,
                         },
                     },
                     SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 3,
+                    SubPoolMaxSize = 4,
                 },
                 TombPrinces = {
                     AgentSubTypes = {
                         wh2_dlc09_tmb_tomb_prince = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -38,9 +30,7 @@ function GetTombKingsRecruitmentPools()
                 Necrotect = {
                     AgentSubTypes = {
                         wh2_dlc09_tmb_necrotect = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
-                            BonusCost = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -52,8 +42,7 @@ function GetTombKingsRecruitmentPools()
                 TombKings = {
                     AgentSubTypes = {
                         wh2_dlc09_tmb_tomb_king = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 100,
                             HumanPlayerOnly = true,
                         },
                     },

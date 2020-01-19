@@ -104,7 +104,7 @@ function GetMixuDataResources()
 			ArtSetIds = {
 					"wh2_main_art_set_nor_fimir_warlord_1", "wh2_main_art_set_nor_fimir_warlord_2", "wh2_main_art_set_nor_fimir_warlord_3", "wh2_main_art_set_nor_fimir_warlord_4",
 			},
-			IsFemale = "true",
+			IsFemale = "false",
 		},
 		nor_shaman_sorcerer_lord_death = {
 			AgentType = "general",
@@ -168,6 +168,13 @@ function GetMixuDataResources()
 					"mixu_art_set_tmb_liche_high_priest_shadow_1", "mixu_art_set_tmb_liche_high_priest_shadow_2", "mixu_art_set_tmb_liche_high_priest_shadow_3", "mixu_art_set_tmb_liche_high_priest_shadow_4",
 			},
 			IsFemale = "false",
+		},
+		cst_ancient_syreen = {
+			AgentType = "spy",
+			ArtSetIds = {
+					"mixu_art_set_cst_ancient_syreen_01", "mixu_art_set_cst_ancient_syreen_02", "mixu_art_set_cst_ancient_syreen_03",
+			},
+			IsFemale = "true",
 		},
 	};
 end

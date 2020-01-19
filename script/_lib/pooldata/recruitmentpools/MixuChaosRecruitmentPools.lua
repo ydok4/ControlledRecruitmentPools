@@ -3,43 +3,35 @@ function GetMixuChaosRecruitmentPoolData()
         -- The Cabal Faction, this is only present with an unlocker (Mixus's or Crynsos)
         wh2_main_chs_the_cabal = {
             FactionPools = {
+                ChaosLord = {
+                    AgentSubTypes = {
+                        chs_lord = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
+                },
                 SorcerorLords = {
                     AgentSubTypes = {
                         chs_sorcerer_lord_death = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 25,
                         },
                         chs_sorcerer_lord_fire = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 25,
                         },
                         chs_sorcerer_lord_metal = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 25,
                         },
                         dlc07_chs_sorcerer_lord_shadow = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 3,
+                            MaximumPercentage = 25,
                         },
                     },
                     SubPoolInitialMinSize = 3,
-                    SubPoolMaxSize = 8,
+                    SubPoolMaxSize = 4,
                 },
             },
-            Traits = {
-                wh2_main_skill_innate_chs_diabolic_spendour = {
-
-                },
-                wh2_main_skill_innate_chs_dominance = {
-
-                },
-            },
-            ExcludedTraits = {
-                "wh_main_skill_innate_all_boring",
-                "wh_main_skill_innate_all_magnanimous",
-                "wh_main_skill_innate_all_melancholic",
-            },
-            LordPoolMaxSize = 10,
+            LordPoolMaxSize = 4,
         },
     };
 end

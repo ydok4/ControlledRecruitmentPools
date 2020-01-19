@@ -3,32 +3,57 @@ function GetSavageOrcRecruitmentPoolData()
         -- Default pool distribution
         wh_main_sc_grn_savage_orcs = {
             HeroPools = {
+                NightGoblinShamanPools = {
+                    AgentSubTypes = {
+                        grn_night_goblin_shaman = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
+                },
+                OrcShamanPools = {
+                    AgentSubTypes = {
+                        grn_orc_shaman = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
+                },
+                GoblinBigBossPools = {
+                    AgentSubTypes = {
+                        grn_goblin_big_boss = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 4,
+                },
             },
             HeroPoolMaxSize = 4,
             FactionPools = {
                 SavageOrcWarbosses = {
                     AgentSubTypes = {
                         grn_orc_warboss = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 5,
+                            MaximumPercentage = 100,
                             HumanPlayerOnly = true,
                         },
                     },
                     SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 5,
+                    SubPoolMaxSize = 4,
                 },
                 SavageOrcShamans = {
                     AgentSubTypes = {
                         grn_goblin_great_shaman = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
             },
-            LordPoolMaxSize = 7,
+            LordPoolMaxSize = 4,
         },
         -- Major Faction specific distributions
 
@@ -39,8 +64,7 @@ function GetSavageOrcRecruitmentPoolData()
             OrcWarbossPool = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
-                        MinimumAmount = 2,
-                        MaximumAmount = 5,
+                        MaximumPercentage = 5,
                     },
                 },
                 SubPoolMaxSize = 5,
@@ -48,20 +72,18 @@ function GetSavageOrcRecruitmentPoolData()
             GoblinGreatShaman = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolMaxSize = 2,
             },
-            LordPoolMaxSize = 5,
+            LordPoolMaxSize = 4,
         },
         wh_main_grn_skull-takerz = {
             OrcWarbossPool = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
-                        MinimumAmount = 2,
-                        MaximumAmount = 5,
+                        MaximumPercentage = 5,
                     },
                 },
                 SubPoolMaxSize = 5,
@@ -69,20 +91,18 @@ function GetSavageOrcRecruitmentPoolData()
             GoblinGreatShaman = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolMaxSize = 2,
             },
-            LordPoolMaxSize = 5,
+            LordPoolMaxSize = 4,
         },
         wh_main_grn_top_knotz = {
             OrcWarbossPool = {
                 AgentSubTypes = {
                     grn_orc_warboss = {
-                        MinimumAmount = 2,
-                        MaximumAmount = 5,
+                        MaximumPercentage = 5,
                     },
                 },
                 SubPoolMaxSize = 5,
@@ -90,13 +110,12 @@ function GetSavageOrcRecruitmentPoolData()
             GoblinGreatShaman = {
                 AgentSubTypes = {
                     grn_goblin_great_shaman = {
-                        MinimumAmount = 0,
-                        MaximumAmount = 2,
+                        MaximumPercentage = 2,
                     },
                 },
                 SubPoolMaxSize = 2,
             },
-            LordPoolMaxSize = 5,
+            LordPoolMaxSize = 4,
         }, --]]
     };
 end

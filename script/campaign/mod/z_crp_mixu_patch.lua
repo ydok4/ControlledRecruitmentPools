@@ -6,13 +6,13 @@ if core:is_mod_loaded("mixu_ttl") then
     require 'script/_lib/pooldata/subcultureresources/MixuTombKingsSubcultureResources'
     require 'script/_lib/pooldata/subcultureresources/MixuWoodElfSubcultureResources'
 
-    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh_main_sc_dwf_dwarfs", GetMixuDwarfsSubcultureResources());
-    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh_main_sc_emp_empire", GetMixuEmpireSubcultureResources());
-    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh_main_sc_grn_greenskins", GetMixuGreenskinSubcultureResources());
-    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh_main_sc_grn_savage_orcs", GetMixuGreenskinSubcultureResources());
-    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh_main_sc_nor_norsca", GetMixuNorscanSubcultureResources());
-    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh2_dlc09_sc_tmb_tomb_kings", GetMixuTombKingsSubcultureResources());
-    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh_dlc05_sc_wef_wood_elves", GetMixuWoodElfSubcultureResources());
+    _G.CRPResources.AddAdditionalSubcultureResources("wh_main_sc_dwf_dwarfs", GetMixuDwarfsSubcultureResources());
+    _G.CRPResources.AddAdditionalSubcultureResources("wh_main_sc_emp_empire", GetMixuEmpireSubcultureResources());
+    _G.CRPResources.AddAdditionalSubcultureResources("wh_main_sc_grn_greenskins", GetMixuGreenskinSubcultureResources());
+    _G.CRPResources.AddAdditionalSubcultureResources("wh_main_sc_grn_savage_orcs", GetMixuGreenskinSubcultureResources());
+    _G.CRPResources.AddAdditionalSubcultureResources("wh_main_sc_nor_norsca", GetMixuNorscanSubcultureResources());
+    _G.CRPResources.AddAdditionalSubcultureResources("wh2_dlc09_sc_tmb_tomb_kings", GetMixuTombKingsSubcultureResources());
+    _G.CRPResources.AddAdditionalSubcultureResources("wh_dlc05_sc_wef_wood_elves", GetMixuWoodElfSubcultureResources());
 
     require 'script/_lib/pooldata/recruitmentpools/MixuDwarfsRecruitmentPools'
     require 'script/_lib/pooldata/recruitmentpools/MixuEmpireRecruitmentPools'
@@ -43,4 +43,12 @@ if core:is_mod_loaded("mixu_ttl") then
         _G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.faction_to_name_groups, MixuMousillonNameGroupResources);
     end
     out("CRP: Finished loading Mixu Patch");
+end
+
+if core:is_mod_loaded("mixu_shadewraith") then
+    require 'script/_lib/pooldata/subcultureresources/MixuVampireCoastSubcultureResources'
+    _G.CRPResources.AddAdditionalSubcultureResources("wh2_dlc11_sc_cst_vampire_coast", GetMixuVampireCoastSubcultureResources());
+
+    require 'script/_lib/pooldata/recruitmentpools/MixuVampireCoastRecruitmentPools'
+    _G.CRPResources.AddAdditionalRecruitmentPoolResources("wh2_dlc11_sc_cst_vampire_coast", GetMixuVampireCoastRecruitmentPoolData());
 end

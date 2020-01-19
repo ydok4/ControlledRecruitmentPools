@@ -3,14 +3,40 @@ function GetDwarfRecruitmentPoolData()
         -- Default pool distribution
         wh_main_sc_dwf_dwarfs = {
             HeroPools = {
+                MasterEngineers = {
+                    AgentSubTypes = {
+                        dwf_master_engineer = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 2,
+                },
+                Runesmiths = {
+                    AgentSubTypes = {
+                        dwf_runesmith = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 2,
+                },
+                Thanes = {
+                    AgentSubTypes = {
+                        dwf_thane = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 4,
+                },
             },
             HeroPoolMaxSize = 4,
             FactionPools = {
                 DwarfLords = {
                     AgentSubTypes = {
                         dwf_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 4,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -19,15 +45,14 @@ function GetDwarfRecruitmentPoolData()
                 RuneLord = {
                     AgentSubTypes = {
                         dlc06_dwf_runelord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 1,
                 },
             },
-            LordPoolMaxSize = 7,
+            LordPoolMaxSize = 4,
         },
         -- Major Faction specific distributions
 
@@ -37,8 +62,7 @@ function GetDwarfRecruitmentPoolData()
                 DwarfLords = {
                     AgentSubTypes = {
                         dwf_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 6,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -47,8 +71,7 @@ function GetDwarfRecruitmentPoolData()
                 RuneLord = {
                     AgentSubTypes = {
                         dlc06_dwf_runelord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -64,8 +87,7 @@ function GetDwarfRecruitmentPoolData()
                 DwarfLords = {
                     AgentSubTypes = {
                         dwf_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 6,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -74,8 +96,7 @@ function GetDwarfRecruitmentPoolData()
                 RuneLord = {
                     AgentSubTypes = {
                         dlc06_dwf_runelord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 1,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -91,8 +112,7 @@ function GetDwarfRecruitmentPoolData()
                 DwarfLords = {
                     AgentSubTypes = {
                         dwf_lord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 2,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -101,8 +121,7 @@ function GetDwarfRecruitmentPoolData()
                 RuneLord = {
                     AgentSubTypes = {
                         dlc06_dwf_runelord = {
-                            MinimumAmount = 0,
-                            MaximumAmount = 0,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 0,
