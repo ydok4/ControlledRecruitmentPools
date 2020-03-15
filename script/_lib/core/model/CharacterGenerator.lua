@@ -330,6 +330,9 @@ function CharacterGenerator:GetRandomTraitForLord(factionPoolResources, original
         --self.Logger:Log("No lords to replace");
         return "";
     end
+    if factionPoolResources.LordsToReplace[originalSubType] == nil then
+        return "";
+    end
     local traitPool = factionPoolResources.LordsToReplace[originalSubType].traitKeyPool;
     if traitPool == nil then
         --self.Logger:Log("Trait pool is null");

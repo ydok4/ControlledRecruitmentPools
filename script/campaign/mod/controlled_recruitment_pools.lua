@@ -31,7 +31,6 @@ function controlled_recruitment_pools()
         CRPLordsInPools = crp.CRPLordsInPools,
         PreBattleData = crp.PreBattleData,
     });
-
     if cm:is_new_game() then
         crp:Initialise(enableLogging);
         -- This callback is required so that startup happens after
@@ -39,13 +38,14 @@ function controlled_recruitment_pools()
         cm:callback(function() crp:NewGameStartUp(); end, 1);
     else
         crp:Initialise(enableLogging);
-        if #crp.CRPLordsInPools > 0 then
-            crp.Logger:Log("Loaded lord data");
-        end
+        cm:callback(function()
+            crp:CreateCachedAgentData(crp.HumanFaction);
+            crp.Logger:Log_Finished();
+        end, 1);
     end
 
     crp.UIController:InitialiseUI(crp, enableLogging);
-    CRP_SetupPostUIListeners(crp, core, find_uicomponent);
+    CRP_SetupPostUIListeners(crp, core, find_uicomponent, UIComponent);
     -- Remove the listeners which give AI factions bloodline chars cause we already do that
     core:remove_listener("vampire_bloodline_ai_characters");
     out("CRP: Finished startup");
@@ -110,6 +110,7 @@ function controlled_recruitment_pools()
         end,
         true
     );--]]
+    --cm:add_event_restricted_unit_record(string unit key);
     crp.Logger:Log_Finished();
 end
 

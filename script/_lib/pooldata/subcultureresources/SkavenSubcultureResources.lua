@@ -158,6 +158,14 @@ function GetSkavenSubcultureResources()
                     },
                 },
             },
+            wh2_main_skv_warlock_engineer = {
+                BonusCost = 0,
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                },
+            },
             wh2_dlc12_skv_warlock_master = {
                 BonusCost = 300,
                 Mounts = {

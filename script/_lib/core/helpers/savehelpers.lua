@@ -69,7 +69,8 @@ function SaveCharacterData(crp)
                     characterData.Mounts,
                     characterData.RemoveImmortality,
                     characterData.IsRecruited,
-                    characterData.ExtraCost
+                    characterData.ExtraCost,
+                    characterData.CQI,
                 };
                 if characterCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then
                     crp.Logger:Log("Saving table "..tostring(tableCount));
@@ -78,10 +79,9 @@ function SaveCharacterData(crp)
                     tableCount = tableCount + 1;
                     nthTable = {};
                 end
-                characterKeysForFaction[#characterKeysForFaction + 1] = factionKey.."/".. characterData.SubType.."/"..characterKey;
             end
         end
-        --crp.Logger:Log("Finished adding characters for faction: "..factionKey);
+        crp.Logger:Log("Finished adding characters for faction: "..factionKey);
         serialised_save_table_factions[factionKey] = characterKeysForFaction;
     end
 
@@ -89,7 +89,6 @@ function SaveCharacterData(crp)
     out("CRP: Saving "..tostring(characterCount).." total characters");
     crp_lord_pools_header["TotalCharacters"] = characterCount;
     cm:save_named_value("crp_lord_pools_header", crp_lord_pools_header, context);
-    cm:save_named_value("crp_lord_pools_faction", serialised_save_table_factions, context);
     out("CRP: Saving table"..tostring(tableCount));
     cm:save_named_value("crp_lord_pools_characters_"..tableCount, nthTable, context);
 
@@ -99,7 +98,7 @@ end
 function SaveFactionCharacterPoolData(crp)
     crp.Logger:Log("Saving character pool data");
     out("CRP: Building serialised Pool limits");
-
+    local crp_faction_pools_header = {};
     -- This contains the max poolsize of the faction
     local serialised_faction_resources = {};
 
@@ -108,13 +107,17 @@ function SaveFactionCharacterPoolData(crp)
     -- Contains the pool data for each faction
     local serialised_faction_pool_resources = {};
 
-    -- Contains the keys for the faction pool agent subtypes
-    local serialised_faction_pool_agent_keys = {};
-    -- Contiains the number of each agent subtype with a key that correspond to the subtype, pool and faction
-    local serialised_faction_pool_agent_resources = {};
+    -- This tracks the number of different pool values per subtype we track
+    local factionPoolAgentKeysCount = 0;
+    local factionPoolAgentKeysTableCount = 1;
+    local nthFactionPoolAgentKeysTable = {};
+
+    local agentResourcesCount = 0;
+    local agentResourcesTableCount = 1;
+    local nthAgentResourcesTable = {};
 
     for cultureResourceKey, cultureResourceData in pairs(_G.CRPResources.RecruitmentPoolResources) do
-        --crp.Logger:Log("Saving culture factions for "..cultureResourceKey);
+        crp.Logger:Log("Saving culture factions for "..cultureResourceKey);
         for factionResourceKey, factionResourceData in pairs(cultureResourceData) do
             --crp.Logger:Log("Saving faction resources for "..factionResourceKey);
             if cultureResourceKey ~= factionResourceKey then
@@ -122,32 +125,64 @@ function SaveFactionCharacterPoolData(crp)
                 serialised_faction_resources[factionResourceKey] = { cultureResourceKey, factionResourceData.HeroPoolMaxSize, factionResourceData.LordPoolMaxSize};
                 -- Heroes
                 for factionPoolKey, factionPoolData in pairs(factionResourceData.HeroPools) do
-                    serialised_faction_pool_resources[factionResourceKey..factionPoolKey] = { factionPoolKey, factionPoolData.SubPoolInitialMinSize, factionPoolData.SubPoolMaxSize};
+                    serialised_faction_pool_resources[factionResourceKey..factionPoolKey] = { factionPoolKey, factionPoolData.SubPoolInitialMinSize, factionPoolData.SubPoolMaxSize, factionPoolData.SubPoolBonusSize};
                     local factionPoolAgentKeys = {};
                     for agentSubTypeKey, agentSubTypeData in pairs(factionPoolData.AgentSubTypes) do
                         if agentSubTypeData == false then
-                            serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, nil, nil, nil, false};
+                            nthAgentResourcesTable[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, 0, false};
                         else
-                            serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, agentSubTypeData.MaximumPercentage, agentSubTypeData.HumanPlayerOnly, true};
+                            nthAgentResourcesTable[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, agentSubTypeData.MaximumPercentage, true};
                         end
                         factionPoolAgentKeys[#factionPoolAgentKeys + 1] = agentSubTypeKey;
+                        agentResourcesCount = agentResourcesCount + 1;
+                        if agentResourcesCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then
+                            crp.Logger:Log("Saving agent subtype table "..tostring(agentResourcesTableCount));
+                            out("CRP: Saving agent subtype table "..tostring(agentResourcesTableCount));
+                            cm:save_named_value("crp_faction_pools_agent_resources_"..agentResourcesTableCount, nthAgentResourcesTable, context);
+                            agentResourcesTableCount = agentResourcesTableCount + 1;
+                            nthAgentResourcesTable = {};
+                        end
                     end
-                    serialised_faction_pool_agent_keys[factionResourceKey..factionPoolKey] = factionPoolAgentKeys;
+                    nthFactionPoolAgentKeysTable[factionResourceKey..factionPoolKey] = factionPoolAgentKeys;
+                    factionPoolAgentKeysCount = factionPoolAgentKeysCount + 1;
+                    if factionPoolAgentKeysCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then
+                        crp.Logger:Log("Saving faction pool table "..tostring(factionPoolAgentKeysTableCount));
+                        out("CRP: Saving agent subtype table "..tostring(factionPoolAgentKeysTableCount));
+                        cm:save_named_value("crp_faction_pools_agent_keys_"..factionPoolAgentKeysTableCount, nthFactionPoolAgentKeysTable, context);
+                        factionPoolAgentKeysTableCount = factionPoolAgentKeysTableCount + 1;
+                        nthFactionPoolAgentKeysTable = {};
+                    end
                     factionPoolKeys[#factionPoolKeys + 1] = factionPoolKey;
                 end
                 -- Lords
                 for factionPoolKey, factionPoolData in pairs(factionResourceData.FactionPools) do
-                    serialised_faction_pool_resources[factionResourceKey..factionPoolKey] = { factionPoolKey, factionPoolData.SubPoolInitialMinSize, factionPoolData.SubPoolMaxSize};
+                    serialised_faction_pool_resources[factionResourceKey..factionPoolKey] = { factionPoolKey, factionPoolData.SubPoolInitialMinSize, factionPoolData.SubPoolMaxSize, factionPoolData.SubPoolBonusSize};
                     local factionPoolAgentKeys = {};
                     for agentSubTypeKey, agentSubTypeData in pairs(factionPoolData.AgentSubTypes) do
                         if agentSubTypeData == false then
-                            serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, nil, nil, nil, false};
+                            nthAgentResourcesTable[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, 0, false};
                         else
-                            serialised_faction_pool_agent_resources[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, agentSubTypeData.MaximumPercentage, agentSubTypeData.HumanPlayerOnly, true};
+                            nthAgentResourcesTable[factionResourceKey..factionPoolKey..agentSubTypeKey] = { agentSubTypeKey, agentSubTypeData.MaximumPercentage, true};
                         end
                         factionPoolAgentKeys[#factionPoolAgentKeys + 1] = agentSubTypeKey;
+                        agentResourcesCount = agentResourcesCount + 1;
+                        if agentResourcesCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then
+                            crp.Logger:Log("Saving agent subtype table "..tostring(agentResourcesTableCount));
+                            out("CRP: Saving agent subtype table "..tostring(agentResourcesTableCount));
+                            cm:save_named_value("crp_faction_pools_agent_resources_"..agentResourcesTableCount, nthAgentResourcesTable, context);
+                            agentResourcesTableCount = agentResourcesTableCount + 1;
+                            nthAgentResourcesTable = {};
+                        end
                     end
-                    serialised_faction_pool_agent_keys[factionResourceKey..factionPoolKey] = factionPoolAgentKeys;
+                    nthFactionPoolAgentKeysTable[factionResourceKey..factionPoolKey] = factionPoolAgentKeys;
+                    factionPoolAgentKeysCount = factionPoolAgentKeysCount + 1;
+                    if factionPoolAgentKeysCount % MAX_NUM_SAVE_TABLE_KEYS == 0 then
+                        crp.Logger:Log("Saving faction pool table "..tostring(factionPoolAgentKeysTableCount));
+                        out("CRP: Saving agent subtype table "..tostring(factionPoolAgentKeysTableCount));
+                        cm:save_named_value("crp_faction_pools_agent_keys_"..factionPoolAgentKeysTableCount, nthFactionPoolAgentKeysTable, context);
+                        factionPoolAgentKeysTableCount = factionPoolAgentKeysTableCount + 1;
+                        nthFactionPoolAgentKeysTable = {};
+                    end
                     factionPoolKeys[#factionPoolKeys + 1] = factionPoolKey;
                 end
                 serialised_faction_pool_keys[factionResourceKey] = factionPoolKeys;
@@ -156,13 +191,22 @@ function SaveFactionCharacterPoolData(crp)
     end
     crp.Logger:Log("Finished serialising data");
     out("CRP: Saving Pool limits");
+    out("CRP: Saving agent subtype table "..tostring(agentResourcesTableCount));
+    cm:save_named_value("crp_faction_pools_agent_resources_"..agentResourcesTableCount, nthAgentResourcesTable, context);
+    crp_faction_pools_header["TotalFactionPoolAgentResources"] = agentResourcesCount;
+
+    crp.Logger:Log("Saving faction pool table "..tostring(factionPoolAgentKeysTableCount));
+    cm:save_named_value("crp_faction_pools_agent_keys_"..factionPoolAgentKeysTableCount, nthFactionPoolAgentKeysTable, context);
+    crp_faction_pools_header["TotalFactionPoolAgentKeys"] = factionPoolAgentKeysCount;
+
+    cm:save_named_value("crp_faction_pools_header", crp_faction_pools_header, context);
     cm:save_named_value("crp_faction_resources", serialised_faction_resources, context);
 
     cm:save_named_value("crp_faction_pool_keys", serialised_faction_pool_keys, context);
     cm:save_named_value("crp_faction_pool_resources", serialised_faction_pool_resources, context);
 
-    cm:save_named_value("crp_faction_pool_agent_keys", serialised_faction_pool_agent_keys, context);
-    cm:save_named_value("crp_faction_pool_agent_resources", serialised_faction_pool_agent_resources, context);
+    --cm:save_named_value("crp_faction_pool_agent_keys", serialised_faction_pool_agent_keys, context);
+    --cm:save_named_value("crp_faction_pool_agent_resources", serialised_faction_pool_agent_resources, context);
 
     out("CRP: Finished saving");
     crp.Logger:Log("CRP: Finished saving character pool data");

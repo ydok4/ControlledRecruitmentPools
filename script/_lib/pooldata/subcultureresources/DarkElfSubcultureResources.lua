@@ -13,6 +13,16 @@ function GetDarkElfSubcultureResources()
                 UseLevelMultiplier = false,
                 Type = "set",
             },
+            wh2_main_def_barracks_2 = {
+                Pools = {
+                    "Masters",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = false,
+                Type = "set",
+            },
             wh2_main_def_murder = {
                 Pools = {
                     "KhainiteAssassins",

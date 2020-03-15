@@ -15,8 +15,8 @@ function GetTombKingsRecruitmentPools()
                             MaximumPercentage = 33,
                         },
                     },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 4,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
                 TombPrinces = {
                     AgentSubTypes = {
@@ -24,8 +24,8 @@ function GetTombKingsRecruitmentPools()
                             MaximumPercentage = 100,
                         },
                     },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 3,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 1,
                 },
                 Necrotect = {
                     AgentSubTypes = {
@@ -37,7 +37,7 @@ function GetTombKingsRecruitmentPools()
                     SubPoolMaxSize = 0,
                 },
             },
-            HeroPoolMaxSize = 4,
+            HeroPoolMaxSize = 2,
             FactionPools = {
                 TombKings = {
                     AgentSubTypes = {
@@ -50,7 +50,7 @@ function GetTombKingsRecruitmentPools()
                     SubPoolMaxSize = 4,
                 },
             },
-            LordPoolMaxSize = 0,
+            LordPoolMaxSize = 3,
         },
     };
 end

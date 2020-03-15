@@ -26,6 +26,11 @@ end
 
 function ControlledRecruitmentPoolsController:Initialise(enableLogging)
     out("CRP: Setting default values");
+    -- Initialise logging
+    self.Logger = Logger:new({});
+    self.Logger:Initialise("ControlledRecruitmentPools.txt", enableLogging);
+    self.Logger:Log_Start();
+    -- Initialise human faction
     self.HumanFaction = self:GetHumanFaction();
     -- These coordinates are between Lustria and
     -- the Southlands in ME
@@ -50,13 +55,57 @@ function ControlledRecruitmentPoolsController:Initialise(enableLogging)
     -- Setup the UI subtype cache
     self.LocalisedSubTypeCache = {};
     local subcultureResources = GetAgentSubTypeResourcesForFaction(self.HumanFaction);
+    local isLizardmen = self.HumanFaction:subculture() == "wh2_main_sc_lzd_lizardmen";
     for agentSubtypeKey, agentSubtypeData in pairs(subcultureResources) do
         local localisedSubTypeKey = effect.get_localised_string("agent_subtypes_onscreen_name_override_"..agentSubtypeKey);
-        self.LocalisedSubTypeCache[localisedSubTypeKey] = agentSubtypeKey;
+        -- Edge case for lizardment factions with duplicates of the base agents
+        -- but have the same name
+        if isLizardmen == true then
+            if self.HumanFaction:name() == "wh2_dlc13_lzd_spirits_of_the_jungle" then
+                if string.match(agentSubtypeKey, "_horde")
+                or agentSubtypeKey == "wh2_main_lzd_saurus_scar_veteran"
+                or agentSubtypeKey == "wh2_main_lzd_skink_chief"
+                or agentSubtypeKey == "wh2_main_lzd_skink_priest_beasts"
+                or agentSubtypeKey == "wh2_main_lzd_skink_priest_heavens" then
+                    self.LocalisedSubTypeCache[localisedSubTypeKey] = agentSubtypeKey;
+                end
+            elseif self.HumanFaction:name() == "wh2_main_lzd_tlaqua" then
+                if string.match(agentSubtypeKey, "wh2_dlc12_lzd_tlaqua_")
+                or agentSubtypeKey == "wh2_dlc12_lzd_red_crested_skink_chief"
+                or agentSubtypeKey == "wh2_dlc13_lzd_kroxigor_ancient"
+                or agentSubtypeKey == "wh2_main_lzd_saurus_old_blood"
+                or agentSubtypeKey == "wh2_main_lzd_saurus_scar_veteran" then
+                    self.LocalisedSubTypeCache[localisedSubTypeKey] = agentSubtypeKey;
+                end
+            elseif not string.match(agentSubtypeKey, "wh2_dlc12_lzd_tlaqua_")
+            and not string.match(agentSubtypeKey, "_horde") then
+                self.LocalisedSubTypeCache[localisedSubTypeKey] = agentSubtypeKey;
+            end
+        else
+            self.LocalisedSubTypeCache[localisedSubTypeKey] = agentSubtypeKey;
+        end
     end
-    self.Logger = Logger:new({});
-    self.Logger:Initialise("ControlledRecruitmentPools.txt", enableLogging);
-    self.Logger:Log_Start();
+
+    if enableLogging == true then
+        self.Logger:Log_Finished();
+        self.Logger:Log("Printing out lords for faction: ".."wh_main_chs_chaos");
+        local factionLords = self.CRPLordsInPools["wh_main_chs_chaos"];
+        if factionLords == nil then
+            self.Logger:Log("Faction has no lords.");
+            if self.CRPLordsInPools ~= nil then
+                for key, data in pairs(self.CRPLordsInPools) do
+                    self.Logger:Log("Tracked faction: "..key);
+                end
+            else
+                self.Logger:Log("There are no lords in the pool");
+            end
+        else
+            for key, data in pairs(factionLords) do
+                self.Logger:Log("Tracked subtype: "..key);
+            end
+        end
+        self.Logger:Log_Finished();
+    end
     out("CRP: Finished default values");
 end
 
@@ -66,21 +115,22 @@ function ControlledRecruitmentPoolsController:IsExcludedFaction(faction)
     if factionName == "wh_main_grn_skull-takerz" then
         return false;
     end
-
+    --self.Logger:Log("Checking faction is excluded: "..factionName);
     if factionName == "rebels" or
-    string.match(factionName, "waaagh") or
-    string.match(factionName, "brayherd") or
-    string.match(factionName, "intervention") or
-    string.match(factionName, "incursion") or
-    string.match(factionName, "separatists") or
-    string.match(factionName, "qb") or
+    faction:is_quest_battle_faction() == true or
+    string.match(factionName, "waaagh") ~= nil or
+    string.match(factionName, "brayherd") ~= nil or
+    string.match(factionName, "intervention") ~= nil or
+    string.match(factionName, "incursion") ~= nil or
+    string.match(factionName, "separatists") ~= nil or
+    factionName == "wh2_dlc13_lzd_defenders_of_the_great_plan" or
     factionName == "wh_dlc03_bst_beastmen_chaos" or
     factionName == "wh2_dlc11_cst_vampire_coast_encounters"
     then
         --self.Logger:Log("Faction is excluded");
         return true;
     end
-
+    --self.Logger:Log("Faction is not excluded");
     return false;
 end
 
@@ -93,7 +143,8 @@ function ControlledRecruitmentPoolsController:NewGameStartUp()
         local faction = faction_list:item_at(i);
         if faction:is_quest_battle_faction() == false then
             self.Logger:Log(faction:name().." STARTUP");
-            if (IsSupportedSubCulture(faction:subculture()) or IsRogueArmy(faction:name())) and self:IsExcludedFaction(faction) == false then
+            if (IsSupportedSubCulture(faction:subculture()) or IsRogueArmy(faction:name()))
+            and self:IsExcludedFaction(faction) == false then
                 self.Logger:Log("Faction is supported, performing startup procedure");
                 local factionPoolResources = GetFactionPoolResources(faction);
                 -- Replace existing lords with specified values (if any)
@@ -108,13 +159,9 @@ function ControlledRecruitmentPoolsController:NewGameStartUp()
                     local currentFactionPools = self:GetCurrentPoolForFaction(faction);
                     self:SetupInitialMinimumValues(faction, currentFactionPools, factionPoolResources);
                     self.Logger:Log("Finished setting up minimum values");
-                    if faction:subculture() ~= "wh2_dlc09_sc_tmb_tomb_kings"
-                    and faction:name() ~= "wh2_dlc13_lzd_spirits_of_the_jungle" then
-                        self:ApplyHeroAndArmyLimits(faction);
-                    end
+                    self:ApplyHeroAndArmyLimits(faction);
                 end
                 self:EnableHeroRecruitment(faction);
-                self:TrackInitialLords(faction);
                 self.Logger:Log_Finished();
             else
                 self.Logger:Log("Faction is unsupported");
@@ -141,6 +188,8 @@ function ControlledRecruitmentPoolsController:TrackInitialLords(faction)
                 self.Logger:Log("Tracking subtype "..charSubType);
                 local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
                 self:TrackCharacterInPoolData(factionName, generatedName, charSubType, "", homeRegion, false, true);
+                local keyName = self:GetCleansedNameKey(generatedName);
+                self.CRPLordsInPools[factionName][charSubType][keyName].CQI = character:command_queue_index();
             end
         end
     end
@@ -148,13 +197,17 @@ end
 
 function ControlledRecruitmentPoolsController:ApplyHeroAndArmyLimits(faction)
     self:CreateCachedAgentData(faction);
-    local factionKey = faction:name();
-    self.Logger:Log("Applying army limits for faction: "..factionKey);
-    local customEffectBundle = cm:create_new_custom_effect_bundle("wh_main_effect_crp_dummy_army_cap");
-    customEffectBundle:add_effect("wh2_dlc09_effect_increase_army_capacity", "faction_to_faction_own_unseen", self.CachedAgentData.LordCap);
-    customEffectBundle:set_duration(0);
-    cm:apply_custom_effect_bundle_to_faction(customEffectBundle, faction);
-    self.Logger:Log_Finished();
+    -- Tomb kings and Nakai have caps applied as per the vanilla system (for now)
+    if faction:subculture() ~= "wh2_dlc09_sc_tmb_tomb_kings"
+    and faction:name() ~= "wh2_dlc13_lzd_spirits_of_the_jungle" then
+        local factionKey = faction:name();
+        self.Logger:Log("Applying army limits for faction: "..factionKey);
+        local customEffectBundle = cm:create_new_custom_effect_bundle("wh_main_effect_crp_dummy_army_cap");
+        customEffectBundle:add_effect("wh2_dlc09_effect_increase_army_capacity", "faction_to_faction_own_unseen", self.CachedAgentData.LordCap);
+        customEffectBundle:set_duration(0);
+        cm:apply_custom_effect_bundle_to_faction(customEffectBundle, faction);
+        self.Logger:Log_Finished();
+    end
     self:ApplyHeroLimits(faction);
 end
 
@@ -163,20 +216,26 @@ function ControlledRecruitmentPoolsController:CreateCachedAgentData(faction)
     local subcultureKey = faction:subculture();
     local overallAgentCap = 1;
     local overallLordCap = 0;
-    if faction:is_allowed_to_capture_territory() == false then
+    if factionKey ~= "wh2_dlc13_lzd_spirits_of_the_jungle"
+    and faction:is_allowed_to_capture_territory() == false then
         self.Logger:Log("Faction is horde "..factionKey);
-        if subcultureKey == "wh_main_sc_chs_chaos" then
-            overallLordCap = 9;
-            overallAgentCap = 25;
-        elseif subcultureKey == "wh_dlc03_sc_bst_beastmen" then
-            overallLordCap = 7;
-            overallAgentCap = 18;
-        else
-            overallLordCap = 4;
-        end
+        local factionPools = GetFactionPoolResources(faction);
+        -- For hordes this is calculated differently
+        overallLordCap = 0;
+        -- Agent cap is
+        overallAgentCap = math.ceil(factionPools.HeroPoolMaxSize * 0.75);
     else
         self.Logger:Log("Faction is not horde");
-        local regionList = faction:region_list();
+        local regionList = {};
+        local reverseRewards = false;
+        if factionKey == "wh2_dlc13_lzd_spirits_of_the_jungle" then
+            local defendersOfTheGreatPlan = cm:get_faction("wh2_dlc13_lzd_defenders_of_the_great_plan");
+            regionList = defendersOfTheGreatPlan:region_list();
+            reverseRewards = true;
+            overallAgentCap = 2;
+        else
+            regionList = faction:region_list();
+        end
         for i = 0, regionList:num_items() - 1 do
             local region = regionList:item_at(i);
             --self.Logger:Log("Checking region: "..region:name());
@@ -185,10 +244,18 @@ function ControlledRecruitmentPoolsController:CreateCachedAgentData(faction)
             local isSuitableClimate = faction:get_climate_suitability(climateKey);
             if isSuitableClimate == "suitability_good" then
                 self.Logger:Log("Region: "..region:name().." is suitable.");
-                if region:is_province_capital() == true then
-                    overallLordCap = overallLordCap + 1;
+                if reverseRewards == false then
+                    if region:is_province_capital() == true then
+                        overallLordCap = overallLordCap + 1;
+                    else
+                        overallAgentCap = overallAgentCap + 1;
+                    end
                 else
-                    overallAgentCap = overallAgentCap + 1;
+                    if region:is_province_capital() == true then
+                        overallAgentCap = overallAgentCap + 1;
+                    else
+                        overallLordCap = overallLordCap + 1;
+                    end
                 end
             end
         end
@@ -209,6 +276,14 @@ function ControlledRecruitmentPoolsController:CreateCachedAgentData(faction)
             end
         end
     end
+    if subcultureKey == "wh_main_sc_grn_greenskins"
+    or subcultureKey == "wh_dlc03_sc_bst_beastmen"
+    or subcultureKey == "wh_main_sc_grn_savage_orcs" then
+        overallLordCap = overallLordCap + 1;
+    elseif subcultureKey == "wh2_main_sc_skv_skaven"
+    or subcultureKey == "wh_main_sc_chs_chaos" then
+        overallLordCap = overallLordCap + 2;
+    end
     self:UpdateAgentCache(faction);
     self.Logger:Log("Finished checking heroes");
     self.Logger:Log("overallLordCap: "..overallLordCap);
@@ -225,9 +300,8 @@ function ControlledRecruitmentPoolsController:UpdateAgentCache(faction)
     local character_list = faction:character_list();
     for i = 0, character_list:num_items() - 1 do
         local char = character_list:item_at(i);
-        if char:has_military_force() == false
-        and cm:char_is_agent(char) == true
-        and char:is_wounded() == false then
+        if not char:is_null_interface()
+        and cm:char_is_agent(char) == true then
             local agentType = char:character_type_key();
             if agentTypeCounts[agentType] == nil then
                 agentTypeCounts[agentType] = 0;
@@ -236,7 +310,7 @@ function ControlledRecruitmentPoolsController:UpdateAgentCache(faction)
             if factionHeroes[char:character_subtype_key()] == nil then
                 self.Logger:Log("Found unsupported subtype: "..char:character_subtype_key());
             else
-                self.Logger:Log("Found supported subtype: "..char:character_type_key());
+                self.Logger:Log("Found supported subtype: "..char:character_subtype_key());
                 totalNumberOfHeroes = totalNumberOfHeroes + 1;
             end
         end
@@ -245,21 +319,20 @@ function ControlledRecruitmentPoolsController:UpdateAgentCache(faction)
     self.CachedAgentData.AgentTypeCounts = agentTypeCounts;
 end
 
-function ControlledRecruitmentPoolsController:UpdateCharacterInAgentCache(character)
+function ControlledRecruitmentPoolsController:UpdateCharacterInAgentCache(character, multiplier)
     local factionHeroes = GetAgentSubTypeResourcesForFaction(character:faction());
     if character:has_military_force() == false
-    and cm:char_is_agent(character) == true
-    and character:is_wounded() == false then
+    and cm:char_is_agent(character) == true then
         local agentType = character:character_type_key();
         if self.CachedAgentData.AgentTypeCounts[agentType] == nil then
             self.CachedAgentData.AgentTypeCounts[agentType] = 0;
         end
-        self.CachedAgentData.AgentTypeCounts[agentType] = self.CachedAgentData.AgentTypeCounts[agentType] + 1;
+        self.CachedAgentData.AgentTypeCounts[agentType] = self.CachedAgentData.AgentTypeCounts[agentType] + (1 * multiplier);
         if factionHeroes[character:character_subtype_key()] == nil then
-            self.Logger:Log("Found unsupported subtype: "..character:character_type_key());
+            self.Logger:Log("Found unsupported type: "..character:character_type_key());
         else
             self.Logger:Log("Found supported subtype: "..character:character_type_key());
-            self.CachedAgentData.AgentCount = self.CachedAgentData.AgentCount + 1;
+            self.CachedAgentData.AgentCount = self.CachedAgentData.AgentCount +  (1 * multiplier);
         end
     end
 end
@@ -275,11 +348,23 @@ function ControlledRecruitmentPoolsController:ApplyHeroLimits(faction)
         spy = "wh_main_effect_crp_increase_cap_spy",
         wizard = "wh_main_effect_crp_increase_cap_wizard",
     };
+    local factionName = faction:name();
+    local subcultureKey = faction:subculture();
+    self.Logger:Log("Agent count is: "..self.CachedAgentData.AgentCount);
     for agentType, effectKey in pairs(agentTypesCapEffects) do
         local agentCount = -1;
+        -- Tomb Kings don't have any cap for champions by default for some
+        -- reason. This messes up the math.
+        --if factionName == "wh2_dlc13_lzd_spirits_of_the_jungle"
+        if (subcultureKey == "wh2_dlc09_sc_tmb_tomb_kings"
+        and agentType == "champion") then
+            agentCount = 0;
+        end
         if self.CachedAgentData.AgentTypeCounts[agentType] ~= nil then
+            self.Logger:Log(agentType.." count is: "..self.CachedAgentData.AgentTypeCounts[agentType]);
             agentCount = agentCount + self.CachedAgentData.AgentTypeCounts[agentType];
         end
+        self.Logger:Log(agentType.." cap is: "..self.CachedAgentData.AgentCap);
         local limit = self.CachedAgentData.AgentCap - self.CachedAgentData.AgentCount + agentCount;
         if limit < -1 then
             limit = -1;
@@ -324,13 +409,18 @@ function ControlledRecruitmentPoolsController:ReplaceExistingLords(faction, fact
     for i = 0, character_list:num_items() - 1 do
         local character = character_list:item_at(i);
         local charSubType = character:character_subtype_key();
-        --self.Logger:Log("Checking character subtype: "..charSubType);
-        if factionPoolResources.LordsToReplace[charSubType] ~= nil
-        and cm:char_is_mobile_general_with_army(character) then
-            self.Logger:Log("Replacing character subtype: "..charSubType)
-            local replaceType = factionPoolResources.LordsToReplace[charSubType].replacementKey;
-            self.Logger:Log("Replace type is "..replaceType);
-            self:ReplaceCharacter(faction, character, replaceType, factionPoolResources, nil, nil);
+        self.Logger:Log("Checking character subtype: "..charSubType);
+        if cm:char_is_mobile_general_with_army(character) then
+            if factionPoolResources.LordsToReplace[charSubType] ~= nil then
+                self.Logger:Log("Replacing character subtype: "..charSubType)
+                local replaceType = factionPoolResources.LordsToReplace[charSubType].replacementKey;
+                self.Logger:Log("Replace type is "..replaceType);
+                self:ReplaceCharacter(faction, character, replaceType, factionPoolResources, nil, nil);
+            elseif factionPoolResources.LordsToReplace.FactionLeader ~= nil
+            and character:cqi() == faction:faction_leader():cqi() then
+                self.Logger:Log("Replacing faction leader: "..charSubType.." with: "..factionPoolResources.LordsToReplace.FactionLeader);
+                self:ReplaceCharacter(faction, character, factionPoolResources.LordsToReplace.FactionLeader, factionPoolResources, nil, nil);
+            end
         end
     end
 end
@@ -343,11 +433,6 @@ function ControlledRecruitmentPoolsController:ReplaceCharacter(faction, characte
     local selectedTrait = traitOverride;
     if selectedTrait == nil and factionPoolResources ~= nil then
         selectedTrait = self.CharacterGenerator:GetRandomTraitForLord(factionPoolResources, character:character_subtype_key());
-    end
-    if traitKey ~= "" then
-        self.Logger:Log("Got trait "..selectedTrait);
-    else
-        self.Logger:Log("No traits available");
     end
     local characterRegion = "";
     if character:has_region() == true then
@@ -408,7 +493,7 @@ function ControlledRecruitmentPoolsController:ReplaceCharacter(faction, characte
     return characterData;
 end
 
-function ControlledRecruitmentPoolsController:CreateForceWithGeneral(character, isRebel)
+function ControlledRecruitmentPoolsController:CreateForceWithGeneral(character)
     cm:disable_event_feed_events(true, "wh_event_category_diplomacy", "", "");
     cm:create_force_with_general(
         character.factionName,
@@ -453,14 +538,50 @@ function ControlledRecruitmentPoolsController:CreateForceWithGeneral(character, 
             if character.teleportPosition == true then
                 cm:teleport_to("character_cqi:"..cqi, character.xPos - 1, character.yPos, true);
             end
-
+            local char = cm:get_character_by_cqi(cqi);
             if character.noUnits == true then
                 self.Logger:Log("Removing units");
-                local char = cm:get_character_by_cqi(cqi);
                 cm:remove_all_units_from_general(char);
             end
-
-            --self.Logger:Log("Finished character callback");
+            local faction = cm:get_faction(character.factionName);
+            local name = {
+                clan_name = char:get_forename(),
+                forename = char:get_surname(),
+            };
+            local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
+            self:TrackCharacterInPoolData(character.factionName, name, character.subType, "", homeRegion, false, true);
+            if character.factionName ~= self.HumanFaction:name() then
+                local localisedForeName = "";
+                if name.clan_name ~= "" then
+                    localisedForeName = effect.get_localised_string(name.clan_name);
+                end
+                local localisedSurname = "";
+                if name.forename ~= "" then
+                    localisedSurname = effect.get_localised_string(name.forename);
+                end
+                local keyName = localisedForeName..localisedSurname;
+                keyName = CreateValidLuaTableKey(keyName);
+                local characterSubTypeKey = char:character_subtype_key();
+                self:RollForAIMount(faction, keyName, characterSubTypeKey);
+                local poolData = self.CRPLordsInPools[characterSubTypeKey][keyName];
+                if poolData ~= nil then
+                    self.Logger:Log("Character is now tracked");
+                    if poolData.Mounts ~= '' then
+                        self.Logger:Log("Attempting to add mounts");
+                        local ancillaryKey = string.match(poolData.Mounts, "(.*)/");
+                        if ancillaryKey ~= "unmounted" then
+                            self.Logger:Log("Adding ancillary: "..ancillaryKey);
+                            cm:force_add_ancillary(char, ancillaryKey, false, false);
+                        end
+                    end
+                    if poolData.ExtraCost ~= 0 then
+                        self.Logger:Log("Removing "..poolData.ExtraCost.." from treasury");
+                        cm:treasury_mod(character.factionName, -1 * poolData.ExtraCost);
+                    end
+                else
+                    self.Logger:Log("ERROR: Character is not tracked");
+                end
+            end
             self.Logger:Log_Finished();
         end
     );
@@ -469,78 +590,17 @@ function ControlledRecruitmentPoolsController:CreateForceWithGeneral(character, 
     cm:disable_event_feed_events(true, "wh_event_category_character", "", "");
     cm:kill_character(character.oldCharCqi, true);
     cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_character", "", ""); end, 1);
-    self.Logger:Log("Finished CreateForceWithGeneral");
+    --self.Logger:Log("Finished CreateForceWithGeneral");
 end
-
---[[function ControlledRecruitmentPoolsController:SetupRebellionForce(cqi, character)
-
-    --force_character_force_into_stance("faction:chosokabe,forename:2147274846", "MILITARY_FORCE_ACTIVE_STANCE_TYPE_AMBUSH");
-    cm:cai_disable_movement_for_character("character_cqi:"..cqi);
-    cm:apply_effect_bundle_to_characters_force("wh_main_bundle_military_upkeep_free_force", cqi, 0, true);
-    cm:apply_effect_bundle_to_characters_force("wh2_dlc11_bundle_immune_all_attrition", cqi, 0, true);
-
-    core:add_listener(
-        "CRP_RevivedFactionOccupiedGarrison_"..cqi,
-        "GarrisonOccupiedEvent",
-        function(context)
-           return context:character():cqi() == cqi;
-        end,
-        function(context)
-            self.Logger:Log("Removing upkeep free bundle");
-            cm:remove_effect_bundle_from_characters_force("wh_main_bundle_military_upkeep_free_force", cqi);
-            self.Logger:Log("Removing attrition immue bundle");
-            cm:remove_effect_bundle_from_characters_force("wh2_dlc11_bundle_immune_all_attrition", cqi);
-
-            core:remove_listener("CRP_RevivedFactionOccupiedGarrison_"..cqi);
-        end,
-        true
-    );
-
-    local turnCounter = 0;
-    core:add_listener(
-        "CRP_RevivedRebelTurnCounter_"..cqi,
-        "FactionTurnEnd",
-        function(context)
-           return context:faction():name() == character.factionName;
-        end,
-        function(context)
-            self.Logger:Log("Turn counter "..turnCounter);
-            if turnCounter == 3 then
-                cm:enable_movement_for_character("character_cqi:"..cqi);
-                core:remove_listener("CRP_RevivedRebelTurnCounter_"..cqi);
-            else
-                turnCounter = turnCounter + 1;
-            end
-        end,
-        true
-    );
-
-    core:add_listener(
-        "CRP_CharacterKilled_"..cqi,
-        "CharacterConvalescedOrKilled",
-        function(context)
-           return context:character():cqi() == cqi;
-        end,
-        function(context)
-            self.Logger:Log("Character "..cqi.." killed");
-            self.Logger:Log("Cleaning up listeners");
-            core:remove_listener("CRP_RevivedFactionOccupiedGarrison_"..cqi);
-            core:remove_listener("CRP_RevivedRebelTurnCounter_"..cqi);
-            core:remove_listener("CRP_CharacterKilled_"..cqi);
-            self.Logger:Log("Cleaned up listeners");
-        end,
-        true
-    );
-
-    self.Logger:Log("Setting character to attack region "..character.regionName);
-    cm:attack_region("character_cqi:"..cqi, character.regionName, true);
-end--]]
 
 function ControlledRecruitmentPoolsController:UpdateRecruitmentPool(faction, amountToGenerate, forceGenerate)
     local factionName = faction:name();
+    if factionName == "wh_main_grn_skull-takerz" then
+        factionName = "wh_main_grn_skull_takerz";
+    end
     -- Iterate over all existing characters and calculate the current pool
     -- values
-    self.Logger:Log("STARTING pool update for "..tostring(faction:name()));
+    self.Logger:Log("STARTING pool update for "..factionName);
     if faction:name() == self.HumanFaction:name() then
         cm:disable_event_feed_events(true, "wh_event_category_agent", "", "");
     end
@@ -563,7 +623,7 @@ function ControlledRecruitmentPoolsController:UpdateRecruitmentPool(faction, amo
     if faction:name() == self.HumanFaction:name() then
         cm:callback(function() cm:disable_event_feed_events(false, "wh_event_category_agent","",""); end, 1);
     end
-    self.Logger:Log("Completed pool update for "..tostring(faction:name()));
+    self.Logger:Log("Completed pool update for "..factionName);
 end
 
 function ControlledRecruitmentPoolsController:RemoveAliveCharacterInPoolAtGameStart(faction)
@@ -595,6 +655,10 @@ function ControlledRecruitmentPoolsController:GetCurrentPoolForFaction(faction)
     if faction:name() == "wh_main_grn_skull-takerz" then
         factionName = "wh_main_grn_skull_takerz";
     end
+    local excludedCharacterSubTypes = {
+        "wh2_pro08_neu_gotrek",
+        "wh2_pro08_neu_felix",
+    }
     -- Grab all characters in the faction. This includes recruited and
     -- characters in the pool
     if self.CRPLordsInPools[factionName] ~= nil then
@@ -609,7 +673,8 @@ function ControlledRecruitmentPoolsController:GetCurrentPoolForFaction(faction)
             local nameKey = forename..surname;
             local characterKey = CreateValidLuaTableKey(nameKey);
             -- We do not want to count garrison commands and agents
-            if cm:char_is_mobile_general_with_army(character) then
+            if cm:char_is_mobile_general_with_army(character) 
+            and not excludedCharacterSubTypes[charSubType] then
                 self.Logger:Log("Found existing general subtype: "..tostring(charSubType).." name is "..characterKey);
                 if currentPoolCounts[charSubType] then
                     currentPoolCounts[charSubType] = currentPoolCounts[charSubType] + 1;
@@ -633,18 +698,32 @@ function ControlledRecruitmentPoolsController:GetCurrentPoolForFaction(faction)
         for agentSubtypeKey, agentSubtypeData in pairs(self.CRPLordsInPools[factionName]) do
             for key, char in pairs(agentSubtypeData) do
                 if activeCharacterKeys[key] == nil then
-                    if currentPoolCounts[char.SubType] == nil then
-                        currentPoolCounts[char.SubType] = 1;
+                    if char.CQI ~= nil 
+                    and char.CQI ~= 0 then
+                        local character = cm:get_character_by_cqi(char.CQI);
+                        if not character then
+                            self.Logger:Log("ERROR: Character is missing: "..tostring(char.SubType).." name is "..key);
+                            self.CRPLordsInPools[factionName][char.SubType][key] = nil;
+                        end
                     else
-                        currentPoolCounts[char.SubType] = currentPoolCounts[char.SubType] + 1;
-                    end
-                    local agentType = self.CharacterGenerator:GetAgentTypeForSubtype(char.SubType);
-                    if agentType == "general" then
-                        self.Logger:Log("Found tracked general subtype: "..tostring(char.SubType).." name is "..key);
-                        currentPoolCounts["LordTotal"] = currentPoolCounts["LordTotal"] + 1;
-                    else
-                        self.Logger:Log("Found tracked hero subtype: "..tostring(char.SubType).." name is "..key);
-                        currentPoolCounts["HeroTotal"] = currentPoolCounts["HeroTotal"] + 1;
+                        if currentPoolCounts[char.SubType] == nil then
+                            currentPoolCounts[char.SubType] = 1;
+                        else
+                            currentPoolCounts[char.SubType] = currentPoolCounts[char.SubType] + 1;
+                        end
+                        local agentType = self.CharacterGenerator:GetAgentTypeForSubtype(char.SubType);
+                        if agentType == nil then
+                            self.Logger:Log("Character is missing agent type data");
+                            local character = cm:get_character_by_cqi(char.CQI);
+                            agentType = character:character_type_key();
+                        end
+                        if agentType == "general" then
+                            self.Logger:Log("Found tracked general subtype: "..tostring(char.SubType).." name is "..key);
+                            currentPoolCounts["LordTotal"] = currentPoolCounts["LordTotal"] + 1;
+                        else
+                            self.Logger:Log("Found tracked hero subtype: "..tostring(char.SubType).." name is "..key.." agent type is: "..agentType);
+                            currentPoolCounts["HeroTotal"] = currentPoolCounts["HeroTotal"] + 1;
+                        end
                     end
                 end
             end
@@ -764,7 +843,11 @@ function ControlledRecruitmentPoolsController:AddCharactersToPool(faction, curre
         else
             self.Logger:Log("Hit hero poolsize already "..factionResources.HeroPoolMaxSize);
         end
-        if currentPoolCounts["LordTotal"] < factionResources.LordPoolMaxSize
+        local lordLimit = factionResources.LordPoolMaxSize;
+        --[[if faction:name() ~= self.HumanFaction:name() then
+            lordLimit = lordLimit - 3;
+        end--]]
+        if currentPoolCounts["LordTotal"] < lordLimit
         or forceGenerate == true then
             local isHumanPlayerFaction = (factionName == self.HumanFaction:name());
             local agentSubTypeKey = self:SelectCharacterToGenerateFromAnyPool(factionResources.FactionPools, currentPoolCounts, isHumanPlayerFaction);
@@ -787,7 +870,7 @@ function ControlledRecruitmentPoolsController:AddCharactersToPool(faction, curre
                 self.Logger:Log_Finished();
             end
         else
-            self.Logger:Log("Hit general poolsize already "..factionResources.LordPoolMaxSize);
+            self.Logger:Log("Hit general poolsize already "..lordLimit);
         end
     end
 end
@@ -811,9 +894,10 @@ function ControlledRecruitmentPoolsController:SelectCharacterToGenerateFromSpeci
             count = 0;
         end
         --self.Logger:Log("Current count "..count);
+        local agentPercentage = (count / poolResources.SubPoolMaxSize) * 100;
         -- If the number of agents currently in the pool is less than their maximum value
         -- they might be generated
-        if count < agentSubType.MaximumPercentage
+        if agentPercentage < agentSubType.MaximumPercentage
         and ((isHumanPlayerFaction == false and not agentSubType.HumanPlayerOnly)
         or (isHumanPlayerFaction == true)) then
             agentSubTypesBelowMax[agentKey] = agentKey;
@@ -842,6 +926,7 @@ function ControlledRecruitmentPoolsController:SelectCharacterToGenerateFromAnyPo
     for poolKey, poolData in pairs(poolResources) do
         local totalPoolCount = 0;
         local validCharacterFromPool = {};
+        self.Logger:Log("Checking pool: "..poolKey);
         if poolData.SubPoolMaxSize > 0 then
             for agentKey, agentSubType in pairs(poolData.AgentSubTypes) do
                 local count = currentPoolCounts[agentKey];
@@ -852,7 +937,7 @@ function ControlledRecruitmentPoolsController:SelectCharacterToGenerateFromAnyPo
                 -- they might be generated
                 local agentPercentage = (count / poolData.SubPoolMaxSize) * 100;
                 self.Logger:Log("Agent: "..agentKey.." is at percentage: "..agentPercentage);
-                if (count / poolData.SubPoolMaxSize) * 100 < agentSubType.MaximumPercentage
+                if agentPercentage < agentSubType.MaximumPercentage
                 and ((isHumanPlayerFaction == false and not agentSubType.HumanPlayerOnly)
                 or (isHumanPlayerFaction == true)) then
                     validCharacterFromPool[agentKey] = agentKey;
@@ -908,33 +993,34 @@ function ControlledRecruitmentPoolsController:TrackCharacterInPoolData(factionNa
     if self.CRPLordsInPools[factionName] == nil then
         self.CRPLordsInPools[factionName] = {};
     end
-    local factionPoolResources = GetFactionPoolResources(faction);
     -- Now we add mounts for their social class (if there are any)
     local mountData = "";
     local extraCost = 0;
-    local subcultureAgentTypeResources = GetAgentSubTypeResourcesForFaction(faction);
-    local mountResources = GetMountResources(faction);
-    local agentSubTypeResources = subcultureAgentTypeResources[subType];
-    local turnNumber = cm:turn_number();
-    if agentSubTypeResources ~= nil
-    and agentSubTypeResources.Mounts ~= nil then
-        local agentMountData = {};
-        for ancillaryKey, ancillaryData in pairs(agentSubTypeResources.Mounts) do
-            -- We always include ancillaries with weightings more than 5
-            -- The rest only kick in after a certain threshold (turns 50 - 100)
-            if turnNumber > (100 - (mountResources[ancillaryData.MountData].Weighting * 10))
-            or mountResources[ancillaryData.MountData].Weighting > 5 then
-                agentMountData[ancillaryKey] = mountResources[ancillaryData.MountData];
+    if factionName == self.HumanFaction:name() then
+        local subcultureAgentTypeResources = GetAgentSubTypeResourcesForFaction(faction);
+        local mountResources = GetMountResources(faction);
+        local agentSubTypeResources = subcultureAgentTypeResources[subType];
+        local turnNumber = cm:turn_number();
+        if agentSubTypeResources ~= nil
+        and agentSubTypeResources.Mounts ~= nil then
+            local agentMountData = {};
+            for ancillaryKey, ancillaryData in pairs(agentSubTypeResources.Mounts) do
+                -- We always include ancillaries with weightings more than 5
+                -- The rest only kick in after a certain threshold (turns 50 - 100)
+                if turnNumber > (100 - (mountResources[ancillaryData.MountData].Weighting * 10))
+                or mountResources[ancillaryData.MountData].Weighting > 5 then
+                    agentMountData[ancillaryKey] = mountResources[ancillaryData.MountData];
+                end
             end
+            local selectedMount = GetRandomItemFromWeightedList(agentMountData, true);
+            mountData = selectedMount.."/"..agentSubTypeResources.Mounts[selectedMount].MountData;
+            extraCost = agentMountData[selectedMount].BonusCost;
+            self.Logger:Log("Adding ancillary: "..selectedMount);
         end
-        local selectedMount = GetRandomItemFromWeightedList(agentMountData, true);
-        mountData = selectedMount.."/"..agentSubTypeResources.Mounts[selectedMount].MountData;
-        extraCost = agentMountData[selectedMount].BonusCost;
-        self.Logger:Log("Adding ancillary: "..selectedMount);
-    end
-    if agentSubTypeResources ~= nil
-    and agentSubTypeResources.BonusCost ~= nil then
-        extraCost = extraCost + agentSubTypeResources.BonusCost;
+        if agentSubTypeResources ~= nil
+        and agentSubTypeResources.BonusCost ~= nil then
+            extraCost = extraCost + agentSubTypeResources.BonusCost;
+        end
     end
     local localisedForeName = "";
     if generatedName.clan_name ~= "" then
@@ -947,6 +1033,7 @@ function ControlledRecruitmentPoolsController:TrackCharacterInPoolData(factionNa
     local keyName = localisedForeName..localisedSurname;
     keyName = CreateValidLuaTableKey(keyName);
     local general = {
+        CQI = 0,
         Name = localisedForeName.." "..localisedSurname,
         Mounts = mountData,
         InnateTrait = "",
@@ -1045,7 +1132,6 @@ function ControlledRecruitmentPoolsController:ProcessNewCharacter(char)
     if surnameKey ~= nil and surnameKey ~= "" then
         localisedSurname = effect.get_localised_string(surnameKey);
     end
-    local factionPoolResources = GetFactionPoolResources(faction);
     local keyName = localisedForeName..localisedSurname;
     -- This removes any spaces within names, eg the surname "Von Carstein";
     -- Otherwise the key is invalid and the character won't be tracked
@@ -1059,14 +1145,18 @@ function ControlledRecruitmentPoolsController:ProcessNewCharacter(char)
         -- If the character is tracked in the pool
         local poolData = factionLords[characterSubTypeKey][keyName];
         if _G.IsIDE == true then
-            for factionPoolKey, factionPoolData in pairs(factionLords) do
-                poolData = factionPoolData;
+            for factionPoolKey, agentSubtypeData in pairs(factionLords) do
+                for agentSubtypeKey, factionPoolData in pairs(agentSubtypeData) do
+                    poolData = factionPoolData;
+                    break;
+                end
                 break;
             end
         end
         local subCulture = faction:subculture();
         if poolData then
-            if subCulture == "wh2_main_sc_hef_high_elves" and factionName == self.HumanFaction:name() and poolData.IsRecruited == false then
+            if subCulture == "wh2_main_sc_hef_high_elves" and factionName == self.HumanFaction:name()
+            and poolData.IsRecruited == false then
                 self.Logger:Log("High elf character recruited listener");
                 if poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid" then
                     cm:disable_event_feed_events(true, "all", "", "");
@@ -1081,6 +1171,9 @@ function ControlledRecruitmentPoolsController:ProcessNewCharacter(char)
                 end
             end
             if poolData.IsRecruited == false then
+                if factionName ~= self.HumanFaction:name() then
+                    self:RollForAIMount(faction, keyName, characterSubTypeKey);
+                end
                 -- Since we have a valid, tracked character we set IsRecruited as true so we know we don't need to pay recruitment costs if they get wounded
                 -- and re-recruited
                 poolData.IsRecruited = true;
@@ -1105,13 +1198,15 @@ function ControlledRecruitmentPoolsController:ProcessNewCharacter(char)
             else
                 self.Logger:Log("Character has been recruited previously");
             end
+            poolData.CQI = char:command_queue_index();
         end
     elseif cm:char_is_mobile_general_with_army(char) then
         self.Logger:Log("Checking replacement data for faction "..factionName);
-        -- If the character isn't tracked, that means CRP didn't spawn it. It could be an auto generated lord or it could be spawned in another way.
+        -- If the character isn't tracked, that means CRP didn't spawn it.
+        -- It could be an auto generated lord or it could be spawned in another way.
         local replacementLords = GetReplacementLordsForFaction(faction);
+        local isReplacement = false;
         if replacementLords ~= nil then
-            local isReplacement = false;
             local replaceSubType = "";
             local replacementTrait = "";
             for replacementKey, replacementData in pairs(replacementLords) do
@@ -1124,47 +1219,87 @@ function ControlledRecruitmentPoolsController:ProcessNewCharacter(char)
                     break;
                 end
             end
-            -- Replacement lords, should be replaced. This is mostly for the AI
+            -- Replacement lords, should be replaced. This is for the AI
             if not cm:is_new_game() and isReplacement == true then
                 self.Logger:Log("Starting replacement");
                 local artSetId = self.CharacterGenerator:GetArtSetForSubType(replaceSubType);
                 self.Logger:Log("Replacement is using art set id "..artSetId);
+                local factionPoolResources = GetFactionPoolResources(faction);
                 self:ReplaceCharacter(faction, char, replaceSubType, factionPoolResources, artSetId, replacementTrait);
-            else
-                -- Otherwise we should track it
-                local name = {
-                    clan_name = char:get_forename(),
-                    forename = char:get_surname(),
-                };
-                self.Logger:Log("Character "..characterSubTypeKey.." is not in pool. Tracking them for faction "..factionName);
-                local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
-                cm:callback(function()
-                    self:TrackCharacterInPoolData(factionName, name, characterSubTypeKey, "", homeRegion, false, true);
-                end, 1);
             end
+        elseif IsSupportedSubtype(char) == true then
+            -- Otherwise we should track it
+            local name = {
+                clan_name = char:get_forename(),
+                forename = char:get_surname(),
+            };
+            self.Logger:Log("Character "..characterSubTypeKey.." is not in pool. Tracking them for faction "..factionName);
+            local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
+            cm:callback(function()
+                self:TrackCharacterInPoolData(factionName, name, characterSubTypeKey, "", homeRegion, false, true);
+                if factionName ~= self.HumanFaction:name() then
+                    self:RollForAIMount(faction, keyName, characterSubTypeKey);
+                    local poolData = factionLords[characterSubTypeKey][keyName];
+                    if poolData ~= nil then
+                        self.Logger:Log("Character is now tracked");
+                        if poolData.Mounts ~= '' then
+                            self.Logger:Log("Attempting to add mounts");
+                            local ancillaryKey = string.match(poolData.Mounts, "(.*)/");
+                            if ancillaryKey ~= "unmounted" then
+                                self.Logger:Log("Adding ancillary: "..ancillaryKey);
+                                cm:force_add_ancillary(char, ancillaryKey, false, false);
+                            end
+                        end
+                        if poolData.ExtraCost ~= 0 then
+                            self.Logger:Log("Removing "..poolData.ExtraCost.." from treasury");
+                            cm:treasury_mod(factionName, -1 * poolData.ExtraCost);
+                        end
+                        if poolData.RemoveImmortality == true then
+                            self.Logger:Log("Removing immortality");
+                            -- Remove immortality that we gave them when we spawned them
+                            cm:set_character_immortality("character_cqi:"..char:command_queue_index(), false);
+                        end
+                    else
+                        self.Logger:Log("ERROR: Character is not tracked");
+                    end
+                end
+                self.Logger:Log_Finished();
+            end, 1);
         end
     else
+        if cm:char_has_army(char) == false then
+            self.Logger:Log("ERROR: Character does not have army");
+        end
+        if cm:char_is_general(char) == false then
+            self.Logger:Log("ERROR: Character is not a general");
+        end
         -- Typically this case if for garrison leaders but it also happens when a Dark Elf character gains a word of power
         self.Logger:Log("Character is not a general with a force");
         -- Now we check if this character is already existing but had their name changed
         if factionLords ~= nil then
-            for key, data in pairs(factionLords) do
-                if string.match(keyName, key) and keyName ~= key then
-                    self.Logger:Log("Found partial match of "..key.." new key is "..keyName);
-                    -- We need to update the key and the name
-                    local remappedLord = {
-                        ArtSetId = data.ArtSetId,
-                        HomeRegion = data.HomeRegion,
-                        InnateTrait = data.InnateTrait,
-                        Name = localisedForeName.." "..localisedSurname,
-                        Mounts = data.Mounts,
-                        SubType = data.SubType,
-                        RemoveImmortality = data.RemoveImmortality,
-                        IsRecruited = true,
-                        ExtraCost = data.ExtraCost,
-                    };
-                    self.CRPLordsInPools[factionName][characterSubTypeKey][key] = nil;
-                    self.CRPLordsInPools[factionName][characterSubTypeKey][keyName] = remappedLord;
+            for agentSubTypeKey, agentSubTypeData in pairs(factionLords) do
+                for key, data in pairs(agentSubTypeData) do
+                    if string.match(keyName, key) and keyName ~= key then
+                        self.Logger:Log("Found partial match of "..key.." new key is "..keyName);
+                        -- We need to update the key and the name
+                        local remappedLord = {
+                            CQI = data.CQI,
+                            Name = localisedForeName.." "..localisedSurname,
+                            ArtSetId = data.ArtSetId,
+                            HomeRegion = data.HomeRegion,
+                            InnateTrait = data.InnateTrait,
+                            Mounts = data.Mounts,
+                            SubType = data.SubType,
+                            RemoveImmortality = data.RemoveImmortality,
+                            IsRecruited = true,
+                            ExtraCost = data.ExtraCost,
+                        };
+                        if self.CRPLordsInPools[factionName][characterSubTypeKey] == nil then
+                            self.CRPLordsInPools[factionName][characterSubTypeKey] = {};
+                        end
+                        self.CRPLordsInPools[factionName][characterSubTypeKey][key] = nil;
+                        self.CRPLordsInPools[factionName][characterSubTypeKey][keyName] = remappedLord;
+                    end
                 end
             end
         end
@@ -1173,21 +1308,57 @@ function ControlledRecruitmentPoolsController:ProcessNewCharacter(char)
     self.Logger:Log_Finished();
 end
 
-function ControlledRecruitmentPoolsController:ProcessKilledCharacter(char)
-    local factionName = char:faction():name();
+function ControlledRecruitmentPoolsController:RollForAIMount(faction, keyName, subtype)
+    self.Logger:Log("Rolling for mount for character: "..keyName);
+    local characterSubTypeKey = subtype;
+    local factionName = faction:name();
+    local extraCost = 0;
+    local subcultureAgentTypeResources = GetAgentSubTypeResourcesForFaction(faction);
+    local mountResources = GetMountResources(faction);
+    local agentSubTypeResources = subcultureAgentTypeResources[characterSubTypeKey];
+    local turnNumber = cm:turn_number();
+    local treasuryAmount = faction:treasury();
+    if agentSubTypeResources ~= nil
+    and agentSubTypeResources.BonusCost ~= nil then
+        extraCost = agentSubTypeResources.BonusCost;
+    end
+    if agentSubTypeResources ~= nil
+    and agentSubTypeResources.Mounts ~= nil then
+        local agentMountData = {};
+        for ancillaryKey, ancillaryData in pairs(agentSubTypeResources.Mounts) do
+            -- We always include ancillaries with weightings more than 5
+            -- The rest only kick in after a certain threshold (turns 50 - 100)
+            if (turnNumber > (100 - (mountResources[ancillaryData.MountData].Weighting * 10))
+            or mountResources[ancillaryData.MountData].Weighting > 5)
+            and treasuryAmount >= extraCost + mountResources[ancillaryData.MountData].BonusCost then
+                agentMountData[ancillaryKey] = mountResources[ancillaryData.MountData];
+            end
+        end
+        local selectedMount = GetRandomItemFromWeightedList(agentMountData, true);
+        self.CRPLordsInPools[factionName][characterSubTypeKey][keyName].Mounts = selectedMount.."/"..agentSubTypeResources.Mounts[selectedMount].MountData;
+        extraCost = extraCost + agentMountData[selectedMount].BonusCost;
+        self.Logger:Log("Adding ancillary: "..selectedMount);
+    end
+    self.CRPLordsInPools[factionName][characterSubTypeKey][keyName].ExtraCost = extraCost;
+end
+
+function ControlledRecruitmentPoolsController:ProcessKilledCharacter(char, killedCharacterData)
+    local factionName = killedCharacterData.Faction:name();
     if factionName == "wh_main_grn_skull-takerz" then
         factionName = "wh_main_grn_skull_takerz";
     end
     self.Logger:Log("Process killed character for faction "..factionName);
-    if char:is_null_interface() or char:is_wounded() == false then
-        self.Logger:Log("Killed Character Details "..factionName.." sub type "..char:character_subtype_key().." cqi "..char:cqi());
+    if not char or char:is_null_interface() or char:is_wounded() then
+        self.Logger:Log("Character ("..killedCharacterData.SubType..") in "..factionName.." is only wounded");
+    elseif not char or char:is_null_interface() or char:is_wounded() == false then
+        self.Logger:Log("Killed Character Details "..factionName.." sub type "..killedCharacterData.SubType.." cqi "..killedCharacterData.CQI);
         local factionLords = self.CRPLordsInPools[factionName];
         if factionLords ~= nil then
-            local localisedForeName = effect.get_localised_string(char:get_forename());
+            local localisedForeName = effect.get_localised_string(killedCharacterData.ForeName);
             local localisedSurname = "";
-            local surnameKey =  char:get_surname();
+            local surnameKey =  killedCharacterData.Surname;
             if surnameKey ~= nil and surnameKey ~= "" then
-                localisedSurname = effect.get_localised_string(char:get_surname());
+                localisedSurname = effect.get_localised_string(killedCharacterData.Surname);
             end
             local keyName = localisedForeName..localisedSurname;
             -- This removes any spaces within names, eg the surname "Von Carstein";
@@ -1195,18 +1366,30 @@ function ControlledRecruitmentPoolsController:ProcessKilledCharacter(char)
             keyName = CreateValidLuaTableKey(keyName);
             --self.Logger:Log("Character is in pool for faction: "..factionName);
             -- If the character is tracked in the pool
-            if factionLords[char:character_subtype_key()] ~= nil
-            and factionLords[char:character_subtype_key()][keyName] ~= nil then
+            if factionLords[killedCharacterData.SubType] ~= nil
+            and factionLords[killedCharacterData.SubType][keyName] ~= nil then
                 self.Logger:Log("Setting "..keyName.." as nil");
-                factionLords[keyName] = nil;
+                factionLords[killedCharacterData.SubType][keyName] = nil;
             end
         end
-    elseif char:is_wounded() == true then
-        self.Logger:Log("Character in "..factionName.." is only wounded");
-    end
-    if cm:model():world():whose_turn_is_it():name() == char:faction():name() then
-        self:UpdateCharacterInAgentCache(char);
-        self:ApplyHeroLimits(char:faction());
     end
     self.Logger:Log_Finished();
+end
+
+function ControlledRecruitmentPoolsController:MergeFactionPoolsAndKillDuplicates(destinationFaction, sourceFactionName)
+
+end
+
+function ControlledRecruitmentPoolsController:GetCleansedNameKey(generatedName)
+    local localisedForeName = "";
+    if generatedName.clan_name ~= "" then
+        localisedForeName = effect.get_localised_string(generatedName.clan_name);
+    end
+    local localisedSurname = "";
+    if generatedName.forename ~= "" then
+        localisedSurname = effect.get_localised_string(generatedName.forename);
+    end
+    local keyName = localisedForeName..localisedSurname;
+    keyName = CreateValidLuaTableKey(keyName);
+    return keyName;
 end

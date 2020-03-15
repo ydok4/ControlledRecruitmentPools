@@ -1,6 +1,6 @@
 function GetLizardmenSubcultureResources()
     return {
-        DefaultLords = {"wh2_main_lzd_saurus_old_blood"},
+        DefaultLords = { "wh2_main_lzd_saurus_old_blood" },
         Rewards = {
             wh_main_sch_settlement_major = {
                 Pools = {
@@ -36,7 +36,7 @@ function GetLizardmenSubcultureResources()
             },
             wh2_main_lzd_worship_oldones = {
                 Pools = {
-                    "SkinkChiefs",
+                    "SkinkPriests",
                 },
                 Events = {
                 },
@@ -44,6 +44,7 @@ function GetLizardmenSubcultureResources()
                 UseLevelMultiplier = true,
                 Type = "set",
             },
+            -- Diplomacy rewards
             alliance_wh2_dlc13_lzd_spirits_of_the_jungle = {
                 Pools = {
                     KroxigorAncients = {
@@ -85,6 +86,90 @@ function GetLizardmenSubcultureResources()
                 IncreasePoolSize = 1,
                 Type = "increase",
             },
+            -- Nakai specific horde functionality and rituals
+            wh2_dlc13_horde_lizardmen_ziggurat_4 = {
+                Pools = {
+                    "SaurusOldBloods",
+                },
+                MinimumRequireBuildingLevel = 3,
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = false,
+                Type = "increase",
+            },
+            --[[wh2_dlc13_horde_lizardmen_saurus_3 = {
+                Pools = {
+                    "ScarVeteran",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = false,
+                Type = "increase",
+            },
+            wh2_dlc13_horde_lizardmen_skink_chief_1 = {
+                Pools = {
+                    "SkinkChiefs",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = true,
+                MinimumRequireBuildingLevel = 1,
+                Type = "increase",
+            },
+            wh2_dlc13_horde_lizardmen_skink_priest_1 = {
+                Pools = {
+                    "SkinkPriests",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = true,
+                Type = "increase",
+            },--]]
+            wh2_dlc13_horde_lizardmen_support_faction_1 = {
+                Pools = {
+                    "SkinkChiefs", "SkinkPriests", "ScarVeteran",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = true,
+                Type = "increase",
+            },
+            -- Nakai rituals
+            wh2_dlc13_ritual_temple_quetzl_3_saurus_scar_veteran = {
+                CreateNewAgent = true,
+                Pools = {
+                    "ScarVeteran",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "increase",
+            },
+            wh2_dlc13_ritual_temple_itzl_1_skink_chief = {
+                CreateNewAgent = true,
+                Pools = {
+                    "SkinkChiefs",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "increase",
+            },
+            wh2_dlc13_ritual_temple_xholankha_1_skink_priest = {
+                CreateNewAgent = true,
+                Pools = {
+                    "SkinkPriests",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "increase",
+            },
         },
         Heroes = {
             "wh2_dlc12_lzd_tlaqua_skink_chief",
@@ -111,6 +196,10 @@ function GetLizardmenSubcultureResources()
             Terradon = {
                 BonusCost = 175,
                 Weighting = 6,
+            },
+            TerradonTlaqua = {
+                BonusCost = 0,
+                Weighting = 100,
             },
             Stegadon = {
                 BonusCost = 1075,
@@ -167,6 +256,13 @@ function GetLizardmenSubcultureResources()
                     },
                 },
             },
+            wh2_dlc12_lzd_tlaqua_skink_priest_heavens = {
+                Mounts = {
+                    wh2_main_anc_mount_lzd_skink_priest_heavens_terradon = {
+                        MountData = "TerradonTlaqua",
+                    },
+                },
+            },
             wh2_main_lzd_skink_priest_beasts = {
                 Mounts = {
                     unmounted = {
@@ -186,16 +282,10 @@ function GetLizardmenSubcultureResources()
                     },
                 },
             },
-            wh2_main_lzd_saurus_scar_veteran = {
+            wh2_dlc12_lzd_tlaqua_skink_priest_beasts = {
                 Mounts = {
-                    unmounted = {
-                        MountData = "Unmounted",
-                    },
-                    wh2_main_anc_mount_lzd_saurus_scar_veteran_cold_one = {
-                        MountData = "ColdOne",
-                    },
-                    wh2_main_anc_mount_lzd_saurus_scar_veteran_carnosaur = {
-                        MountData = "Carnosaur",
+                    wh2_main_anc_mount_lzd_skink_priest_beasts_terradon = {
+                        MountData = "TerradonTlaqua",
                     },
                 },
             },
@@ -212,6 +302,26 @@ function GetLizardmenSubcultureResources()
                     },
                     wh2_main_anc_mount_lzd_skink_chief_ancient_stegadon = {
                         MountData = "AncientStegadon",
+                    },
+                },
+            },
+            wh2_dlc12_lzd_tlaqua_skink_chief = {
+                Mounts = {
+                    wh2_main_anc_mount_lzd_skink_chief_terradon = {
+                        MountData = "TerradonTlaqua",
+                    },
+                },
+            },
+            wh2_main_lzd_saurus_scar_veteran = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_main_anc_mount_lzd_saurus_scar_veteran_cold_one = {
+                        MountData = "ColdOne",
+                    },
+                    wh2_main_anc_mount_lzd_saurus_scar_veteran_carnosaur = {
+                        MountData = "Carnosaur",
                     },
                 },
             },
@@ -283,6 +393,22 @@ function GetLizardmenSubcultureResources()
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
+                    },
+                },
+            },
+            wh2_dlc13_lzd_red_crested_skink_chief_horde = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc12_anc_mount_lzd_red_crested_skink_chief_horned_one = {
+                        MountData = "HornedOne",
+                    },
+                    wh2_dlc12_anc_mount_lzd_red_crested_skink_chief_ripperdactyl = {
+                        MountData = "Ripperdactyl",
+                    },
+                    wh2_dlc12_anc_mount_lzd_red_crested_skink_chief_ancient_stegadon = {
+                        MountData = "AncientStegadon",
                     },
                 },
             },

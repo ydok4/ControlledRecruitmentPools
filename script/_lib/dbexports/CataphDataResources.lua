@@ -98,6 +98,13 @@ function GetCataphDataResources()
 			},
 			IsFemale = "false",
 		},
+		teb_myrmidia_hero = {
+			AgentType = "dignitary",
+			ArtSetIds = {
+				"teb_myrmidia_hero_01", "teb_myrmidia_hero_02",
+			},
+			IsFemale = "false",
+		},
 		dwf_kraka_drak = {
 			AgentType = "general",
 			ArtSetIds = {
@@ -116,6 +123,34 @@ function GetCataphDataResources()
 			AgentType = "champion",
 			ArtSetIds = {
 				"AK_hef_dragonmage_01", "AK_hef_dragonmage_02", "AK_hef_dragonmage_03",
+			},
+			IsFemale = "false",
+		},
+		AK_hobo_barrow_king = {
+			AgentType = "champion",
+			ArtSetIds = {
+				"AK_hobo_barrow_king_01", "AK_hobo_barrow_king_02", "AK_hobo_barrow_king_03",
+			},
+			IsFemale = "false",
+		},
+		AK_hobo_druid_shadow = {
+			AgentType = "wizard",
+			ArtSetIds = {
+				"AK_hobo_druid_shadow_01", "AK_hobo_druid_shadow_02", "AK_hobo_druid_shadow_03",
+			},
+			IsFemale = "false",
+		},
+		AK_hobo_druid_death = {
+			AgentType = "wizard",
+			ArtSetIds = {
+				"AK_hobo_druid_death_01", "AK_hobo_druid_death_02", "AK_hobo_druid_death_03",
+			},
+			IsFemale = "false",
+		},
+		AK_hobo_druid_heavens = {
+			AgentType = "wizard",
+			ArtSetIds = {
+				"AK_hobo_druid_heavens_01", "AK_hobo_druid_heavens_02", "AK_hobo_druid_heavens_03", "AK_hobo_druid_shadow_03",
 			},
 			IsFemale = "false",
 		},

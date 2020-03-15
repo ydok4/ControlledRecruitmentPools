@@ -5,7 +5,7 @@ testCharacter = {
     cqi = function() return 123 end,
     get_forename = function() return "Direfan"; end,
     get_surname = function() return "Cylostra"; end,
-    character_subtype_key = function() return "wh2_main_lzd_saurus_scar_veteran"; end,
+    character_subtype_key = function() return "wh_main_emp_master_engineer"; end,
     command_queue_index = function() end,
     has_military_force = function() return true end,
     military_force = function() return {
@@ -27,22 +27,27 @@ testCharacter = {
     character_type = function() return false; end,
     is_null_interface = function() return false; end,
     is_wounded = function() return false; end,
+    has_region = function() return true; end,
 }
 
 humanFaction = {
+    command_queue_index = function() return 10; end,
     name = function()
-        return "wh_dlc03_bst_beastmen";
+        return "wh_main_emp_wissenland";
     end,
     culture = function()
-        return "wh_dlc03_bst_beastmen";
+        return "wh_main_emp_empire";
     end,
     subculture = function()
-        return "wh_dlc03_sc_bst_beastmen";
+        return "wh_main_sc_emp_empire";
+    end,
+    is_dead = function()
+        return false;
     end,
     character_list = function()
         return {
             num_items = function()
-                return 0;
+                return 1;
             end,
             item_at = function(self, index)
                 return testCharacter;
@@ -111,18 +116,22 @@ humanFaction = {
     defensive_allies_with = function() return true; end,
     get_climate_suitability = function() return "suitability_good"; end,
     is_allowed_to_capture_territory = function() return true; end,
+    treasury = function() return 2000; end,
 }
 
 testFaction = {
     command_queue_index = function() return 123; end,
     name = function()
-        return "wh2_dlc12_lzd_cult_of_sotek";
+        return "wh_dlc05_wef_wood_elves";
     end,
     culture = function()
-        return "wh2_main_lzd_lizardmen";
+        return "wh_dlc05_wef_wood_elves";
     end,
     subculture = function()
-        return "wh2_main_sc_lzd_lizardmen";
+        return "wh_dlc05_sc_wef_wood_elves";
+    end,
+    is_dead = function()
+        return false;
     end,
     character_list = function()
         return {
@@ -193,6 +202,7 @@ testFaction = {
     defensive_allies_with = function() return true; end,
     get_climate_suitability = function() return "suitability_good"; end,
     is_allowed_to_capture_territory = function() return true; end,
+    treasury = function() return 2000; end,
 }
 
 testFaction2 = {
@@ -205,6 +215,9 @@ testFaction2 = {
     end,
     subculture = function()
         return "wh2_main_sc_lzd_lizardmen";
+    end,
+    is_dead = function()
+        return false;
     end,
     character_list = function()
         return {
@@ -272,6 +285,7 @@ testFaction2 = {
     defensive_allies_with = function() return true; end,
     get_climate_suitability = function() return "suitability_good"; end,
     is_allowed_to_capture_territory = function() return true; end,
+    treasury = function() return 2000; end,
 }
 
 test_unit = {
@@ -315,7 +329,7 @@ slot_1 = {
         name = function() return "wh2_main_def_sorcery_1"; end,
         chain = function() return "wh_dlc05_wef_tree_spirits"; end,
         superchain = function() return "wh_main_sch_settlement_major"; end,
-        building_level = function() return 1; end,
+        building_level = function() return 4; end,
     }
     end,
 }
@@ -327,7 +341,7 @@ slot_2 = {
         name = function() return "wh2_main_def_murder_1"; end,
         chain = function() return "wh_dlc05_wef_tree_spirits"; end,
         superchain = function() return "wh_main_sch_settlement_major"; end,
-        building_level = function() return 2; end,
+        building_level = function() return 4; end,
     }
     end,
 }
@@ -548,6 +562,8 @@ function get_cm()
         change_localised_faction_name = function() end,
         apply_custom_effect_bundle_to_faction = function() end,
         force_add_skill = function() end,
+        find_valid_spawn_location_for_character_from_position = function() return -1, -1; end,
+        teleport_to = function() end,
     };
 end
 
@@ -676,7 +692,7 @@ require 'script/campaign/mod/z_crp_cataph_patch'
 require 'script/campaign/main_warhammer/mod/z_crp_cataph_patch_lichemaster'
 require 'script/campaign/mod/z_crp_deco_goblin_patch'
 require 'script/campaign/mod/z_crp_mixu_patch'
-
+require 'script/campaign/mod/z_crp_zombie_flanders_patch'
 
 math.randomseed(os.time())
 
@@ -764,6 +780,68 @@ local CRP_UpdateAgentLimits = {
 };
 mock_listeners:trigger_listener(CRP_UpdateAgentLimits);
 
+local CRP_ConfederationListener = {
+    Key = "CRP_ConfederationListener",
+    Context = {
+        faction = function() return testFaction; end,
+        confederation = function() return humanFaction; end,
+    },
+};
+mock_listeners:trigger_listener(CRP_ConfederationListener);
+
+local CRP_DilemmaDecisionMade = {
+    Key = "CRP_DilemmaDecisionMade",
+    Context = {
+        choice = function() return 1; end,
+        dilemma = function() return "wh2_dlc09_agent_choice"; end,
+    },
+};
+mock_listeners:trigger_listener(CRP_DilemmaDecisionMade);
+
+local CRP_CheckResearchRewards = {
+    Key = "CRP_CheckResearchRewards",
+    Context = {
+        technology = function() return "tech_dlc09_tmb_liche_priest_1"; end,
+        faction = function() return humanFaction; end,
+    },
+};
+mock_listeners:trigger_listener(CRP_CheckResearchRewards);
+
+local CRP_MissionCompletedRewards = {
+    Key = "CRP_MissionCompletedRewards",
+    Context = {
+        mission = function() return {
+            mission_record_key = function()
+                return "wh2_dlc09_books_of_nagash_6";
+            end,
+        }; end,
+        faction = function() return humanFaction; end,
+    },
+};
+mock_listeners:trigger_listener(CRP_MissionCompletedRewards);
+
+local CRP_RitualCompletedReward = {
+    Key = "CRP_RitualCompletedReward",
+    Context = {
+        succeeded = function() return true; end,
+        ritual = function() return {
+            ritual_key = function()
+                return "wh2_dlc13_ritual_temple_quetzl_3_saurus_scar_veteran";
+            end,
+        }; end,
+        performing_faction = function() return humanFaction; end,
+    },
+};
+mock_listeners:trigger_listener(CRP_RitualCompletedReward);
+
+local CRP_IncidentTriggered = {
+    Key = "CRP_IncidentTriggered",
+    Context = {
+        dilemma = function() return "barrow_AK_hobo_barrow_king"; end,
+    },
+};
+mock_listeners:trigger_listener(CRP_IncidentTriggered);
+
 
 out("CRP: Saving callback");
 InitialiseSaveHelper(cm, context);
@@ -771,8 +849,14 @@ InitialiseSaveHelper(cm, context);
 SaveCharacterData(crp);
 SaveFactionCharacterPoolData(crp);
 
+crp = {};
+_G.crp = crp;
+
 out("CRP: Loading callback");
 InitialiseLoadHelper(cm, context);
 --LoadPreBattleData(crp);
 LoadCharacterData(crp);
 LoadFactionCharacterPoolData(crp);
+
+a_crp_cataph_dragon_mage();
+controlled_recruitment_pools();

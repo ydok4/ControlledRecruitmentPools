@@ -68,23 +68,10 @@ function GetWoodElfRecruitmentPoolData()
         wh_dlc05_wef_wood_elves = {
             FactionPools = {
                 GladeLords = {
-                    AgentSubTypes = {
-                        dlc05_wef_glade_lord = {
-                            MaximumPercentage = 50,
-                        },
-                        dlc05_wef_glade_lord_fem  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 6,
                 },
                 AncientTreeman = {
-                    AgentSubTypes = {
-                        dlc05_wef_ancient_treeman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 1,
                 },
@@ -94,23 +81,10 @@ function GetWoodElfRecruitmentPoolData()
         wh_dlc05_wef_argwylon = {
             FactionPools = {
                 GladeLords = {
-                    AgentSubTypes = {
-                        dlc05_wef_glade_lord = {
-                            MaximumPercentage = 50,
-                        },
-                        dlc05_wef_glade_lord_fem  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
                 AncientTreeman = {
-                    AgentSubTypes = {
-                        dlc05_wef_ancient_treeman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
@@ -122,18 +96,11 @@ function GetWoodElfRecruitmentPoolData()
         wh2_main_wef_bowmen_of_oreon = {
             FactionPools = {
                 GladeLords = {
-                    AgentSubTypes = {
-                        dlc05_wef_glade_lord = {
-                            MaximumPercentage = 50,
-                        },
-                        dlc05_wef_glade_lord_fem  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
             },
+            AncientTreeman = false,
             LordPoolMaxSize = 4,
         },
     };

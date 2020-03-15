@@ -49,11 +49,6 @@ function GetBeastmenRecruitmentPoolData()
         wh_dlc03_bst_beastmen = {
             FactionPools = {
                 BeastLords = {
-                    AgentSubTypes = {
-                        dlc03_bst_beastlord = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 6,
                 },

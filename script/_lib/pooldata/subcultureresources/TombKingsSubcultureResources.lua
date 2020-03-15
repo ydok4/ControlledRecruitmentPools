@@ -6,14 +6,14 @@ function GetTombKingsSubcultureResources()
                 Pools = {
                     "TombKings",
                 },
-                MinimumRequireBuildingLevel = 3,
+                MinimumRequireBuildingLevel = 4,
                 Events = {
                 },
                 IncreasePoolSize = 1,
                 UseLevelMultiplier = false,
                 Type = "set",
             },
-            wh2_dlc09_tmb_estate_1 = {
+            --[[wh2_dlc09_tmb_estate_1 = {
                 Pools = {
                     "TombPrinces",
                 },
@@ -30,6 +30,78 @@ function GetTombKingsSubcultureResources()
                 },
                 IncreasePoolSize = 1,
                 Type = "set",
+            },--]]
+            wh2_dlc09_books_of_nagash_6 = {
+                CreateNewAgent = true,
+                CreateNewAgentSubTypeOverride = "wh2_dlc09_tmb_liche_priest_shadow",
+                Pools = {
+                    "LichePriests",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "injectagent",
+            },
+            wh2_dlc09_agent_choice = {
+                RewardsForChoice = {
+                    [0] = {
+                        Pools = {
+                            "TombPrinces",
+                        },
+                        Events = {
+                        },
+                        IncreasePoolSize = 1,
+                        Type = "increase",
+                    },
+                    [1] = {
+                        Pools = {
+                            "LichePriests",
+                        },
+                        Events = {
+                        },
+                        IncreasePoolSize = 1,
+                        Type = "increase",
+                    },
+                    [3] = {
+                        Pools = {
+                            "Necrotect",
+                        },
+                        Events = {
+                        },
+                        IncreasePoolSize = 1,
+                        Type = "increase",
+                    },
+                }
+            },
+            tech_dlc09_tmb_liche_priest = {
+                IsTech = true,
+                Pools = {
+                    "LichePriests",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "increase",
+            },
+            tech_dlc09_tmb_necrotect = {
+                IsTech = true,
+                Pools = {
+                    "Necrotect",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "increase",
+            },
+            tech_dlc09_tmb_tomb_prince = {
+                IsTech = true,
+                Pools = {
+                    "TombPrinces",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "increase",
             },
         },
         Heroes = {

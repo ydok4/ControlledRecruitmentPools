@@ -53,12 +53,15 @@ function CRP_PoolModifierListeners(crp, core)
 		function(context)
 			crp.Logger:Log_Finished();
             local faction = context:character():faction();
-            local factionName = faction:name();
-            return (IsSupportedSubCulture(faction:subculture()) or IsRogueArmy(factionName)) and crp:IsExcludedFaction(faction) == false;
+			return crp:IsExcludedFaction(faction) == false and IsSupportedSubCulture(faction:subculture()) == true;
         end,
-        function(context)
+		function(context)
+			local faction = context:character():faction();
+			crp.Logger:Log("Horde faction has completed building: "..faction:name());
+			crp.Logger:Log("Building is: "..context:building());
             local faction = context:character():faction();
-            CheckAndReceiveRewards(crp, faction, faction, context:building());
+			CheckAndReceiveRewards(crp, faction, faction, context:building());
+			crp.Logger:Log_Finished();
         end,
         true
 	);
@@ -68,9 +71,7 @@ function CRP_PoolModifierListeners(crp, core)
         "FactionTurnStart",
         function(context)
             local faction = context:faction();
-            local factionName = faction:name();
-            return (IsSupportedSubCulture(faction:subculture())
-            or (IsRogueArmy(factionName)) and crp:IsExcludedFaction(faction) == false);
+            return crp:IsExcludedFaction(faction) == false and IsSupportedSubCulture(faction:subculture()) == true;
         end,
         function(context)
 			local faction = context:faction();
@@ -104,31 +105,32 @@ function CRP_PoolModifierListeners(crp, core)
 								local foundRewards = {};
 								if factionRewardData[building:name()] ~= nil
 								and (factionRewardData[building:name()].MinimumRequireBuildingLevel == nil
-								or factionRewardData[building:name()].MinimumRequireBuildingLevel >= building:building_level()) then
+								or building:building_level() >= factionRewardData[building:name()].MinimumRequireBuildingLevel) then
 									foundRewards[building:name()] = factionRewardData[building:name()];
 								end
 								if factionRewardData[buildingChainKey] ~= nil
 								and (factionRewardData[buildingChainKey].MinimumRequireBuildingLevel == nil
-								or factionRewardData[buildingChainKey].MinimumRequireBuildingLevel >= building:building_level()) then
+								or building:building_level() >= factionRewardData[buildingChainKey].MinimumRequireBuildingLevel) then
 									foundRewards[buildingChainKey] = factionRewardData[buildingChainKey];
 								end
 								if factionRewardData[buildingSuperChainKey]
 								and (factionRewardData[buildingSuperChainKey].MinimumRequireBuildingLevel == nil
-								or factionRewardData[buildingSuperChainKey].MinimumRequireBuildingLevel >= building:building_level()) then
+								or building:building_level() >= factionRewardData[buildingSuperChainKey].MinimumRequireBuildingLevel) then
 									foundRewards[buildingSuperChainKey] = factionRewardData[buildingSuperChainKey];
 								end
 								if TableHasAnyValue(foundRewards) then
 									for rewardKey, rewardData in pairs(foundRewards) do
-										if buildingCache[rewardKey] == nil then
-											buildingCache[rewardKey] = {
-												Amount = 0,
-												AmountWithLevels = 0,
-											};
+										for index, poolKey in pairs(rewardData.Pools) do
+											if buildingCache[poolKey] == nil then
+												buildingCache[poolKey] = {
+													RewardKey = rewardKey,
+													Amount = 0,
+													AmountWithLevels = 0,
+												};
+											end
+											buildingCache[poolKey].Amount = buildingCache[poolKey].Amount + 1;
+											buildingCache[poolKey].AmountWithLevels = buildingCache[poolKey].AmountWithLevels + building:building_level();
 										end
-										buildingCache[rewardKey] = {
-											Amount = buildingCache[rewardKey].Amount + 1,
-											AmountWithLevels = buildingCache[rewardKey].AmountWithLevels + building:building_level(),
-										};
 									end
 								end
 							end
@@ -138,10 +140,112 @@ function CRP_PoolModifierListeners(crp, core)
 			end
 			crp.Logger:Log("Completed building cache.");
 			for rewardKey, buildingCacheData in pairs(buildingCache) do
-				crp.Logger:Log("Building has reward: "..rewardKey);
-				CheckAndReceiveRewards(crp, faction, faction, rewardKey, buildingCacheData);
+				crp.Logger:Log("Building has reward for pool: "..rewardKey.." Amount: "..buildingCacheData.Amount.." AmountWithLevels: "..buildingCacheData.AmountWithLevels);
+				CheckAndReceiveRewards(crp, faction, faction, buildingCacheData.RewardKey, buildingCacheData);
 			end
 			crp.Logger:Log_Finished();
+        end,
+        true
+    );
+
+    core:add_listener(
+		"CRP_CheckResearchRewards",
+		"ResearchCompleted",
+		true,
+		function(context)
+			local faction = context:faction();
+			local technologyKey = context:technology();
+			local rewardsForFaction = GetRewardsForFaction(faction);
+			if rewardsForFaction ~= nil then
+				for rewardKey, rewardData in pairs(rewardsForFaction) do
+					if rewardData.IsTech == true
+					and string.match(technologyKey, rewardKey) then
+						crp.Logger:Log("Got reward for technology: "..technologyKey.." in faction: "..faction:name());
+						CheckAndReceiveRewards(crp, faction, faction, rewardKey);
+						crp.Logger:Log_Finished();
+						break;
+					end
+				end
+			end
+		end,
+		true
+	);
+
+	core:add_listener(
+		"CRP_MissionCompletedRewards",
+		"MissionSucceeded",
+		true,
+		function(context)
+			local faction = context:faction();
+			local missionKey = context:mission():mission_record_key();
+			local missionReward = GetRewardByKey(faction, missionKey);
+			if missionReward ~= nil then
+				crp.Logger:Log("Got reward for mission: "..missionKey.." in faction: "..faction:name());
+				CheckAndReceiveRewards(crp, faction, faction, missionKey);
+				crp.Logger:Log_Finished();
+			end
+		end,
+		true
+	);
+
+	core:add_listener(
+		"CRP_RitualCompletedReward",
+		"RitualCompletedEvent",
+		function(context)
+			return context:succeeded();
+		 end,
+		function(context)
+			local faction = context:performing_faction();
+			local factionName = faction:name();
+			local ritualKey = context:ritual():ritual_key();
+			local ritualReward = GetRewardByKey(faction, ritualKey);
+			if ritualReward ~= nil then
+				crp.Logger:Log("Got reward for ritual: "..ritualKey.." in faction: "..factionName);
+				CheckAndReceiveRewards(crp, faction, faction, ritualKey);
+				crp.Logger:Log_Finished();
+			end
+		end,
+		true
+	);
+
+	local lastDilemma = nil;
+    core:add_listener(
+        "CRP_DilemmaDecisionMade",
+        "DilemmaChoiceMadeEvent",
+        function(context)
+            return true;
+        end,
+        function(context)
+            lastDilemma = {
+                ChoiceKey = context:choice(),
+                DilemmaKey = context:dilemma(),
+            };
+            local rewardForDilemma = GetRewardForDilemma(crp.HumanFaction, lastDilemma.DilemmaKey, lastDilemma.ChoiceKey);
+            if rewardForDilemma ~= nil then
+                crp.Logger:Log("Choice selected is: "..lastDilemma.ChoiceKey);
+                crp.Logger:Log("Dilemma is: "..lastDilemma.DilemmaKey);
+				CheckAndReceiveRewards(crp, crp.HumanFaction, crp.HumanFaction, lastDilemma.DilemmaKey, lastDilemma);
+                crp.Logger:Log_Finished();
+			end
+			lastDilemma = nil;
+        end,
+        true
+	);
+
+	core:add_listener(
+        "CRP_IncidentTriggered",
+        "IncidentOccuredEvent",
+        function(context)
+            return true;
+        end,
+        function(context)
+			local incidentKey = context:dilemma();
+            local rewardForIncident = GetRewardByKey(crp.HumanFaction, incidentKey);
+            if rewardForIncident ~= nil then
+                crp.Logger:Log("Incident is: "..incidentKey);
+				CheckAndReceiveRewards(crp, crp.HumanFaction, crp.HumanFaction, incidentKey);
+                crp.Logger:Log_Finished();
+			end
         end,
         true
     );
@@ -196,7 +300,7 @@ function CRP_PoolModifierListeners(crp, core)
 end
 
 function CheckAndReceiveRewards(crp, receivingFaction, givingFaction, type, cacheData)
-	if cacheData == nil or cacheData.Amount == nil then
+	if cacheData == nil then
 		cacheData = {
 			Amount = 1,
 		};

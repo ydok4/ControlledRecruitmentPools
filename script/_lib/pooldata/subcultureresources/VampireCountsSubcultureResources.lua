@@ -12,6 +12,16 @@ function GetVampireCountsSubcultureResources()
                 UseLevelMultiplier = true,
                 Type = "set",
             },
+            wh2_main_special_mousillon_merovech = {
+                Pools = {
+                    "WightKings",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 2,
+                UseLevelMultiplier = true,
+                Type = "set",
+            },
             wh_main_VAMPIRES_ossuary = {
                 Pools = {
                     "Necromancers",
@@ -48,6 +58,78 @@ function GetVampireCountsSubcultureResources()
                 Events = {
                 },
                 IncreasePoolSize = 1,
+                Type = "set",
+            },
+            wh2_main_vmp_wraiths_2 = {
+                Pools = {
+                    "Banshees",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "set",
+            },
+            wh2_main_special_castle_drachenfels_1 = {
+                Pools = {
+                    "Necromancers",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "set",
+            },
+            wh2_main_special_castle_drachenfels_2 = {
+                Pools = {
+                    "Necromancers",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 3,
+                Type = "set",
+            },
+            wh_main_vmp_ossuary_2 = {
+                Pools = {
+                    "Necromancers",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "set",
+            },
+            wh_main_special_college_of_magic_vampires = {
+                Pools = {
+                    "Necromancers",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "set",
+            },
+            wh_main_special_conclave_of_magic_vampires = {
+                Pools = {
+                    "Necromancers",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "set",
+            },
+            wh2_main_special_ghrond_convent_of_sorcery_1_vmp = {
+                Pools = {
+                    "Necromancers",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                Type = "set",
+            },
+            wh2_main_special_ghrond_convent_of_sorcery_2_vmp = {
+                Pools = {
+                    "Necromancers",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 3,
                 Type = "set",
             },
         },

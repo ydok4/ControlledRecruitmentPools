@@ -77,11 +77,6 @@ function GetEmpireRecruitmentPoolData()
         wh_main_emp_empire = {
             FactionPools = {
                 EmpireGenerals = {
-                    AgentSubTypes = {
-                        emp_lord = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
@@ -110,15 +105,7 @@ function GetEmpireRecruitmentPoolData()
         -- Golden Order (Gelt)
         wh2_dlc13_emp_golden_order = {
             FactionPools = {
-                EmpireGenerals = {
-                    AgentSubTypes = {
-                        emp_lord = {
-                            MaximumPercentage = 100,
-                        },
-                    },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 4,
-                },
+
             },
             LordPoolMaxSize = 4,
         },
@@ -126,11 +113,6 @@ function GetEmpireRecruitmentPoolData()
         wh2_dlc13_emp_the_huntmarshals_expedition = {
             FactionPools = {
                 EmpireGenerals = {
-                    AgentSubTypes = {
-                        emp_lord = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
@@ -152,11 +134,6 @@ function GetEmpireRecruitmentPoolData()
         wh_main_emp_middenland = {
             FactionPools = {
                 EmpireGenerals = {
-                    AgentSubTypes = {
-                        emp_lord = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
@@ -176,11 +153,6 @@ function GetEmpireRecruitmentPoolData()
         wh_main_emp_talabecland = {
             FactionPools = {
                 EmpireGenerals = {
-                    AgentSubTypes = {
-                        emp_lord = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
@@ -192,36 +164,6 @@ function GetEmpireRecruitmentPoolData()
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
-                },
-            },
-            LordPoolMaxSize = 4,
-        },
-        -- Wissenland
-        wh_main_emp_wissenland = {
-            FactionPools = {
-                EmpireGenerals = {
-                    AgentSubTypes = {
-                        emp_lord = {
-                            MaximumPercentage = 100,
-                        },
-                    },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 4,
-                },
-            },
-            LordPoolMaxSize = 4,
-        },
-        -- Ostermark
-        wh_main_emp_ostermark = {
-            FactionPools = {
-                EmpireGenerals = {
-                    AgentSubTypes = {
-                        emp_lord = {
-                            MaximumPercentage = 100,
-                        },
-                    },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 4,
                 },
             },
             LordPoolMaxSize = 4,

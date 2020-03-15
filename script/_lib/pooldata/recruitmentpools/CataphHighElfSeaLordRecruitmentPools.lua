@@ -13,7 +13,6 @@ function GetCataphHighElfSeaLordRecruitmentPoolData()
                     SubPoolMaxSize = 3,
                 },
             },
-            LordPoolMaxSize = 6,
         },
         wh2_main_hef_order_of_loremasters = {
             FactionPools = {
@@ -27,8 +26,6 @@ function GetCataphHighElfSeaLordRecruitmentPoolData()
                     SubPoolMaxSize = 2,
                 },
             },
-
-            LordPoolMaxSize = 7,
         },
         -- Minor High Elf Factions
         wh2_main_hef_cothique = {
@@ -75,8 +72,6 @@ function GetCataphHighElfSeaLordRecruitmentPoolData()
                     SubPoolMaxSize = 2,
                 },
             },
-
-            LordPoolMaxSize = 6,
         },
 
         wh2_main_hef_citadel_of_dusk = {
@@ -170,7 +165,6 @@ function GetCataphHighElfSeaLordRecruitmentPoolData()
                     SubPoolMaxSize = 1,
                 },
             },
-            LordPoolMaxSize = 6,
         },
     };
 end

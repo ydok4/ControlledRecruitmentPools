@@ -63,26 +63,10 @@ function GetBretonniaRecruitmentPoolData()
         wh_main_brt_bretonnia = {
             FactionPools = {
                 BretLordPool = {
-                    AgentSubTypes = {
-                        brt_lord = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 6,
                 },
                 ProphetessPool = {
-                    AgentSubTypes = {
-                        dlc07_brt_prophetess_beasts = {
-                            MaximumPercentage = 33,
-                        },
-                        dlc07_brt_prophetess_heavens = {
-                            MaximumPercentage = 33,
-                        },
-                        dlc07_brt_prophetess_life = {
-                            MaximumPercentage = 33,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
@@ -93,26 +77,10 @@ function GetBretonniaRecruitmentPoolData()
         wh_main_brt_bordeleaux = {
             FactionPools = {
                 BretLordPool = {
-                    AgentSubTypes = {
-                        brt_lord = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 4,
                 },
                 ProphetessPool = {
-                    AgentSubTypes = {
-                        dlc07_brt_prophetess_beasts = {
-                            MaximumPercentage = 33,
-                        },
-                        dlc07_brt_prophetess_heavens = {
-                            MaximumPercentage = 33,
-                        },
-                        dlc07_brt_prophetess_life = {
-                            MaximumPercentage = 33,
-                        },
-                    },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
@@ -124,26 +92,10 @@ function GetBretonniaRecruitmentPoolData()
         wh_main_brt_carcassonne = {
             FactionPools = {
                 BretLordPool = {
-                    AgentSubTypes = {
-                        brt_lord = {
-                            MaximumPercentage = 100,
-                         },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 1,
                 },
                 ProphetessPool = {
-                    AgentSubTypes = {
-                        dlc07_brt_prophetess_beasts = {
-                            MaximumPercentage = 33,
-                        },
-                        dlc07_brt_prophetess_heavens = {
-                            MaximumPercentage = 33,
-                        },
-                        dlc07_brt_prophetess_life = {
-                            MaximumPercentage = 33,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 3,
                 },

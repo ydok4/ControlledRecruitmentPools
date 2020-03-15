@@ -1,3 +1,6 @@
+local find_uicomponent = nil;
+local UIComponent = nil;
+
 CRPUIController = {
     CRP = {},
     Logger = {},
@@ -68,37 +71,20 @@ function CRPUIController:InitialiseListeners(humanFaction, lordsInPool)
     end
     local humanSubCulture = humanFaction:subculture();
     self.Logger:Log("Initialised sub culture values");
-    --[[core:add_listener(
-    "UnitRecruitmentOpend",
-    "PanelOpenedCampaign",
-    function(context)
-        self.Logger:Log("OPENED: "..context.string);
-        return context.string == "units_recruitment";
-    end,
-    function(context)
-        self.Logger:Log("\n"..context.string.." opened");
-        local unitList = find_uicomponent(core:get_ui_root(), "units_panel", "main_units_panel", "recruitment_docker", "recruitment_options", "recruitment_listbox", "local1", "unit_list", "listview", "list_box");
-        for j = 0, unitList:ChildCount() - 1  do
-            local child = UIComponent(unitList:Find(j));
-            self.Logger:Log("unit ID "..child:Id());
-            local unit_cap =  find_uicomponent(child, "unit_cap");
-            unit_cap:SetVisible(true);
+end
 
-            for k = 0, unit_cap:ChildCount() - 1  do
-                local subChild = UIComponent(unit_cap:Find(k));
-                self.Logger:Log("Sub child Id: "..subChild:Id());
-                self.Logger:Log("Sub child text: "..subChild:GetStateText());
-            end
-            --local max_units =  find_uicomponent(child, "max_units");
-            --max_units:SetVisible(true);
-        end
-    end,
-    true
-    );--]]
+function CRPUIController:InitialiseUIReferences(find_uicomponent_function, uicomponent_function)
+    find_uicomponent = find_uicomponent_function;
+    UIComponent = uicomponent_function;
 end
 
 function CRPUIController:SetupCharacterDetailsButton(generalPanel, nameComponent, characterDetails)
+    self.Logger:Log("SetupCharacterDetailsButton: "..characterDetails.SubType);
     if characterDetails.Mounts ~= '' then
+        if characterDetails.Mounts == true then
+            characterDetails.Mounts = 'unmounted/'
+        end
+        self.Logger:Log("Setting up mounts text: "..characterDetails.Mounts);
         local newSubcomponentId = characterDetails.ArtSetId.."_"..characterDetails.SubType.."_mounts";
         local subtypeComponent = find_uicomponent(generalPanel, "dy_subtype");
         local mountsText = find_uicomponent(subtypeComponent, newSubcomponentId);
@@ -111,10 +97,8 @@ function CRPUIController:SetupCharacterDetailsButton(generalPanel, nameComponent
             mountsText:MoveTo(subtypeX, subtypeY + 20);
         end
         local ancillaryKey = string.match(characterDetails.Mounts, "(.*)/");
-        if ancillaryKey ~= 'unmounted' then
-            if ancillaryKey == nil then
-                self.Logger:Log("Ancillary key is nil.");
-            end
+        if ancillaryKey ~= 'unmounted'
+        and ancillaryKey ~= nil then
             self.Logger:Log("Ancillary key is: "..ancillaryKey);
             local localisedAncillary = effect.get_localised_string("ancillaries_onscreen_name_"..ancillaryKey);
             self.Logger:Log("Localised ancillary is: "..localisedAncillary);
@@ -126,24 +110,8 @@ function CRPUIController:SetupCharacterDetailsButton(generalPanel, nameComponent
         end
         subtypeComponent:SetVisible(true);
         mountsText:SetVisible(true);
-
-        --[[local numSubComponents = generalPanel:ChildCount() - 1;
-        for i = 0, numSubComponents do
-            local subComponent = UIComponent(generalPanel:Find(i));
-            self.Logger:Log("Found child: "..subComponent:Id());
-        end
-        self.Logger:Log_Finished();--]]
-
-        --[[if characterDetails == nil then
-            self.Logger:Log("Character does not have any data");
-            return;
-        end
-        local characterNameKey = CreateValidLuaTableKey(characterDetails.Name);
-        local cdpButton = Button.new("circularButton"..characterNameKey, generalPanel, "CIRCULAR", "ui/skins/default/icon_end_turn.png");
-        cdpButton:PositionRelativeTo(nameComponent, generalPanel:Width() / 1.5, 0);
-        cdpButton:RegisterForClick(function(context) self:SetupCharacterDetailsPanel(characterDetails); end);--]]
-        --cdpButton:Resize(50, 50);
     end
+    self.Logger:Log("Past Mount UI");
     if self.CharacterCostCache == nil then
         self.CharacterCostCache = {};
     end

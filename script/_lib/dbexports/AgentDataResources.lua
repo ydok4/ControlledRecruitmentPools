@@ -505,6 +505,13 @@ function GetAgentDataResources()
 			},
 			IsFemale = "false",
 		},
+		emp_karl_franz = {
+			AgentType = "general",
+			ArtSetIds = {
+				"wh_main_art_set_emp_karl_franz",
+		   },
+			IsFemale = "false",
+		},
 		ksl_captain = {
 			AgentType = "champion",
 			ArtSetIds = {
@@ -593,6 +600,13 @@ function GetAgentDataResources()
 			AgentType = "general",
 			ArtSetIds = {
 				 "wh_main_art_set_vmp_lord_01", "wh_main_art_set_vmp_lord_02", "wh_main_art_set_vmp_lord_03", "wh_main_art_set_vmp_lord_04", "wh_main_art_set_vmp_lord_05",
+			},
+			IsFemale = "false",
+		},
+		vmp_mannfred_von_carstein  = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh_main_art_set_vmp_mannfred_von_carstein",
 			},
 			IsFemale = "false",
 		},
@@ -1436,6 +1450,13 @@ function GetAgentDataResources()
 			},
 			IsFemale = "false",
 		},
+		wh2_dlc12_lzd_tlaqua_skink_chief = {
+			AgentType = "spy",
+			ArtSetIds = {
+				 "wh2_main_art_set_lzd_skink_chief_01", "wh2_main_art_set_lzd_skink_chief_02", "wh2_main_art_set_lzd_skink_chief_03",
+			},
+			IsFemale = "false",
+		},
 		wh2_main_lzd_skink_priest_beasts = {
 			AgentType = "wizard",
 			ArtSetIds = {
@@ -1443,7 +1464,21 @@ function GetAgentDataResources()
 			},
 			IsFemale = "false",
 		},
+		wh2_dlc12_lzd_tlaqua_skink_priest_beasts = {
+			AgentType = "wizard",
+			ArtSetIds = {
+				 "wh2_main_art_set_lzd_skink_priest_01_beasts", "wh2_main_art_set_lzd_skink_priest_01_heavens", "wh2_main_art_set_lzd_skink_priest_01_tlaqua_beasts", "wh2_main_art_set_lzd_skink_priest_01_tlaqua_heavens", "wh2_main_art_set_lzd_skink_priest_02_beasts", "wh2_main_art_set_lzd_skink_priest_02_heavens", "wh2_main_art_set_lzd_skink_priest_02_tlaqua_beasts", "wh2_main_art_set_lzd_skink_priest_02_tlaqua_heavens", "wh2_main_art_set_lzd_skink_priest_03_beasts", "wh2_main_art_set_lzd_skink_priest_03_heavens", "wh2_main_art_set_lzd_skink_priest_03_tlaqua_beasts", "wh2_main_art_set_lzd_skink_priest_03_tlaqua_heavens",
+			},
+			IsFemale = "false",
+		},
 		wh2_main_lzd_skink_priest_heavens = {
+			AgentType = "wizard",
+			ArtSetIds = {
+				 "wh2_main_art_set_lzd_skink_priest_01_heavens", "wh2_main_art_set_lzd_skink_priest_02_heavens", "wh2_main_art_set_lzd_skink_priest_03_heavens",
+			},
+			IsFemale = "false",
+		},
+		wh2_dlc12_lzd_tlaqua_skink_priest_heavens = {
 			AgentType = "wizard",
 			ArtSetIds = {
 				 "wh2_main_art_set_lzd_skink_priest_01_heavens", "wh2_main_art_set_lzd_skink_priest_02_heavens", "wh2_main_art_set_lzd_skink_priest_03_heavens",

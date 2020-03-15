@@ -85,7 +85,6 @@ function GetHighElfRecruitmentPoolData()
                     SubPoolMaxSize = 3,
                 },
             },
-
             LordPoolMaxSize = 4,
         },
 

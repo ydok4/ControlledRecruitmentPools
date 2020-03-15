@@ -907,7 +907,8 @@ function GetNameResources()
 						Assagiere = "2147359978",
 						Illenyadara = "2147359986",
 						Einnilize = "2147359987",
-						Haerrieth = "2147359994",
+						-- Mixu Overrides this for Belannaer
+						--Haerrieth = "2147359994",
 						Licumoitta = "2147359998",
 						Agiella = "2147360007",
 						Sophiridrin = "2147360012",
@@ -1373,7 +1374,8 @@ function GetNameResources()
 						Tothauthrak = "2147359833",
 						Cekhullil = "2147359836",
 						Danoth = "2147359840",
-						Nocrusith = "2147359843",
+						-- Mixu overrides this for Tullaris Dreadbringer
+						--Nocrusith = "2147359843",
 						Vukathan = "2147359846",
 						Vegmorlus = "2147359849",
 						Veri_kath = "2147359859",
@@ -1424,7 +1426,6 @@ function GetNameResources()
 						Sulphunet = "2147359457",
 					},
 				},
-	
 			},
 		},
 		name_group_162 = {
@@ -2015,7 +2016,8 @@ function GetNameResources()
 						Meshep = "1884203541",
 						Nebuset = "1890919595",
 						Senusret = "1916318724",
-						Nectanebo = "1937762565",
+						-- Mixu overrides this for Tutankhanut
+						--Nectanebo = "1937762565",
 						Ramerenef = "1940463313",
 						Amenhonut = "1963093737",
 						Ptolethor = "2014017647",

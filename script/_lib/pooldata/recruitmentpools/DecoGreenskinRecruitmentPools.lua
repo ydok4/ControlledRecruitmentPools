@@ -53,11 +53,6 @@ GreenskinRecruitmentPoolData =  {
                 SubPoolMaxSize = 4,
             },
             GreenskinShamans = {
-                AgentSubTypes = {
-                    grn_goblin_great_shaman = {
-                        MaximumPercentage = 100,
-                    },
-                },
                 SubPoolInitialMinSize = 1,
                 SubPoolMaxSize = 2,
             },

@@ -26,7 +26,7 @@ function GetVampireCountsRecruitmentPoolData()
                 },
                 Banshees = {
                     AgentSubTypes = {
-                        vmp_necromancer = {
+                        vmp_banshee = {
                             MaximumPercentage = 100,
                         },
                     },
@@ -63,11 +63,6 @@ function GetVampireCountsRecruitmentPoolData()
         wh_main_vmp_vampire_counts = {
             FactionPools = {
                 MasterNecromancers = {
-                    AgentSubTypes = {
-                        vmp_master_necromancer = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
@@ -91,17 +86,18 @@ function GetVampireCountsRecruitmentPoolData()
 
         -- Von Carstein (Vlad/Isabella)
         wh_main_vmp_schwartzhafen = {
+            HeroPools = {
+                Vampires = {
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 2,
+                },
+            },
             FactionPools = {
+                MasterNecromancers = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 3,
+                },
                 VampireLords = {
-                    MasterNecromancers = {
-                        AgentSubTypes = {
-                            vmp_master_necromancer = {
-                                MaximumPercentage = 100,
-                            },
-                        },
-                        SubPoolInitialMinSize = 1,
-                        SubPoolMaxSize = 3,
-                    },
                     AgentSubTypes = {
                         vmp_lord = {
                             MaximumPercentage = 60,
@@ -123,11 +119,6 @@ function GetVampireCountsRecruitmentPoolData()
         wh2_dlc11_vmp_the_barrow_legion = {
             FactionPools = {
                 MasterNecromancers = {
-                    AgentSubTypes = {
-                        vmp_master_necromancer = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 4,
                 },
@@ -140,11 +131,6 @@ function GetVampireCountsRecruitmentPoolData()
         wh_main_vmp_mousillon = {
             FactionPools = {
                 MasterNecromancers = {
-                    AgentSubTypes = {
-                        vmp_master_necromancer = {
-                            MaximumPercentage = 100,
-                          },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
@@ -167,11 +153,6 @@ function GetVampireCountsRecruitmentPoolData()
         wh2_main_vmp_the_silver_host = {
             FactionPools = {
                 MasterNecromancers = {
-                    AgentSubTypes = {
-                        vmp_master_necromancer = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
@@ -186,6 +167,7 @@ function GetVampireCountsRecruitmentPoolData()
                 },
             },
             LordsToReplace = {
+                FactionLeader = "wh2_dlc11_vmp_bloodline_lahmian",
                 vmp_lord = {
                     replacementKey = "wh2_dlc11_vmp_bloodline_lahmian",
                     traitKeyPool = {
@@ -200,11 +182,6 @@ function GetVampireCountsRecruitmentPoolData()
         wh2_main_vmp_strygos_empire = {
             FactionPools = {
                 MasterNecromancers = {
-                    AgentSubTypes = {
-                        vmp_master_necromancer = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
@@ -221,17 +198,18 @@ function GetVampireCountsRecruitmentPoolData()
                     SubPoolMaxSize = 5,
                 },
             },
+            LordsToReplace = {
+                FactionLeader = "wh2_dlc11_vmp_bloodline_strigoi",
+                vmp_lord = {
+                    replacementKey = "dlc04_vmp_strigoi_ghoul_king",
+                },
+            },
         },
 
         -- The Necrarch Brotherhood
         wh2_main_vmp_necrarch_brotherhood = {
             FactionPools = {
                 MasterNecromancers = {
-                    AgentSubTypes = {
-                        vmp_master_necromancer = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 4,
                 },
@@ -246,6 +224,7 @@ function GetVampireCountsRecruitmentPoolData()
                 },
             },
             LordsToReplace = {
+                FactionLeader = "wh2_dlc11_vmp_bloodline_necrarch",
                 vmp_lord = {
                     replacementKey = "wh2_dlc11_vmp_bloodline_necrarch",
                     traitKeyPool = {

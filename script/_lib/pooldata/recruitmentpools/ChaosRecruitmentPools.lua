@@ -33,7 +33,7 @@ function GetChaosRecruitmentPoolData()
             },
             HeroPoolMaxSize = 4,
             FactionPools = {
-                ChaosLord = {
+                ChaosLords = {
                     AgentSubTypes = {
                         chs_lord = {
                             MaximumPercentage = 100,
@@ -68,29 +68,10 @@ function GetChaosRecruitmentPoolData()
         wh_main_chs_chaos = {
             FactionPools = {
                 ChaosLords = {
-                    AgentSubTypes = {
-                        chs_lord = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 8,
                 },
                 SorcerorLords = {
-                    AgentSubTypes = {
-                        chs_sorcerer_lord_death = {
-                            MaximumPercentage = 25,
-                        },
-                        chs_sorcerer_lord_fire = {
-                            MaximumPercentage = 25,
-                        },
-                        chs_sorcerer_lord_metal = {
-                            MaximumPercentage = 25,
-                        },
-                        dlc07_chs_sorcerer_lord_shadow = {
-                            MaximumPercentage = 25,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 5,
                 },

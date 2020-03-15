@@ -93,7 +93,6 @@ function GetTEBRecruitmentPools()
                     SubPoolMaxSize = 4,
                 },
             },
-            LordPoolMaxSize = 7,
         },
 
         wh_main_teb_tilea = {

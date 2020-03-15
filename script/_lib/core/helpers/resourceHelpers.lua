@@ -13,25 +13,108 @@ function InitialiseResourcesCache()
     for subcultureKey, subcultureData in pairs(_G.CRPResources.RecruitmentPoolResources) do
         local subcultureFactionData = subcultureData[subcultureKey];
         if subcultureFactionData ~= nil then
-            for factionKey, factionData in pairs(subcultureData) do
-                for factionPoolKey, factionPoolData in pairs(factionData.FactionPools) do
-                    for agentSubtypeKey, agentSubTypeData in pairs(factionPoolData.AgentSubTypes) do
-                        if agentSubTypeData.BonusCost == nil
-                        and subcultureFactionData.FactionPools[factionPoolKey] ~= nil
-                        and subcultureFactionData.FactionPools[factionPoolKey].AgentSubTypes[agentSubtypeKey] ~= nil
-                        and subcultureFactionData.FactionPools[factionPoolKey].AgentSubTypes[agentSubtypeKey].BonusCost ~= nil then
-                            agentSubTypeData.BonusCost = subcultureFactionData.FactionPools[factionPoolKey].AgentSubTypes[agentSubtypeKey].BonusCost;
-                        end
+            for poolKey, poolData in pairs(subcultureFactionData.HeroPools) do
+                poolData.SubPoolBonusSize = 0;
+                for agentSubTypeKey, agentSubTypeData in pairs(poolData.AgentSubTypes) do
+                    if agentSubTypeData == false then
+                        poolData.AgentSubTypes[agentSubTypeKey] = nil;
                     end
                 end
-                if factionData.HeroPools == nil then
-                    factionData.HeroPools = subcultureFactionData.HeroPools;
+            end
+            for poolKey, poolData in pairs(subcultureFactionData.FactionPools) do
+                poolData.SubPoolBonusSize = 0;
+                for agentSubTypeKey, agentSubTypeData in pairs(poolData.AgentSubTypes) do
+                    if agentSubTypeData == false then
+                        poolData.AgentSubTypes[agentSubTypeKey] = nil;
+                    end
                 end
-                if factionData.HeroPoolMaxSize == nil then
-                    factionData.HeroPoolMaxSize = subcultureFactionData.HeroPoolMaxSize;
-                end
-                if factionData.LordPoolMaxSize == nil then
-                    factionData.LordPoolMaxSize = subcultureFactionData.LordPoolMaxSize;
+            end
+            for factionKey, factionData in pairs(subcultureData) do
+                if factionKey ~= subcultureKey then
+                    -- If they aren't explicitly disabled (or changed) copy data from the subculture resources
+                    for poolKey, poolData in pairs(subcultureFactionData.FactionPools) do
+                        local factionResources = factionData.FactionPools[poolKey];
+                        if factionResources == false then
+                            factionData.FactionPools[poolKey] = nil;
+                        else
+                            if factionResources == nil then
+                                factionData.FactionPools[poolKey] = {};
+                                factionResources = factionData.FactionPools[poolKey];
+                            end
+                            local subcultureResources = subcultureFactionData.FactionPools[poolKey];
+                            if factionResources.AgentSubTypes == nil then
+                                factionResources.AgentSubTypes = subcultureResources.AgentSubTypes;
+                            end
+                            if factionResources.SubPoolInitialMinSize == nil then
+                                factionResources.SubPoolInitialMinSize = subcultureResources.SubPoolInitialMinSize;
+                            end
+                            if factionResources.SubPoolMaxSize == nil then
+                                factionResources.SubPoolMaxSize = subcultureResources.SubPoolMaxSize;
+                            end
+                        end
+                    end
+                    for poolKey, poolData in pairs(subcultureFactionData.HeroPools) do
+                        if factionData.HeroPools == nil then
+                            factionData.HeroPools = subcultureFactionData.HeroPools;
+                        else
+                            local factionResources = factionData.HeroPools[poolKey];
+                            if factionResources == false then
+                                factionData.HeroPools[poolKey] = nil;
+                            else
+                                if factionResources == nil then
+                                    factionData.HeroPools[poolKey] = {};
+                                    factionResources = factionData.HeroPools[poolKey];
+                                end
+                                local subcultureResources = subcultureFactionData.HeroPools[poolKey];
+                                if factionResources.AgentSubTypes == nil then
+                                    factionResources.AgentSubTypes = subcultureResources.AgentSubTypes;
+                                end
+                                if factionResources.SubPoolInitialMinSize == nil then
+                                    factionResources.SubPoolInitialMinSize = subcultureResources.SubPoolInitialMinSize;
+                                end
+                                if factionResources.SubPoolMaxSize == nil then
+                                    factionResources.SubPoolMaxSize = subcultureResources.SubPoolMaxSize;
+                                end
+                            end
+                        end
+                    end
+                    -- Set data for defined pools to default values if they are missing
+                    for factionPoolKey, factionPoolData in pairs(factionData.FactionPools) do
+                        factionPoolData.SubPoolBonusSize = 0;
+                        for agentSubtypeKey, agentSubTypeData in pairs(factionPoolData.AgentSubTypes) do
+                            if agentSubTypeData == false then
+                                factionPoolData.AgentSubTypes[agentSubtypeKey] = nil;
+                            elseif agentSubTypeData.BonusCost == nil
+                            and subcultureFactionData.FactionPools[factionPoolKey] ~= nil
+                            and subcultureFactionData.FactionPools[factionPoolKey].AgentSubTypes[agentSubtypeKey] ~= nil
+                            and subcultureFactionData.FactionPools[factionPoolKey].AgentSubTypes[agentSubtypeKey].BonusCost ~= nil then
+                                agentSubTypeData.BonusCost = subcultureFactionData.FactionPools[factionPoolKey].AgentSubTypes[agentSubtypeKey].BonusCost;
+                            end
+                        end
+                    end
+                    if factionData.LordPoolMaxSize == nil then
+                        factionData.LordPoolMaxSize = subcultureFactionData.LordPoolMaxSize;
+                    end
+                    -- Hero pools work a bit differently than the lord pools
+                    -- Unlike the lord pools, the assumptioni is that a faction
+                    -- has access to all heroes by default and we should specify if this isn't the case
+                    if factionData.HeroPools == nil then
+                        factionData.HeroPools = {};
+                    end
+                    for poolKey, poolData in pairs(subcultureFactionData.HeroPools) do
+                        if factionData.HeroPools[poolKey] == nil then
+                            factionData.HeroPools[poolKey] = poolData;
+                        elseif factionData.HeroPools[poolKey] ~= false then
+                            factionData.HeroPools[poolKey].SubPoolBonusSize = 0;
+                        elseif factionData.HeroPools[poolKey] == false then
+                            factionData.HeroPools[poolKey] = nil;
+                        end
+                    end
+                    if factionData.HeroPoolMaxSize == nil then
+                        factionData.HeroPoolMaxSize = subcultureFactionData.HeroPoolMaxSize;
+                    elseif factionData.HeroPoolMaxSize == false then
+                        factionData.HeroPoolMaxSize = 0;
+                    end
                 end
             end
         end
@@ -48,7 +131,8 @@ function IsSupportedSubCulture(subculture)
 end
 
 function IsRogueArmy(factionName)
-    if CRPRecruitmentPoolResourcesCache["wh_rogue_armies"][factionName] then
+    if CRPRecruitmentPoolResourcesCache["wh_rogue_armies"] ~= nil
+    and CRPRecruitmentPoolResourcesCache["wh_rogue_armies"][factionName] ~= nil then
         return true;
     else
         return false;
@@ -124,6 +208,30 @@ function GetRewardsForFaction(faction)
     return subcultureResources.Rewards;
 end
 
+function GetRewardByKey(faction, rewardKey)
+    local rewardsForFaction = GetRewardsForFaction(faction);
+    if rewardsForFaction ~= nil then
+        local reward = rewardsForFaction[rewardKey];
+        if reward ~= nil then
+            return reward;
+        end
+    end
+    return nil;
+end
+
+function GetRewardForDilemma(faction, dilemmaKey, choiceKey)
+    local rewardsForFaction = GetRewardsForFaction(faction);
+    if rewardsForFaction ~= nil then
+        local rewardsForDilemma = rewardsForFaction[dilemmaKey];
+        if rewardsForDilemma ~= nil
+        and rewardsForDilemma.RewardsForChoice ~= nil
+        and rewardsForDilemma.RewardsForChoice[choiceKey] ~= nil then
+            return rewardsForDilemma.RewardsForChoice[choiceKey];
+        end
+    end
+    return nil;
+end
+
 function GetHeroesForFaction(faction)
     local subcultureResources = CRPSubcultureResourcesCache[faction:subculture()];
     if subcultureResources == nil then
@@ -183,6 +291,7 @@ function SetSubCultureRecruitmentPoolsForFaction(faction)
             AgentSubTypes = {},
             SubPoolInitialMinSize = poolData.SubPoolInitialMinSize,
             SubPoolMaxSize = poolData.SubPoolMaxSize + 1,
+            SubPoolBonusSize = 0,
         };
         for agentSubtypeKey, agentSubTypeData in pairs(poolData.AgentSubTypes) do
             factionReference.HeroPools[poolKey].AgentSubTypes[agentSubtypeKey] = {
@@ -195,6 +304,7 @@ function SetSubCultureRecruitmentPoolsForFaction(faction)
             AgentSubTypes = {},
             SubPoolInitialMinSize = poolData.SubPoolInitialMinSize,
             SubPoolMaxSize = poolData.SubPoolMaxSize + 1,
+            SubPoolBonusSize = 0,
         };
         for agentSubtypeKey, agentSubTypeData in pairs(poolData.AgentSubTypes) do
             factionReference.FactionPools[poolKey].AgentSubTypes[agentSubtypeKey] = {

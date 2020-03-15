@@ -60,20 +60,10 @@ function GetGreenskinRecruitmentPoolData()
         wh_main_grn_greenskins = {
             FactionPools = {
                 GreenskinWarbosses = {
-                    AgentSubTypes = {
-                        grn_orc_warboss = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
                 GreenskinShamans = {
-                    AgentSubTypes = {
-                        grn_goblin_great_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
@@ -84,20 +74,10 @@ function GetGreenskinRecruitmentPoolData()
         wh_main_grn_orcs_of_the_bloody_hand = {
             FactionPools = {
                 GreenskinWarbosses = {
-                    AgentSubTypes = {
-                        grn_orc_warboss = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
                 GreenskinShamans = {
-                    AgentSubTypes = {
-                        grn_goblin_great_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
@@ -109,20 +89,10 @@ function GetGreenskinRecruitmentPoolData()
         wh_main_grn_crooked_moon = {
             HeroPools = {
                 NightGoblinShamanPools = {
-                    AgentSubTypes = {
-                        grn_night_goblin_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
                 GoblinBigBossPools = {
-                    AgentSubTypes = {
-                        grn_goblin_big_boss = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 4,
                 },
@@ -138,11 +108,6 @@ function GetGreenskinRecruitmentPoolData()
                     SubPoolMaxSize = 2,
                 },
                 GreenskinShamans = {
-                    AgentSubTypes = {
-                        grn_goblin_great_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 3,
                 },
@@ -196,11 +161,6 @@ function GetGreenskinRecruitmentPoolData()
         wh_main_grn_broken_nose = {
             FactionPools = {
                 GreenskinShamans = {
-                    AgentSubTypes = {
-                        grn_goblin_great_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
@@ -221,11 +181,6 @@ function GetGreenskinRecruitmentPoolData()
         wh_main_grn_scabby_eye = {
             FactionPools = {
                 GreenskinShamans = {
-                    AgentSubTypes = {
-                        grn_goblin_great_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
@@ -246,11 +201,6 @@ function GetGreenskinRecruitmentPoolData()
         wh_main_grn_teef_snatchaz = {
             FactionPools = {
                 GreenskinShamans = {
-                    AgentSubTypes = {
-                        grn_goblin_great_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
@@ -282,11 +232,6 @@ function GetGreenskinRecruitmentPoolData()
                     SubPoolMaxSize = 1,
                 },
                 GreenskinShamans = {
-                    AgentSubTypes = {
-                        grn_goblin_great_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
@@ -296,29 +241,14 @@ function GetGreenskinRecruitmentPoolData()
         wh_main_grn_red_eye = {
             HeroPools = {
                 NightGoblinShamanPools = {
-                    AgentSubTypes = {
-                        grn_night_goblin_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
                 OrcShamanPools = {
-                    AgentSubTypes = {
-                        grn_orc_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
                 GoblinBigBossPools = {
-                    AgentSubTypes = {
-                        grn_goblin_big_boss = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 4,
                 },
@@ -334,11 +264,6 @@ function GetGreenskinRecruitmentPoolData()
                     SubPoolMaxSize = 1,
                 },
                 GreenskinShamans = {
-                    AgentSubTypes = {
-                        grn_goblin_great_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
@@ -359,29 +284,14 @@ function GetGreenskinRecruitmentPoolData()
         wh_main_grn_necksnappers = {
             HeroPools = {
                 NightGoblinShamanPools = {
-                    AgentSubTypes = {
-                        grn_night_goblin_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
                 OrcShamanPools = {
-                    AgentSubTypes = {
-                        grn_orc_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
                 },
                 GoblinBigBossPools = {
-                    AgentSubTypes = {
-                        grn_goblin_big_boss = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 4,
                 },
@@ -400,11 +310,6 @@ function GetGreenskinRecruitmentPoolData()
                     SubPoolMaxSize = 4,
                 },
                 GreenskinShamans = {
-                    AgentSubTypes = {
-                        grn_goblin_great_shaman = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },

@@ -146,10 +146,16 @@ _G.CRPResources = {
                                 for key3, subPool in pairs(additionalSubPoolData.AgentSubTypes) do
                                     -- If an agent has been marked for deletion from a pool
                                     if subPool == false then
-                                        existingData.AgentSubTypes[key3] = nil;
+                                        if existingData.AgentSubTypes == nil then
+                                            existingData.AgentSubTypes = {};
+                                        end
+                                        existingData.AgentSubTypes[key3] = false;
                                     else
                                         additionalAgentSubTypes[key3] = subPool;
                                     end
+                                end
+                                if existingData.AgentSubTypes == nil then
+                                    existingData.AgentSubTypes = {};
                                 end
                                 -- Add all the new agent sub types
                                 ConcatTableWithKeys(existingData.AgentSubTypes, additionalAgentSubTypes);
@@ -168,6 +174,9 @@ _G.CRPResources = {
                         coreResources[key1].FactionPools[key2] = nil;
                     end
                 end
+            end
+            if additionalFactionData.LordPoolMaxSize ~= nil then
+                coreResources[key1].LordPoolMaxSize = additionalFactionData.LordPoolMaxSize;
             end
             -- Now we do the heroes
             if additionalFactionData.HeroPools ~= nil then
@@ -204,11 +213,17 @@ _G.CRPResources = {
                             end
                         end
                     -- If a pool has been marked for deletion or there are no longer any agent
-                    -- subTypes in it, remove the data
+                    -- subTypes in it, mark the pool as false
                     elseif additionalSubPoolData == false or TableHasAnyValue(coreResources[key1].HeroPools[key2]) == false then
-                        coreResources[key1].HeroPools[key2] = nil;
+                        if coreResources[key1].HeroPools == nil then
+                            coreResources[key1].HeroPools = {};
+                        end
+                        coreResources[key1].HeroPools[key2] = false;
                     end
                 end
+            end
+            if additionalFactionData.HeroPoolMaxSize ~= nil then
+                coreResources[key1].HeroPoolMaxSize = additionalFactionData.HeroPoolMaxSize;
             end
             -- Merge replacement data
             if additionalFactionData.LordsToReplace ~= nil then

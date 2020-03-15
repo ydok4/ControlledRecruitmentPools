@@ -23,7 +23,6 @@ function GetMixuTombKingsRecruitmentPools()
                     SubPoolMaxSize = 2,
                 },
             },
-            LordPoolMaxSize = 4,
         },
 
         --  Khatep
@@ -37,7 +36,7 @@ function GetMixuTombKingsRecruitmentPools()
                         },
                     },
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 2,
+                    SubPoolMaxSize = 1,
                 },
                 HighLichePriests = {
                     AgentSubTypes = {
@@ -55,7 +54,7 @@ function GetMixuTombKingsRecruitmentPools()
                         },
                     },
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 3,
+                    SubPoolMaxSize = 2,
                 },
             },
         },

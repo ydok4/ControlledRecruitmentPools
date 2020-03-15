@@ -71,27 +71,7 @@ function GetVampireCoastRecruitmentPoolData()
         wh2_dlc11_cst_vampire_coast = {
             FactionPools = {
                 Admirals = {
-                    AgentSubTypes = {
-                        wh2_dlc11_cst_admiral_death = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_deep = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem_death = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem_deep = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem = {
-                            MaximumPercentage = 16,
-                        },
-                    },
-                    SubPoolInitialMinSize = 3,
+                    SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
             },
@@ -102,27 +82,7 @@ function GetVampireCoastRecruitmentPoolData()
         wh2_dlc11_cst_pirates_of_sartosa = {
             FactionPools = {
                 Admirals = {
-                    AgentSubTypes = {
-                        wh2_dlc11_cst_admiral_death = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_deep = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem_death = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem_deep = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem = {
-                            MaximumPercentage = 16,
-                        },
-                    },
-                    SubPoolInitialMinSize = 1,
+                    SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
             },
@@ -133,27 +93,7 @@ function GetVampireCoastRecruitmentPoolData()
         wh2_dlc11_cst_noctilus = {
             FactionPools = {
                 Admirals = {
-                    AgentSubTypes = {
-                        wh2_dlc11_cst_admiral_death = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_deep = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem_death = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem_deep = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem = {
-                            MaximumPercentage = 16,
-                        },
-                    },
-                    SubPoolInitialMinSize = 1,
+                    SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
             },
@@ -164,27 +104,7 @@ function GetVampireCoastRecruitmentPoolData()
         wh2_dlc11_cst_the_drowned = {
             FactionPools = {
                 Admirals = {
-                    AgentSubTypes = {
-                        wh2_dlc11_cst_admiral_death = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_deep = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem_death = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem_deep = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral = {
-                            MaximumPercentage = 16,
-                        },
-                        wh2_dlc11_cst_admiral_fem = {
-                            MaximumPercentage = 16,
-                        },
-                    },
-                    SubPoolInitialMinSize = 1,
+                    SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 3,
                 },
             },

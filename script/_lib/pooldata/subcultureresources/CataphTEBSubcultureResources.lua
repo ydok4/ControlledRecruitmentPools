@@ -114,9 +114,9 @@ function GetCataphTEBSubcultureResources()
                     mount_bor_ranger_lord_warhorse = {
                         MountData = "WarHorse",
                     },
-                    mount_bor_ranger_lord_warhorse2 = {
+                    --[[mount_bor_ranger_lord_warhorse2 = {
                         MountData = "BardedWarHorse",
-                    },
+                    },--]]
                 },
             },
             til_merchant = {
@@ -127,9 +127,9 @@ function GetCataphTEBSubcultureResources()
                     mount_til_merchant_warhorse = {
                         MountData = "WarHorse",
                     },
-                    mount_til_merchant_bwarhorse = {
+                    --[[mount_til_merchant_bwarhorse = {
                         MountData = "BardedWarHorse",
-                    },
+                    },--]]
                 },
             },
             est_inquisitor = {
@@ -140,9 +140,9 @@ function GetCataphTEBSubcultureResources()
                     mount_est_inquisitor_warhorse = {
                         MountData = "WarHorse",
                     },
-                    mount_est_inquisitor_bwarhorse = {
+                    --[[mount_est_inquisitor_bwarhorse = {
                         MountData = "BardedWarHorse",
-                    },
+                    },--]]
                     mount_est_inquisitor_beaky = {
                         MountData = "Hippogryph",
                     },
@@ -160,7 +160,136 @@ function GetCataphTEBSubcultureResources()
                         MountData = "BardedWarHorse",
                     },
                 },
-            }
+            },
+            emp_witch_hunter = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                },
+            },
+            wh2_pro07_emp_amethyst_wizard = {
+                BonusCost = 75,
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_pro07_anc_mount_emp_amethyst_wizard_warhorse = {
+                        MountData = "WarHorse",
+                    },
+                    wh2_pro07_anc_mount_emp_amethyst_wizard_barded_warhorse = {
+                        MountData = "BardedWarHorse",
+                    },
+                    wh2_pro07_anc_mount_emp_amethyst_wizard_imperial_pegasus = {
+                        MountData = "ImperialPegasus",
+                    },
+                },
+            },
+            emp_celestial_wizard = {
+                BonusCost = 75,
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh_main_anc_mount_emp_celestial_wizard_warhorse = {
+                        MountData = "WarHorse",
+                    },
+                    wh_main_anc_mount_emp_celestial_wizard_barded_warhorse = {
+                        MountData = "BardedWarHorse",
+                    },
+                    wh_main_anc_mount_emp_celestial_wizard_imperial_pegasus = {
+                        MountData = "ImperialPegasus",
+                    },
+                },
+            },
+            emp_light_wizard = {
+                BonusCost = 75,
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh_main_anc_mount_emp_light_wizard_warhorse = {
+                        MountData = "WarHorse",
+                    },
+                    wh_main_anc_mount_emp_light_wizard_barded_warhorse = {
+                        MountData = "BardedWarHorse",
+                    },
+                    wh_main_anc_mount_emp_light_wizard_imperial_pegasus = {
+                        MountData = "ImperialPegasus",
+                    },
+                },
+            },
+            dlc03_emp_amber_wizard = {
+                BonusCost = 75,
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh_dlc03_anc_mount_emp_amber_wizard_warhorse = {
+                        MountData = "WarHorse",
+                    },
+                    wh_dlc03_anc_mount_emp_amber_wizard_barded_warhorse = {
+                        MountData = "BardedWarHorse",
+                    },
+                    wh_dlc03_anc_mount_emp_amber_wizard_imperial_pegasus = {
+                        MountData = "ImperialPegasus",
+                    },
+                    wh_dlc03_anc_mount_emp_amber_wizard_imperial_griffon = {
+                        MountData = "ImperialGriffon",
+                    },
+                },
+            },
+            dlc05_emp_grey_wizard = {
+                BonusCost = 75,
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh_dlc05_anc_mount_emp_grey_wizard_warhorse = {
+                        MountData = "WarHorse",
+                    },
+                    wh_dlc05_anc_mount_emp_grey_wizard_barded_warhorse = {
+                        MountData = "BardedWarHorse",
+                    },
+                    wh_dlc05_anc_mount_emp_grey_wizard_imperial_pegasus = {
+                        MountData = "ImperialPegasus",
+                    },
+                },
+            },
+            dlc05_emp_jade_wizard = {
+                BonusCost = 75,
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh_dlc05_anc_mount_emp_jade_wizard_warhorse = {
+                        MountData = "WarHorse",
+                    },
+                    wh_dlc05_anc_mount_emp_jade_wizard_barded_warhorse = {
+                        MountData = "BardedWarHorse",
+                    },
+                    wh_dlc05_anc_mount_emp_jade_wizard_imperial_pegasus = {
+                        MountData = "ImperialPegasus",
+                    },
+                },
+            },
+            emp_bright_wizard = {
+                BonusCost = 75,
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh_main_anc_mount_emp_bright_wizard_warhorse = {
+                        MountData = "WarHorse",
+                    },
+                    wh_main_anc_mount_emp_bright_wizard_barded_warhorse = {
+                        MountData = "BardedWarHorse",
+                    },
+                    wh_main_anc_mount_emp_bright_wizard_imperial_pegasus = {
+                        MountData = "ImperialPegasus",
+                    },
+                },
+            },
         },
     };
 end
