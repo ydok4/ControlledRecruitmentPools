@@ -35,6 +35,11 @@ require 'script/_lib/pooldata/recruitmentpools/TombKingsRecruitmentPools'
 require 'script/_lib/pooldata/recruitmentpools/VampireCoastRecruitmentPools'
 require 'script/_lib/pooldata/recruitmentpools/VampireCountsRecruitmentPools'
 require 'script/_lib/pooldata/recruitmentpools/WoodElfRecruitmentPools'
+-- OvN resources
+require 'script/_lib/pooldata/recruitmentpools/AlbionRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/FimirRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/TrollRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/WarpRecruitmentPools'
 
 --require 'script/_lib/pooldata/recruitmentpools/RogueArmyRecruitmentPools'
 
@@ -116,7 +121,11 @@ _G.CRPResources = {
         wh_main_sc_vmp_vampire_counts = GetVampireCountsRecruitmentPoolData(),
         -- Wood Elf
         wh_dlc05_sc_wef_wood_elves = GetWoodElfRecruitmentPoolData(),
-
+        -- OvN Custom subcultures
+        --[[wh_main_sc_nor_albion = GetAlbionRecruitmentPoolData(),
+        wh_main_sc_nor_fimir = GetFimirRecruitmentPoolData(),
+        wh_main_sc_nor_troll = GetTrollRecruitmentPoolData(),
+        wh_main_sc_nor_warp = GetWarpRecruitmentPoolData(),--]]
         -- Shared Data (Traits mainly)
         --shared = SharedRecruitmentPoolData,
 

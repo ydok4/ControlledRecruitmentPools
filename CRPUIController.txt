@@ -1,16 +1,6 @@
-CRPUIController Setting default values   : [15, 03 2020 10:05:40]
-CRPUIController Listeners initialising   : [15, 03 2020 10:05:40]
-Initialised sub culture values   : [15, 03 2020 10:05:40]
-Finished Initialising UI   : [15, 03 2020 10:05:40]
-FINISHED
-
-SetupCharacterDetailsButton: emp_wizard_lord_death   : [15, 03 2020 10:05:40]
-Setting up mounts text: mixu_emp_wizard_lord_death_mount_warhorse/WarHorse   : [15, 03 2020 10:05:40]
-Ancillary key is: mixu_emp_wizard_lord_death_mount_warhorse   : [15, 03 2020 10:05:40]
-Localised ancillary is: ancillaries_onscreen_name_mixu_emp_wizard_lord_death_mount_warhorse   : [15, 03 2020 10:05:40]
-Past Mount UI   : [15, 03 2020 10:05:40]
-Original recruitment cost is: names_name_9999000117   : [15, 03 2020 10:05:40]
-Bonus cost is: 375   : [15, 03 2020 10:05:40]
-ERROR: Recruitment cost is not an int   : [15, 03 2020 10:05:40]
+CRPUIController Setting default values   : [30, 03 2020 19:49:38]
+CRPUIController Listeners initialising   : [30, 03 2020 19:49:38]
+Initialised sub culture values   : [30, 03 2020 19:49:38]
+Finished Initialising UI   : [30, 03 2020 19:49:38]
 FINISHED
 

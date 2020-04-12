@@ -1236,31 +1236,35 @@ function ControlledRecruitmentPoolsController:ProcessNewCharacter(char)
             self.Logger:Log("Character "..characterSubTypeKey.." is not in pool. Tracking them for faction "..factionName);
             local homeRegion = self.CharacterGenerator:GetRegionForFaction(faction);
             cm:callback(function()
-                self:TrackCharacterInPoolData(factionName, name, characterSubTypeKey, "", homeRegion, false, true);
-                if factionName ~= self.HumanFaction:name() then
-                    self:RollForAIMount(faction, keyName, characterSubTypeKey);
-                    local poolData = factionLords[characterSubTypeKey][keyName];
-                    if poolData ~= nil then
-                        self.Logger:Log("Character is now tracked");
-                        if poolData.Mounts ~= '' then
-                            self.Logger:Log("Attempting to add mounts");
-                            local ancillaryKey = string.match(poolData.Mounts, "(.*)/");
-                            if ancillaryKey ~= "unmounted" then
-                                self.Logger:Log("Adding ancillary: "..ancillaryKey);
-                                cm:force_add_ancillary(char, ancillaryKey, false, false);
+                if cm:char_has_army(char) == true then
+                    self:TrackCharacterInPoolData(factionName, name, characterSubTypeKey, "", homeRegion, false, true);
+                    if factionName ~= self.HumanFaction:name() then
+                        self:RollForAIMount(faction, keyName, characterSubTypeKey);
+                        local poolData = factionLords[characterSubTypeKey][keyName];
+                        if poolData ~= nil then
+                            self.Logger:Log("Character is now tracked");
+                            if poolData.Mounts ~= '' then
+                                self.Logger:Log("Attempting to add mounts");
+                                local ancillaryKey = string.match(poolData.Mounts, "(.*)/");
+                                if ancillaryKey ~= "unmounted" then
+                                    self.Logger:Log("Adding ancillary: "..ancillaryKey);
+                                    cm:force_add_ancillary(char, ancillaryKey, false, false);
+                                end
                             end
-                        end
-                        if poolData.ExtraCost ~= 0 then
-                            self.Logger:Log("Removing "..poolData.ExtraCost.." from treasury");
-                            cm:treasury_mod(factionName, -1 * poolData.ExtraCost);
-                        end
-                        if poolData.RemoveImmortality == true then
-                            self.Logger:Log("Removing immortality");
-                            -- Remove immortality that we gave them when we spawned them
-                            cm:set_character_immortality("character_cqi:"..char:command_queue_index(), false);
+                            if poolData.ExtraCost ~= 0 then
+                                self.Logger:Log("Removing "..poolData.ExtraCost.." from treasury");
+                                cm:treasury_mod(factionName, -1 * poolData.ExtraCost);
+                            end
+                            if poolData.RemoveImmortality == true then
+                                self.Logger:Log("Removing immortality");
+                                -- Remove immortality that we gave them when we spawned them
+                                cm:set_character_immortality("character_cqi:"..char:command_queue_index(), false);
+                            end
+                        else
+                            self.Logger:Log("ERROR: Character is not tracked");
                         end
                     else
-                        self.Logger:Log("ERROR: Character is not tracked");
+                        self.Logger:Log("ERROR: Character has died since callback was triggered");
                     end
                 end
                 self.Logger:Log_Finished();

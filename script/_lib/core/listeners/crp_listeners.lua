@@ -273,7 +273,8 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
             elseif character:character_type("colonel") and (character:military_force():is_armed_citizenry() == false or character:is_politician() == true) then
                 crp.Logger:Log("Found colonel");
                 crp.Logger:Log_Finished();
-            elseif character:character_subtype_key() == "default" then
+            elseif character:character_subtype_key() == "default"
+            or (character:faction():subculture() ~= "wh_main_sc_grn_greenskins" and (character:character_subtype_key() == "grn_goblin_big_boss" or character:character_subtype_key() == "grn_orc_shaman")) then
                 crp.Logger:Log("Found default...Killing it");
                 cm:callback(function()
                     cm:kill_character(character:cqi(), true, true);

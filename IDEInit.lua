@@ -122,13 +122,13 @@ humanFaction = {
 testFaction = {
     command_queue_index = function() return 123; end,
     name = function()
-        return "wh_dlc05_wef_wood_elves";
+        return "wh_main_emp_wissenland";
     end,
     culture = function()
-        return "wh_dlc05_wef_wood_elves";
+        return "wh_main_emp_empire";
     end,
     subculture = function()
-        return "wh_dlc05_sc_wef_wood_elves";
+        return "wh_main_sc_emp_empire";
     end,
     is_dead = function()
         return false;
@@ -564,6 +564,7 @@ function get_cm()
         force_add_skill = function() end,
         find_valid_spawn_location_for_character_from_position = function() return -1, -1; end,
         teleport_to = function() end,
+        char_has_army = function() return true; end,
     };
 end
 
