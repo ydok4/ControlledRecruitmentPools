@@ -47,37 +47,18 @@ function GetLizardmenSubcultureResources()
             -- Diplomacy rewards
             alliance_wh2_dlc13_lzd_spirits_of_the_jungle = {
                 Pools = {
-                    KroxigorAncients = {
-                        AgentSubTypes = {
-                            wh2_dlc13_lzd_kroxigor_ancient = {
-                                MaximumPercentage = 100,
-                            },
-                        },
-                        SubPoolInitialMinSize = 0,
-                        SubPoolMaxSize = 1,
-                    },
+                    "KroxigorAncients",
                 },
                 Events = {
                     Incident = "wh_main_lzd_kroxigor_ancient",
                     Dilemma = nil,
-                },
-                RemapAgentKeys = {
-                    wh2_dlc12_lzd_red_crested_skink_chief = "wh2_dlc13_lzd_red_crested_skink_chief_horde",
                 },
                 IncreasePoolSize = 1,
                 Type = "increase",
             },
             alliance_wh2_dlc12_lzd_cult_of_sotek = {
                 Pools = {
-                    RedCrestedSkinkChiefs = {
-                        AgentSubTypes = {
-                            wh2_dlc12_lzd_red_crested_skink_chief = {
-                                MaximumPercentage = 100,
-                            },
-                        },
-                        SubPoolInitialMinSize = 0,
-                        SubPoolMaxSize = 1,
-                    },
+                    "RedCrestedSkinkChiefs",
                 },
                 Events = {
                     Incident = "wh_main_lzd_red_crested_skink",
@@ -224,7 +205,7 @@ function GetLizardmenSubcultureResources()
         },
         AgentSubTypes = {
             wh2_main_lzd_saurus_old_blood = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

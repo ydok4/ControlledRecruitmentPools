@@ -82,7 +82,7 @@ function GetBeastmenSubcultureResources()
         },
         AgentSubTypes = {
             dlc03_bst_beastlord = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

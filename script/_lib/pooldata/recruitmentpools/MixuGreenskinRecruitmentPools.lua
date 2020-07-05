@@ -18,12 +18,14 @@ function GetMixuGreenskinRecruitmentPoolData()
                 },
                 GreenskinShamans = {
                     AgentSubTypes = {
-                        grn_goblin_great_shaman = false,
+                        grn_goblin_great_shaman = {
+                            MaximumPercentage = 33,
+                        },
                         grn_savage_orc_shaman = {
-                            MaximumPercentage = 50,
+                            MaximumPercentage = 33,
                         },
                         grn_orc_great_shaman = {
-                            MaximumPercentage = 50,
+                            MaximumPercentage = 33,
                         }
                     },
                     SubPoolInitialMinSize = 0,
@@ -33,7 +35,7 @@ function GetMixuGreenskinRecruitmentPoolData()
         },
         -- Major Faction specific distributions
 
-        -- Grimgor / Ahzag (Vanilla at least)
+        -- Grimgor
         wh_main_grn_greenskins = {
             FactionPools = {
                 GreenskinWarbosses = {
@@ -61,7 +63,7 @@ function GetMixuGreenskinRecruitmentPoolData()
                         }
                     },
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 3,
+                    SubPoolMaxSize = 1,
                 },
             },
         },
@@ -92,7 +94,7 @@ function GetMixuGreenskinRecruitmentPoolData()
                         },
                     },
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 4,
+                    SubPoolMaxSize = 1,
                 },
             },
             LordsToReplace = {
@@ -106,6 +108,27 @@ function GetMixuGreenskinRecruitmentPoolData()
                     },
                 },
             },
+        },
+        -- Ahzag
+        wh2_dlc15_grn_bonerattlaz = {
+            FactionPools = {
+                GreenskinShamans = {
+                    AgentSubTypes = {
+                        grn_savage_orc_shaman = {
+                            MaximumPercentage = 50,
+                        },
+                        grn_goblin_great_shaman = {
+                            MaximumPercentage = 25,
+                        },
+                        grn_orc_great_shaman = {
+                            MaximumPercentage = 25,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 1,
+                },
+            },
+            LordPoolMaxSize = 4,
         },
     };
 end

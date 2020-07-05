@@ -253,6 +253,36 @@ function GetNameGroupResources()
 		wh2_dlc14_skv_rictus_clan_nest = {
 			NameGroup = "124",
 		},
+		wh2_dlc15_dwf_clan_helhein = {
+			NameGroup = "106",
+		},
+		wh2_dlc15_grn_bonerattlaz = {
+			NameGroup = "88",
+		},
+		wh2_dlc15_grn_broken_axe = {
+			NameGroup = "88",
+		},
+		wh2_dlc15_grn_broken_axe_waaagh = {
+			NameGroup = "88",
+		},
+		wh2_dlc15_grn_skull_crag = {
+			NameGroup = "88",
+		},
+		wh2_dlc15_hef_dragon_encounters = {
+			NameGroup = "137",
+		},
+		wh2_dlc15_hef_imrik = {
+			NameGroup = "137",
+		},
+		wh2_dlc15_skv_clan_ferrik = {
+			NameGroup = "124",
+		},
+		wh2_dlc15_skv_clan_kreepus = {
+			NameGroup = "124",
+		},
+		wh2_dlc15_skv_clan_volkn = {
+			NameGroup = "124",
+		},
 		wh2_main_brt_knights_of_origo = {
 			NameGroup = "162",
 		},

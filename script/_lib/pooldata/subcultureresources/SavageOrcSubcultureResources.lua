@@ -75,7 +75,7 @@ function GetSavageOrcSubcultureResources()
         },
         AgentSubTypes = {
             grn_orc_warboss = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 BonusCost = 200,
                 Mounts = {
                     unmounted = {

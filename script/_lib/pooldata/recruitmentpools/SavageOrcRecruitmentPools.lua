@@ -9,8 +9,8 @@ function GetSavageOrcRecruitmentPoolData()
                             MaximumPercentage = 100,
                         },
                     },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 4,
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 1,
                 },
                 OrcShamanPools = {
                     AgentSubTypes = {
@@ -18,8 +18,8 @@ function GetSavageOrcRecruitmentPoolData()
                             MaximumPercentage = 100,
                         },
                     },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 4,
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 1,
                 },
                 GoblinBigBossPools = {
                     AgentSubTypes = {
@@ -27,8 +27,8 @@ function GetSavageOrcRecruitmentPoolData()
                             MaximumPercentage = 100,
                         },
                     },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 4,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
             HeroPoolMaxSize = 4,
@@ -37,7 +37,6 @@ function GetSavageOrcRecruitmentPoolData()
                     AgentSubTypes = {
                         grn_orc_warboss = {
                             MaximumPercentage = 100,
-                            HumanPlayerOnly = true,
                         },
                     },
                     SubPoolInitialMinSize = 2,

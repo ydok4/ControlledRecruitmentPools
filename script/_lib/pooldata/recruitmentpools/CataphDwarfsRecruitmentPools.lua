@@ -9,7 +9,6 @@ function GetCataphDwarfsRecruitmentPools()
                     AgentSubTypes = {
                         dwf_lord = {
                             MaximumPercentage = 50,
-                            HumanPlayerOnly = true,
                         },
                         kraka_wardlord = {
                             MaximumPercentage = 50,

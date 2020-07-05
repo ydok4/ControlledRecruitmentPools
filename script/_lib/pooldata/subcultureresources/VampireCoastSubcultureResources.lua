@@ -94,7 +94,7 @@ function GetVampireCoastSubcultureResources()
         },
         AgentSubTypes = {
             wh2_dlc11_cst_admiral = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
@@ -105,7 +105,7 @@ function GetVampireCoastSubcultureResources()
                 },
             },
             wh2_dlc11_cst_admiral_fem = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

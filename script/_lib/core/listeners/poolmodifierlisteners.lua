@@ -35,10 +35,15 @@ function CRP_PoolModifierListeners(crp, core)
                 crp.Logger:Log("Matching culture, checking for pool changes");
 				if context:is_alliance() then
 					crp.Logger:Log("Is Alliance");
-					crp.Logger:Log("Before getting rewards for proposer "..proposer:name());
 					CheckAndReceiveRewards(crp, proposer, recipient, "alliance_"..recipient:name());
-					crp.Logger:Log("Before getting rewards for receiver "..recipient:name());
 					CheckAndReceiveRewards(crp, recipient, proposer, "alliance_"..proposer:name());
+					if proposer:military_allies_with(recipient) then
+						CheckAndReceiveRewards(crp, proposer, recipient, "military_alliance_"..recipient:name());
+						CheckAndReceiveRewards(crp, recipient, proposer, "military_alliance_"..proposer:name());
+					elseif proposer:defensive_allies_with(recipient) then
+						CheckAndReceiveRewards(crp, proposer, recipient, "defensive_alliance_"..recipient:name());
+						CheckAndReceiveRewards(crp, recipient, proposer, "defensive_alliance_"..proposer:name());
+					end
                 end
 			end
 			crp.Logger:Log("Finished positive diplomatic event");
@@ -129,7 +134,7 @@ function CRP_PoolModifierListeners(crp, core)
 												};
 											end
 											buildingCache[poolKey].Amount = buildingCache[poolKey].Amount + 1;
-											buildingCache[poolKey].AmountWithLevels = buildingCache[poolKey].AmountWithLevels + building:building_level();
+											buildingCache[poolKey].AmountWithLevels = buildingCache[poolKey].AmountWithLevels + (building:building_level() + 1);
 										end
 									end
 								end

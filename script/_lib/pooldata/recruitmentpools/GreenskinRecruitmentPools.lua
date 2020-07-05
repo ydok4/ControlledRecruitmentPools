@@ -9,8 +9,8 @@ function GetGreenskinRecruitmentPoolData()
                             MaximumPercentage = 100,
                         },
                     },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 4,
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 1,
                 },
                 OrcShamanPools = {
                     AgentSubTypes = {
@@ -18,8 +18,8 @@ function GetGreenskinRecruitmentPoolData()
                             MaximumPercentage = 100,
                         },
                     },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 4,
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 1,
                 },
                 GoblinBigBossPools = {
                     AgentSubTypes = {
@@ -27,8 +27,26 @@ function GetGreenskinRecruitmentPoolData()
                             MaximumPercentage = 100,
                         },
                     },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 4,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+                TrollHags = {
+                    AgentSubTypes = {
+                        wh2_dlc15_grn_river_troll_hag = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
+                BlackOrcBigBoss = {
+                    AgentSubTypes = {
+                        wh2_pro09_grn_black_orc_big_boss = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
                 },
             },
             HeroPoolMaxSize = 4,
@@ -49,14 +67,14 @@ function GetGreenskinRecruitmentPoolData()
                         },
                     },
                     SubPoolInitialMinSize = 0,
-                    SubPoolMaxSize = 2,
+                    SubPoolMaxSize = 1,
                 },
             },
             LordPoolMaxSize = 4,
         },
         -- Major Faction specific distributions
 
-        -- Grimgor / Ahzag (Vanilla at least)
+        -- Grimgor
         wh_main_grn_greenskins = {
             FactionPools = {
                 GreenskinWarbosses = {
@@ -102,6 +120,7 @@ function GetGreenskinRecruitmentPoolData()
                     AgentSubTypes = {
                         dlc06_grn_night_goblin_warboss = {
                             MaximumPercentage = 100,
+                            HumanPlayerOnly = true,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -126,6 +145,37 @@ function GetGreenskinRecruitmentPoolData()
             LordPoolMaxSize = 4,
         },
 
+        -- Ahzag
+        wh2_dlc15_grn_bonerattlaz = {
+            FactionPools = {
+                GreenskinWarbosses = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
+                },
+                GreenskinShamans = {
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 2,
+                },
+            },
+            LordPoolMaxSize = 4,
+        },
+
+        -- Grom
+        wh2_dlc15_grn_broken_axe = {
+            HeroPools = {
+                TrollHags = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 1,
+                },
+            },
+            FactionPools = {
+                GreenskinWarbosses = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
+                },
+            },
+            LordPoolMaxSize = 4,
+        },
         -- Minor Faction specific distributions
 
         -- Goblins/Forest Goblins
@@ -158,7 +208,7 @@ function GetGreenskinRecruitmentPoolData()
             LordPoolMaxSize = 4,
         },--]]
         -- Goblin Tribes
-        wh_main_grn_broken_nose = {
+        --[[wh_main_grn_broken_nose = {
             FactionPools = {
                 GreenskinShamans = {
                     SubPoolInitialMinSize = 0,
@@ -217,49 +267,12 @@ function GetGreenskinRecruitmentPoolData()
                     },
                 },
             },
-        },
+        },--]]
 
         -- Night Goblin Tribes
         wh_main_grn_bloody_spearz = {
             FactionPools = {
                 GreenskinWarbosses = {
-                    AgentSubTypes = {
-                        dlc06_grn_night_goblin_warboss = {
-                            MaximumPercentage = 100,
-                        },
-                    },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 1,
-                },
-                GreenskinShamans = {
-                    SubPoolInitialMinSize = 0,
-                    SubPoolMaxSize = 2,
-                },
-            },
-            LordPoolMaxSize = 4,
-        },
-        wh_main_grn_red_eye = {
-            HeroPools = {
-                NightGoblinShamanPools = {
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 4,
-                },
-                OrcShamanPools = {
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 4,
-                },
-                GoblinBigBossPools = {
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 4,
-                },
-            },
-            FactionPools = {
-                GreenskinWarbosses = {
-                    AgentSubTypes = {
-                        dlc06_grn_night_goblin_warboss = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 1,
                 },
@@ -281,7 +294,45 @@ function GetGreenskinRecruitmentPoolData()
                 },
             },
         },
-        wh_main_grn_necksnappers = {
+        wh_main_grn_red_eye = {
+            HeroPools = {
+                NightGoblinShamanPools = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
+                },
+                OrcShamanPools = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
+                },
+                GoblinBigBossPools = {
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 4,
+                },
+            },
+            FactionPools = {
+                GreenskinWarbosses = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 1,
+                },
+                GreenskinShamans = {
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 2,
+                },
+            },
+            LordPoolMaxSize = 4,
+            LordsToReplace = {
+                grn_orc_warboss = {
+                    replacementKey = "dlc06_grn_night_goblin_warboss",
+                    traitKeyPool = {
+                        "wh2_main_skill_innate_grn_big_bully",
+                        "wh2_main_skill_innate_grn_bragga",
+                        "wh2_main_skill_innate_grn_serial_danca",
+                        "wh2_main_skill_innate_grn_tortura"
+                    },
+                },
+            },
+        },
+        --[[wh_main_grn_necksnappers = {
             HeroPools = {
                 NightGoblinShamanPools = {
                     SubPoolInitialMinSize = 1,
@@ -315,7 +366,7 @@ function GetGreenskinRecruitmentPoolData()
                 },
             },
             LordPoolMaxSize = 4,
-        },
+        },--]]
         -- Orc Tribes
         --[[wh_main_grn_skullsmasherz = {
             DreadlordPool = {

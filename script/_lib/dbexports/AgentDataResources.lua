@@ -809,14 +809,14 @@ function GetAgentDataResources()
 		wh2_dlc10_hef_mage_heavens = {
 			AgentType = "wizard",
 			ArtSetIds = {
-				 "wh2_main_art_set_hef_mage_01", "wh2_main_art_set_hef_mage_02", "wh2_main_art_set_hef_mage_03",
+				"wh2_main_art_set_hef_mage_01", "wh2_main_art_set_hef_mage_02", "wh2_main_art_set_hef_mage_03", "wh2_main_art_set_hef_mage_04", "wh2_main_art_set_hef_mage_05", "wh2_main_art_set_hef_mage_06", "wh2_main_art_set_hef_mage_07", "wh2_main_art_set_hef_mage_08", "wh2_main_art_set_hef_mage_09",
 			},
 			IsFemale = "true",
 		},
 		wh2_dlc10_hef_mage_shadows = {
 			AgentType = "wizard",
 			ArtSetIds = {
-				 "wh2_main_art_set_hef_mage_01", "wh2_main_art_set_hef_mage_02", "wh2_main_art_set_hef_mage_03",
+				"wh2_main_art_set_hef_mage_01", "wh2_main_art_set_hef_mage_02", "wh2_main_art_set_hef_mage_03", "wh2_main_art_set_hef_mage_04", "wh2_main_art_set_hef_mage_05", "wh2_main_art_set_hef_mage_06", "wh2_main_art_set_hef_mage_07", "wh2_main_art_set_hef_mage_08", "wh2_main_art_set_hef_mage_09",
 			},
 			IsFemale = "true",
 		},
@@ -1275,6 +1275,174 @@ function GetAgentDataResources()
 			},
 			IsFemale = "false",
 		},
+		wh2_dlc15_grn_goblin_great_shaman_raknik = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh_main_art_set_grn_raknik",
+			},
+			IsFemale = "false",
+		},
+		wh2_dlc15_grn_grom_the_paunch = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_grn_grom",
+			},
+			IsFemale = "false",
+		},
+		wh2_dlc15_grn_orc_warboss_oglok = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh_main_art_set_grn_oglok",
+			},
+			IsFemale = "false",
+		},
+		wh2_dlc15_grn_river_troll_hag = {
+			AgentType = "runesmith",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_grn_river_troll_hag_01", "wh2_dlc15_art_set_grn_river_troll_hag_02", "wh2_dlc15_art_set_grn_river_troll_hag_03", "wh2_dlc15_art_set_grn_river_troll_hag_04", "wh2_dlc15_art_set_grn_river_troll_hag_05",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_archmage_beasts = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_hef_archmage_02",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_archmage_death = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_hef_archmage_03",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_archmage_fire = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_hef_archmage_04",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_archmage_heavens = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_hef_archmage_08",
+			},
+			IsFemale = "false",
+		},
+		wh2_dlc15_hef_archmage_high = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_hef_archmage_01",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_archmage_life = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_hef_archmage_05",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_archmage_light = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_hef_archmage_06",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_archmage_metal = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_hef_archmage_07",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_archmage_shadows = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_hef_archmage_09",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_black_dragon_boss_imrik = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_black_dragon_01",
+			},
+			IsFemale = "false",
+		},
+		wh2_dlc15_hef_eltharion = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_hef_eltharion",
+			},
+			IsFemale = "false",
+		},
+		wh2_dlc15_hef_forest_dragon_boss_imrik = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_forest_dragon_01",
+			},
+			IsFemale = "false",
+		},
+		wh2_dlc15_hef_imrik = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_hef_imrik",
+			},
+			IsFemale = "false",
+		},
+		wh2_dlc15_hef_mage_beasts = {
+			AgentType = "wizard",
+			ArtSetIds = {
+				 "wh2_main_art_set_hef_mage_05",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_mage_death = {
+			AgentType = "wizard",
+			ArtSetIds = {
+				 "wh2_main_art_set_hef_mage_06",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_mage_fire = {
+			AgentType = "wizard",
+			ArtSetIds = {
+				 "wh2_main_art_set_hef_mage_04",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_mage_metal = {
+			AgentType = "wizard",
+			ArtSetIds = {
+				 "wh2_main_art_set_hef_mage_07",
+			},
+			IsFemale = "true",
+		},
+		wh2_dlc15_hef_moon_dragon_boss_imrik = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_moon_dragon_01",
+			},
+			IsFemale = "false",
+		},
+		wh2_dlc15_hef_star_dragon_boss_imrik = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_star_dragon_01",
+			},
+			IsFemale = "false",
+		},
+		wh2_dlc15_hef_sun_dragon_boss_imrik = {
+			AgentType = "general",
+			ArtSetIds = {
+				 "wh2_dlc15_art_set_sun_dragon_01",
+			},
+			IsFemale = "false",
+		},
 		wh2_main_def_black_ark = {
 			AgentType = "general",
 			ArtSetIds = {
@@ -1355,21 +1523,21 @@ function GetAgentDataResources()
 		wh2_main_hef_mage_high = {
 			AgentType = "wizard",
 			ArtSetIds = {
-				 "wh2_main_art_set_hef_mage_01", "wh2_main_art_set_hef_mage_02", "wh2_main_art_set_hef_mage_03",
+				"wh2_main_art_set_hef_mage_01", "wh2_main_art_set_hef_mage_02", "wh2_main_art_set_hef_mage_03", "wh2_main_art_set_hef_mage_04", "wh2_main_art_set_hef_mage_05", "wh2_main_art_set_hef_mage_06", "wh2_main_art_set_hef_mage_07", "wh2_main_art_set_hef_mage_08", "wh2_main_art_set_hef_mage_09",
 			},
 			IsFemale = "true",
 		},
 		wh2_main_hef_mage_life = {
 			AgentType = "wizard",
 			ArtSetIds = {
-				 "wh2_main_art_set_hef_mage_01", "wh2_main_art_set_hef_mage_02", "wh2_main_art_set_hef_mage_03",
+				"wh2_main_art_set_hef_mage_01", "wh2_main_art_set_hef_mage_02", "wh2_main_art_set_hef_mage_03", "wh2_main_art_set_hef_mage_04", "wh2_main_art_set_hef_mage_05", "wh2_main_art_set_hef_mage_06", "wh2_main_art_set_hef_mage_07", "wh2_main_art_set_hef_mage_08", "wh2_main_art_set_hef_mage_09",
 			},
 			IsFemale = "true",
 		},
 		wh2_main_hef_mage_light = {
 			AgentType = "wizard",
 			ArtSetIds = {
-				 "wh2_main_art_set_hef_mage_01", "wh2_main_art_set_hef_mage_02", "wh2_main_art_set_hef_mage_03",
+				"wh2_main_art_set_hef_mage_01", "wh2_main_art_set_hef_mage_02", "wh2_main_art_set_hef_mage_03", "wh2_main_art_set_hef_mage_04", "wh2_main_art_set_hef_mage_05", "wh2_main_art_set_hef_mage_06", "wh2_main_art_set_hef_mage_07", "wh2_main_art_set_hef_mage_08", "wh2_main_art_set_hef_mage_09",
 			},
 			IsFemale = "true",
 		},
@@ -1587,6 +1755,13 @@ function GetAgentDataResources()
 			AgentType = "general",
 			ArtSetIds = {
 				 "wh2_pro08_art_set_neu_gotrek",
+			},
+			IsFemale = "false",
+		},
+		wh2_pro09_grn_black_orc_big_boss = {
+			AgentType = "champion",
+			ArtSetIds = {
+				 "wh2_pro09_art_set_grn_black_orc_big_boss_01", "wh2_pro09_art_set_grn_black_orc_big_boss_02", "wh2_pro09_art_set_grn_black_orc_big_boss_03", "wh2_pro09_art_set_grn_black_orc_big_boss_04", "wh2_pro09_art_set_grn_black_orc_big_boss_05",
 			},
 			IsFemale = "false",
 		},

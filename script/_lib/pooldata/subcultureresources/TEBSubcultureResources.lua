@@ -35,7 +35,7 @@ function GetTEBSubcultureResources()
         },
         AgentSubTypes = {
             teb_lord = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

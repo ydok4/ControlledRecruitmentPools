@@ -30,7 +30,7 @@ function GetDarkElfSubcultureResources()
                 Events = {
                 },
                 IncreasePoolSize = 1,
-                UseLevelMultiplier = true,
+                UseLevelMultiplier = false,
                 Type = "set",
             },
             wh2_main_def_worship = {
@@ -40,7 +40,7 @@ function GetDarkElfSubcultureResources()
                 Events = {
                 },
                 IncreasePoolSize = 1,
-                UseLevelMultiplier = true,
+                UseLevelMultiplier = false,
                 Type = "set",
             },
             wh2_main_def_pleasure_cult = {
@@ -269,7 +269,7 @@ function GetDarkElfSubcultureResources()
                 },
             },
             wh2_main_def_dreadlord = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
@@ -289,7 +289,7 @@ function GetDarkElfSubcultureResources()
                 },
             },
             wh2_main_def_dreadlord_fem  = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

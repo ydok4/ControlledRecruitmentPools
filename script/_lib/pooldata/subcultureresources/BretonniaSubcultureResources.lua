@@ -136,7 +136,7 @@ function GetBretonniaSubcultureResources()
                 },
             },
             brt_lord = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     wh_main_anc_mount_brt_general_barded_warhorse = {
                         MountData = "BardedWarHorse",

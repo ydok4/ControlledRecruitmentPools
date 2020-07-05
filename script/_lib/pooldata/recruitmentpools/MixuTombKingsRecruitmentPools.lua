@@ -32,7 +32,7 @@ function GetMixuTombKingsRecruitmentPools()
                     AgentSubTypes = {
                         wh2_dlc09_tmb_tomb_king = {
                             MaximumPercentage = 100,
-                            HumanPlayerOnly = true,
+
                         },
                     },
                     SubPoolInitialMinSize = 1,

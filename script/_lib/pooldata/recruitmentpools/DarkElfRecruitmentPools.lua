@@ -129,9 +129,12 @@ function GetDarkElfRecruitmentPoolData()
                     SubPoolMaxSize = 1,
                 },
                 SupremeSorceressPool = {
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 3,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
+            },
+            AutoUnlockHeroes = {
+                "wh2_main_def_sorceress_shadow",
             },
         },
         -- Morathi
@@ -145,7 +148,7 @@ function GetDarkElfRecruitmentPoolData()
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 1,
                 },
-                KhainiteAssassin = {
+                KhainiteAssassins = {
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 1,
                 },
@@ -178,7 +181,7 @@ function GetDarkElfRecruitmentPoolData()
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
-                KhainiteAssassin = {
+                KhainiteAssassins = {
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
@@ -284,6 +287,9 @@ function GetDarkElfRecruitmentPoolData()
                     SubPoolMaxSize = 4,
                 },
             },
+            AutoUnlockHeroes = {
+                "wh2_main_def_sorceress_shadow",
+            },
         },
 
         wh2_main_def_drackla_coven = {
@@ -297,6 +303,9 @@ function GetDarkElfRecruitmentPoolData()
                     SubPoolMaxSize = 4,
                 },
             },
+            AutoUnlockHeroes = {
+                "wh2_main_def_sorceress_shadow",
+            },
         },
         wh2_main_def_blood_hall_coven = {
             FactionPools = {
@@ -308,6 +317,9 @@ function GetDarkElfRecruitmentPoolData()
                     SubPoolInitialMinSize = 3,
                     SubPoolMaxSize = 4,
                 },
+            },
+            AutoUnlockHeroes = {
+                "wh2_main_def_sorceress_shadow",
             },
         },
     };

@@ -198,12 +198,12 @@ function GetVampireCountsRecruitmentPoolData()
                     SubPoolMaxSize = 5,
                 },
             },
-            LordsToReplace = {
+            --[[LordsToReplace = {
                 FactionLeader = "wh2_dlc11_vmp_bloodline_strigoi",
                 vmp_lord = {
                     replacementKey = "dlc04_vmp_strigoi_ghoul_king",
                 },
-            },
+            },--]]
         },
 
         -- The Necrarch Brotherhood

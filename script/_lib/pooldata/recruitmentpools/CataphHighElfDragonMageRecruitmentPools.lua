@@ -15,26 +15,22 @@ function GetCataphHighElfDragonMageRecruitmentPoolData()
             },
         },
 
+        -- Major High Elf Factions
+        wh2_dlc15_hef_imrik = {
+            HeroPools = {
+                DragonMages = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
+                },
+            },
+        },
+
         -- Minor High Elf Factions
         wh2_main_hef_caledor = {
             HeroPools = {
                 DragonMages = {
-                    AgentSubTypes = {
-                        AK_hef_dragonmage = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 4,
-                },
-                NoblePool = {
-                    AgentSubTypes = {
-                        wh2_main_hef_noble = {
-                            MaximumPercentage = 100,
-                        },
-                    },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 2,
                 },
             },
         },

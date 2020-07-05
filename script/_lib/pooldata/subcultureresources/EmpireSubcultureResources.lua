@@ -111,7 +111,7 @@ function GetEmpireSubcultureResources()
         AgentSubTypes = {
             emp_lord = {
                 BonusCost = 50,
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

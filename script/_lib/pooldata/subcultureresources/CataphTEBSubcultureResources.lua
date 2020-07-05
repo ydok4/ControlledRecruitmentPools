@@ -4,18 +4,7 @@ function GetCataphTEBSubcultureResources()
         Rewards = {
             alliance_wh_main_teb_border_princes = {
                 Pools = {
-                    TEBLords = {
-                        AgentSubTypes = {
-                            teb_lord = {
-                                MaximumPercentage = 60,
-                            },
-                            bor_ranger_lord = {
-                                MaximumPercentage = 40,
-                            },
-                        },
-                        SubPoolInitialMinSize = 0,
-                        SubPoolMaxSize = 1,
-                    },
+                    "BorderRangers",
                 },
                 Events = {
                     Incident = "wh_main_crp_bor_ranger",
@@ -25,18 +14,7 @@ function GetCataphTEBSubcultureResources()
             },
             alliance_wh_main_teb_tilea = {
                 Pools = {
-                    TEBLords = {
-                        AgentSubTypes = {
-                            teb_lord = {
-                                MaximumPercentage = 60,
-                            },
-                            til_merchant = {
-                                MaximumPercentage = 40,
-                            },
-                        },
-                        SubPoolInitialMinSize = 0,
-                        SubPoolMaxSize = 1,
-                    },
+                    "MerchantPrinces",
                 },
                 Events = {
                     Incident = "wh_main_crp_til_merchant",
@@ -46,18 +24,7 @@ function GetCataphTEBSubcultureResources()
             },
             alliance_wh_main_teb_estalia = {
                 Pools = {
-                    TEBLords = {
-                        AgentSubTypes = {
-                            teb_lord = {
-                                MaximumPercentage = 60,
-                            },
-                            est_inquisitor = {
-                                MaximumPercentage = 40,
-                            },
-                        },
-                        SubPoolInitialMinSize = 0,
-                        SubPoolMaxSize = 1,
-                    },
+                    "Inquisitors",
                 },
                 Events = {
                     Incident = "wh_main_crp_est_inquisitor",
@@ -89,7 +56,7 @@ function GetCataphTEBSubcultureResources()
         },
         AgentSubTypes = {
             teb_lord = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     wh_main_anc_mount_teb_general_imperial_griffon = {
                         MountData = "ImperialGriffon",

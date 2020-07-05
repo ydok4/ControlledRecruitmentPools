@@ -13,6 +13,44 @@ function GetTEBRecruitmentPools()
                     SubPoolMaxSize = 0,
                 },
             },
+            FactionPools = {
+                TEBLords = {
+                    AgentSubTypes = {
+                        teb_lord = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 3,
+                },
+                BorderRangers = {
+                    AgentSubTypes = {
+                        bor_ranger_lord = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
+                Inquisitors = {
+                    AgentSubTypes = {
+                        est_inquisitor = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
+                MerchantPrinces = {
+                    AgentSubTypes = {
+                        til_merchant = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
+            },
         },
 
         -- Major TEB factions
@@ -21,15 +59,20 @@ function GetTEBRecruitmentPools()
                 TEBLords = {
                     AgentSubTypes = {
                         teb_lord = {
-                            MaximumPercentage = 60,
-                            HumanPlayerOnly = true,
-                        },
-                        bor_ranger_lord = {
-                            MaximumPercentage = 40,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 5,
+                    SubPoolMaxSize = 4,
+                },
+                BorderRangers = {
+                    AgentSubTypes = {
+                        bor_ranger_lord = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
             LordPoolMaxSize = 4,
@@ -40,15 +83,20 @@ function GetTEBRecruitmentPools()
                 TEBLords = {
                     AgentSubTypes = {
                         teb_lord = {
-                            MaximumPercentage = 60,
-                            HumanPlayerOnly = true,
-                        },
-                        est_inquisitor = {
-                            MaximumPercentage = 40,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 5,
+                    SubPoolMaxSize = 4,
+                },
+                Inquisitors = {
+                    AgentSubTypes = {
+                        est_inquisitor = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
             LordPoolMaxSize = 4,
@@ -59,15 +107,20 @@ function GetTEBRecruitmentPools()
                 TEBLords = {
                     AgentSubTypes = {
                         teb_lord = {
-                            MaximumPercentage = 60,
-                            HumanPlayerOnly = true,
-                        },
-                        til_merchant = {
-                            MaximumPercentage = 40,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 5,
+                    SubPoolMaxSize = 4,
+                },
+                MerchantPrinces = {
+                    AgentSubTypes = {
+                        til_merchant = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
             LordPoolMaxSize = 4,
@@ -77,18 +130,14 @@ function GetTEBRecruitmentPools()
         -- Border Princes minor factions
         wh_main_teb_lichtenburg_confederacy = {
             FactionPools = {
-                TEBLords = {
+                BorderRangers = {
                     AgentSubTypes = {
-                        teb_lord = {
-                            MaximumPercentage = 60,
-                            HumanPlayerOnly = true,
-                        },
                         bor_ranger_lord = {
-                            MaximumPercentage = 40,
+                            MaximumPercentage = 100,
                         },
                     },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 5,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
             LordPoolMaxSize = 4,
@@ -96,32 +145,28 @@ function GetTEBRecruitmentPools()
         -- Tilean Minor Factions
         wh_main_teb_bilbali = {
             FactionPools = {
-                TEBLords = {
+                MerchantPrinces = {
                     AgentSubTypes = {
-                        teb_lord = {
-                            MaximumPercentage = 60,
-                            HumanPlayerOnly = true,
-                        },
                         til_merchant = {
-                            MaximumPercentage = 40,
+                            MaximumPercentage = 100,
                         },
                     },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 5,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
             LordPoolMaxSize = 4,
         },
         wh_main_teb_luccini = {
             FactionPools = {
-                TEBLords = {
+                MerchantPrinces = {
                     AgentSubTypes = {
                         til_merchant = {
                             MaximumPercentage = 100,
                         },
                     },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 5,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
             LordsToReplace = {
@@ -142,12 +187,21 @@ function GetTEBRecruitmentPools()
             FactionPools = {
                 TEBLords = {
                     AgentSubTypes = {
-                        til_merchant = {
+                        teb_lord = {
                             MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 5,
+                    SubPoolMaxSize = 4,
+                },
+                MerchantPrinces = {
+                    AgentSubTypes = {
+                        til_merchant = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
             LordsToReplace = {
@@ -171,15 +225,20 @@ function GetTEBRecruitmentPools()
                 TEBLords = {
                     AgentSubTypes = {
                         teb_lord = {
-                            MaximumPercentage = 60,
-                            HumanPlayerOnly = true,
-                        },
-                        til_merchant = {
-                            MaximumPercentage = 40,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 5,
+                    SubPoolMaxSize = 4,
+                },
+                MerchantPrinces = {
+                    AgentSubTypes = {
+                        til_merchant = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
             LordPoolMaxSize = 4,

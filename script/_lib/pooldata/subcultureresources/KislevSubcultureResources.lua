@@ -27,7 +27,7 @@ function GetKislevSubcultureResources()
         },
         AgentSubTypes = {
             ksl_lord = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

@@ -63,11 +63,49 @@ function GetSkavenRecruitmentPoolData()
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 2,
                 },
+                WarlockMasters = {
+                    AgentSubTypes = {
+                        wh2_dlc12_skv_warlock_master = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
+                MasterAssassin = {
+                    AgentSubTypes = {
+                        wh2_dlc14_skv_master_assassin = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
             },
             LordPoolMaxSize = 4,
         },
 
         -- Major Clans
+        -- Clan Pestilens
+        wh2_main_skv_clan_pestilens = {
+            HeroPools = {
+                PlaguePriest = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
+                },
+            },
+            FactionPools = {
+                SkavenWarlord = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 3,
+                },
+                GreySeer = {
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 1,
+                },
+            },
+            LordPoolMaxSize = 4,
+        },
         -- Clan Skyre
         wh2_main_skv_clan_skyre = {
             HeroPools = {

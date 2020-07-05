@@ -43,11 +43,33 @@ function GetGreenskinSubcultureResources()
                 UseLevelMultiplier = true,
                 Type = "set",
             },
+            wh_main_grn_monsters_2 = {
+                Pools = {
+                    "TrollHags",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = true,
+                Type = "set",
+            },
+            wh_main_grn_military_4 = {
+                Pools = {
+                    "BlackOrcBigBoss",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = false,
+                Type = "set",
+            },
         },
         Heroes = {
             "grn_goblin_big_boss",
             "grn_night_goblin_shaman",
             "grn_orc_shaman",
+            "wh2_dlc15_grn_river_troll_hag",
+            "wh2_pro09_grn_black_orc_big_boss",
         },
         MountData = {
             Unmounted = {
@@ -74,10 +96,14 @@ function GetGreenskinSubcultureResources()
                 BonusCost = 250,
                 Weighting = 6,
             },
+            ArachnarokSpider = {
+                BonusCost = 1000,
+                Weighting = 2,
+            },
         },
         AgentSubTypes = {
             grn_orc_warboss = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 BonusCost = 200,
                 Mounts = {
                     unmounted = {
@@ -99,6 +125,9 @@ function GetGreenskinSubcultureResources()
                     },
                     wh_main_anc_mount_grn_goblin_great_shaman_giant_wolf = {
                         MountData = "GiantWolf",
+                    },
+                    wh2_twa01_anc_mount_grn_goblin_great_shaman_spider_shrine = {
+                        MountData = "ArachnarokSpider",
                     },
                 },
             },
@@ -141,6 +170,14 @@ function GetGreenskinSubcultureResources()
                     },
                     wh_main_anc_mount_grn_wizard_orc_shaman_war_boar = {
                         MountData = "WarBoar",
+                    },
+                },
+            },
+            wh2_dlc15_grn_river_troll_hag = {
+                BonusCost = 250,
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
                     },
                 },
             },

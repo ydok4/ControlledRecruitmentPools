@@ -1,108 +1,125 @@
-GreenskinRecruitmentPoolData =  {
-    -- Major Faction specific distributions
-    -- Grimgor / Ahzag
-    wh_main_grn_greenskins = {
-        FactionPools = {
-            GreenskinWarbosses = {
-                AgentSubTypes = {
-                    wh_grn_forest_goblin_warboss = {
-                        MaximumPercentage = 33,
+function GetDecoForestGoblineResources()
+    return {
+        -- Major Faction specific distributions
+        -- Skarsnik
+        wh_main_grn_crooked_moon = {
+            FactionPools = {
+                GreenskinWarbosses = {
+                    AgentSubTypes = {
+                        dlc06_grn_night_goblin_warboss = {
+                            MaximumPercentage = 75,
+                            HumanPlayerOnly = true,
+                        },
+                        wh_grn_forest_goblin_warboss = {
+                            MaximumPercentage = 25,
+                        },
                     },
                 },
             },
         },
-    },
+        -- Grom
+        wh2_dlc15_grn_broken_axe = {
+            FactionPools = {
+                GreenskinWarbosses = {
+                    AgentSubTypes = {
+                        grn_orc_warboss = {
+                            MaximumPercentage = 75,
+                        },
+                        wh_grn_forest_goblin_warboss = {
+                            MaximumPercentage = 25,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
+                },
+            },
+            LordPoolMaxSize = 4,
+        },
 
-    -- Wurrzag
-    wh_main_grn_orcs_of_the_bloody_hand = {
-        FactionPools = {
-            GreenskinWarbosses = {
-                AgentSubTypes = {
-                    wh_grn_forest_goblin_warboss = {
-                        MaximumPercentage = 33,
+        -- Minor Factions, Forest Goblins
+        wh2_main_grn_arachnos = {
+            FactionPools = {
+                GreenskinWarbosses = {
+                    AgentSubTypes = {
+                        wh_grn_forest_goblin_warboss = {
+                            MaximumPercentage = 100,
+                        },
                     },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
                 },
-            },
-        },
-    },
-
-    -- Skarsnik
-    wh_main_grn_crooked_moon = {
-        FactionPools = {
-            GreenskinWarbosses = {
-                AgentSubTypes = {
-                    wh_grn_forest_goblin_warboss = {
-                        MaximumPercentage = 33,
+                GreenskinShamans = {
+                    AgentSubTypes = {
+                        grn_goblin_great_shaman = {
+                            MaximumPercentage = 100,
+                        },
                     },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 1,
+                },
+            },
+            LordPoolMaxSize = 4,
+            LordsToReplace = {
+                grn_orc_warboss = {
+                    replacementKey = "wh_grn_forest_goblin_warboss",
                 },
             },
         },
-    },
-
-    -- Minor Factions, Forest Goblins
-    wh2_main_grn_arachnos = {
-        FactionPools = {
-            GreenskinWarbosses = {
-                AgentSubTypes = {
-                    wh_grn_forest_goblin_warboss = {
-                        MaximumPercentage = 100,
-                        HumanPlayerOnly = true,
+        wh2_dlc12_grn_leaf_cutterz_tribe = {
+            FactionPools = {
+                GreenskinWarbosses = {
+                    AgentSubTypes = {
+                        wh_grn_forest_goblin_warboss = {
+                            MaximumPercentage = 100,
+                        },
                     },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
                 },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 4,
-            },
-            GreenskinShamans = {
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 2,
-            },
-        },
-        LordPoolMaxSize = 4,
-        LordsToReplace = {
-            grn_orc_warboss = {
-                replacementKey = "wh_grn_forest_goblin_warboss",
-                traitKeyPool = {
-                    "wh2_main_skill_innate_grn_big_bully",
-                    "wh2_main_skill_innate_grn_bragga",
-                    "wh2_main_skill_innate_grn_serial_danca",
-                    "wh2_main_skill_innate_grn_tortura"
-                },
-            },
-        },
-    },
-    wh_main_grn_black_venom = {
-        FactionPools = {
-            GreenskinWarbosses = {
-                AgentSubTypes = {
-                    wh_grn_forest_goblin_warboss = {
-                        MaximumPercentage = 100,
-                        HumanPlayerOnly = true,
+                GreenskinShamans = {
+                    AgentSubTypes = {
+                        grn_goblin_great_shaman = {
+                            MaximumPercentage = 100,
+                        },
                     },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 1,
                 },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 4,
             },
-            GreenskinShamans = {
-                AgentSubTypes = {
-                    grn_goblin_great_shaman = {
-                        MaximumPercentage = 100,
+            LordPoolMaxSize = 4,
+            LordsToReplace = {
+                grn_orc_warboss = {
+                    replacementKey = "wh_grn_forest_goblin_warboss",
+                },
+            },
+        },
+        wh_main_grn_black_venom = {
+            FactionPools = {
+                GreenskinWarbosses = {
+                    AgentSubTypes = {
+                        wh_grn_forest_goblin_warboss = {
+                            MaximumPercentage = 100,
+                        },
                     },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
                 },
-                SubPoolInitialMinSize = 1,
-                SubPoolMaxSize = 2,
-            },
-        },
-        LordPoolMaxSize = 4,
-        LordsToReplace = {
-            grn_orc_warboss = {
-                replacementKey = "wh_grn_forest_goblin_warboss",
-                traitKeyPool = {
-                    "wh2_main_skill_innate_grn_big_bully",
-                    "wh2_main_skill_innate_grn_bragga",
-                    "wh2_main_skill_innate_grn_serial_danca",
-                    "wh2_main_skill_innate_grn_tortura"
+                GreenskinShamans = {
+                    AgentSubTypes = {
+                        grn_goblin_great_shaman = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
+            LordPoolMaxSize = 4,
+            LordsToReplace = {
+                grn_orc_warboss = {
+                    replacementKey = "wh_grn_forest_goblin_warboss",
+                },
+            },
         },
-    },
-}
+    };
+end

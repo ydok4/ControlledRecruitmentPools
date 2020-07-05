@@ -40,11 +40,28 @@ function GetLizardmenRecruitmentPoolData()
                     AgentSubTypes = {
                         wh2_main_lzd_saurus_old_blood = {
                             MaximumPercentage = 100,
-                            HumanPlayerOnly = true,
                         },
                     },
                     SubPoolInitialMinSize = 2,
                     SubPoolMaxSize = 4,
+                },
+                KroxigorAncients = {
+                    AgentSubTypes = {
+                        wh2_dlc13_lzd_kroxigor_ancient = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                },
+                RedCrestedSkinkChiefs = {
+                    AgentSubTypes = {
+                        wh2_dlc12_lzd_red_crested_skink_chief = {
+                            MaximumPercentage = 100,
+                        },
+                    },
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
                 },
             },
             LordPoolMaxSize = 4,
@@ -58,7 +75,6 @@ function GetLizardmenRecruitmentPoolData()
                     AgentSubTypes = {
                         wh2_main_lzd_saurus_old_blood = {
                             MaximumPercentage = 100,
-                            HumanPlayerOnly = true,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -111,7 +127,6 @@ function GetLizardmenRecruitmentPoolData()
                     AgentSubTypes = {
                         wh2_main_lzd_saurus_old_blood = {
                             MaximumPercentage = 100,
-                            HumanPlayerOnly = true,
                         },
                     },
                     SubPoolInitialMinSize = 2,
@@ -146,7 +161,6 @@ function GetLizardmenRecruitmentPoolData()
                     AgentSubTypes = {
                         wh2_main_lzd_saurus_old_blood = {
                             MaximumPercentage = 100,
-                            HumanPlayerOnly = true,
                         },
                     },
                     SubPoolInitialMinSize = 0,
@@ -181,7 +195,6 @@ function GetLizardmenRecruitmentPoolData()
                     AgentSubTypes = {
                         wh2_dlc13_lzd_saurus_old_blood_horde = {
                             MaximumPercentage = 100,
-                            HumanPlayerOnly = true,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -189,6 +202,9 @@ function GetLizardmenRecruitmentPoolData()
                 },
             },
             LordPoolMaxSize = 4,
+            RemapAgentKeys = {
+                wh2_dlc12_lzd_red_crested_skink_chief = "wh2_dlc13_lzd_red_crested_skink_chief_horde",
+            },
         },
 
         -- Tlaqua (Tiq-tac-to)
@@ -230,7 +246,6 @@ function GetLizardmenRecruitmentPoolData()
                     AgentSubTypes = {
                         wh2_main_lzd_saurus_old_blood = {
                             MaximumPercentage = 100,
-                            HumanPlayerOnly = true,
                         },
                     },
                     SubPoolInitialMinSize = 2,

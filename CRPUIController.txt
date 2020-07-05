@@ -1,6 +1,6 @@
-CRPUIController Setting default values   : [30, 03 2020 19:49:38]
-CRPUIController Listeners initialising   : [30, 03 2020 19:49:38]
-Initialised sub culture values   : [30, 03 2020 19:49:38]
-Finished Initialising UI   : [30, 03 2020 19:49:38]
+CRPUIController Setting default values   : [24, 06 2020 20:24:28]
+CRPUIController Listeners initialising   : [24, 06 2020 20:24:28]
+Initialised sub culture values   : [24, 06 2020 20:24:28]
+Finished Initialising UI   : [24, 06 2020 20:24:28]
 FINISHED
 

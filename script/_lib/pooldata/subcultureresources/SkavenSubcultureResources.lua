@@ -23,9 +23,9 @@ function GetSkavenSubcultureResources()
                 UseLevelMultiplier = false,
                 Type = "set",
             },
-            wh2_dlc14_skv_eshin_assassins_3 = {
+            wh2_main_skv_assassins = {
                 Pools = {
-                    "EshinSorcerer",
+                    "Assassins",
                 },
                 Events = {
                 },
@@ -40,7 +40,17 @@ function GetSkavenSubcultureResources()
                 Events = {
                 },
                 IncreasePoolSize = 1,
-                UseLevelMultiplier = true,
+                UseLevelMultiplier = false,
+                Type = "set",
+            },
+            wh2_dlc14_skv_eshin_assassins_3 = {
+                Pools = {
+                    "EshinSorcerer",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = false,
                 Type = "set",
             },
             wh2_main_skv_plagues = {
@@ -50,7 +60,7 @@ function GetSkavenSubcultureResources()
                 Events = {
                 },
                 IncreasePoolSize = 1,
-                UseLevelMultiplier = true,
+                UseLevelMultiplier = false,
                 Type = "set",
             },
             wh2_main_skv_engineers = {
@@ -65,7 +75,7 @@ function GetSkavenSubcultureResources()
             },
             wh2_main_skv_engineers_3 = {
                 Pools = {
-                    "WarlockMaster",
+                    "WarlockMasters",
                 },
                 Events = {
                 },
@@ -74,18 +84,21 @@ function GetSkavenSubcultureResources()
             },
             alliance_wh2_main_skv_clan_skyre = {
                 Pools = {
-                    WarlockMaster = {
-                        AgentSubTypes = {
-                            wh2_dlc12_skv_warlock_master = {
-                                MaximumPercentage = 100,
-                            },
-                        },
-                        SubPoolInitialMinSize = 0,
-                        SubPoolMaxSize = 1,
-                    },
+                    "WarlockMasters"
                 },
                 Events = {
                     Incident = "wh_main_skv_warlock_master",
+                    Dilemma = nil,
+                },
+                IncreasePoolSize = 1,
+                Type = "increase",
+            },
+            alliance_wh2_main_skv_clan_eshin = {
+                Pools = {
+                    "MasterAssassin"
+                },
+                Events = {
+                    Incident = "wh2_main_master_assassin",
                     Dilemma = nil,
                 },
                 IncreasePoolSize = 1,
@@ -126,7 +139,7 @@ function GetSkavenSubcultureResources()
         },
         AgentSubTypes = {
             wh2_main_skv_warlord = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

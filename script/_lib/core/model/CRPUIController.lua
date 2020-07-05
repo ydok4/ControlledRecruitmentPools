@@ -80,12 +80,17 @@ end
 
 function CRPUIController:SetupCharacterDetailsButton(generalPanel, nameComponent, characterDetails)
     self.Logger:Log("SetupCharacterDetailsButton: "..characterDetails.SubType);
-    if characterDetails.Mounts ~= '' then
-        if characterDetails.Mounts == true then
+    if characterDetails.Mounts ~= nil
+    and characterDetails.Mounts ~= '' then
+        -- This can happen for the AI lords who don't generate mounts until they
+        -- spawn.
+        if characterDetails.Mounts == true
+        or characterDetails.Mounts == false then
             characterDetails.Mounts = 'unmounted/'
         end
         self.Logger:Log("Setting up mounts text: "..characterDetails.Mounts);
-        local newSubcomponentId = characterDetails.ArtSetId.."_"..characterDetails.SubType.."_mounts";
+        --local newSubcomponentId = characterDetails.ArtSetId.."_"..characterDetails.SubType.."_mounts";
+        local newSubcomponentId = "mount_text";
         local subtypeComponent = find_uicomponent(generalPanel, "dy_subtype");
         local mountsText = find_uicomponent(subtypeComponent, newSubcomponentId);
         --local subtypeComponentText = subtypeComponent:GetStateText();
@@ -111,7 +116,7 @@ function CRPUIController:SetupCharacterDetailsButton(generalPanel, nameComponent
         subtypeComponent:SetVisible(true);
         mountsText:SetVisible(true);
     end
-    self.Logger:Log("Past Mount UI");
+
     if self.CharacterCostCache == nil then
         self.CharacterCostCache = {};
     end

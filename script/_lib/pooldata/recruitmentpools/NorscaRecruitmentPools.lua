@@ -27,8 +27,8 @@ function GetNorscaRecruitmentPoolData()
                             MaximumPercentage = 33,
                         },
                     },
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 4,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
                 Werekin = {
                     AgentSubTypes = {

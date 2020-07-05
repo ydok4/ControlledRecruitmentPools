@@ -9,7 +9,6 @@ function GetDwarfsSubcultureResources()
                             AgentSubTypes = {
                                 dwf_lord = {
                                     MaximumPercentage = 100,
-                                    HumanPlayerOnly = true,
                                 },
                             },
                             SubPoolInitialMinSize = 0,
@@ -99,7 +98,7 @@ function GetDwarfsSubcultureResources()
         },
         AgentSubTypes = {
             dwf_lord = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

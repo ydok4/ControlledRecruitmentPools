@@ -1,4 +1,4 @@
-if core:is_mod_loaded("@emp_master_engineer_setup_vandy") then
+--[[if core:is_mod_loaded("@emp_master_engineer_setup_vandy") then
     require 'script/_lib/pooldata/subcultureresources/ZombieFlandersEmpireSubcultureResources'
     _G.CRPResources.AddAdditionalSubcultureResources("wh_main_sc_emp_empire", GetZombieFlandersEmpireSubcultureResources());
 
@@ -9,4 +9,4 @@ if core:is_mod_loaded("@emp_master_engineer_setup_vandy") then
     if _G.CG_NameResources then
         _G.CG_NameResources:ConcatTableWithKeys(_G.CG_NameResources.campaign_character_data, GetZombieFlandersDataResources());
     end
-end
+end--]]

@@ -98,6 +98,18 @@ function controlled_recruitment_pools()
                 crp.Logger:Log("Character is null interface");
             else
                 crp.Logger:Log("Got character_details");
+                if characterDetails.character_type == nil then
+                    crp.Logger:Log("Character type is nil");
+                else
+                    crp.Logger:Log("Character type is not nil");
+                    local characterType = characterDetails:character_type();
+                    crp.Logger:Log("Got character type");
+                    if characterType == nil then
+                        crp.Logger:Log("characterType value is nil");
+                    else
+                        crp.Logger:Log("characterType is: "..characterType);
+                    end
+                end
                 local characterForename = characterDetails:get_forename();
                 crp.Logger:Log("Got forename");
                 local localisedForename = effect.get_localised_string(characterForename);

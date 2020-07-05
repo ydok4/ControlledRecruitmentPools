@@ -132,7 +132,7 @@ function GetTombKingsSubcultureResources()
         },
         AgentSubTypes = {
             wh2_dlc09_tmb_tomb_king = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

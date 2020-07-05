@@ -15,11 +15,8 @@ function GetMixuSavageOrcRecruitmentPoolData()
                 },
                 SavageOrcShamans = {
                     AgentSubTypes = {
-                        grn_goblin_great_shaman = {
-                            MaximumPercentage = 25,
-                        },
                         grn_savage_orc_shaman = {
-                            MaximumPercentage = 75,
+                            MaximumPercentage = 100,
                         },
                     },
                     SubPoolInitialMinSize = 1,

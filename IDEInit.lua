@@ -33,13 +33,13 @@ testCharacter = {
 humanFaction = {
     command_queue_index = function() return 10; end,
     name = function()
-        return "wh_main_emp_wissenland";
+        return "wh2_dlc15_grn_broken_axe";
     end,
     culture = function()
-        return "wh_main_emp_empire";
+        return "wh_main_grn_savage_orcs";
     end,
     subculture = function()
-        return "wh_main_sc_emp_empire";
+        return "wh_main_sc_grn_savage_orcs";
     end,
     is_dead = function()
         return false;
@@ -122,13 +122,13 @@ humanFaction = {
 testFaction = {
     command_queue_index = function() return 123; end,
     name = function()
-        return "wh_main_emp_wissenland";
+        return "wh2_main_hef_cothique";
     end,
     culture = function()
-        return "wh_main_emp_empire";
+        return "wh2_main_hef_high_elves";
     end,
     subculture = function()
-        return "wh_main_sc_emp_empire";
+        return "wh2_main_sc_hef_high_elves";
     end,
     is_dead = function()
         return false;
@@ -208,13 +208,13 @@ testFaction = {
 testFaction2 = {
     command_queue_index = function() return 123; end,
     name = function()
-        return "wh2_dlc13_lzd_spirits_of_the_jungle";
+        return "wh2_main_skv_clan_skyre";
     end,
     culture = function()
-        return "wh2_main_lzd_lizardmen";
+        return "wh2_main_hef_high_elves";
     end,
     subculture = function()
-        return "wh2_main_sc_lzd_lizardmen";
+        return "wh2_main_sc_hef_high_elves";
     end,
     is_dead = function()
         return false;
@@ -303,7 +303,7 @@ effect = {
 
 -- This can be modified in the testing driver
 -- so we can simulate turns changing easily
-local turn_number = 2;
+local turn_number = 1;
 
 -- Mock functions
 mock_listeners = {
@@ -326,8 +326,8 @@ slot_1 = {
     has_building = function() return true; end,
     building = function() return {
         is_null_interface = function() return false; end,
-        name = function() return "wh2_main_def_sorcery_1"; end,
-        chain = function() return "wh_dlc05_wef_tree_spirits"; end,
+        name = function() return "wh2_main_skv_assassins_1"; end,
+        chain = function() return "wh2_main_skv_assassins"; end,
         superchain = function() return "wh_main_sch_settlement_major"; end,
         building_level = function() return 4; end,
     }
@@ -338,8 +338,8 @@ slot_2 = {
     has_building = function() return true; end,
     building = function() return {
         is_null_interface = function() return false; end,
-        name = function() return "wh2_main_def_murder_1"; end,
-        chain = function() return "wh_dlc05_wef_tree_spirits"; end,
+        name = function() return "wh2_main_skv_assassins_1"; end,
+        chain = function() return "wh2_main_skv_assassins"; end,
         superchain = function() return "wh_main_sch_settlement_major"; end,
         building_level = function() return 4; end,
     }
@@ -561,10 +561,15 @@ function get_cm()
         appoint_character_to_most_expensive_force = function() end,
         change_localised_faction_name = function() end,
         apply_custom_effect_bundle_to_faction = function() end,
+        apply_custom_effect_bundle_to_faction_province = function() end,
+        apply_custom_effect_bundle_to_characters_force = function() end,
         force_add_skill = function() end,
         find_valid_spawn_location_for_character_from_position = function() return -1, -1; end,
         teleport_to = function() end,
         char_has_army = function() return true; end,
+        random_number = function(self, limit, start)
+            return math.random(start, limit);
+        end,
     };
 end
 
@@ -584,6 +589,7 @@ mock_max_unit_ui_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
+    CurrentState = function() return "selected"; end,
     GetStateText = function() return "names_name_9999000117"; end,
     --GetStateText = function() return "Unlocks recruitment of:"; end,
     SetCanResizeHeight = function() end;
@@ -607,8 +613,8 @@ mock_unit_ui_component = {
     Bounds = function() return 0, 1 end,
     Width = function() return 1; end,
     Resize = function() return; end,
-    SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
+    CurrentState = function() return "selected"; end,
     GetStateText = function() return "names_name_9999000117"; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
@@ -632,6 +638,7 @@ mock_unit_ui_list_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
+    CurrentState = function() return "selected"; end,
     GetStateText = function() return "names_name_9999000117"; end,
     --GetStateText = function() return "Unlocks recruitment of:"; end,
     SetCanResizeHeight = function() end;
@@ -691,19 +698,36 @@ require 'script/campaign/mod/a_crp_cataph_dragon_mage'
 require 'script/campaign/mod/controlled_recruitment_pools'
 require 'script/campaign/mod/z_crp_cataph_patch'
 require 'script/campaign/main_warhammer/mod/z_crp_cataph_patch_lichemaster'
-require 'script/campaign/mod/z_crp_deco_goblin_patch'
+require 'script/campaign/mod/z_crp_deco_greenkins_patch'
 require 'script/campaign/mod/z_crp_mixu_patch'
-require 'script/campaign/mod/z_crp_zombie_flanders_patch'
+require 'script/campaign/mod/z_crp_wez_speshul_patch'
+--require 'script/campaign/mod/z_crp_zombie_flanders_patch'
 
 math.randomseed(os.time())
 
 -- This is used in game by Warhammer but we have it here so it won't throw errors when running
 -- in ZeroBrane IDE
 a_crp_cataph_dragon_mage();
+a_crp_deco_greenkins_patch();
 controlled_recruitment_pools();
 crp = _G.crp;
 
 
+local MockContext_CRP_InitialLordTracking = {
+    Key = "CRP_InitialLordTracking",
+    Context = {
+        faction = function() return humanFaction; end,
+    },
+}
+mock_listeners:trigger_listener(MockContext_CRP_InitialLordTracking);
+
+local CRP_UpdateBuildingFactionPoolLimits = {
+    Key = "CRP_UpdateBuildingFactionPoolLimits",
+    Context = {
+        faction = function() return humanFaction; end,
+    },
+};
+mock_listeners:trigger_listener(CRP_UpdateBuildingFactionPoolLimits);
 local MockContext_UpdateRecruitmentPool = {
     Key = "UpdateRecruitmentPool",
     Context = {
@@ -745,7 +769,7 @@ local MockContext_CRP_AppointGeneralOpened = {
 }
 mock_listeners:trigger_listener(MockContext_CRP_AppointGeneralOpened);
 
---[[local MockContext_CRP_DiplomacyLordImpacts = {
+local MockContext_CRP_DiplomacyLordImpacts = {
     Key = "CRP_DiplomacyLordImpacts",
     Context = {
         proposer = function() return testFaction; end,
@@ -753,7 +777,7 @@ mock_listeners:trigger_listener(MockContext_CRP_AppointGeneralOpened);
         is_alliance = function() return true; end,
     },
 }
-mock_listeners:trigger_listener(MockContext_CRP_DiplomacyLordImpacts);--]]
+mock_listeners:trigger_listener(MockContext_CRP_DiplomacyLordImpacts);
 
 
 local CRP_CheckHordeBuildingRewards = {
@@ -765,13 +789,15 @@ local CRP_CheckHordeBuildingRewards = {
 };
 mock_listeners:trigger_listener(CRP_CheckHordeBuildingRewards);
 
-local CRP_UpdateBuildingFactionPoolLimits = {
-    Key = "CRP_UpdateBuildingFactionPoolLimits",
+local Mock_CRP_DiplomacyLordImpacts = {
+    Key = "CRP_DiplomacyLordImpacts",
     Context = {
-        faction = function() return humanFaction; end,
+        is_alliance = function() return true; end,
+        recipient = function() return humanFaction; end,
+        proposer = function() return testFaction2; end,
     },
 };
-mock_listeners:trigger_listener(CRP_UpdateBuildingFactionPoolLimits);
+mock_listeners:trigger_listener(Mock_CRP_DiplomacyLordImpacts);
 
 local CRP_UpdateAgentLimits = {
     Key = "CRP_UpdateAgentLimits",
@@ -781,14 +807,14 @@ local CRP_UpdateAgentLimits = {
 };
 mock_listeners:trigger_listener(CRP_UpdateAgentLimits);
 
-local CRP_ConfederationListener = {
+--[[local CRP_ConfederationListener = {
     Key = "CRP_ConfederationListener",
     Context = {
         faction = function() return testFaction; end,
         confederation = function() return humanFaction; end,
     },
 };
-mock_listeners:trigger_listener(CRP_ConfederationListener);
+mock_listeners:trigger_listener(CRP_ConfederationListener);--]]
 
 local CRP_DilemmaDecisionMade = {
     Key = "CRP_DilemmaDecisionMade",
@@ -843,6 +869,13 @@ local CRP_IncidentTriggered = {
 };
 mock_listeners:trigger_listener(CRP_IncidentTriggered);
 
+local CRP_ClickedCreateArmyButton = {
+    Key = "CRP_ClickedCreateArmyButton",
+    Context = {
+        string = "MCM_PANEL_CLOSE_BUTTON",
+    },
+};
+mock_listeners:trigger_listener(CRP_ClickedCreateArmyButton);
 
 out("CRP: Saving callback");
 InitialiseSaveHelper(cm, context);

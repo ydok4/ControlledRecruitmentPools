@@ -96,7 +96,7 @@ function GetChaosSubcultureResources()
         AgentSubTypes = {
             chs_lord = {
                 BonusCost = 350,
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

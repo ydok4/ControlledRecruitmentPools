@@ -36,10 +36,10 @@ require 'script/_lib/pooldata/recruitmentpools/VampireCoastRecruitmentPools'
 require 'script/_lib/pooldata/recruitmentpools/VampireCountsRecruitmentPools'
 require 'script/_lib/pooldata/recruitmentpools/WoodElfRecruitmentPools'
 -- OvN resources
-require 'script/_lib/pooldata/recruitmentpools/AlbionRecruitmentPools'
+--[[require 'script/_lib/pooldata/recruitmentpools/AlbionRecruitmentPools'
 require 'script/_lib/pooldata/recruitmentpools/FimirRecruitmentPools'
 require 'script/_lib/pooldata/recruitmentpools/TrollRecruitmentPools'
-require 'script/_lib/pooldata/recruitmentpools/WarpRecruitmentPools'
+require 'script/_lib/pooldata/recruitmentpools/WarpRecruitmentPools'--]]
 
 --require 'script/_lib/pooldata/recruitmentpools/RogueArmyRecruitmentPools'
 
@@ -152,15 +152,18 @@ _G.CRPResources = {
                                 coreResources[key1].FactionPools[key2] = additionalSubPoolData;
                             else
                                 local additionalAgentSubTypes = {};
-                                for key3, subPool in pairs(additionalSubPoolData.AgentSubTypes) do
-                                    -- If an agent has been marked for deletion from a pool
-                                    if subPool == false then
-                                        if existingData.AgentSubTypes == nil then
-                                            existingData.AgentSubTypes = {};
+                                local agentSubTypes = additionalSubPoolData.AgentSubTypes;
+                                if agentSubTypes ~= nil then
+                                    for key3, subPool in pairs(agentSubTypes) do
+                                        -- If an agent has been marked for deletion from a pool
+                                        if subPool == false then
+                                            if existingData.AgentSubTypes == nil then
+                                                existingData.AgentSubTypes = {};
+                                            end
+                                            existingData.AgentSubTypes[key3] = false;
+                                        else
+                                            additionalAgentSubTypes[key3] = subPool;
                                         end
-                                        existingData.AgentSubTypes[key3] = false;
-                                    else
-                                        additionalAgentSubTypes[key3] = subPool;
                                     end
                                 end
                                 if existingData.AgentSubTypes == nil then
@@ -202,12 +205,15 @@ _G.CRPResources = {
                                 coreResources[key1].HeroPools[key2] = additionalSubPoolData;
                             else
                                 local additionalAgentSubTypes = {};
-                                for key3, subPool in pairs(additionalSubPoolData.AgentSubTypes) do
-                                    -- If an agent has been marked for deletion from a pool
-                                    if subPool == false then
-                                        existingData.AgentSubTypes[key3] = nil;
-                                    else
-                                        additionalAgentSubTypes[key3] = subPool;
+                                local agentSubTypes = additionalSubPoolData.AgentSubTypes;
+                                if agentSubTypes ~= nil then
+                                    for key3, subPool in pairs(agentSubTypes) do
+                                        -- If an agent has been marked for deletion from a pool
+                                        if subPool == false then
+                                            existingData.AgentSubTypes[key3] = nil;
+                                        else
+                                            additionalAgentSubTypes[key3] = subPool;
+                                        end
                                     end
                                 end
                                 -- Add all the new agent sub types
@@ -296,6 +302,8 @@ _G.CRPResources = {
     end,
 }
 
+require 'script/_lib/dbexports/RecruitmentTypeData'
+require 'script/_lib/dbexports/TraitExports/HighElfTraitToCosts'
 require 'script/_lib/dbexports/AgentDataResources'
 require 'script/_lib/dbexports/CustomAgentDataResources'
 require 'script/_lib/dbexports/NameGenerator/SubCultureNameGroupResources'

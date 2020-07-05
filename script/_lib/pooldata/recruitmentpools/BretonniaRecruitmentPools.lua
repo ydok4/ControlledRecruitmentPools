@@ -37,7 +37,7 @@ function GetBretonniaRecruitmentPoolData()
                         },
                     },
                     SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 4,
+                    SubPoolMaxSize = 2,
                 },
                 ProphetessPool = {
                     AgentSubTypes = {
@@ -63,12 +63,12 @@ function GetBretonniaRecruitmentPoolData()
         wh_main_brt_bretonnia = {
             FactionPools = {
                 BretLordPool = {
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 6,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
                 ProphetessPool = {
-                    SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 3,
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 2,
                 },
             },
             LordPoolMaxSize = 4,
@@ -78,11 +78,11 @@ function GetBretonniaRecruitmentPoolData()
             FactionPools = {
                 BretLordPool = {
                     SubPoolInitialMinSize = 2,
-                    SubPoolMaxSize = 4,
+                    SubPoolMaxSize = 2,
                 },
                 ProphetessPool = {
                     SubPoolInitialMinSize = 0,
-                    SubPoolMaxSize = 2,
+                    SubPoolMaxSize = 1,
                 },
             },
             LordPoolMaxSize = 4,
@@ -97,7 +97,7 @@ function GetBretonniaRecruitmentPoolData()
                 },
                 ProphetessPool = {
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 3,
+                    SubPoolMaxSize = 2,
                 },
             },
             LordPoolMaxSize = 4,

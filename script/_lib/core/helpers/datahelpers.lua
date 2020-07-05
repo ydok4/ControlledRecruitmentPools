@@ -26,7 +26,7 @@ function Random(limit, start)
     if not start then
         start = 1;
     end
-    return math.random(start, limit);
+    return cm:random_number(limit, start);
 end
 
 function GetRandomObjectFromList(objectList)
@@ -78,6 +78,7 @@ function CreateValidLuaTableKey(value)
     value = value:gsub("ó", "o");
     value = value:gsub("‘", "_");
     value = value:gsub(",", "_");
+    value = value:gsub("&", "and");
     return value;
 end
 

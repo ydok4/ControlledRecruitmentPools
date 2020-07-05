@@ -48,12 +48,13 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
                 CRP_GetGeneralCandidates(crp.HumanFaction, generalsList, crp.CRPLordsInPools, false);
                 crp.Logger:Log_Finished();
             end,
-            0.1);
+            0.2);
         end,
         true
     );
 
     crp.Logger:Log("ClickedButtonCreateArmy");
+    local supportedRecruitmentTypeData = GetRecruitmentTypeData();
     core:add_listener(
         "CRP_ClickedCreateArmyButton",
         "ComponentLClickUp",
@@ -68,7 +69,8 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
             or context.string == "engineer"
             or context.string == "runesmith"
             or context.string == "spy"
-            or crp.CharacterGenerator:GetSubtypeData(context.string) ~= nil;
+            or supportedRecruitmentTypeData[context.string] ~= nil
+            or (crp.CharacterGenerator:GetSubtypeData(context.string) ~= nil);
         end,
         function(context)
             crp.Logger:Log("\n"..context.string.." clicked");
@@ -80,7 +82,7 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
                 end
                 local generalsList = find_uicomponent(core:get_ui_root(), "character_panel", "general_selection_panel", "character_list_parent", "character_list", "listview", "list_clip", "list_box");
                 crp.Logger:Log("Got generals list");
-                CRP_GetGeneralCandidates(crp.HumanFaction, generalsList, crp.CRPLordsInPools);
+                CRP_GetGeneralCandidates(crp.HumanFaction, generalsList, crp.CRPLordsInPools, true, uiContext);
                 crp.Logger:Log_Finished();
             end,
             0.2);
@@ -274,7 +276,7 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
                 crp.Logger:Log("Found colonel");
                 crp.Logger:Log_Finished();
             elseif character:character_subtype_key() == "default"
-            or (character:faction():subculture() ~= "wh_main_sc_grn_greenskins" and (character:character_subtype_key() == "grn_goblin_big_boss" or character:character_subtype_key() == "grn_orc_shaman")) then
+            or (character:faction():subculture() ~= "wh_main_sc_grn_greenskins" and character:faction():subculture() ~= "wh_main_sc_grn_savage_orcs" and (character:character_subtype_key() == "grn_goblin_big_boss" or character:character_subtype_key() == "grn_orc_shaman")) then
                 crp.Logger:Log("Found default...Killing it");
                 cm:callback(function()
                     cm:kill_character(character:cqi(), true, true);
@@ -344,10 +346,6 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
             or _G.IsIDE == true) then
                 factionPoolResources.LordPoolMaxSize = factionPoolResources.LordPoolMaxSize + 1;
                 crp.Logger:Log("Lord pool size is now: "..factionPoolResources.LordPoolMaxSize);
-                if faction:name() == crp.HumanFaction:name() then
-                    local factionCqi = crp.HumanFaction:command_queue_index();
-                    cm:trigger_incident_with_targets(factionCqi, "crp_lord_pool_size_expands", factionCqi, 0, 0, 0, 0, 0);
-                end
             end
             -- Random chance to increase size of the hero pool
             crp.Logger:Log("Hero pool max size is: "..factionPoolResources.HeroPoolMaxSize);
@@ -365,10 +363,6 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
             or _G.IsIDE == true then
                 factionPoolResources.HeroPoolMaxSize = factionPoolResources.HeroPoolMaxSize + 1;
                 crp.Logger:Log("Hero pool size is now: "..factionPoolResources.HeroPoolMaxSize);
-                if faction:name() == crp.HumanFaction:name() then
-                    local factionCqi = crp.HumanFaction:command_queue_index();
-                    cm:trigger_incident_with_targets(factionCqi, "crp_hero_pool_size_expands", factionCqi, 0, 0, 0, 0, 0);
-                end
             end
             crp.Logger:Log_Finished();
         end,
@@ -510,9 +504,50 @@ function CRP_SetupPostUIListeners(crpObject, coreObject, find_uicomponent_functi
         end,
         true
     );
+    core:add_listener(
+        "CRP_CharacterSelectedInPanel",
+        "ComponentLClickUp",
+        function(context)
+            return crp.HumanFaction:subculture() == "wh2_main_sc_hef_high_elves"
+            and string.match(context.string, "general_candidate_");
+        end,
+        function(context)
+            local generalButton = find_uicomponent(core:get_ui_root(), "character_panel", "general_selection_panel", "character_list_parent", "character_list", "listview", "list_clip", "list_box", context.string);
+            if generalButton then
+                crp.Logger:Log("Got character button");
+                local backgroundSkillComponent = find_uicomponent(generalButton, "icon_background_skill");
+                local iconBackgroundSkillText = CreateValidLuaTableKey(backgroundSkillComponent:GetStateText());
+                crp.Logger:Log("Icon background skill text is: "..iconBackgroundSkillText);
+                local highElfTraitCosts = GetHighElfTraitToCosts();
+                local traitTier = highElfTraitCosts[iconBackgroundSkillText];
+                -- Grab the recruit general button
+                local recruitmentButton = find_uicomponent(core:get_ui_root(), "layout", "hud_center_docker", "hud_center", "small_bar", "button_group_settlement", "button_agents");
+                -- If the general recruitment button isn't selected then we must be in the agent listing
+                if recruitmentButton:CurrentState() ~= "selected" then
+                    if traitTier == 2 then
+                        crp.CachedAgentData.InfluenceCost = 15;
+                    elseif traitTier == 3 then
+                        crp.CachedAgentData.InfluenceCost = 60;
+                    else
+                        crp.CachedAgentData.InfluenceCost = nil;
+                    end
+                else
+                    if traitTier == 2 then
+                        crp.CachedAgentData.InfluenceCost = 10;
+                    elseif traitTier == 3 then
+                        crp.CachedAgentData.InfluenceCost = 40;
+                    else
+                        crp.CachedAgentData.InfluenceCost = nil;
+                    end
+                end
+                crp.Logger:Log_Finished();
+            end
+        end,
+        true
+    );
     CRP_PoolModifierListeners(crpObject, core);
 end
-function CRP_GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefault)
+function CRP_GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideDefault, clickedContext)
     crp.Logger:Log("Get general candidates");
     if hideDefault == nil then
         hideDefault = true;
@@ -541,24 +576,46 @@ function CRP_GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideD
         crp.Logger:Log_Finished();
         -- This keeps track of what character types should be hidden because they are replaceable. There could be overlap with the default lords.
         local arePresentSubTypesReplaceable = {};
-        local numGenerals = generalsList:ChildCount() - 1 ;
-        for i = 0, numGenerals  do
+        local numGenerals = generalsList:ChildCount() - 1;
+        local checkedCharacterKeys = {};
+        for i = 0, numGenerals do
             local generalPanel = UIComponent(generalsList:Find(i));
+            -- First we need the general name which we use as a key
             local nameComponent = find_uicomponent(generalPanel, "dy_name");
             local nameText = nameComponent:GetStateText();
             local keyName = "";
             keyName = CreateValidLuaTableKey(nameText);
             crp.Logger:Log("Key is "..keyName);
+            -- Then we need the agent subtype
             local subType = find_uicomponent(generalPanel, "dy_subtype"):GetStateText();
             if string.match(subType, "Wizard level") then
                 subType = string.match(subType, "(.*) %- Wizard level");
+            elseif subType == "dy_subtype"
+            and clickedContext ~= nil then
+                crp.Logger:Log("Subtype is dy_subtype.");
+                subType = effect.get_localised_string("agent_subtypes_onscreen_name_override_"..clickedContext);
+                if subType == "" then
+                    local agentTypeButton = find_uicomponent(core:get_ui_root(), "layout", "info_panel_holder", "secondary_info_panel_holder", "info_panel_background", "AgentInfoPopup", "type", "dy_agent_type");
+                    if agentTypeButton then
+                        subType = agentTypeButton:GetStateText();
+                        crp.Logger:Log("Agent type button is: "..subType);
+                    end
+                end
+            elseif clickedContext ~= nil
+            and effect.get_localised_string("agent_recruitment_categories_onscreen_name_"..clickedContext) == "Legendary Lords" then
+                -- statements
+                crp.Logger:Log("Clicked context is: "..clickedContext);
+                subType = "Legendary Lord";
             end
             crp.Logger:Log("Subtype text is "..subType);
-
+            -- Now that we've got the subtype we can map it back to the key in the subtype cache
             local poolData = nil;
             local agentSubtype = crp.LocalisedSubTypeCache[subType];
             if agentSubtype ~= nil then
                 crp.Logger:Log("Subtype key is: "..agentSubtype);
+            else
+                crp.Logger:Log("Subtype not found in cache. Subtype must already be selected as: "..subType);
+                agentSubtype = subType;
             end
             if _G.IsIDE == true then
                 for agentKey, agentData in pairs(lordsInPool[humanFactionName]) do
@@ -570,6 +627,7 @@ function CRP_GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideD
                     break;
                 end
             end
+            -- With all the data we need, we try to match it to our tracked data
             if lordsInPool[humanFactionName] == nil then
                 crp.Logger:Log("No lords for human faction");
             elseif lordsInPool[humanFactionName][agentSubtype] ~= nil
@@ -609,55 +667,67 @@ function CRP_GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideD
             end
             crp.Logger:Log("Finished trying to find data");
 
+            local canPlayerAffordCharacter = false;
             -- If the character isn't tracked, see if it is a replacement type
             -- If it is, hide these characters from the player
             local isCharHidden = false;
-            local canPlayerAffordCharacter = false;
             if poolData == nil
             and subType ~= "Legendary Lord" then
                 crp.Logger:Log("No pool data found");
-                if localisedDefaultLordsForFaction[subType] == true then
+                --[[if localisedDefaultLordsForFaction[subType] == true then
+                    crp.Logger:Log("Hiding defaults");
                     HideGeneralPanel(generalPanel, hideDefault);
-                else
-                    local replacementLords = GetReplacementLordsForFaction(humanFaction);
-                    if replacementLords ~= nil then
-                        crp.Logger:Log("Got replacement lords");
-                        if arePresentSubTypesReplaceable[subType] == nil then
-                            local replacementSubTypeKeys = GetKeysFromTable(replacementLords);
-                            local subTypeKey = GetMatchingKeyMatchingLocalisedString(replacementSubTypeKeys, subType, "agent_subtypes_onscreen_name_override_");
-                            if subTypeKey ~= nil then
-                                arePresentSubTypesReplaceable[subType] = true;
-                                HideGeneralPanel(generalPanel, hideDefault);
-                                isCharHidden = true;
-                            else
-                                arePresentSubTypesReplaceable[subType] = false;
-                            end
-                        elseif arePresentSubTypesReplaceable[subType] == true then
+                else--]]
+                local replacementLords = GetReplacementLordsForFaction(humanFaction);
+                if replacementLords ~= nil then
+                    crp.Logger:Log("Checking replacement lords");
+                    if arePresentSubTypesReplaceable[subType] == nil then
+                        local replacementSubTypeKeys = GetKeysFromTable(replacementLords);
+                        local subTypeKey = GetMatchingKeyMatchingLocalisedString(replacementSubTypeKeys, subType, "agent_subtypes_onscreen_name_override_");
+                        if subTypeKey ~= nil then
+                            arePresentSubTypesReplaceable[subType] = true;
                             HideGeneralPanel(generalPanel, hideDefault);
                             isCharHidden = true;
                         else
-                            crp.Logger:Log("No replacement lords and this is an untracked but valid character");
-                            canPlayerAffordCharacter = true;
+                            arePresentSubTypesReplaceable[subType] = false;
                         end
+                    elseif arePresentSubTypesReplaceable[subType] == true then
+                        HideGeneralPanel(generalPanel, hideDefault);
+                        isCharHidden = true;
                     else
-                        local foundPartialMatch = false;
-                        for agentSubTypeKey, agentSubTypeData in pairs(crp.CRPLordsInPools[humanFactionName]) do
-                            for key, data in pairs(agentSubTypeData) do
-                                if string.match(keyName, key) and keyName ~= key then
-                                    crp.Logger:Log("Found partial match");
-                                    poolData = data;
-                                    foundPartialMatch = true;
-                                    break;
-                                end
-                            end
-                        end
-                        if foundPartialMatch == false then
-                            crp.Logger:Log("Untracked but valid character");
-                        end
+                        crp.Logger:Log("No replacement lords and this is an untracked but valid character");
                         canPlayerAffordCharacter = true;
                     end
+                else
+                    local foundPartialMatch = false;
+                    for agentSubTypeKey, agentSubTypeData in pairs(crp.CRPLordsInPools[humanFactionName]) do
+                        for key, data in pairs(agentSubTypeData) do
+                            if string.match(keyName, key) and keyName ~= key then
+                                crp.Logger:Log("Found partial match");
+                                poolData = data;
+                                foundPartialMatch = true;
+                                break;
+                            end
+                        end
+                    end
+                    if foundPartialMatch == false then
+                        crp.Logger:Log("Untracked but valid character");
+                    end
+                    canPlayerAffordCharacter = true;
                 end
+                --end
             end
+            -- If a character is untracked it might be newly created, we should track these for the player
+            -- and generate any meta data for them.
+            if poolData == nil
+            and isCharHidden == false
+            and subType ~= "Legendary Lord" then
+                local generatedName = nameText;
+                crp.Logger:Log("Tracking subtype "..agentSubtype);
+                local homeRegion = crp.CharacterGenerator:GetRegionForFaction(humanFaction);
+                poolData = crp:TrackCharacterInPoolData(humanFactionName, generatedName, agentSubtype, "", homeRegion, true, false);
+            end
+
             if poolData ~= nil then
                 crp.Logger:Log("Tracked character, adding extra details");
                 local newRecruitmentCost = crp.UIController:SetupCharacterDetailsButton(generalPanel, nameComponent, poolData);
@@ -670,8 +740,18 @@ function CRP_GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideD
                         canPlayerAffordCharacter = true;
                     end
                 end
+            else
+                crp.Logger:Log("Character is not tracked or is not the visible subtype");
+                local mountText = find_uicomponent(generalPanel, "dy_subtype", "mount_text");
+                if mountText then
+                    crp.Logger:Log("Hiding mount text");
+                    mountText:SetVisible(false);
+                end
             end
-
+            if checkedCharacterKeys[agentSubtype] == nil then
+                checkedCharacterKeys[agentSubtype] = {};
+            end
+            checkedCharacterKeys[agentSubtype][keyName] = keyName;
             if isCharHidden == false
             and charIsSelected == false
             and canPlayerAffordCharacter == true
@@ -702,37 +782,49 @@ function CRP_GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideD
                     if intrigueCost ~= nil then
                         crp.Logger:Log("Checking "..keyName);
                         if poolData then
-                            if (poolData.SubType == "wh2_main_hef_prince_mid" or poolData.SubType == "wh2_main_hef_princess_mid")
-                            and poolData.IsRecruited == false then
-                                crp.Logger:Log("Lord is mid prince or princess");
-                                intrigueCost:SetStateText("15");
-                                intrigueCostContainer:SetVisible(true);
-                                if factionIntrigue < 15
-                                or canPlayerAffordCharacter == false then
-                                    generalPanel:SetState("inactive");
-                                    local recruitmentCostComponent = find_uicomponent(generalPanel, "RecruitmentCost", "Cost");
-                                    local colouredStateText = "[[col:dark_r]]"..recruitmentCostComponent:GetStateText().."[[/col]]";
-                                    recruitmentCostComponent:SetStateText(colouredStateText);
-                                    intrigueCost:SetStateText("[[col:dark_r]]15[[/col]]");
-                                elseif charIsSelected == false then
-                                    generalPanel:SimulateLClick();
-                                    charIsSelected = true;
+                            if poolData.IsRecruited == false then
+                                crp.Logger:Log("Lord is not recruited");
+                                local iconBackgroundSkillText = CreateValidLuaTableKey(find_uicomponent(generalPanel, "icon_background_skill"):GetStateText());
+                                crp.Logger:Log("Icon background skill text is: "..iconBackgroundSkillText);
+                                local highElfTraitCosts = GetHighElfTraitToCosts();
+                                local traitTier = highElfTraitCosts[iconBackgroundSkillText];
+                                -- Grab the recruit general button
+                                local recruitmentButton = find_uicomponent(core:get_ui_root(), "layout", "hud_center_docker", "hud_center", "small_bar", "button_group_settlement", "button_agents");
+                                -- If the general recruitment button isn't selected then we must be in the agent listing
+                                local traitCost = 0;
+                                if recruitmentButton:CurrentState() ~= "selected" then
+                                    crp.Logger:Log("Adding cost for lords");
+                                    if traitTier == 2 then
+                                        traitCost = 15;
+                                    elseif traitTier == 3 then
+                                        traitCost = 60;
+                                    end
+                                else
+                                    crp.Logger:Log("Adding cost for heroes");
+                                    if traitTier == 2 then
+                                        traitCost = 10;
+                                    elseif traitTier == 3 then
+                                        traitCost = 40;
+                                    end
                                 end
-                            elseif (poolData.SubType == "wh2_main_hef_prince_high" or poolData.SubType == "wh2_main_hef_princess_high")
-                            and poolData.IsRecruited == false then
-                                crp.Logger:Log("Lord is high prince or princess");
-                                intrigueCost:SetStateText("60");
-                                intrigueCostContainer:SetVisible(true);
-                                if factionIntrigue < 60
-                                or canPlayerAffordCharacter == false then
-                                    generalPanel:SetState("inactive");
-                                    local recruitmentCostComponent = find_uicomponent(generalPanel, "RecruitmentCost", "Cost");
-                                    local colouredStateText = "[[col:dark_r]]"..recruitmentCostComponent:GetStateText().."[[/col]]";
-                                    recruitmentCostComponent:SetStateText(colouredStateText);
-                                    intrigueCost:SetStateText("[[col:dark_r]]60[[/col]]");
+                                crp.Logger:Log("Trait cost is: "..traitCost);
+                                if traitCost > 0 then
+                                    intrigueCost:SetStateText(traitCost);
+                                    intrigueCostContainer:SetVisible(true);
+                                    if factionIntrigue < traitCost
+                                    or canPlayerAffordCharacter == false then
+                                        generalPanel:SetState("inactive");
+                                        local recruitmentCostComponent = find_uicomponent(generalPanel, "RecruitmentCost", "Cost");
+                                        local colouredStateText = "[[col:dark_r]]"..recruitmentCostComponent:GetStateText().."[[/col]]";
+                                        recruitmentCostComponent:SetStateText(colouredStateText);
+                                        intrigueCost:SetStateText("[[col:dark_r]]"..traitCost.."[[/col]]");
+                                    elseif charIsSelected == false then
+                                        generalPanel:SimulateLClick();
+                                        charIsSelected = true;
+                                        crp.CachedAgentData.InfluenceCost = traitCost;
+                                    end
                                 elseif charIsSelected == false then
-                                    generalPanel:SimulateLClick();
-                                    charIsSelected = true;
+                                    crp.CachedAgentData.InfluenceCost = nil;
                                 end
                             elseif charIsSelected == false then
                                 crp.Logger:Log("Setting lord as selected "..keyName);
@@ -757,6 +849,19 @@ function CRP_GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideD
             raiseForcesButton:SetState("inactive");
             local unitInfoPopup = find_uicomponent(core:get_ui_root(), "UnitInfoPopup");
             unitInfoPopup:SetVisible(false);
+            crp.CachedAgentData.InfluenceCost = nil;
+        end
+
+        -- Check for any default characters which need to be untracked because the game removed them from the pool
+        for agentSubtypeKey, characterKeys in pairs(checkedCharacterKeys) do
+            local trackedCharactersForSubType = crp.CRPLordsInPools[humanFactionName][agentSubtypeKey];
+            for characterKeyName, trackedCharacter in pairs(trackedCharactersForSubType) do
+                if characterKeys[characterKeyName] == nil
+                and trackedCharacter.IsRecruited == false then
+                    crp.Logger:Log("Character: "..characterKeyName.." is missing from UI. Untracking.");
+                    crp.CRPLordsInPools[humanFactionName][agentSubtypeKey][characterKeyName] = nil;
+                end
+            end
         end
     else
         crp.Logger:Log("There are no generals in the list");
@@ -764,13 +869,28 @@ function CRP_GetGeneralCandidates(humanFaction, generalsList, lordsInPool, hideD
     if humanFaction:name() ~= crp.CachedAgentData.FactionKey then
         crp:CreateCachedAgentData(humanFaction);
     end
+    -- To make finding agents easier we highlight all the variants that actually have a character
+    local subtypeList = find_uicomponent(core:get_ui_root(), "character_panel", "agent_parent", "wizard_type", "type_list");
+    local numSubtypes = subtypeList:ChildCount() - 1;
+    if numSubtypes > -1 then
+        crp.Logger:Log("Number of subtypes: "..numSubtypes);
+        for j = 0, numSubtypes do
+            local subtypeButton = UIComponent(subtypeList:Find(j));
+            local subtypeId = subtypeButton:Id();
+            crp.Logger:Log("Checking button: "..subtypeId);
+            crp.Logger:Log("Button state: "..subtypeButton:CurrentState());
+            if lordsInPool[humanFactionName][subtypeId] ~= nil then
+                subtypeButton:SetState("selected");
+            end
+        end
+    end
      -- When using Lichemaster and we are updating Kemmler's faction
     -- we can skip this logic
     if not core:is_mod_loaded("liche_init")
     or humanFaction:name() ~= "wh2_dlc11_vmp_the_barrow_legion" then
         local agentCapComponent = find_uicomponent(core:get_ui_root(), "character_panel", "agent_parent", "dy_agent_cap");
-        local newCapText = crp.CachedAgentData.AgentCount.." / "..crp.CachedAgentData.AgentCap;
-        agentCapComponent:SetStateText(newCapText);
+        --[[local newCapText = crp.CachedAgentData.AgentCount.." / "..crp.CachedAgentData.AgentCap;
+        agentCapComponent:SetStateText(newCapText);--]]
     end
 end
 

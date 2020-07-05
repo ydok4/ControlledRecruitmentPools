@@ -40,16 +40,41 @@ function GetHighElfSubcultureResources()
                 Events = {
                 },
                 IncreasePoolSize = 1,
-                UseLevelMultiplier = true,
+                UseLevelMultiplier = false,
                 Type = "set",
             },
-            wh2_main_special_tower_of_hoeth_1 = {
+            wh2_main_hef_mages_3 = {
                 Pools = {
+                    "ArchMages",
                     "LoremasterOfHoethPool",
                 },
                 Events = {
                 },
                 IncreasePoolSize = 1,
+                UseLevelMultiplier = false,
+                Type = "set",
+            },
+            wh2_main_special_tower_of_hoeth_1 = {
+                Pools = {
+                    "MagesPool",
+                    "LoremasterOfHoethPool",
+                    "ArchMages",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 1,
+                UseLevelMultiplier = false,
+                Type = "set",
+            },
+            wh2_main_special_tower_of_hoeth_2 = {
+                Pools = {
+                    "MagesPool",
+                    "LoremasterOfHoethPool",
+                    "ArchMages",
+                },
+                Events = {
+                },
+                IncreasePoolSize = 2,
                 UseLevelMultiplier = false,
                 Type = "set",
             },
@@ -105,6 +130,10 @@ function GetHighElfSubcultureResources()
                 BonusCost = 300,
                 Weighting = 5,
             },
+            Griffon = {
+                BonusCost = 600,
+                Weighting = 4,
+            },
             SunDragon = {
                 BonusCost = 1150,
                 Weighting = 3,
@@ -154,6 +183,61 @@ function GetHighElfSubcultureResources()
                         MountData = "ElvenSteed",
                     },
                     wh2_dlc10_anc_mount_hef_mage_shadows_ithilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                },
+            },
+            wh2_dlc15_hef_mage_beasts = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_mage_beasts_elven_steed = {
+                        MountData = "ElvenSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_mage_beasts_ithilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                },
+            },
+            wh2_dlc15_hef_mage_death = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_mage_death_elven_steed = {
+                        MountData = "ElvenSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_mage_death_ithilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                },
+            },
+            wh2_dlc15_hef_mage_fire = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_mage_fire_elven_steed = {
+                        MountData = "ElvenSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_mage_fire_ithilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                    --[[wh2_dlc15_anc_mount_hef_mage_fire_sun_dragon = {
+                        MountData = "SunDragon",
+                    },--]]
+                },
+            },
+            wh2_dlc15_hef_mage_metal = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_mage_metal_elven_steed = {
+                        MountData = "ElvenSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_mage_metal_ithilmar_chariot = {
                         MountData = "IthilmarChariot",
                     },
                 },
@@ -221,7 +305,7 @@ function GetHighElfSubcultureResources()
                 },
             },
             wh2_main_hef_prince = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
@@ -232,6 +316,9 @@ function GetHighElfSubcultureResources()
                     wh2_main_anc_mount_hef_prince_great_eagle = {
                         MountData = "GreatEagle",
                     },
+                    wh2_dlc15_anc_mount_hef_prince_griffon = {
+                        MountData = "Griffon",
+                    },
                     wh2_main_anc_mount_hef_prince_sun_dragon = {
                         MountData = "SunDragon",
                     },
@@ -241,7 +328,7 @@ function GetHighElfSubcultureResources()
                 },
             },
             wh2_main_hef_princess = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
@@ -252,6 +339,9 @@ function GetHighElfSubcultureResources()
                     wh2_main_anc_mount_hef_princess_great_eagle = {
                         MountData = "GreatEagle",
                     },
+                    wh2_dlc15_anc_mount_hef_princess_griffon = {
+                        MountData = "Griffon",
+                    },
                     wh2_main_anc_mount_hef_princess_moon_dragon = {
                         MountData = "MoonDragon",
                     },
@@ -260,7 +350,7 @@ function GetHighElfSubcultureResources()
                     },
                 },
             },
-            wh2_main_hef_prince_mid = {
+           --[[wh2_main_hef_prince_mid = {
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
@@ -333,6 +423,177 @@ function GetHighElfSubcultureResources()
                     },
                     wh2_main_anc_mount_hef_princess_star_dragon = {
                         MountData = "StarDragon",
+                    },
+                },
+            },--]]
+            wh2_dlc15_hef_archmage_beasts = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_beasts_barded_warhorse = {
+                        MountData = "IthilmarSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_beasts_great_eagle = {
+                        MountData = "GreatEagle",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_beasts_ilthilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_beasts_moon_dragon = {
+                        MountData = "MoonDragon",
+                    },
+                },
+            },
+            wh2_dlc15_hef_archmage_death = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_death_barded_warhorse = {
+                        MountData = "IthilmarSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_death_great_eagle = {
+                        MountData = "GreatEagle",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_death_ilthilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_death_moon_dragon = {
+                        MountData = "MoonDragon",
+                    },
+                },
+            },
+            wh2_dlc15_hef_archmage_fire = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_fire_barded_warhorse = {
+                        MountData = "IthilmarSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_fire_great_eagle = {
+                        MountData = "GreatEagle",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_fire_ilthilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_fire_moon_dragon = {
+                        MountData = "MoonDragon",
+                    },
+                },
+            },
+            wh2_dlc15_hef_archmage_heavens = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_heavens_barded_warhorse = {
+                        MountData = "IthilmarSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_heavens_great_eagle = {
+                        MountData = "GreatEagle",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_heavens_ithilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_heavens_moon_dragon = {
+                        MountData = "MoonDragon",
+                    },
+                },
+            },
+            wh2_dlc15_hef_archmage_shadows = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_shadows_barded_warhorse = {
+                        MountData = "IthilmarSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_shadows_great_eagle = {
+                        MountData = "GreatEagle",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_shadows_ilthilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_shadows_moon_dragon = {
+                        MountData = "MoonDragon",
+                    },
+                },
+            },
+            wh2_dlc15_hef_archmage_high = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_high_barded_warhorse = {
+                        MountData = "IthilmarSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_high_great_eagle = {
+                        MountData = "GreatEagle",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_high_ithilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_high_moon_dragon = {
+                        MountData = "MoonDragon",
+                    },
+                },
+            },
+            wh2_dlc15_hef_archmage_life = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_life_barded_warhorse = {
+                        MountData = "IthilmarSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_life_great_eagle = {
+                        MountData = "GreatEagle",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_life_ilthilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_life_moon_dragon = {
+                        MountData = "MoonDragon",
+                    },
+                },
+            },
+            wh2_dlc15_hef_archmage_light = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_light_barded_warhorse = {
+                        MountData = "IthilmarSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_light_great_eagle = {
+                        MountData = "GreatEagle",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_light_ithilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_light_moon_dragon = {
+                        MountData = "MoonDragon",
+                    },
+                },
+            },
+            wh2_dlc15_hef_archmage_metal = {
+                Mounts = {
+                    unmounted = {
+                        MountData = "Unmounted",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_metal_barded_warhorse = {
+                        MountData = "IthilmarSteed",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_metal_great_eagle = {
+                        MountData = "GreatEagle",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_metal_ilthilmar_chariot = {
+                        MountData = "IthilmarChariot",
+                    },
+                    wh2_dlc15_anc_mount_hef_archmage_metal_moon_dragon = {
+                        MountData = "MoonDragon",
                     },
                 },
             },

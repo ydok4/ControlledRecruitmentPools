@@ -63,11 +63,11 @@ function GetWoodElfSubcultureResources()
         MountData = {
             Unmounted = {
                 BonusCost = 0,
-                Weighting = 6,
+                Weighting = 15,
             },
             ElvenSteed = {
                 BonusCost = 0,
-                Weighting = 15,
+                Weighting = 8,
             },
             Unicorn = {
                 BonusCost = 300,
@@ -84,7 +84,7 @@ function GetWoodElfSubcultureResources()
         },
         AgentSubTypes = {
             dlc05_wef_glade_lord = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
@@ -101,7 +101,7 @@ function GetWoodElfSubcultureResources()
                 },
             },
             dlc05_wef_glade_lord_fem = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

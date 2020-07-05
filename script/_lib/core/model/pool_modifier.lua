@@ -40,15 +40,18 @@ function PoolModifier:GiveReward(crp, faction, rewardData, cacheData)
             else
                 poolResources = factionPoolResources.FactionPools[poolKey];
             end
-            agentSubTypeKey = crp:SelectCharacterToGenerateFromSpecifiedPool(poolResources, currentFactionPools, isHumanFaction);
+            local factionResources = GetAgentSubTypeResourcesForFaction(faction);
+            agentSubTypeKey = crp:SelectCharacterToGenerateFromSpecifiedPool(poolResources, currentFactionPools, factionResources, isHumanFaction);
         end
-        local artSetId = crp.CharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
-        -- If this is the players faction this should happen straight away - Not right now.
-        -- so the recruitment event message can be supressed
-        cm:callback(function()
-            crp:GenerateCharacter(agentSubTypeKey, faction, artSetId);
-            crp.Logger:Log_Finished();
-        end, 1);
+        if agentSubTypeKey ~= nil then
+            local artSetId = crp.CharacterGenerator:GetArtSetForSubType(agentSubTypeKey);
+            -- If this is the players faction this should happen straight away - Not right now.
+            -- so the recruitment event message can be supressed
+            cm:callback(function()
+                crp:GenerateCharacter(agentSubTypeKey, faction, artSetId);
+                crp.Logger:Log_Finished();
+            end, 1);
+        end
     end
     crp.Logger:Log("Finished increasing pool size");
     if rewardData.Events ~= nil and rewardData.Events.Incident ~= nil then
@@ -62,11 +65,16 @@ function PoolModifier:ChangePoolViaValue(faction, rewardData, isPositive)
     if isPositive == true then
         multiplier = 1;
     end
-
+    local defaultSubcultureResources = GetSubCulturePoolResources(faction:subculture());
     local factionPools = GetFactionPoolResources(faction);
     local rewardList = rewardData.Pools;
-    for index, poolKey in pairs(rewardList) do
-        local defaultSubcultureResources = GetSubCulturePoolResources(faction:subculture());
+    for indexOrPoolKey, poolDataOrPoolKey in pairs(rewardList) do
+        local poolKey = "";
+        if type(poolDataOrPoolKey) == "table" then
+            poolKey = indexOrPoolKey;
+        else
+            poolKey = poolDataOrPoolKey;
+        end
         local subcultureResourcesForLordPool = defaultSubcultureResources.FactionPools[poolKey];
         if subcultureResourcesForLordPool ~= nil then
             if factionPools.FactionPools[poolKey] == nil then
@@ -76,19 +84,23 @@ function PoolModifier:ChangePoolViaValue(faction, rewardData, isPositive)
                     SubPoolMaxSize = 0,
                     SubPoolBonusSize = 0,
                 };
-                for agentSubTypeKey, agentSubTypeData in pairs(subcultureResourcesForLordPool) do
-                    local correctAgentSubtypeKey = agentSubTypeKey;
-                    if rewardData.RemapAgentKeys[agentSubTypeKey] then
-                        correctAgentSubtypeKey = rewardData.RemapAgentKeys[agentSubTypeKey];
-                    end
-                    factionPools.FactionPools[poolKey].AgentSubTypes[correctAgentSubtypeKey] = {
-                        MaximumPercentage = agentSubTypeData.MaximumPercentage,
-                    };
-                end
             end
+
+            for agentSubTypeKey, agentSubTypeData in pairs(subcultureResourcesForLordPool.AgentSubTypes) do
+                local correctAgentSubtypeKey = agentSubTypeKey;
+                if factionPools.RemapAgentKeys ~= nil
+                and factionPools.RemapAgentKeys[agentSubTypeKey] then
+                    correctAgentSubtypeKey = factionPools.RemapAgentKeys[agentSubTypeKey];
+                end
+                factionPools.FactionPools[poolKey].AgentSubTypes[correctAgentSubtypeKey] = {
+                    MaximumPercentage = agentSubTypeData.MaximumPercentage,
+                };
+            end
+
             factionPools.FactionPools[poolKey].SubPoolBonusSize = factionPools.FactionPools[poolKey].SubPoolBonusSize + (rewardData.IncreasePoolSize * multiplier); 
-            factionPools.FactionPools[poolKey].SubPoolMaxSize = factionPools.FactionPools[poolKey].SubPoolMaxSize + factionPools.FactionPools[poolKey].SubPoolBonusSize;
+            factionPools.FactionPools[poolKey].SubPoolMaxSize = factionPools.FactionPools[poolKey].SubPoolMaxSize + factionPools.FactionPools[poolKey].SubPoolBonusSize;    
         end
+
         local subcultureResourcesForHeroPool = defaultSubcultureResources.HeroPools[poolKey];
         if subcultureResourcesForHeroPool ~= nil then
             if factionPools.HeroPools[poolKey] == nil then
@@ -98,16 +110,17 @@ function PoolModifier:ChangePoolViaValue(faction, rewardData, isPositive)
                     SubPoolMaxSize = 0,
                     SubPoolBonusSize = 0,
                 };
-                for agentSubTypeKey, agentSubTypeData in pairs(subcultureResourcesForHeroPool) do
-                    local correctAgentSubtypeKey = agentSubTypeKey;
-                    if rewardData.RemapAgentKeys[agentSubTypeKey] then
-                        correctAgentSubtypeKey = rewardData.RemapAgentKeys[agentSubTypeKey];
-                    end
-                    factionPools.HeroPools[poolKey].AgentSubTypes[correctAgentSubtypeKey] = {
-                        MaximumPercentage = agentSubTypeData.MaximumPercentage,
-                    };
-                end
             end
+            for agentSubTypeKey, agentSubTypeData in pairs(subcultureResourcesForHeroPool.AgentSubTypes) do
+                local correctAgentSubtypeKey = agentSubTypeKey;
+                if factionPools.RemapAgentKeys[agentSubTypeKey] then
+                    correctAgentSubtypeKey = rewardData.RemapAgentKeys[agentSubTypeKey];
+                end
+                factionPools.HeroPools[poolKey].AgentSubTypes[correctAgentSubtypeKey] = {
+                    MaximumPercentage = agentSubTypeData.MaximumPercentage,
+                };
+            end
+
             factionPools.HeroPools[poolKey].SubPoolBonusSize = factionPools.HeroPools[poolKey].SubPoolBonusSize + (rewardData.IncreasePoolSize * multiplier); 
             factionPools.HeroPools[poolKey].SubPoolMaxSize = factionPools.HeroPools[poolKey].SubPoolMaxSize + factionPools.HeroPools[poolKey].SubPoolBonusSize;
         end
@@ -117,7 +130,7 @@ end
 function PoolModifier:SetPoolToValue(faction, rewardData, cacheData)
     local factionPools = GetFactionPoolResources(faction);
     local subcultureKey = faction:subculture();
-    local subcultureResources = GetSubCulturePoolResources(subcultureKey);
+    local defaultSubcultureResources = GetSubCulturePoolResources(subcultureKey);
     for index, poolKey in pairs(rewardData.Pools) do
         local amount = 0;
         if rewardData.UseLevelMultiplier == true then
@@ -125,31 +138,52 @@ function PoolModifier:SetPoolToValue(faction, rewardData, cacheData)
         else
             amount = cacheData.Amount;
         end
-        if factionPools.HeroPools[poolKey] == nil
-        and subcultureResources.HeroPools[poolKey] ~= nil then
-            factionPools.HeroPools[poolKey] = subcultureResources.HeroPools[poolKey];
-        end
-        if factionPools.HeroPools[poolKey] ~= nil then
-            factionPools.HeroPools[poolKey].SubPoolMaxSize = rewardData.IncreasePoolSize * amount + factionPools.HeroPools[poolKey].SubPoolBonusSize;
-            for agentSubtypeKey, agentSubtypeData in pairs(factionPools.HeroPools[poolKey].AgentSubTypes) do
-                agentSubtypeData.MaximumPercentage = subcultureResources.HeroPools[poolKey].AgentSubTypes[agentSubtypeKey].MaximumPercentage;
+        local subcultureResourcesForLordPool = defaultSubcultureResources.FactionPools[poolKey];
+        if subcultureResourcesForLordPool ~= nil then
+            if factionPools.FactionPools[poolKey] == nil then
+                factionPools.FactionPools[poolKey] = {
+                    AgentSubTypes = {};
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                    SubPoolBonusSize = 0,
+                };
             end
+
+            for agentSubTypeKey, agentSubTypeData in pairs(subcultureResourcesForLordPool.AgentSubTypes) do
+                local correctAgentSubtypeKey = agentSubTypeKey;
+                if factionPools.RemapAgentKeys ~= nil
+                and factionPools.RemapAgentKeys[agentSubTypeKey] then
+                    correctAgentSubtypeKey = factionPools.RemapAgentKeys[agentSubTypeKey];
+                end
+                factionPools.FactionPools[poolKey].AgentSubTypes[correctAgentSubtypeKey] = {
+                    MaximumPercentage = agentSubTypeData.MaximumPercentage,
+                };
+            end
+            factionPools.FactionPools[poolKey].SubPoolMaxSize = rewardData.IncreasePoolSize * amount + factionPools.FactionPools[poolKey].SubPoolBonusSize;
         end
 
-        if factionPools.FactionPools[poolKey] == nil
-        and subcultureResources.FactionPools[poolKey] ~= nil then
-            factionPools.FactionPools[poolKey] = subcultureResources.FactionPools[poolKey];
-        end
-        if factionPools.FactionPools[poolKey] ~= nil then
-            factionPools.FactionPools[poolKey].SubPoolMaxSize = rewardData.IncreasePoolSize * amount + factionPools.FactionPools[poolKey].SubPoolBonusSize;
-            for agentSubtypeKey, agentSubtypeData in pairs(factionPools.FactionPools[poolKey].AgentSubTypes) do
-                if factionPools.FactionPools[poolKey] ~= nil
-                and factionPools.FactionPools[poolKey].AgentSubTypes[agentSubtypeKey] ~= nil then
-                    agentSubtypeData.MaximumPercentage = factionPools.FactionPools[poolKey].AgentSubTypes[agentSubtypeKey].MaximumPercentage;
-                else
-                    agentSubtypeData.MaximumPercentage = subcultureResources.FactionPools[poolKey].AgentSubTypes[agentSubtypeKey].MaximumPercentage;
-                end
+        local subcultureResourcesForHeroPool = defaultSubcultureResources.HeroPools[poolKey];
+        if subcultureResourcesForHeroPool ~= nil then
+            if factionPools.HeroPools[poolKey] == nil then
+                factionPools.HeroPools[poolKey] = {
+                    AgentSubTypes = {};
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 0,
+                    SubPoolBonusSize = 0,
+                };
             end
+
+            for agentSubTypeKey, agentSubTypeData in pairs(subcultureResourcesForHeroPool.AgentSubTypes) do
+                local correctAgentSubtypeKey = agentSubTypeKey;
+                if factionPools.RemapAgentKeys ~= nil
+                and factionPools.RemapAgentKeys[agentSubTypeKey] then
+                    correctAgentSubtypeKey = factionPools.RemapAgentKeys[agentSubTypeKey];
+                end
+                factionPools.HeroPools[poolKey].AgentSubTypes[correctAgentSubtypeKey] = {
+                    MaximumPercentage = agentSubTypeData.MaximumPercentage,
+                };
+            end
+            factionPools.HeroPools[poolKey].SubPoolMaxSize = rewardData.IncreasePoolSize * amount + factionPools.HeroPools[poolKey].SubPoolBonusSize;
         end
     end
 end

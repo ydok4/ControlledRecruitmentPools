@@ -181,7 +181,7 @@ function GetVampireCountsSubcultureResources()
         AgentSubTypes = {
             vmp_master_necromancer = {
                 BonusCost = 65,
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",

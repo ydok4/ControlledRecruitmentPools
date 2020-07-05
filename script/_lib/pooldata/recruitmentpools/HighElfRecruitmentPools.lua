@@ -15,19 +15,31 @@ function GetHighElfRecruitmentPoolData()
                 MagesPool = {
                     AgentSubTypes = {
                         wh2_dlc10_hef_mage_heavens = {
-                            MaximumPercentage = 20,
+                            MaximumPercentage = 11,
                         },
                         wh2_dlc10_hef_mage_shadows = {
-                            MaximumPercentage = 20,
+                            MaximumPercentage = 11,
                         },
                         wh2_main_hef_mage_high = {
-                            MaximumPercentage = 20,
+                            MaximumPercentage = 11,
                         },
                         wh2_main_hef_mage_life = {
-                            MaximumPercentage = 20,
+                            MaximumPercentage = 11,
                         },
                         wh2_main_hef_mage_light = {
-                            MaximumPercentage = 20,
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_mage_beasts = {
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_mage_death = {
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_mage_fire = {
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_mage_metal = {
+                            MaximumPercentage = 11,
                         },
                     },
                     SubPoolInitialMinSize = 1,
@@ -54,7 +66,7 @@ function GetHighElfRecruitmentPoolData()
             },
             HeroPoolMaxSize = 4,
             FactionPools = {
-                LowPrinces = {
+                Princes = {
                     AgentSubTypes = {
                         wh2_main_hef_prince = {
                             MaximumPercentage = 50,
@@ -64,9 +76,42 @@ function GetHighElfRecruitmentPoolData()
                         },
                     },
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 2,
+                    SubPoolMaxSize = 3,
                 },
-                Princes = {
+                ArchMages = {
+                    AgentSubTypes = {
+                        wh2_dlc15_hef_archmage_beasts = {
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_archmage_death  = {
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_archmage_fire  = {
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_archmage_heavens  = {
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_archmage_shadows  = {
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_archmage_high  = {
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_archmage_life  = {
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_archmage_light  = {
+                            MaximumPercentage = 11,
+                        },
+                        wh2_dlc15_hef_archmage_metal  = {
+                            MaximumPercentage = 11,
+                        },
+                    },
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 1,
+                },
+                --[[Princes = {
                     AgentSubTypes = {
                         wh2_main_hef_prince_mid = {
                             MaximumPercentage = 33,
@@ -83,7 +128,7 @@ function GetHighElfRecruitmentPoolData()
                     },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 3,
-                },
+                },--]]
             },
             LordPoolMaxSize = 4,
         },
@@ -93,120 +138,43 @@ function GetHighElfRecruitmentPoolData()
         -- Lothern
         wh2_main_hef_eataine = {
             FactionPools = {
-                LowPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
-                    SubPoolInitialMinSize = 0,
+                Princes = {
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 4,
+                },
+                ArchMages = {
+                    SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 1,
                 },
-                MidPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_mid = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_mid  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 3,
-                },
-                HighPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_high = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_high  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 2,
-                },
             },
-
             LordPoolMaxSize = 4,
+            AutoUnlockHeroes = {
+                "wh2_main_hef_noble",
+            },
         },
 
         -- Order of Loremasters
         wh2_main_hef_order_of_loremasters = {
             HeroPools = {
                 MagesPool = {
-                    AgentSubTypes = {
-                        wh2_dlc10_hef_mage_heavens = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_dlc10_hef_mage_shadows = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_main_hef_mage_high = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_main_hef_mage_life = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_main_hef_mage_light = {
-                            MaximumPercentage = 20,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 4,
+                    SubPoolMaxSize = 3,
                 },
                 LoremasterOfHoethPool = {
-                    AgentSubTypes = {
-                        wh2_main_hef_loremaster_of_hoeth = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
             },
             FactionPools = {
-                LowPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
-                    SubPoolInitialMinSize = 0,
-                    SubPoolMaxSize = 3,
-                },
-                MidPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_mid = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_mid  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
+                Princes = {
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 1,
                 },
-                HighPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_high = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_high  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 2,
+                ArchMages = {
+                    SubPoolInitialMinSize = 2,
+                    SubPoolMaxSize = 3,
                 },
             },
-
             LordPoolMaxSize = 4,
         },
 
@@ -214,149 +182,78 @@ function GetHighElfRecruitmentPoolData()
         wh2_main_hef_avelorn = {
             HeroPools = {
                 MagesPool = {
-                    AgentSubTypes = {
-                        wh2_dlc10_hef_mage_heavens = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_dlc10_hef_mage_shadows = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_main_hef_mage_high = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_main_hef_mage_life = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_main_hef_mage_light = {
-                            MaximumPercentage = 20,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
                 HandMaidens = {
-                    AgentSubTypes = {
-                        wh2_dlc10_hef_handmaiden = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 4,
+                    SubPoolMaxSize = 3,
                 },
             },
             FactionPools = {
-                MidPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_mid = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_mid  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
+                Princes = {
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 3,
                 },
-                HighPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_high = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_high  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
+                ArchMages = {
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 3,
+                    SubPoolMaxSize = 1,
                 },
             },
-
             LordPoolMaxSize = 4,
         },
 
         -- Nagarythe
         wh2_main_hef_nagarythe = {
             FactionPools = {
-                LowPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess  = {
-                            MaximumPercentage = 50,
-                         },
-                    },
+                Princes = {
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 3,
                 },
-                MidPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_mid = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_mid  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
+            },
+            LordPoolMaxSize = 4,
+        },
+
+        -- Imrik
+        wh2_dlc15_hef_imrik = {
+            FactionPools = {
+                Princes = {
                     SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 3,
+                    SubPoolMaxSize = 4,
                 },
-                HighPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_high = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_high  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
+                ArchMages = {
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 1,
                 },
             },
+            LordPoolMaxSize = 4,
+        },
 
+        wh2_main_hef_yvresse = {
+            FactionPools = {
+                Princes = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
+                },
+                ArchMages = {
+                    SubPoolInitialMinSize = 0,
+                    SubPoolMaxSize = 1,
+                },
+            },
             LordPoolMaxSize = 4,
         },
 
         -- Minor High Elf Factions
-        -- Caledor
+        -- Caledor (Ulthuan)
         wh2_main_hef_caledor = {
             FactionPools = {
-                LowPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince= {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
+                Princes = {
+                    SubPoolInitialMinSize = 1,
+                    SubPoolMaxSize = 4,
+                },
+                ArchMages = {
                     SubPoolInitialMinSize = 0,
                     SubPoolMaxSize = 1,
-                },
-                MidPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_mid = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_mid  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 3,
-                },
-                HighPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_high = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_high  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 2,
                 },
             },
             LordPoolMaxSize = 4,
@@ -366,72 +263,22 @@ function GetHighElfRecruitmentPoolData()
         wh2_main_hef_saphery = {
             HeroPools = {
                 MagesPool = {
-                    AgentSubTypes = {
-                        wh2_dlc10_hef_mage_heavens = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_dlc10_hef_mage_shadows = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_main_hef_mage_high = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_main_hef_mage_life = {
-                            MaximumPercentage = 20,
-                        },
-                        wh2_main_hef_mage_light = {
-                            MaximumPercentage = 20,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 3,
                 },
                 LoremasterOfHoethPool = {
-                    AgentSubTypes = {
-                        wh2_main_hef_loremaster_of_hoeth = {
-                            MaximumPercentage = 100,
-                        },
-                    },
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 2,
                 },
             },
             FactionPools = {
-                LowPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince= {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
-                    SubPoolInitialMinSize = 0,
+                Princes = {
+                    SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 1,
                 },
-                MidPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_mid = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_mid  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
+                ArchMages = {
                     SubPoolInitialMinSize = 1,
                     SubPoolMaxSize = 3,
-                },
-                HighPrinces = {
-                    AgentSubTypes = {
-                        wh2_main_hef_prince_high = {
-                            MaximumPercentage = 50,
-                        },
-                        wh2_main_hef_princess_high  = {
-                            MaximumPercentage = 50,
-                        },
-                    },
-                    SubPoolInitialMinSize = 1,
-                    SubPoolMaxSize = 2,
                 },
             },
             LordPoolMaxSize = 4,

@@ -76,7 +76,7 @@ function GetNorscanSubcultureResources()
         },
         AgentSubTypes = {
             nor_marauder_chieftain = {
-                HumanPlayerOnly = true,
+                IsDefaultLord = true,
                 Mounts = {
                     unmounted = {
                         MountData = "Unmounted",
